@@ -43,13 +43,21 @@ public class Test {
          */
         Exemplaire exemplaire = new Exemplaire(250, location, auto);
 
-        emprunteur.setLoue(exemplaire); // events?
+        emprunteur.setExemplaire(exemplaire);
+
+        System.out.println("Location");
+        emprunteur.louer(); // events?
+        System.out.println(emprunteur);
+        System.out.println("Ramener");
+        emprunteur.ramener();
         System.out.println(emprunteur);
 
         // Liste d'emprunteurs
+        System.out.println("Liste d'emprunteurs");
         System.out.println(Emprunteurs.get());
 
         // Liste de véhicules
+        System.out.println("Liste de véhicules");
         System.out.println(Vehicules.get());
 
         // Flotte d'exemplaires

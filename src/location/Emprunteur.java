@@ -9,7 +9,7 @@ public class Emprunteur {
     private String nom;
     private String prenom;
     private Adresse adresse;
-    private Exemplaire loue;
+    private Exemplaire exemplaire;
 
     public Emprunteur(Adresse adresse, String prenom, String nom) {
         id = registre;
@@ -22,13 +22,13 @@ public class Emprunteur {
         Emprunteurs.ajout(this);
     }
 
-    public Emprunteur(Adresse adresse, String prenom, String nom, Exemplaire loue) {
+    public Emprunteur(Adresse adresse, String prenom, String nom, Exemplaire exemplaire) {
         id = registre;
         registre++;
         this.adresse = adresse;
         this.prenom = prenom;
         this.nom = nom;
-        this.loue = loue;
+        this.exemplaire = exemplaire;
 
         // Ajout de l'emprunteur
         Emprunteurs.ajout(this);
@@ -66,20 +66,26 @@ public class Emprunteur {
         this.adresse = adresse;
     }
 
-    public Exemplaire getLoue() {
-        return loue;
+    public Exemplaire getExemplaire() {
+        return exemplaire;
     }
 
-    public void setLoue(Exemplaire loue) {
-        this.loue = loue;
+    public void setExemplaire(Exemplaire exemplaire) {
+        this.exemplaire = exemplaire;
+    }
+
+    public void louer() {
+        exemplaire.setLoue();
     }
 
     public void louer(Exemplaire e) {
-        e.setLoue();
+        this.exemplaire = e;
+        exemplaire.setLoue();
     }
 
-    private void ramener(Exemplaire e) {
-        e.unsetLoue();
+    public void ramener() {
+        exemplaire.unsetLoue();
+        this.exemplaire = null; // On ramène un véhicule, l'emprunteur n'a plus d'exemplaire associé
     }
 
     @Override
@@ -92,7 +98,7 @@ public class Emprunteur {
         if (id != that.id) return false;
         if (!nom.equals(that.nom)) return false;
         if (!prenom.equals(that.prenom)) return false;
-        if (!loue.equals(that.loue)) return false;
+        if (!exemplaire.equals(that.exemplaire)) return false;
         return adresse.equals(that.adresse);
 
     }
@@ -113,7 +119,7 @@ public class Emprunteur {
                 ", nom='" + nom + '\'' +
                 ", prenom='" + prenom + '\'' +
                 ", adresse='" + adresse + '\'' +
-                ", loue=" + loue +
+                ", exemplaire=" + exemplaire +
                 '}';
     }
 }
