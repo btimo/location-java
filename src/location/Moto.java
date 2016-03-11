@@ -11,7 +11,7 @@ public class Moto extends Vehicule {
         this.marque = marque;
 
         // Ajout du véhicule actuel
-        Vehicules.ajoutVehicule(this);
+        Vehicules.ajout(this);
     }
 
     public int getCylindree() {
@@ -44,6 +44,7 @@ public class Moto extends Vehicule {
     @Override
     public String toString() {
         return "Moto{" +
+                "marque='" + getMarque() + ", " + '\'' +
                 "cylindree=" + cylindree +
                 '}';
     }

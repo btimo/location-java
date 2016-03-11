@@ -19,7 +19,7 @@ public class Emprunteur {
         this.nom = nom;
 
         // Ajout de l'emprunteur
-        Emprunteurs.ajoutEmprunteur(this);
+        Emprunteurs.ajout(this);
     }
 
     public Emprunteur(Adresse adresse, String prenom, String nom, Exemplaire loue) {
@@ -31,7 +31,7 @@ public class Emprunteur {
         this.loue = loue;
 
         // Ajout de l'emprunteur
-        Emprunteurs.ajoutEmprunteur(this);
+        Emprunteurs.ajout(this);
     }
 
     public int getId() {
@@ -75,11 +75,11 @@ public class Emprunteur {
     }
 
     public void louer(Exemplaire e) {
-        // TODO
+        e.setLoue();
     }
 
     private void ramener(Exemplaire e) {
-        // TODO
+        e.unsetLoue();
     }
 
     @Override

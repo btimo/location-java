@@ -8,7 +8,11 @@ import java.util.ArrayList;
 public class Flotte {
     private static ArrayList<Exemplaire> exemplaires = new ArrayList<Exemplaire>();
 
-    public static void ajoutFlotte(Exemplaire e) {
+    public static void ajout(Exemplaire e) {
         exemplaires.add(e);
+    }
+
+    public static ArrayList<Exemplaire> get() {
+        return exemplaires;
     }
 }

@@ -8,7 +8,11 @@ import java.util.ArrayList;
 public class Emprunteurs {
     private static ArrayList<Emprunteur> emprunteurs = new ArrayList<Emprunteur>();
 
-    public static void ajoutEmprunteur(Emprunteur e) {
+    public static void ajout(Emprunteur e) {
         emprunteurs.add(e);
+    }
+
+    public static ArrayList<Emprunteur> get() {
+        return emprunteurs;
     }
 }

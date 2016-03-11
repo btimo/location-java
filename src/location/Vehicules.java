@@ -8,7 +8,11 @@ import java.util.ArrayList;
 public class Vehicules {
     private static ArrayList<Vehicule> vehicules = new ArrayList<Vehicule>();
 
-    public static void ajoutVehicule(Vehicule v) {
+    public static void ajout(Vehicule v) {
         vehicules.add(v);
+    }
+
+    public static ArrayList<Vehicule> get() {
+        return vehicules;
     }
 }

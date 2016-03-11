@@ -11,7 +11,7 @@ public class Auto extends Vehicule {
         this.modele = modele;
 
         // Ajout du véhicule actuel
-        Vehicules.ajoutVehicule(this);
+        Vehicules.ajout(this);
     }
 
     public String getModele() {
@@ -44,6 +44,7 @@ public class Auto extends Vehicule {
     @Override
     public String toString() {
         return "Auto{" +
+                "marque='" + getMarque() + ", " + '\'' +
                 "modele='" + modele + '\'' +
                 '}';
     }
