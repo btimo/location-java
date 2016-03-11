@@ -1,0 +1,50 @@
+package location;
+
+/**
+ * Created by Adrien on 07/03/2016.
+ */
+public class Moto extends Vehicule {
+    private int cylindree;
+
+    public Moto(String marque, int cylindree) {
+        this.cylindree = cylindree;
+        this.marque = marque;
+
+        // Ajout du véhicule actuel
+        Vehicules.ajoutVehicule(this);
+    }
+
+    public int getCylindree() {
+        return cylindree;
+    }
+
+    public void setCylindree(int cylindree) {
+        this.cylindree = cylindree;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+
+        Moto moto = (Moto) o;
+
+        return cylindree == moto.cylindree;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + cylindree;
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Moto{" +
+                "cylindree=" + cylindree +
+                '}';
+    }
+}
