@@ -51,4 +51,23 @@ public class Flotte {
             }
         });
     }
+
+    public static ArrayList<Exemplaire> rechercheKm(String operator, int km)
+    {
+        ArrayList<Exemplaire> vehiculesSearch = new ArrayList<Exemplaire>();
+
+        for(Exemplaire e : exemplaires) {
+            if (operator.equals(">") && e.getKilometres() > km) {
+                vehiculesSearch.add(e);
+            }
+            else if (operator.equals("<") && e.getKilometres() < km) {
+                vehiculesSearch.add(e);
+            }
+            else if (e.getKilometres() == km) {
+                vehiculesSearch.add(e);
+            }
+        }
+
+        return vehiculesSearch;
+    }
 }

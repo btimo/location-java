@@ -29,6 +29,19 @@ public class Vehicules {
         });
     }
 
+    public static ArrayList<Vehicule> rechercheMarque(String marque)
+    {
+        ArrayList<Vehicule> vehiculesSearch = new ArrayList<Vehicule>();
+
+        for(Vehicule v : vehicules) {
+            if(v.getMarque() != null && v.getMarque().contains(marque)) {
+                vehiculesSearch.add(v);
+            }
+        }
+
+        return vehiculesSearch;
+    }
+
     public static void triModele()
     {
         // TODO: extract Auto from Vehicule? Limit sort to Autos....

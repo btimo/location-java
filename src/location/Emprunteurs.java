@@ -46,6 +46,32 @@ public class Emprunteurs {
         });
     }
 
+    public static ArrayList<Emprunteur> rechercheNom(String name)
+    {
+        ArrayList<Emprunteur> emprunteursSearch = new ArrayList<Emprunteur>();
+
+        for(Emprunteur e : emprunteurs) {
+            if(e.getNom() != null && e.getNom().contains(name)) {
+                emprunteursSearch.add(e);
+            }
+        }
+
+        return emprunteursSearch;
+    }
+
+    public static ArrayList<Emprunteur> rechercheVehicule(Vehicule vehicule)
+    {
+        ArrayList<Emprunteur> emprunteursSearch = new ArrayList<Emprunteur>();
+
+        for(Emprunteur e : emprunteurs) {
+            if(e.getExemplaire() != null && e.getExemplaire().getVehicule() != null && e.getExemplaire().getVehicule().equals(vehicule)) {
+                emprunteursSearch.add(e);
+            }
+        }
+
+        return emprunteursSearch;
+    }
+
     public static void triPrenom()
     {
         Collections.sort(emprunteurs, new Comparator<Emprunteur>()

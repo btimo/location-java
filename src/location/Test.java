@@ -76,6 +76,17 @@ public class Test {
         System.out.println("Tri Code Postal");
         Emprunteurs.triCodePostal();
         System.out.println(Emprunteurs.get());
+        System.out.println("Recherche pour le nom: Barbot");
+        System.out.println(Emprunteurs.rechercheNom("Barbot"));
+        System.out.println("Recherche pour le véhicule: Fiesta");
+        try {
+            Exemplaire exemplaire = new Exemplaire(250, location, auto);
+            Exemplaire exemplaire2 = new Exemplaire(150, auto2);
+            emprunteur.setExemplaire(exemplaire);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        System.out.println(Emprunteurs.rechercheVehicule(auto));
 
         // Liste de véhicules
         System.out.println("Liste de véhicules");
@@ -93,5 +104,9 @@ public class Test {
         System.out.println("Tri ID");
         Flotte.triId();
         System.out.println(Flotte.get());
+        System.out.println("< 160km");
+        System.out.println(Flotte.rechercheKm("<", 160));
+        System.out.println("= 250km");
+        System.out.println(Flotte.rechercheKm("=", 250));
     }
 }
