@@ -19,11 +19,15 @@ public class Test {
          */
         Adresse adresse = new Adresse(3, "avenue de la République", 94800, "Villejuif");
         //System.out.println(adresse);
+        Adresse adresse2 = new Adresse(3, "avenue des champs Elysées", 75800, "Paris");
+        Adresse adresse3 = new Adresse(3, "place de la Comédie", 34000, "Montpellier");
 
         /**
          * Test d'emprunteur
          */
         Emprunteur emprunteur = new Emprunteur(adresse, "Adrien", "Poupa");
+        Emprunteur emprunteur2 = new Emprunteur(adresse2, "Stéphane", "Gateau");
+        Emprunteur emprunteur3 = new Emprunteur(adresse3, "Timothée", "Barbot");
         System.out.println(emprunteur);
 
         /**
@@ -37,11 +41,16 @@ public class Test {
          */
         Auto auto = new Auto("Ford", "Fiesta");
         System.out.println(auto);
+        Auto auto2 = new Auto("Dacia", "Sandero");
+        System.out.println(auto2);
+        Auto auto3 = new Auto("Audi", "A1");
+        System.out.println(auto3);
 
         /**
          * Test d'exmplaire
          */
         Exemplaire exemplaire = new Exemplaire(250, location, auto);
+        Exemplaire exemplaire2 = new Exemplaire(150, auto2);
 
         emprunteur.setExemplaire(exemplaire);
 
@@ -55,12 +64,25 @@ public class Test {
         // Liste d'emprunteurs
         System.out.println("Liste d'emprunteurs");
         System.out.println(Emprunteurs.get());
+        System.out.println("Tri nom");
+        Emprunteurs.triNom();
+        System.out.println(Emprunteurs.get());
+        System.out.println("Tri ID");
+        Emprunteurs.triId();
+        System.out.println(Emprunteurs.get());
+        System.out.println("Tri Code Postal");
+        Emprunteurs.triCodePostal();
+        System.out.println(Emprunteurs.get());
 
         // Liste de véhicules
         System.out.println("Liste de véhicules");
         System.out.println(Vehicules.get());
+        System.out.println("Tri alphabétique");
+        Vehicules.triMarque();
+        System.out.println(Vehicules.get());
 
         // Flotte d'exemplaires
+        System.out.println("Liste d'exemplaires");
         System.out.println(Flotte.get());
     }
 }
