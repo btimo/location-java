@@ -84,5 +84,11 @@ public class Test {
         // Flotte d'exemplaires
         System.out.println("Liste d'exemplaires");
         System.out.println(Flotte.get());
+        System.out.println("Tri kilométrique");
+        Flotte.triKm();
+        System.out.println(Flotte.get());
+        System.out.println("Tri ID");
+        Flotte.triId();
+        System.out.println(Flotte.get());
     }
 }
