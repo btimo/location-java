@@ -12,9 +12,14 @@ public class Exemplaire {
     private Vehicule vehicule;
     private boolean loue;
 
-    public Exemplaire(int kilometres, Location location, Vehicule vehicule) {
+    public Exemplaire(int kilometres, Location location, Vehicule vehicule) throws IllegalArgumentException {
         id = numero;
         numero++;
+
+        if (kilometres > 180000) {
+            throw new IllegalArgumentException("Kilométrage maximum dépassé");
+        }
+
         this.kilometres = kilometres;
         this.location = location;
         this.vehicule = vehicule;
@@ -25,9 +30,14 @@ public class Exemplaire {
         this.setLoue(); // L'exemplaire est loué
     }
 
-    public Exemplaire(int kilometres, Vehicule vehicule) {
+    public Exemplaire(int kilometres, Vehicule vehicule) throws IllegalArgumentException {
         id = numero;
         numero++;
+
+        if (kilometres > 180000) {
+            throw new IllegalArgumentException("Kilométrage maximum dépassé");
+        }
+
         this.kilometres = kilometres;
         this.vehicule = vehicule;
 

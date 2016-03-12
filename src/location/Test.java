@@ -49,10 +49,13 @@ public class Test {
         /**
          * Test d'exmplaire
          */
-        Exemplaire exemplaire = new Exemplaire(250, location, auto);
-        Exemplaire exemplaire2 = new Exemplaire(150, auto2);
-
-        emprunteur.setExemplaire(exemplaire);
+        try {
+            Exemplaire exemplaire = new Exemplaire(250, location, auto);
+            Exemplaire exemplaire2 = new Exemplaire(150, auto2);
+            emprunteur.setExemplaire(exemplaire);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
 
         System.out.println("Location");
         emprunteur.louer(); // events?
