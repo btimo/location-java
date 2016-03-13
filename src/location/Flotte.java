@@ -70,4 +70,43 @@ public class Flotte {
 
         return vehiculesSearch;
     }
+
+    public static ArrayList<Exemplaire> listeMoto()
+    {
+        ArrayList<Exemplaire> motos = new ArrayList<Exemplaire>();
+
+        for (Exemplaire e : exemplaires) {
+            if (e.getVehicule() instanceof Moto) {
+                motos.add(e);
+            }
+        }
+
+        return motos;
+    }
+
+    public static ArrayList<Exemplaire> listeVoitureStandard()
+    {
+        ArrayList<Exemplaire> autos = new ArrayList<Exemplaire>();
+
+        for (Exemplaire e : exemplaires) {
+            if (e.getVehicule() instanceof Auto && !((Auto) e.getVehicule()).isLuxe()) {
+                autos.add(e);
+            }
+        }
+
+        return autos;
+    }
+
+    public static ArrayList<Exemplaire> listeVoitureLuxe()
+    {
+        ArrayList<Exemplaire> autos = new ArrayList<Exemplaire>();
+
+        for (Exemplaire e : exemplaires) {
+            if (e.getVehicule() instanceof Auto && ((Auto) e.getVehicule()).isLuxe()) {
+                autos.add(e);
+            }
+        }
+
+        return autos;
+    }
 }
