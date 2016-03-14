@@ -99,6 +99,8 @@ public class Test {
         System.out.println("Tri alphabétique");
         Vehicules.triMarque();
         System.out.println(Vehicules.get());
+        System.out.println("Modele: Sandero");
+        System.out.println(Vehicules.triModele("Sandero"));
 
         // Flotte d'exemplaires
         System.out.println("Liste d'exemplaires");

@@ -42,8 +42,16 @@ public class Vehicules {
         return vehiculesSearch;
     }
 
-    public static void triModele()
+    public static ArrayList<Vehicule> triModele(String modele)
     {
-        // TODO: extract Auto from Vehicule? Limit sort to Autos....
+        ArrayList<Vehicule> vehiculesSearch = new ArrayList<Vehicule>();
+
+        for(Vehicule e : vehicules) {
+            if (e instanceof Auto && (((Auto) e).getModele()).equals(modele)) {
+                vehiculesSearch.add(e);
+            }
+        }
+
+        return vehiculesSearch;
     }
 }
