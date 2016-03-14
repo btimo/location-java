@@ -1,4 +1,6 @@
-package location;
+package test;
+
+import location.*;
 
 /**
  * Classe de tests
