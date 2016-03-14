@@ -1,4 +1,4 @@
-package location;
+package main.java.models;
 
 import java.util.Arrays;
 

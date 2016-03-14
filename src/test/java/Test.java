@@ -1,4 +1,8 @@
-package location;
+package test.java;
+
+import main.java.models.*;
+import main.java.controllers.*;
+import main.java.views.*;
 
 /**
  * Classe de tests

@@ -1,4 +1,4 @@
-package location;
+package main.java.models;
 
 /**
  * Gestion de la ville des emprunteurs
