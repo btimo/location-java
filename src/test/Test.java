@@ -57,13 +57,12 @@ public class Test {
         try {
             Exemplaire exemplaire = new Exemplaire(250, location, auto);
             Exemplaire exemplaire2 = new Exemplaire(60000, auto2);
-            emprunteur.setExemplaire(exemplaire);
+            emprunteur.louer(exemplaire); // events?
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
 
         System.out.println("Location");
-        emprunteur.louer(); // events?
         System.out.println(emprunteur);
         System.out.println("Ramener");
         emprunteur.ramener();

@@ -72,6 +72,34 @@ public class Emprunteurs {
         return emprunteursSearch;
     }
 
+    public static ArrayList<Emprunteur> locationEnCours()
+    {
+        ArrayList<Emprunteur> emprunteursSearch = new ArrayList<Emprunteur>();
+
+        for(Emprunteur e : emprunteurs) {
+            if(e.getExemplaire() != null && e.getExemplaire().getLocation() != null) {
+                emprunteursSearch.add(e);
+            }
+        }
+
+        return emprunteursSearch;
+    }
+
+    public ArrayList<Emprunteur> locationDateDebut(Date d)
+    {
+        ArrayList<Emprunteur> emprunteursSearch = new ArrayList<Emprunteur>();
+
+        for(Emprunteur e : emprunteurs) {
+            if(e.getExemplaire() != null && e.getExemplaire().getLocation() != null
+                    && e.getExemplaire().getLocation().getDebut() != null
+                    && e.getExemplaire().getLocation().getDebut().equals(d)) {
+                emprunteursSearch.add(e);
+            }
+        }
+
+        return emprunteursSearch;
+    }
+
     public static void triPrenom()
     {
         Collections.sort(emprunteurs, new Comparator<Emprunteur>()

@@ -29,7 +29,6 @@ public class Exemplaire {
         // Ajout du véhicule au container de Vehicule et de Flotte
         vehicule.ajoutExemplaire(this);
         Flotte.ajout(this);
-        this.setLoue(); // L'exemplaire est loué
 
         this.reservoir = 1;
     }
@@ -49,18 +48,7 @@ public class Exemplaire {
         vehicule.ajoutExemplaire(this);
         Flotte.ajout(this);
 
-        // L'exemplaire n'est pas loué
-        this.unsetLoue();
-
         this.reservoir = 1;
-    }
-
-    public void setLoue() {
-        this.loue = true;
-    }
-
-    public void unsetLoue() {
-        this.loue = false;
     }
 
     public int getId() {

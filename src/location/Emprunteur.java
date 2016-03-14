@@ -74,17 +74,11 @@ public class Emprunteur {
         this.exemplaire = exemplaire;
     }
 
-    public void louer() {
-        exemplaire.setLoue();
-    }
-
     public void louer(Exemplaire e) {
         this.exemplaire = e;
-        exemplaire.setLoue();
     }
 
     public void ramener() {
-        exemplaire.unsetLoue();
         this.exemplaire = null; // On ramène un véhicule, l'emprunteur n'a plus d'exemplaire associé
     }
 
