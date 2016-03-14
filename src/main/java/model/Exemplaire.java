@@ -1,4 +1,4 @@
-package location;
+package main.java.model;
 
 /**
  * Création et modification d'un exemplaire d'un véhicule

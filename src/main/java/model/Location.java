@@ -1,10 +1,10 @@
-package location;
+package main.java.model;
 
 /**
  * Created by Adrien on 07/03/2016.
  */
 public class Location {
-    private static int numero = 1; // Variable partagée par toutes les instances de Exemplaire
+    private static int numero = 1; // Variable partagée par toutes les instances de Location
     private int id;
     private Date debut;
     private Date fin;

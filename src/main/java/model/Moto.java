@@ -1,4 +1,4 @@
-package location;
+package main.java.model;
 
 /**
  * Created by Adrien on 07/03/2016.
