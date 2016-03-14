@@ -5,9 +5,10 @@ import java.util.ArrayList;
 /**
  * Created by Adrien on 07/03/2016.
  */
-public class Vehicule {
+public abstract class Vehicule {
     protected String marque;
     protected static ArrayList<Exemplaire> exemplaire = new ArrayList<Exemplaire>();
+    protected int prixJour;
 
     public String getMarque() {
         return marque;
@@ -21,6 +22,10 @@ public class Vehicule {
         exemplaire.add(e);
     }
 
+    public int getPrixJour() {
+        return prixJour;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -28,15 +33,15 @@ public class Vehicule {
 
         Vehicule vehicule = (Vehicule) o;
 
-        if (!marque.equals(vehicule.marque)) return false;
-        return exemplaire.equals(vehicule.exemplaire);
+        if (prixJour != vehicule.prixJour) return false;
+        return marque.equals(vehicule.marque);
 
     }
 
     @Override
     public int hashCode() {
         int result = marque.hashCode();
-        result = 31 * result + exemplaire.hashCode();
+        result = 31 * result + prixJour;
         return result;
     }
 
@@ -44,7 +49,8 @@ public class Vehicule {
     public String toString() {
         return "Vehicule{" +
                 "marque='" + marque + '\'' +
-                ", exemplaire=" + exemplaire +
+                "exemplaire='" + exemplaire + '\'' +
+                ", prix de base=" + prixJour +
                 '}';
     }
 }

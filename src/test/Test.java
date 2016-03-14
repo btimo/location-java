@@ -44,11 +44,11 @@ public class Test {
         /**
          * Test d'auto
          */
-        Auto auto = new Auto("Ford", "Fiesta");
+        Auto auto = new Auto("Ford", "Fiesta", 200);
         System.out.println(auto);
-        Auto auto2 = new Auto("Dacia", "Sandero");
+        Auto auto2 = new Auto("Dacia", "Sandero", 200);
         System.out.println(auto2);
-        Auto auto3 = new Auto("Audi", "A1");
+        Auto auto3 = new Auto("Audi", "A1", 500);
         System.out.println(auto3);
 
         /**
@@ -56,7 +56,7 @@ public class Test {
          */
         try {
             Exemplaire exemplaire = new Exemplaire(250, location, auto);
-            Exemplaire exemplaire2 = new Exemplaire(150, auto2);
+            Exemplaire exemplaire2 = new Exemplaire(60000, auto2);
             emprunteur.setExemplaire(exemplaire);
         } catch (Exception e) {
             System.out.println(e.getMessage());

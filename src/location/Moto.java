@@ -6,9 +6,10 @@ package location;
 public class Moto extends Vehicule {
     private int cylindree;
 
-    public Moto(String marque, int cylindree) {
+    public Moto(String marque, int cylindree, int prixJour) {
         this.cylindree = cylindree;
         this.marque = marque;
+        this.prixJour = prixJour;
 
         // Ajout du véhicule actuel
         Vehicules.ajout(this);
@@ -45,6 +46,7 @@ public class Moto extends Vehicule {
     public String toString() {
         return "Moto{" +
                 "marque='" + getMarque() + ", " + '\'' +
+                "prix de base=" + prixJour + ", " +
                 "cylindree=" + cylindree +
                 '}';
     }
