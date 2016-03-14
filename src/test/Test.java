@@ -16,6 +16,9 @@ public class Test {
         Date date2 = new Date(1, "Février", 2016);
         //System.out.println(date2);
 
+        /*System.out.println("Jours entre deux dates:");
+        System.out.println(date2.daysBetween(date));*/
+
         /**
          * Test d'adresse
          */

@@ -1,6 +1,9 @@
 package location;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Gestion des dates de location et retour
@@ -13,6 +16,8 @@ public class Date {
 
     private final String[] nomsMois = new String[]{"inconnu","Janvier","Février", "Mars", "Avril", "Mai", "Juin", "Juillet",
             "Aout", "Septembre", "Octobre", "Novembre", "Decembre"};
+
+    private final int[] duration = new int[]{0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
     public Date(int jour, int mois, int annee) {
         this.jour = jour;
@@ -60,6 +65,30 @@ public class Date {
 
     public void setAnnee(int annee) {
         this.annee = annee;
+    }
+
+    /**
+     * Nombre de jours écoulés entre deux dates
+     * @param d date la plus faible
+     * @return nombre de jours
+     */
+    public int daysBetween(Date d)
+    {
+        long diff = 0;
+
+        SimpleDateFormat myFormat = new SimpleDateFormat("dd MM yyyy");
+        String inputString1 = Integer.toString(d.getJour()) + " " + Integer.toString(d.getMois()) + " " + Integer.toString(d.getAnnee());
+        String inputString2 = Integer.toString(this.jour) + " " + Integer.toString(this.mois) + " " + Integer.toString(this.annee);
+
+        try {
+            java.util.Date date1 = myFormat.parse(inputString1);
+            java.util.Date date2 = myFormat.parse(inputString2);
+            diff = date2.getTime() - date1.getTime();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return (int) TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
     }
 
     @Override
