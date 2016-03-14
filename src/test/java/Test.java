@@ -1,8 +1,6 @@
 package test.java;
 
 import main.java.models.*;
-import main.java.controllers.*;
-import main.java.views.*;
 
 /**
  * Classe de tests
@@ -17,6 +15,9 @@ public class Test {
 
         Date date2 = new Date(1, "Février", 2016);
         //System.out.println(date2);
+
+        /*System.out.println("Jours entre deux dates:");
+        System.out.println(date2.daysBetween(date));*/
 
         /**
          * Test d'adresse
@@ -43,11 +44,11 @@ public class Test {
         /**
          * Test d'auto
          */
-        Auto auto = new Auto("Ford", "Fiesta");
+        Auto auto = new Auto("Ford", "Fiesta", 200);
         System.out.println(auto);
-        Auto auto2 = new Auto("Dacia", "Sandero");
+        Auto auto2 = new Auto("Dacia", "Sandero", 200);
         System.out.println(auto2);
-        Auto auto3 = new Auto("Audi", "A1");
+        Auto auto3 = new Auto("Audi", "A1", 500);
         System.out.println(auto3);
 
         /**
@@ -55,14 +56,13 @@ public class Test {
          */
         try {
             Exemplaire exemplaire = new Exemplaire(250, location, auto);
-            Exemplaire exemplaire2 = new Exemplaire(150, auto2);
-            emprunteur.setExemplaire(exemplaire);
+            Exemplaire exemplaire2 = new Exemplaire(60000, auto2);
+            emprunteur.louer(exemplaire); // events?
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
 
         System.out.println("Location");
-        emprunteur.louer(); // events?
         System.out.println(emprunteur);
         System.out.println("Ramener");
         emprunteur.ramener();
@@ -98,6 +98,8 @@ public class Test {
         System.out.println("Tri alphabétique");
         Vehicules.triMarque();
         System.out.println(Vehicules.get());
+        System.out.println("Modele: Sandero");
+        System.out.println(Vehicules.triModele("Sandero"));
 
         // Flotte d'exemplaires
         System.out.println("Liste d'exemplaires");
