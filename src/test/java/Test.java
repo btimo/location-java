@@ -1,7 +1,6 @@
 package test.java;
 
-import main.java.model.*;
-import main.java.controller.*;
+import main.java.models.*;
 
 /**
  * Classe de tests

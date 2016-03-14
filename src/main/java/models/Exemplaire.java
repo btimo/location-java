@@ -1,4 +1,4 @@
-package main.java.model;
+package main.java.models;
 
 /**
  * Création et modification d'un exemplaire d'un véhicule

@@ -1,4 +1,4 @@
-package main.java.controller;
+package main.java.controllers;
 
 /**
  * Classe utilisée pour le lancement des fenêtres
