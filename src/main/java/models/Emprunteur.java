@@ -79,7 +79,11 @@ public class Emprunteur {
     }
 
     public void ramener() {
-        this.exemplaire = null; // On ramène un véhicule, l'emprunteur n'a plus d'exemplaire associé
+        // L'exemplaire n'a plus de location
+        exemplaire.setLocation(null);
+
+        // L'emprunteur n'a plus de véhicule
+        this.exemplaire = null;
     }
 
     @Override

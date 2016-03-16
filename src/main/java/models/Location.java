@@ -8,12 +8,14 @@ public class Location {
     private int id;
     private Date debut;
     private Date fin;
+    private boolean assurance;
 
-    public Location(Date fin, Date debut) {
+    public Location(Date fin, Date debut, boolean assurance) {
         id = numero;
         numero++;
         this.fin = fin;
         this.debut = debut;
+        this.assurance = assurance;
     }
 
     public int getId() {
@@ -40,6 +42,14 @@ public class Location {
         this.fin = fin;
     }
 
+    public boolean isAssurance() {
+        return assurance;
+    }
+
+    public void setAssurance(boolean assurance) {
+        this.assurance = assurance;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -48,6 +58,7 @@ public class Location {
         Location location = (Location) o;
 
         if (id != location.id) return false;
+        if (assurance != location.assurance) return false;
         if (!debut.equals(location.debut)) return false;
         return fin.equals(location.fin);
 
@@ -58,6 +69,7 @@ public class Location {
         int result = id;
         result = 31 * result + debut.hashCode();
         result = 31 * result + fin.hashCode();
+        result = 31 * result + (assurance ? 1 : 0);
         return result;
     }
 
@@ -67,6 +79,7 @@ public class Location {
                 "id=" + id +
                 ", debut=" + debut +
                 ", fin=" + fin +
+                ", assurance=" + assurance +
                 '}';
     }
 }

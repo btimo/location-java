@@ -38,24 +38,24 @@ public class Test {
         /**
          * Test de location
          */
-        Location location = new Location(date, date2);
-        System.out.println(location);
+        Location locationAvecAssurance = new Location(date, date2, true);
+        System.out.println(locationAvecAssurance);
 
         /**
          * Test d'auto
          */
-        Auto auto = new Auto("Ford", "Fiesta", 200);
+        Auto auto = new Auto("Ford", "Fiesta", 200, 50, false);
         System.out.println(auto);
-        Auto auto2 = new Auto("Dacia", "Sandero", 200);
+        Auto auto2 = new Auto("Dacia", "Sandero", 200, 30, false);
         System.out.println(auto2);
-        Auto auto3 = new Auto("Audi", "A1", 500);
+        Auto auto3 = new Auto("Audi", "A1", 500, 100, true);
         System.out.println(auto3);
 
         /**
          * Test d'exmplaire
          */
         try {
-            Exemplaire exemplaire = new Exemplaire(250, location, auto);
+            Exemplaire exemplaire = new Exemplaire(250, locationAvecAssurance, auto);
             Exemplaire exemplaire2 = new Exemplaire(60000, auto2);
             emprunteur.louer(exemplaire); // events?
         } catch (Exception e) {
@@ -84,7 +84,7 @@ public class Test {
         System.out.println(Emprunteurs.rechercheNom("Barbot"));
         System.out.println("Recherche pour le véhicule: Fiesta");
         try {
-            Exemplaire exemplaire = new Exemplaire(250, location, auto);
+            Exemplaire exemplaire = new Exemplaire(250, locationAvecAssurance, auto);
             Exemplaire exemplaire2 = new Exemplaire(150, auto2);
             emprunteur.setExemplaire(exemplaire);
         } catch (Exception e) {

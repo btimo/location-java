@@ -9,6 +9,7 @@ public abstract class Vehicule {
     protected String marque;
     protected static ArrayList<Exemplaire> exemplaire = new ArrayList<Exemplaire>();
     protected int prixJour;
+    protected int prixAssurance;
 
     public String getMarque() {
         return marque;
@@ -26,6 +27,10 @@ public abstract class Vehicule {
         return prixJour;
     }
 
+    public int getPrixAssurance() {
+        return prixAssurance;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -34,6 +39,7 @@ public abstract class Vehicule {
         Vehicule vehicule = (Vehicule) o;
 
         if (prixJour != vehicule.prixJour) return false;
+        if (prixAssurance != vehicule.prixAssurance) return false;
         return marque.equals(vehicule.marque);
 
     }
@@ -42,6 +48,7 @@ public abstract class Vehicule {
     public int hashCode() {
         int result = marque.hashCode();
         result = 31 * result + prixJour;
+        result = 31 * result + prixAssurance;
         return result;
     }
 
@@ -50,7 +57,8 @@ public abstract class Vehicule {
         return "Vehicule{" +
                 "marque='" + marque + '\'' +
                 "exemplaire='" + exemplaire + '\'' +
-                ", prix de base=" + prixJour +
+                "prix de base='" + prixJour + '\'' +
+                ", prix assurance=" + prixAssurance +
                 '}';
     }
 }

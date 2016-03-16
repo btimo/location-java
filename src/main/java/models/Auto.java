@@ -7,21 +7,12 @@ public class Auto extends Vehicule {
     private String modele;
     private boolean luxe;
 
-    public Auto(String marque, String modele, int prixJour) {
-        this.marque = marque;
-        this.modele = modele;
-        this.luxe = false;
-        this.prixJour = prixJour;
-
-        // Ajout du véhicule actuel
-        Vehicules.ajout(this);
-    }
-
-    public Auto(String marque, String modele, int prixJour, boolean luxe) {
+    public Auto(String marque, String modele, int prixJour, int prixAssurance, boolean luxe) {
         this.marque = marque;
         this.modele = modele;
         this.luxe = luxe;
         this.prixJour = prixJour;
+        this.prixAssurance = prixAssurance;
 
         // Ajout du véhicule actuel
         Vehicules.ajout(this);
@@ -70,6 +61,7 @@ public class Auto extends Vehicule {
                 "marque=" + getMarque() + ", " +
                 "modele=" + modele + ", " +
                 "prix de base=" + prixJour + ", " +
+                "prix assurance=" + prixAssurance + ", " +
                 "luxe=" + luxe +
                 '}';
     }

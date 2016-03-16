@@ -10,9 +10,10 @@ public class Exemplaire {
     private int kilometres;
     private Location location;
     private Vehicule vehicule;
-    private boolean loue;
     private float reservoir;
-    private int prixFinal;
+    private boolean endommage;
+    private static final int penaliteReservoir = 30;
+    private static final int penaliteEndommage = 500;
 
     public Exemplaire(int kilometres, Location location, Vehicule vehicule) throws IllegalArgumentException {
         id = numero;
@@ -31,6 +32,8 @@ public class Exemplaire {
         Flotte.ajout(this);
 
         this.reservoir = 1;
+
+        this.endommage = false;
     }
 
     public Exemplaire(int kilometres, Vehicule vehicule) throws IllegalArgumentException {
@@ -49,6 +52,8 @@ public class Exemplaire {
         Flotte.ajout(this);
 
         this.reservoir = 1;
+
+        this.endommage = false;
     }
 
     public int getId() {
@@ -79,6 +84,14 @@ public class Exemplaire {
         this.vehicule = vehicule;
     }
 
+    public boolean isEndommage() {
+        return endommage;
+    }
+
+    public void setEndommage(boolean endommage) {
+        this.endommage = endommage;
+    }
+
     public String getReservoir() {
         if (reservoir == 0.0) {
             return "Vide";
@@ -99,12 +112,40 @@ public class Exemplaire {
     }
 
     /**
-     * Retourne le prix final de la location
+     * Retourne le prix final de la location par jour
      * 10% de réduction tous les 50 000 kms
+     * Ajout du prix de l'assurance si nécessaire
      * @return prix final
      */
     public double getPrixFinal() {
-        return vehicule.getPrixJour() - (int) Math.ceil((double)kilometres / 50000)*0.1*vehicule.getPrixJour();
+        double prixTemp = vehicule.getPrixJour() - ((int) Math.ceil((double)kilometres / 50000) - 1)*0.1*vehicule.getPrixJour();
+
+        if (location != null && location.isAssurance()) {
+            prixTemp += vehicule.getPrixAssurance();
+        }
+
+        return prixTemp;
+    }
+
+    /**
+     * Calcul du prix facturé lors du retour du véhicule
+     * Application des pénalités sur le niveau de réservoir et l'état du véhicule
+     * @return prix à payer
+     */
+    public double getPrixRetour() {
+        double prixTemp = getPrixFinal();
+
+        // Si le réservoir n'est pas plein, pénalité
+        if (reservoir != 1.0) {
+            prixTemp += penaliteReservoir;
+        }
+
+        // Si la voiture est endommagée et qu'on n'a pas prix d'assurance
+        if (isEndommage() && !location.isAssurance()) {
+            prixTemp += penaliteEndommage;
+        }
+
+        return prixTemp;
     }
 
     @Override
@@ -116,7 +157,7 @@ public class Exemplaire {
 
         if (id != that.id) return false;
         if (kilometres != that.kilometres) return false;
-        if (loue != that.loue) return false;
+        if (endommage != that.endommage) return false;
         if (Float.compare(that.reservoir, reservoir) != 0) return false;
         if (location != null ? !location.equals(that.location) : that.location != null) return false;
         return vehicule.equals(that.vehicule);
@@ -129,7 +170,7 @@ public class Exemplaire {
         result = 31 * result + kilometres;
         result = 31 * result + (location != null ? location.hashCode() : 0);
         result = 31 * result + vehicule.hashCode();
-        result = 31 * result + (loue ? 1 : 0);
+        result = 31 * result + (endommage ? 1 : 0);
         result = 31 * result + (reservoir != +0.0f ? Float.floatToIntBits(reservoir) : 0);
         return result;
     }
@@ -143,7 +184,7 @@ public class Exemplaire {
                 ", vehicule=" + vehicule +
                 ", reservoir=" + getReservoir() +
                 ", prixFinal=" + getPrixFinal() +
-                ", loue=" + loue +
+                ", endommage=" + endommage +
                 '}';
     }
 }
