@@ -1,7 +1,16 @@
 package main.java.views;
 
+
+import main.java.models.Auto;
+import main.java.models.Moto;
+import main.java.models.Vehicule;
+import main.java.models.Vehicules;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 
 public class InterfaceLocation {
@@ -25,6 +34,7 @@ public class InterfaceLocation {
         ButtonGroup autoMotoGroupe = new ButtonGroup();
         JRadioButton autoButton =new JRadioButton("louer une auto",false);
         autoButton.setBackground(Color.ORANGE);
+
         JRadioButton motoButton =new JRadioButton("louer une moto",false);
         motoButton.setBackground(Color.ORANGE);
         autoMotoGroupe.add(autoButton);
@@ -40,17 +50,43 @@ public class InterfaceLocation {
         Font fontDepart = new Font("Arial", Font.BOLD, 14);
         departLabel.setFont(fontDepart);
         JLabel constructeurModelLabel =new JLabel("constructeur et le model :");
-        Object[] elements = new Object[]{"Peugeot", "Renaud", "Opel", "Audi","Mercedes"};
-        JComboBox liste1 = new JComboBox(elements);
 
+        Auto auto = new Auto("Ford", "Fiesta", 200,0,false);
+        System.out.println(auto);
+        Auto auto2 = new Auto("Dacia", "Sandero", 200,0,true);
+        System.out.println(auto2);
+        Auto auto3 = new Auto("Audi", "A1", 500,0,false);
+        Moto moto = new Moto("Harley Davidson", 300, 200);
+        System.out.println(auto3);
 
-        JTextField modelText = new JTextField("salisir le modele",10);
+        JComboBox liste1 = new JComboBox();
+        ArrayList<String> marques = new ArrayList<>();
+        autoButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                marques.clear();
+                for(Vehicule v : Vehicules.get()) {
+                    if (v instanceof Auto) {
+                        marques.add(v.getMarque() + " " + ((Auto) v).getModele());
+                    }
+                }
+                liste1.setModel(new DefaultComboBoxModel(marques.toArray()));
+            }
+        });
+        motoButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                marques.clear();
+                for(Vehicule v : Vehicules.get()) {
+                    if (v instanceof Moto) {
+                         marques.add(v.getMarque() + " " + ((Moto) v).getCylindree());
+                    }
+                }
+                liste1.setModel(new DefaultComboBoxModel(marques.toArray()));
+            }
+        });
         /*calendrier*/
         departPanel.add(departLabel,BorderLayout.NORTH);
-        departPanel.add(constructeurModelLabel,BorderLayout.WEST);
         departPanel.add(liste1,BorderLayout.CENTER);
-        departPanel.add(modelText,BorderLayout.EAST);
-
+        departPanel.add(constructeurModelLabel,BorderLayout.WEST);
 
         JPanel retourPanel =new JPanel();
         retourPanel.setBackground(Color.ORANGE);
@@ -73,8 +109,6 @@ public class InterfaceLocation {
         fenetrePanel.add(calculButton);
 
         locationFrame.add(fenetrePanel);
-
-
 
         locationFrame.setVisible(true);
     }
