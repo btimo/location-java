@@ -18,6 +18,7 @@ public class InterfaceLocation {
         JFrame locationFrame = new JFrame();
         locationFrame.setTitle("Location de vehicule auto/moto");
         locationFrame.setSize(400,300);
+        locationFrame.setResizable(false);
         JPanel fenetrePanel =new JPanel();
         fenetrePanel.setLayout(new FlowLayout());
         fenetrePanel.setBackground(Color.ORANGE);
@@ -27,6 +28,21 @@ public class InterfaceLocation {
         JLabel reservationLabel = new JLabel("Reservation de vehicule");
         Font f = new Font("Calibri", Font.PLAIN, 36);
         reservationLabel.setFont(f);
+
+        JPanel identifiantPanel =new JPanel();
+        identifiantPanel.setBackground(Color.ORANGE);
+        identifiantPanel.setLayout(new BorderLayout());
+        JLabel nomLabel= new JLabel("Nom et prenom:");
+        JTextField nomTexte = new JTextField("saisir votre nom");
+        JTextField prenomTexte =new JTextField("saisir votre prenom");
+        identifiantPanel.add(nomLabel,BorderLayout.WEST);
+        identifiantPanel.add(nomTexte, BorderLayout.CENTER);
+        identifiantPanel.add(prenomTexte, BorderLayout.EAST);
+
+        JPanel adressePanel = new JPanel();
+        adressePanel.setBackground(Color.ORANGE);
+        adressePanel.setLayout(new BorderLayout());
+
 
         JPanel choixPanel =new JPanel();
         choixPanel.setBackground(Color.ORANGE);
@@ -45,7 +61,7 @@ public class InterfaceLocation {
 
         JPanel departPanel =new JPanel();
         departPanel.setBackground(Color.ORANGE);
-        departPanel.setLayout(new BorderLayout(1,2));
+        departPanel.setLayout(new BorderLayout());
         JLabel departLabel = new JLabel("Depart :");
         Font fontDepart = new Font("Arial", Font.BOLD, 14);
         departLabel.setFont(fontDepart);
@@ -90,7 +106,7 @@ public class InterfaceLocation {
 
         JPanel retourPanel =new JPanel();
         retourPanel.setBackground(Color.ORANGE);
-        retourPanel.setLayout(new BorderLayout(1,2));
+        retourPanel.setLayout(new BorderLayout());
         JLabel retourLabel = new JLabel("Retour :");
         Font fontRetour = new Font("Arial", Font.BOLD, 14);
         retourLabel.setFont(fontRetour);
@@ -101,8 +117,15 @@ public class InterfaceLocation {
         retourPanel.add(retourBox,BorderLayout.EAST);
 
         JButton calculButton =new JButton("calculer le devis");
+        calculButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
 
         fenetrePanel.add(reservationLabel);
+        fenetrePanel.add(identifiantPanel);
         fenetrePanel.add(choixPanel);
         fenetrePanel.add(departPanel);
         fenetrePanel.add(retourPanel);
