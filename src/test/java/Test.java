@@ -38,7 +38,7 @@ public class Test {
         /**
          * Test de location
          */
-        Location locationAvecAssurance = new Location(date, date2, true);
+        Location locationAvecAssurance = new Location(date, date2, true, true);
         System.out.println(locationAvecAssurance);
 
         /**
@@ -58,6 +58,9 @@ public class Test {
             Exemplaire exemplaire = new Exemplaire(250, locationAvecAssurance, auto);
             Exemplaire exemplaire2 = new Exemplaire(60000, auto2);
             emprunteur.louer(exemplaire); // events?
+            emprunteur.genererDevis();
+            exemplaire.setEndommage(true);
+            exemplaire.setReservoir(0);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -65,6 +68,7 @@ public class Test {
         System.out.println("Location");
         System.out.println(emprunteur);
         System.out.println("Ramener");
+        emprunteur.genererFacture();
         emprunteur.ramener();
         System.out.println(emprunteur);
 

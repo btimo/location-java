@@ -12,8 +12,9 @@ public class Exemplaire {
     private Vehicule vehicule;
     private float reservoir;
     private boolean endommage;
-    private static final int penaliteReservoir = 30;
-    private static final int penaliteEndommage = 500;
+
+    public static final int penaliteReservoir = 30;
+    public static final int penaliteEndommage = 500;
 
     public Exemplaire(int kilometres, Location location, Vehicule vehicule) throws IllegalArgumentException {
         id = numero;
@@ -114,11 +115,20 @@ public class Exemplaire {
     /**
      * Retourne le prix final de la location par jour
      * 10% de réduction tous les 50 000 kms
+     * @return prix final sans assurance
+     */
+    public double getPrixFinalHorsAssurance() {
+        return vehicule.getPrixJour() - ((int) Math.ceil((double)kilometres / 50000) - 1)*0.1*vehicule.getPrixJour();
+    }
+
+    /**
+     * Retourne le prix final de la location par jour
+     * 10% de réduction tous les 50 000 kms
      * Ajout du prix de l'assurance si nécessaire
      * @return prix final
      */
-    public double getPrixFinal() {
-        double prixTemp = vehicule.getPrixJour() - ((int) Math.ceil((double)kilometres / 50000) - 1)*0.1*vehicule.getPrixJour();
+    public double getPrixFinalAvantLocation() {
+        double prixTemp = getPrixFinalHorsAssurance();
 
         if (location != null && location.isAssurance()) {
             prixTemp += vehicule.getPrixAssurance();
@@ -132,8 +142,8 @@ public class Exemplaire {
      * Application des pénalités sur le niveau de réservoir et l'état du véhicule
      * @return prix à payer
      */
-    public double getPrixRetour() {
-        double prixTemp = getPrixFinal();
+    public double getPrixFinalRetour() {
+        double prixTemp = getPrixFinalAvantLocation();
 
         // Si le réservoir n'est pas plein, pénalité
         if (reservoir != 1.0) {
@@ -183,7 +193,7 @@ public class Exemplaire {
                 ", location=" + location +
                 ", vehicule=" + vehicule +
                 ", reservoir=" + getReservoir() +
-                ", prixFinal=" + getPrixFinal() +
+                ", prixFinal=" + getPrixFinalAvantLocation() +
                 ", endommage=" + endommage +
                 '}';
     }

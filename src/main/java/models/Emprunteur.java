@@ -86,6 +86,14 @@ public class Emprunteur {
         this.exemplaire = null;
     }
 
+    public void genererFacture() {
+        new GenerationPdf("facture", this);
+    }
+
+    public void genererDevis() {
+        new GenerationPdf("devis", this);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

@@ -77,7 +77,7 @@ public class Emprunteurs {
         ArrayList<Emprunteur> emprunteursSearch = new ArrayList<Emprunteur>();
 
         for(Emprunteur e : emprunteurs) {
-            if(e.getExemplaire() != null && e.getExemplaire().getLocation() != null) {
+            if(e.getExemplaire() != null && e.getExemplaire().getLocation() != null && e.getExemplaire().getLocation().isApprouvee()) {
                 emprunteursSearch.add(e);
             }
         }
@@ -92,6 +92,7 @@ public class Emprunteurs {
         for(Emprunteur e : emprunteurs) {
             if(e.getExemplaire() != null && e.getExemplaire().getLocation() != null
                     && e.getExemplaire().getLocation().getDebut() != null
+                    && e.getExemplaire().getLocation().isApprouvee()
                     && e.getExemplaire().getLocation().getDebut().equals(d)) {
                 emprunteursSearch.add(e);
             }
