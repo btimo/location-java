@@ -1,4 +1,4 @@
-package main.java.models;
+package models;
 
 import java.io.FileOutputStream;
 import java.text.DateFormat;

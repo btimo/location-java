@@ -1,10 +1,10 @@
 package main.java.views;
 
 
-import main.java.models.Auto;
-import main.java.models.Moto;
-import main.java.models.Vehicule;
-import main.java.models.Vehicules;
+import models.Auto;
+import models.Moto;
+import models.Vehicule;
+import models.Vehicules;
 
 import javax.swing.*;
 import java.awt.*;

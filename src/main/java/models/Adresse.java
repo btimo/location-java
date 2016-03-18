@@ -1,16 +1,29 @@
-package main.java.models;
+package models;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
 /**
  * Gestion de la ville des emprunteurs
  * @author Adrien Poupa
  */
-public class Adresse {
+@Entity
+@Table(name="adresse")
+public class Adresse extends BaseModel{
+
+    public static final Find<Long,Adresse> find = new Find<Long, Adresse>(){};
+
     private int numero;
+
     private String rue;
-    private int cp;
+
+    private String cp;
+
+    @Size(max=100)
     private String ville;
 
-    public Adresse(int numero, String rue, int cp, String ville) {
+    public Adresse(int numero, String rue, String cp, String ville) {
         this.numero = numero;
         this.ville = ville;
         this.cp = cp;
@@ -33,11 +46,11 @@ public class Adresse {
         this.rue = rue;
     }
 
-    public int getCp() {
+    public String getCp() {
         return cp;
     }
 
-    public void setCp(int cp) {
+    public void setCp(String cp) {
         this.cp = cp;
     }
 
@@ -67,7 +80,7 @@ public class Adresse {
     public int hashCode() {
         int result = numero;
         result = 31 * result + rue.hashCode();
-        result = 31 * result + cp;
+        result = 31 * result + cp.hashCode();
         result = 31 * result + ville.hashCode();
         return result;
     }

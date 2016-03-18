@@ -1,6 +1,5 @@
-package test.java;
 
-import main.java.models.*;
+import models.*;
 
 /**
  * Classe de tests
@@ -22,10 +21,10 @@ public class Test {
         /**
          * Test d'adresse
          */
-        Adresse adresse = new Adresse(3, "avenue de la République", 94800, "Villejuif");
+        Adresse adresse = new Adresse(3, "avenue de la République", "94800", "Villejuif");
         //System.out.println(adresse);
-        Adresse adresse2 = new Adresse(3, "avenue des champs Elysées", 75800, "Paris");
-        Adresse adresse3 = new Adresse(3, "place de la Comédie", 34000, "Montpellier");
+        Adresse adresse2 = new Adresse(3, "avenue des champs Elysées", "75800", "Paris");
+        Adresse adresse3 = new Adresse(3, "place de la Comédie", "34000", "Montpellier");
 
         /**
          * Test d'emprunteur
