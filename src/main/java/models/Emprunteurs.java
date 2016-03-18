@@ -1,4 +1,4 @@
-package main.java.models;
+package models;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -118,13 +118,7 @@ public class Emprunteurs {
         {
             public int compare(Emprunteur e1, Emprunteur e2)
             {
-                if (e1.getAdresse().getCp() > e2.getAdresse().getCp()) {
-                    return 1;
-                }
-                else if (e1.getAdresse().getCp() < e2.getAdresse().getCp()) {
-                    return -1;
-                }
-                return 0;
+                return e1.getAdresse().getCp().compareTo(e2.getAdresse().getCp());
             }
         });
     }
