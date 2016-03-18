@@ -1,10 +1,7 @@
 package main.java.views;
 
 
-import main.java.models.Auto;
-import main.java.models.Moto;
-import main.java.models.Vehicule;
-import main.java.models.Vehicules;
+import main.java.models.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,54 +15,78 @@ public class InterfaceLocation {
         JFrame locationFrame = new JFrame();
         locationFrame.setTitle("Location de vehicule auto/moto");
         locationFrame.setSize(400,300);
-        locationFrame.setResizable(false);
+
         JPanel fenetrePanel =new JPanel();
-        fenetrePanel.setLayout(new FlowLayout());
+        Container container = locationFrame.getContentPane();
+        fenetrePanel.setLayout(new BoxLayout(fenetrePanel, BoxLayout.Y_AXIS));
+
+
         fenetrePanel.setBackground(Color.ORANGE);
 
         locationFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        JLabel reservationLabel = new JLabel("Reservation de vehicule");
-        Font f = new Font("Calibri", Font.PLAIN, 36);
+        JPanel titrePanel = new JPanel();
+        titrePanel.setLayout(new FlowLayout());
+        titrePanel.setBackground(Color.ORANGE);
+        JLabel reservationLabel = new JLabel("Reservation de vehicule :");
+        Font f = new Font("Calibri", Font.PLAIN, 25);
         reservationLabel.setFont(f);
+        titrePanel.add(reservationLabel);
 
         JPanel identifiantPanel =new JPanel();
         identifiantPanel.setBackground(Color.ORANGE);
-        identifiantPanel.setLayout(new BorderLayout());
+        identifiantPanel.setLayout(new FlowLayout());
         JLabel nomLabel= new JLabel("Nom et prenom:");
-        JTextField nomTexte = new JTextField("saisir votre nom");
-        JTextField prenomTexte =new JTextField("saisir votre prenom");
-        identifiantPanel.add(nomLabel,BorderLayout.WEST);
-        identifiantPanel.add(nomTexte, BorderLayout.CENTER);
-        identifiantPanel.add(prenomTexte, BorderLayout.EAST);
+        JTextField nomTexte = new JTextField(" nom",10);
+        JTextField prenomTexte =new JTextField(" prenom",10);
+        identifiantPanel.add(nomLabel);
+        identifiantPanel.add(nomTexte);
+        identifiantPanel.add(prenomTexte);
 
         JPanel adressePanel = new JPanel();
         adressePanel.setBackground(Color.ORANGE);
-        adressePanel.setLayout(new BorderLayout());
+        adressePanel.setLayout(new FlowLayout());
+        JLabel adresseLabel = new JLabel("Adresse :");
+        JTextField numeroTexte = new JTextField("5",3);
+        JTextField rueTexte = new JTextField("rue",13);
+        JTextField codeTexte = new JTextField("94800",5);
+        JTextField villeTexte = new JTextField("ville",5);
+        adressePanel.add(adresseLabel);
+        adressePanel.add(numeroTexte);
+        adressePanel.add(rueTexte);
+        adressePanel.add(codeTexte);
+        adressePanel.add(villeTexte);
+
+        int num = Integer.parseInt(numeroTexte.getText());
+        int cp =Integer.parseInt(codeTexte.getText());
+        Adresse adresse =new Adresse(num,rueTexte.getText(),cp,villeTexte.getText());
+        Emprunteur personne = new Emprunteur(adresse,prenomTexte.getText(),nomTexte.getText());
 
 
         JPanel choixPanel =new JPanel();
         choixPanel.setBackground(Color.ORANGE);
         choixPanel.setLayout(new FlowLayout());
+        JLabel louerLabel =new JLabel("Louer :");
         ButtonGroup autoMotoGroupe = new ButtonGroup();
-        JRadioButton autoButton =new JRadioButton("louer une auto",false);
+        JRadioButton autoButton =new JRadioButton(" une auto",false);
         autoButton.setBackground(Color.ORANGE);
 
-        JRadioButton motoButton =new JRadioButton("louer une moto",false);
+        JRadioButton motoButton =new JRadioButton("une moto",false);
         motoButton.setBackground(Color.ORANGE);
         autoMotoGroupe.add(autoButton);
         autoMotoGroupe.add(motoButton);
+        choixPanel.add(louerLabel);
         choixPanel.add(autoButton);
         choixPanel.add(motoButton);
 
 
         JPanel departPanel =new JPanel();
         departPanel.setBackground(Color.ORANGE);
-        departPanel.setLayout(new BorderLayout());
-        JLabel departLabel = new JLabel("Depart :");
+        departPanel.setLayout(new FlowLayout());
+        JLabel constructeurModelLabel = new JLabel("constructeur et le model :");
         Font fontDepart = new Font("Arial", Font.BOLD, 14);
-        departLabel.setFont(fontDepart);
-        JLabel constructeurModelLabel =new JLabel("constructeur et le model :");
+        constructeurModelLabel.setFont(fontDepart);
+
 
         Auto auto = new Auto("Ford", "Fiesta", 200,0,false);
         System.out.println(auto);
@@ -100,36 +121,52 @@ public class InterfaceLocation {
             }
         });
         /*calendrier*/
-        departPanel.add(departLabel,BorderLayout.NORTH);
-        departPanel.add(liste1,BorderLayout.CENTER);
-        departPanel.add(constructeurModelLabel,BorderLayout.WEST);
+
+        departPanel.add(constructeurModelLabel);
+        departPanel.add(liste1);
 
         JPanel retourPanel =new JPanel();
         retourPanel.setBackground(Color.ORANGE);
-        retourPanel.setLayout(new BorderLayout());
-        JLabel retourLabel = new JLabel("Retour :");
+        retourPanel.setLayout(new FlowLayout());
+        JLabel assuranceLabel = new JLabel("Assurance :");
         Font fontRetour = new Font("Arial", Font.BOLD, 14);
-        retourLabel.setFont(fontRetour);
-        JCheckBox retourBox = new JCheckBox("Retour a la station de depart");
-        retourBox.setBackground(Color.ORANGE);
-        /*calendier*/
-        retourPanel.add(retourLabel,BorderLayout.NORTH);
-        retourPanel.add(retourBox,BorderLayout.EAST);
+        assuranceLabel.setFont(fontRetour);
+        JLabel assurance =new JLabel("prendre une assurance:");
+        ButtonGroup ouiNonAssurance = new ButtonGroup();
+        JRadioButton ouiButton =new JRadioButton("oui");
+        JRadioButton nonButton =new JRadioButton("non");
+        ouiButton.setBackground(Color.ORANGE);
+        nonButton.setBackground(Color.ORANGE);
+        ouiNonAssurance.add(ouiButton);
+        ouiNonAssurance.add(nonButton);
 
+
+        /*calendier*/
+        retourPanel.add(assuranceLabel);
+        retourPanel.add(assurance);
+        retourPanel.add(ouiButton);
+        retourPanel.add(nonButton);
+
+        JPanel devisPanel = new JPanel();
+        devisPanel.setLayout(new FlowLayout());
+        devisPanel.setBackground(Color.ORANGE);
         JButton calculButton =new JButton("calculer le devis");
+        devisPanel.add(calculButton);
         calculButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
+
             }
         });
 
-        fenetrePanel.add(reservationLabel);
+        fenetrePanel.add(titrePanel);
         fenetrePanel.add(identifiantPanel);
+        fenetrePanel.add(adressePanel);
         fenetrePanel.add(choixPanel);
         fenetrePanel.add(departPanel);
         fenetrePanel.add(retourPanel);
-        fenetrePanel.add(calculButton);
+        fenetrePanel.add(devisPanel);
 
         locationFrame.add(fenetrePanel);
 
