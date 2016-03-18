@@ -6,3 +6,5 @@ build/
 
 sqlite-create-all.sql
 sqlite-drop-all.sql
+
+database/location.db
