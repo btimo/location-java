@@ -24,7 +24,7 @@ repositories {
 }
 
 dependencies {
-    //compile 'org.avaje.ebeanorm:avaje-ebeanorm:7.1.1'
+    //compile 'org.avaje.ebeanorm:avaje-ebeanorm:7.2.2'
     compile 'org.avaje:avaje-agentloader:2.1.2'
     compile 'org.avaje.ebeanorm:avaje-ebeanorm-agent:4.9.1'
     compile 'org.xerial:sqlite-jdbc:3.8.11.2'

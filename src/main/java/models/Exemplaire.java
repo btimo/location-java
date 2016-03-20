@@ -1,31 +1,41 @@
 package models;
 
+import containers.Flotte;
+
+import javax.persistence.*;
+import java.util.List;
+
 /**
  * Création et modification d'un exemplaire d'un véhicule
  * @author Adrien Poupa
  */
-public class Exemplaire {
-    private static int numero = 1; // Variable partagée par toutes les instances de Exemplaire
-    private int id;
+@Entity
+@Table(name="exemplaire")
+public class Exemplaire extends BaseModel{
+
     private int kilometres;
-    private Location location;
+
+    @ManyToMany(mappedBy = "exemplaires")
+    private List<Location> locations;
+
+    @ManyToOne
     private Vehicule vehicule;
+
     private float reservoir;
+
     private boolean endommage;
 
     public static final int penaliteReservoir = 30;
     public static final int penaliteEndommage = 500;
 
     public Exemplaire(int kilometres, Location location, Vehicule vehicule) throws IllegalArgumentException {
-        id = numero;
-        numero++;
 
         if (kilometres > 180000) {
             throw new IllegalArgumentException("Kilométrage maximum dépassé");
         }
 
         this.kilometres = kilometres;
-        this.location = location;
+        //this.location = location;
         this.vehicule = vehicule;
 
         // Ajout du véhicule au container de Vehicule et de Flotte
@@ -38,8 +48,6 @@ public class Exemplaire {
     }
 
     public Exemplaire(int kilometres, Vehicule vehicule) throws IllegalArgumentException {
-        id = numero;
-        numero++;
 
         if (kilometres > 180000) {
             throw new IllegalArgumentException("Kilométrage maximum dépassé");
@@ -57,10 +65,6 @@ public class Exemplaire {
         this.endommage = false;
     }
 
-    public int getId() {
-        return id;
-    }
-
     public int getKilometres() {
         return kilometres;
     }
@@ -69,6 +73,7 @@ public class Exemplaire {
         this.kilometres = kilometres;
     }
 
+    /*
     public Location getLocation() {
         return location;
     }
@@ -76,7 +81,7 @@ public class Exemplaire {
     public void setLocation(Location location) {
         this.location = location;
     }
-
+    */
     public Vehicule getVehicule() {
         return vehicule;
     }
@@ -130,7 +135,7 @@ public class Exemplaire {
     public double getPrixFinalAvantLocation() {
         double prixTemp = getPrixFinalHorsAssurance();
 
-        if (location != null && location.isAssurance()) {
+        if (locations != null /*&& location.isAssurance()*/) {
             prixTemp += vehicule.getPrixAssurance();
         }
 
@@ -151,7 +156,7 @@ public class Exemplaire {
         }
 
         // Si la voiture est endommagée et qu'on n'a pas prix d'assurance
-        if (isEndommage() && !location.isAssurance()) {
+        if (isEndommage() /*&& !location.isAssurance()*/) {
             prixTemp += penaliteEndommage;
         }
 
@@ -169,16 +174,16 @@ public class Exemplaire {
         if (kilometres != that.kilometres) return false;
         if (endommage != that.endommage) return false;
         if (Float.compare(that.reservoir, reservoir) != 0) return false;
-        if (location != null ? !location.equals(that.location) : that.location != null) return false;
+        //if (location != null ? !location.equals(that.location) : that.location != null) return false;
         return vehicule.equals(that.vehicule);
 
     }
 
     @Override
     public int hashCode() {
-        int result = id;
+        int result = id.intValue();
         result = 31 * result + kilometres;
-        result = 31 * result + (location != null ? location.hashCode() : 0);
+        //result = 31 * result + (location != null ? location.hashCode() : 0);
         result = 31 * result + vehicule.hashCode();
         result = 31 * result + (endommage ? 1 : 0);
         result = 31 * result + (reservoir != +0.0f ? Float.floatToIntBits(reservoir) : 0);
@@ -190,7 +195,7 @@ public class Exemplaire {
         return "Exemplaire{" +
                 "id=" + id +
                 ", kilometres=" + kilometres +
-                ", location=" + location +
+                //", location=" + location +
                 ", vehicule=" + vehicule +
                 ", reservoir=" + getReservoir() +
                 ", prixFinal=" + getPrixFinalAvantLocation() +

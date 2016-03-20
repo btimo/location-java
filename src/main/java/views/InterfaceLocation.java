@@ -4,7 +4,7 @@ package main.java.views;
 import models.Auto;
 import models.Moto;
 import models.Vehicule;
-import models.Vehicules;
+import containers.Vehicules;
 
 import javax.swing.*;
 import java.awt.*;

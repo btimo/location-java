@@ -1,5 +1,6 @@
 package models;
 
+import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
@@ -8,8 +9,7 @@ import javax.validation.constraints.Size;
  * Gestion de la ville des emprunteurs
  * @author Adrien Poupa
  */
-@Entity
-@Table(name="adresse")
+@Embeddable
 public class Adresse extends BaseModel{
 
     public static final Find<Long,Adresse> find = new Find<Long, Adresse>(){};
@@ -18,6 +18,7 @@ public class Adresse extends BaseModel{
 
     private String rue;
 
+    @Size(max=20)
     private String cp;
 
     @Size(max=100)
@@ -78,7 +79,8 @@ public class Adresse extends BaseModel{
 
     @Override
     public int hashCode() {
-        int result = numero;
+        int result = id.intValue();
+        result = 31 * result + numero;
         result = 31 * result + rue.hashCode();
         result = 31 * result + cp.hashCode();
         result = 31 * result + ville.hashCode();

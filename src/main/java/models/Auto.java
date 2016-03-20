@@ -1,10 +1,19 @@
 package models;
 
+import containers.Vehicules;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 /**
  * Created by Adrien on 07/03/2016.
  */
+@Entity
+@Table(name= "auto")
 public class Auto extends Vehicule {
+
     private String modele;
+
     private boolean luxe;
 
     public Auto(String marque, String modele, int prixJour, int prixAssurance, boolean luxe) {

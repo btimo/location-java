@@ -1,15 +1,27 @@
 package models;
 
+import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.OneToMany;
 import java.util.ArrayList;
 
 /**
  * Created by Adrien on 07/03/2016.
  */
-public abstract class Vehicule {
+@Entity
+@Inheritance
+public abstract class Vehicule extends BaseModel{
+
     protected String marque;
-    protected static ArrayList<Exemplaire> exemplaire = new ArrayList<Exemplaire>();
+
+    @OneToMany(mappedBy = "vehicule")
+    protected ArrayList<Exemplaire> exemplaires = new ArrayList<Exemplaire>();
+
     protected int prixJour;
+
     protected int prixAssurance;
+
+
 
     public String getMarque() {
         return marque;
@@ -20,7 +32,7 @@ public abstract class Vehicule {
     }
 
     public void ajoutExemplaire(Exemplaire e) {
-        exemplaire.add(e);
+        exemplaires.add(e);
     }
 
     public int getPrixJour() {
@@ -56,7 +68,7 @@ public abstract class Vehicule {
     public String toString() {
         return "Vehicule{" +
                 "marque='" + marque + '\'' +
-                "exemplaire='" + exemplaire + '\'' +
+                "exemplaire='" + exemplaires + '\'' +
                 "prix de base='" + prixJour + '\'' +
                 ", prix assurance=" + prixAssurance +
                 '}';

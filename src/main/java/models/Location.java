@@ -1,31 +1,40 @@
 package models;
 
+import javax.persistence.*;
+import java.util.List;
+
 /**
  * Created by Adrien on 07/03/2016.
  */
-public class Location {
-    private static int numero = 1; // Variable partagée par toutes les instances de Location
-    private int id;
+@Entity
+@Table(name="location")
+public class Location extends BaseModel {
+
+    @Embedded
     private Date debut;
+
+    @Embedded
     private Date fin;
+
+    @Embedded
+    private Date rendu;
+
+    @ManyToOne
+    private Emprunteur emprunteur;
+
+    @ManyToMany
+    @JoinTable(name="exemplaire_location")
+    private List<Exemplaire> exemplaires;
+
     private boolean assurance;
+
     private boolean approuvee; // Devis accepté ?
 
     public Location(Date debut, Date fin, boolean assurance, boolean approuvee) {
-        id = numero;
-        numero++;
         this.fin = fin;
         this.debut = debut;
         this.assurance = assurance;
         this.approuvee = approuvee;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public Date getDebut() {
@@ -77,8 +86,7 @@ public class Location {
 
     @Override
     public int hashCode() {
-        int result = id;
-        result = 31 * result + debut.hashCode();
+        int result = debut.hashCode();
         result = 31 * result + fin.hashCode();
         result = 31 * result + (assurance ? 1 : 0);
         result = 31 * result + (approuvee ? 1 : 0);

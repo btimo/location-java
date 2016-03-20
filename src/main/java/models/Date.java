@@ -1,5 +1,8 @@
 package models;
 
+import javax.persistence.Embeddable;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
@@ -9,7 +12,9 @@ import java.util.concurrent.TimeUnit;
  * Gestion des dates de location et retour
  * @author Adrien Poupa
  */
+@Embeddable
 public class Date {
+
     private int jour;
     private int mois;
     private int annee;
