@@ -1,23 +1,26 @@
-package main.java.views;
+package views;
 
 
-import main.java.models.*;
+import models.*;
 
+import org.jdatepicker.impl.JDatePanelImpl;
+import org.jdatepicker.impl.JDatePickerImpl;
+import org.jdatepicker.impl.UtilDateModel;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Properties;
 
 
 public class InterfaceLocation {
     public static void main(String[] args) {
         JFrame locationFrame = new JFrame();
         locationFrame.setTitle("Location de vehicule auto/moto");
-        locationFrame.setSize(400,300);
+        locationFrame.setSize(400,400);
 
         JPanel fenetrePanel =new JPanel();
-        Container container = locationFrame.getContentPane();
         fenetrePanel.setLayout(new BoxLayout(fenetrePanel, BoxLayout.Y_AXIS));
 
 
@@ -49,7 +52,7 @@ public class InterfaceLocation {
         JLabel adresseLabel = new JLabel("Adresse :");
         JTextField numeroTexte = new JTextField("5",3);
         JTextField rueTexte = new JTextField("rue",13);
-        JTextField codeTexte = new JTextField("94800",5);
+        JTextField codeTexte = new JTextField("CP",5);
         JTextField villeTexte = new JTextField("ville",5);
         adressePanel.add(adresseLabel);
         adressePanel.add(numeroTexte);
@@ -58,7 +61,7 @@ public class InterfaceLocation {
         adressePanel.add(villeTexte);
 
         int num = Integer.parseInt(numeroTexte.getText());
-        int cp =Integer.parseInt(codeTexte.getText());
+        String cp =codeTexte.getText();
         Adresse adresse =new Adresse(num,rueTexte.getText(),cp,villeTexte.getText());
         Emprunteur personne = new Emprunteur(adresse,prenomTexte.getText(),nomTexte.getText());
 
@@ -80,21 +83,19 @@ public class InterfaceLocation {
         choixPanel.add(motoButton);
 
 
-        JPanel departPanel =new JPanel();
-        departPanel.setBackground(Color.ORANGE);
-        departPanel.setLayout(new FlowLayout());
+        JPanel modelPanel =new JPanel();
+        modelPanel.setBackground(Color.ORANGE);
+        modelPanel.setLayout(new FlowLayout());
         JLabel constructeurModelLabel = new JLabel("constructeur et le model :");
         Font fontDepart = new Font("Arial", Font.BOLD, 14);
         constructeurModelLabel.setFont(fontDepart);
 
 
         Auto auto = new Auto("Ford", "Fiesta", 200,0,false);
-        System.out.println(auto);
         Auto auto2 = new Auto("Dacia", "Sandero", 200,0,true);
-        System.out.println(auto2);
         Auto auto3 = new Auto("Audi", "A1", 500,0,false);
         Moto moto = new Moto("Harley Davidson", 300, 200);
-        System.out.println(auto3);
+
 
         JComboBox liste1 = new JComboBox();
         ArrayList<String> marques = new ArrayList<>();
@@ -122,12 +123,12 @@ public class InterfaceLocation {
         });
         /*calendrier*/
 
-        departPanel.add(constructeurModelLabel);
-        departPanel.add(liste1);
+        modelPanel.add(constructeurModelLabel);
+        modelPanel.add(liste1);
 
-        JPanel retourPanel =new JPanel();
-        retourPanel.setBackground(Color.ORANGE);
-        retourPanel.setLayout(new FlowLayout());
+        JPanel assurancePanel =new JPanel();
+        assurancePanel.setBackground(Color.ORANGE);
+        assurancePanel.setLayout(new FlowLayout());
         JLabel assuranceLabel = new JLabel("Assurance :");
         Font fontRetour = new Font("Arial", Font.BOLD, 14);
         assuranceLabel.setFont(fontRetour);
@@ -142,10 +143,34 @@ public class InterfaceLocation {
 
 
         /*calendier*/
-        retourPanel.add(assuranceLabel);
-        retourPanel.add(assurance);
-        retourPanel.add(ouiButton);
-        retourPanel.add(nonButton);
+        assurancePanel.add(assuranceLabel);
+        assurancePanel.add(assurance);
+        assurancePanel.add(ouiButton);
+        assurancePanel.add(nonButton);
+
+        JPanel dateDepartPanel =new JPanel();
+        dateDepartPanel.setBackground(Color.ORANGE);
+        dateDepartPanel.setLayout(new FlowLayout());
+        JLabel departLabel =new JLabel("date de depart :");
+        UtilDateModel model = new UtilDateModel();
+        Properties p = new Properties();
+        JDatePanelImpl datePanel = new JDatePanelImpl(model, p);
+        JDatePickerImpl datePicker = new JDatePickerImpl(datePanel, new DateLabelFormatter());
+        dateDepartPanel.add(departLabel);
+        dateDepartPanel.add(datePicker);
+
+
+        JPanel dateRetourPanel =new JPanel();
+        dateRetourPanel.setBackground(Color.ORANGE);
+        dateRetourPanel.setLayout(new FlowLayout());
+        JLabel retourLabel =new JLabel("date de retour :");
+        UtilDateModel retourModel = new UtilDateModel();
+        Properties retourProperties = new Properties();
+        JDatePanelImpl dateRetour = new JDatePanelImpl(retourModel, retourProperties);
+        JDatePickerImpl dateRetourPicker = new JDatePickerImpl(dateRetour, new DateLabelFormatter());
+        dateRetourPanel.add(retourLabel);
+        dateRetourPanel.add(dateRetourPicker);
+
 
         JPanel devisPanel = new JPanel();
         devisPanel.setLayout(new FlowLayout());
@@ -164,8 +189,10 @@ public class InterfaceLocation {
         fenetrePanel.add(identifiantPanel);
         fenetrePanel.add(adressePanel);
         fenetrePanel.add(choixPanel);
-        fenetrePanel.add(departPanel);
-        fenetrePanel.add(retourPanel);
+        fenetrePanel.add(modelPanel);
+        fenetrePanel.add(dateDepartPanel);
+        fenetrePanel.add(dateRetourPanel);
+        fenetrePanel.add(assurancePanel);
         fenetrePanel.add(devisPanel);
 
         locationFrame.add(fenetrePanel);
@@ -173,3 +200,4 @@ public class InterfaceLocation {
         locationFrame.setVisible(true);
     }
 }
+
