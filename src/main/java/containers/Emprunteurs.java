@@ -1,4 +1,8 @@
-package models;
+package containers;
+
+import models.Date;
+import models.Emprunteur;
+import models.Vehicule;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -59,6 +63,7 @@ public class Emprunteurs {
         return emprunteursSearch;
     }
 
+    /*
     public static ArrayList<Emprunteur> rechercheVehicule(Vehicule vehicule)
     {
         ArrayList<Emprunteur> emprunteursSearch = new ArrayList<Emprunteur>();
@@ -133,4 +138,5 @@ public class Emprunteurs {
             }
         });
     }
+    */
 }

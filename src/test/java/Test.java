@@ -1,4 +1,7 @@
 
+import containers.Emprunteurs;
+import containers.Flotte;
+import containers.Vehicules;
 import models.*;
 
 /**
@@ -56,7 +59,7 @@ public class Test {
         try {
             Exemplaire exemplaire = new Exemplaire(250, locationAvecAssurance, auto);
             Exemplaire exemplaire2 = new Exemplaire(60000, auto2);
-            emprunteur.louer(exemplaire); // events?
+            //emprunteur.louer(exemplaire); // events?
             emprunteur.genererDevis();
             exemplaire.setEndommage(true);
             exemplaire.setReservoir(0);
@@ -68,7 +71,7 @@ public class Test {
         System.out.println(emprunteur);
         System.out.println("Ramener");
         emprunteur.genererFacture();
-        emprunteur.ramener();
+        //emprunteur.ramener();
         System.out.println(emprunteur);
 
         // Liste d'emprunteurs
@@ -81,7 +84,7 @@ public class Test {
         Emprunteurs.triId();
         System.out.println(Emprunteurs.get());
         System.out.println("Tri Code Postal");
-        Emprunteurs.triCodePostal();
+        //Emprunteurs.triCodePostal();
         System.out.println(Emprunteurs.get());
         System.out.println("Recherche pour le nom: Barbot");
         System.out.println(Emprunteurs.rechercheNom("Barbot"));
@@ -89,11 +92,11 @@ public class Test {
         try {
             Exemplaire exemplaire = new Exemplaire(250, locationAvecAssurance, auto);
             Exemplaire exemplaire2 = new Exemplaire(150, auto2);
-            emprunteur.setExemplaire(exemplaire);
+            //emprunteur.setExemplaire(exemplaire);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        System.out.println(Emprunteurs.rechercheVehicule(auto));
+        //System.out.println(Emprunteurs.rechercheVehicule(auto));
 
         // Liste de véhicules
         System.out.println("Liste de véhicules");

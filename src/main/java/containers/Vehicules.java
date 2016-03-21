@@ -1,4 +1,7 @@
-package models;
+package containers;
+
+import models.Auto;
+import models.Vehicule;
 
 import java.util.ArrayList;
 import java.util.Collections;

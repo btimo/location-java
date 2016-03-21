@@ -1,19 +1,34 @@
 package models;
 
+import containers.Emprunteurs;
+import util.GenerationPdf;
+
+import javax.persistence.*;
+import java.util.ArrayList;
+
 /**
  * Created by Adrien on 07/03/2016.
  */
-public class Emprunteur {
-    private static int registre = 1; // Variable partagée par toutes les instances de Emprunteur
-    private int id;
+@Entity
+@Table(name="emprunteur")
+public class Emprunteur extends BaseModel  {
+
     private String nom;
+
     private String prenom;
+
+    @Embedded
     private Adresse adresse;
+
+    /*
+    @ManyToMany
     private Exemplaire exemplaire;
+    */
+
+    @OneToMany(mappedBy = "emprunteur")
+    private ArrayList<Location> locations;
 
     public Emprunteur(Adresse adresse, String prenom, String nom) {
-        id = registre;
-        registre++;
         this.adresse = adresse;
         this.prenom = prenom;
         this.nom = nom;
@@ -22,9 +37,8 @@ public class Emprunteur {
         Emprunteurs.ajout(this);
     }
 
+    /*
     public Emprunteur(Adresse adresse, String prenom, String nom, Exemplaire exemplaire) {
-        id = registre;
-        registre++;
         this.adresse = adresse;
         this.prenom = prenom;
         this.nom = nom;
@@ -33,14 +47,7 @@ public class Emprunteur {
         // Ajout de l'emprunteur
         Emprunteurs.ajout(this);
     }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
+    */
 
     public String getNom() {
         return nom;
@@ -66,7 +73,7 @@ public class Emprunteur {
         this.adresse = adresse;
     }
 
-    public Exemplaire getExemplaire() {
+    /*public Exemplaire getExemplaire() {
         return exemplaire;
     }
 
@@ -85,6 +92,7 @@ public class Emprunteur {
         // L'emprunteur n'a plus de véhicule
         this.exemplaire = null;
     }
+    */
 
     public void genererFacture() {
         new GenerationPdf("facture", this);
@@ -104,14 +112,14 @@ public class Emprunteur {
         if (id != that.id) return false;
         if (!nom.equals(that.nom)) return false;
         if (!prenom.equals(that.prenom)) return false;
-        if (!exemplaire.equals(that.exemplaire)) return false;
+        //if (!exemplaire.equals(that.exemplaire)) return false;
         return adresse.equals(that.adresse);
 
     }
 
     @Override
     public int hashCode() {
-        int result = id;
+        int result = getId().intValue();
         result = 31 * result + nom.hashCode();
         result = 31 * result + prenom.hashCode();
         result = 31 * result + adresse.hashCode();
@@ -125,7 +133,7 @@ public class Emprunteur {
                 ", nom='" + nom + '\'' +
                 ", prenom='" + prenom + '\'' +
                 ", adresse='" + adresse + '\'' +
-                ", exemplaire=" + exemplaire +
+                //", exemplaire=" + exemplaire +
                 '}';
     }
 }

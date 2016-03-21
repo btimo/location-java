@@ -1,4 +1,4 @@
-package models;
+package util;
 
 import java.io.FileOutputStream;
 import java.text.DateFormat;
@@ -20,6 +20,7 @@ import com.itextpdf.text.Section;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
+import models.*;
 
 
 public class GenerationPdf {
@@ -31,6 +32,7 @@ public class GenerationPdf {
             Font.NORMAL, BaseColor.RED);
     private static Font smallBold = new Font(Font.FontFamily.TIMES_ROMAN, 12,
             Font.BOLD);
+
     private String type;
     private Emprunteur emprunteur;
     private Exemplaire exemplaire;
@@ -40,8 +42,8 @@ public class GenerationPdf {
     public GenerationPdf(String type, Emprunteur emprunteur) {
         this.type = type.substring(0, 1).toUpperCase() + type.substring(1);
         this.emprunteur = emprunteur;
-        this.exemplaire = emprunteur.getExemplaire();
-        this.location = exemplaire.getLocation();
+        //this.exemplaire = emprunteur.getExemplaire();
+        //this.location = exemplaire.getLocation();
         this.vehicule = exemplaire.getVehicule();
         try {
             Document document = new Document();
