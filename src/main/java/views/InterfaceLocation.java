@@ -187,13 +187,13 @@ public class InterfaceLocation {
                 if (ouiButton.isSelected()){
                     Location locationAvecAssurrance =new Location(depart,retour,true,true);
                     Exemplaire exemplaire = new Exemplaire(250, locationAvecAssurrance, auto); //comment savoir quel auto a ete choisi avec toute les donner
-                    personne.louer(exemplaire);
+                    //personne.louer(exemplaire);
                     personne.genererDevis();
                 }
                 else {
                     Location locationSansAssurrance =new Location(depart,retour,false,true);
                     Exemplaire exemplaire = new Exemplaire(250, locationSansAssurrance, auto);
-                    personne.louer(exemplaire);
+                    //personne.louer(exemplaire);
                     personne.genererDevis();
                 }
             }
