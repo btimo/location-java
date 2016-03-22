@@ -3,6 +3,7 @@ package models;
 import containers.Flotte;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,7 +17,7 @@ public class Exemplaire extends BaseModel{
     private int kilometres;
 
     @ManyToMany(mappedBy = "exemplaires")
-    private List<Location> locations;
+    private ArrayList<Location> locations;
 
     @ManyToOne
     private Vehicule vehicule;
@@ -35,7 +36,8 @@ public class Exemplaire extends BaseModel{
         }
 
         this.kilometres = kilometres;
-        //this.location = location;
+        locations = new ArrayList<>();
+        addLocation(location);
         this.vehicule = vehicule;
 
         // Ajout du véhicule au container de Vehicule et de Flotte
@@ -55,6 +57,7 @@ public class Exemplaire extends BaseModel{
 
         this.kilometres = kilometres;
         this.vehicule = vehicule;
+        locations = new ArrayList<>();
 
         // Ajout du véhicule au container de Vehicule et de Flotte
         vehicule.ajoutExemplaire(this);
@@ -73,15 +76,14 @@ public class Exemplaire extends BaseModel{
         this.kilometres = kilometres;
     }
 
-    /*
-    public Location getLocation() {
-        return location;
+    public ArrayList<Location> getLocations() {
+        return locations;
     }
 
-    public void setLocation(Location location) {
-        this.location = location;
+    public void addLocation(Location location) {
+        locations.add(location);
     }
-    */
+
     public Vehicule getVehicule() {
         return vehicule;
     }
@@ -170,23 +172,21 @@ public class Exemplaire extends BaseModel{
 
         Exemplaire that = (Exemplaire) o;
 
-        if (id != that.id) return false;
         if (kilometres != that.kilometres) return false;
-        if (endommage != that.endommage) return false;
         if (Float.compare(that.reservoir, reservoir) != 0) return false;
-        //if (location != null ? !location.equals(that.location) : that.location != null) return false;
+        if (endommage != that.endommage) return false;
+        if (!locations.equals(that.locations)) return false;
         return vehicule.equals(that.vehicule);
 
     }
 
     @Override
     public int hashCode() {
-        int result = id.intValue();
-        result = 31 * result + kilometres;
-        //result = 31 * result + (location != null ? location.hashCode() : 0);
+        int result = kilometres;
+        result = 31 * result + locations.hashCode();
         result = 31 * result + vehicule.hashCode();
-        result = 31 * result + (endommage ? 1 : 0);
         result = 31 * result + (reservoir != +0.0f ? Float.floatToIntBits(reservoir) : 0);
+        result = 31 * result + (endommage ? 1 : 0);
         return result;
     }
 
