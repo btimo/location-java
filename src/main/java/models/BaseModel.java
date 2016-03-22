@@ -25,6 +25,8 @@ public abstract class BaseModel extends Model {
     @UpdatedTimestamp
     Timestamp whenUpdated;
 
+    Boolean isActive;
+
     public Long getId() {
         return id;
     }
@@ -57,4 +59,11 @@ public abstract class BaseModel extends Model {
         this.whenUpdated = whenUpdated;
     }
 
+    public Boolean getActive() {
+        return isActive;
+    }
+
+    public void setActive(Boolean active) {
+        isActive = active;
+    }
 }

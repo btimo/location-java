@@ -3,6 +3,7 @@ package models;
 import containers.Flotte;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -15,8 +16,8 @@ public class Exemplaire extends BaseModel{
 
     private int kilometres;
 
-    @ManyToMany(mappedBy = "exemplaires")
-    private List<Location> locations;
+    @OneToMany(mappedBy = "exemplaire")
+    private List<LocationExemplaire> locationExemplaires = new ArrayList<>();
 
     @ManyToOne
     private Vehicule vehicule;
@@ -28,14 +29,14 @@ public class Exemplaire extends BaseModel{
     public static final int penaliteReservoir = 30;
     public static final int penaliteEndommage = 500;
 
-    public Exemplaire(int kilometres, Location location, Vehicule vehicule) throws IllegalArgumentException {
+    public Exemplaire(int kilometres, List<LocationExemplaire> locationExemplaires, Vehicule vehicule) throws IllegalArgumentException {
 
         if (kilometres > 180000) {
             throw new IllegalArgumentException("Kilométrage maximum dépassé");
         }
 
         this.kilometres = kilometres;
-        //this.location = location;
+        this.locationExemplaires = locationExemplaires;
         this.vehicule = vehicule;
 
         // Ajout du véhicule au container de Vehicule et de Flotte
@@ -73,15 +74,14 @@ public class Exemplaire extends BaseModel{
         this.kilometres = kilometres;
     }
 
-    /*
-    public Location getLocation() {
-        return location;
+    public List<LocationExemplaire> getLocationExemplaires() {
+        return locationExemplaires;
     }
 
-    public void setLocation(Location location) {
-        this.location = location;
+    public void setLocationExemplaires(List<LocationExemplaire> locationExemplaires) {
+        this.locationExemplaires = locationExemplaires;
     }
-    */
+
     public Vehicule getVehicule() {
         return vehicule;
     }
@@ -117,8 +117,25 @@ public class Exemplaire extends BaseModel{
         }
     }
 
+    public float getPenaliteReservoir(){
+        if(reservoir < 0.25){
+            return penaliteReservoir * 4;
+        }
+        else if(reservoir < 0.5){
+            return penaliteReservoir * 3;
+        }
+        else if(reservoir < 0.75){
+            return penaliteReservoir * 2;
+        }
+        else if(reservoir < 1){
+            return penaliteReservoir * 1;
+        }
+        else
+            return 0;
+    }
+
     /**
-     * Retourne le prix final de la location par jour
+     * Retourne le prix final de la location de cet exemplaire par jour
      * 10% de réduction tous les 50 000 kms
      * @return prix final sans assurance
      */
@@ -127,40 +144,13 @@ public class Exemplaire extends BaseModel{
     }
 
     /**
-     * Retourne le prix final de la location par jour
+     * Retourne le prix final de la location de cet exemplaire par jour
      * 10% de réduction tous les 50 000 kms
-     * Ajout du prix de l'assurance si nécessaire
-     * @return prix final
+     * Ajout du prix de l'assurance
+     * @return prix final avec assurance
      */
-    public double getPrixFinalAvantLocation() {
-        double prixTemp = getPrixFinalHorsAssurance();
-
-        if (locations != null /*&& location.isAssurance()*/) {
-            prixTemp += vehicule.getPrixAssurance();
-        }
-
-        return prixTemp;
-    }
-
-    /**
-     * Calcul du prix facturé lors du retour du véhicule
-     * Application des pénalités sur le niveau de réservoir et l'état du véhicule
-     * @return prix à payer
-     */
-    public double getPrixFinalRetour() {
-        double prixTemp = getPrixFinalAvantLocation();
-
-        // Si le réservoir n'est pas plein, pénalité
-        if (reservoir != 1.0) {
-            prixTemp += penaliteReservoir;
-        }
-
-        // Si la voiture est endommagée et qu'on n'a pas prix d'assurance
-        if (isEndommage() /*&& !location.isAssurance()*/) {
-            prixTemp += penaliteEndommage;
-        }
-
-        return prixTemp;
+    public double getPrixFinalAvecAssurance() {
+        return getPrixFinalHorsAssurance() + vehicule.getPrixAssurance();
     }
 
     @Override
@@ -198,7 +188,8 @@ public class Exemplaire extends BaseModel{
                 //", location=" + location +
                 ", vehicule=" + vehicule +
                 ", reservoir=" + getReservoir() +
-                ", prixFinal=" + getPrixFinalAvantLocation() +
+                ", prix sans assurance= " + getPrixFinalAvecAssurance() +
+                ", prix avec assurance= " + getPrixFinalHorsAssurance() +
                 ", endommage=" + endommage +
                 '}';
     }
