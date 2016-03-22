@@ -3,6 +3,7 @@ package models;
 import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
@@ -16,13 +17,17 @@ import java.util.concurrent.TimeUnit;
 public class Date {
 
     private int jour;
+
     private int mois;
+
     private int annee;
 
-    private final String[] nomsMois = new String[]{"inconnu","Janvier","Février", "Mars", "Avril", "Mai", "Juin", "Juillet",
+    @Transient
+    private static final String[] nomsMois = new String[]{"inconnu","Janvier","Février", "Mars", "Avril", "Mai", "Juin", "Juillet",
             "Aout", "Septembre", "Octobre", "Novembre", "Decembre"};
 
-    private final int[] duration = new int[]{0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+    @Transient
+    private static final int[] duration = new int[]{0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
     public Date(int jour, int mois, int annee) {
         this.jour = jour;
