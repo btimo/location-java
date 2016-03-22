@@ -11,12 +11,27 @@ import java.util.List;
 public class Location extends BaseModel {
 
     @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "jour", column = @Column(name = "debut_jour")),
+            @AttributeOverride(name = "mois", column = @Column(name = "debut_mois")),
+            @AttributeOverride(name = "annee", column = @Column(name = "debut_annee"))
+    })
     private Date debut;
 
     @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "jour", column = @Column(name = "fin_jour")),
+            @AttributeOverride(name = "mois", column = @Column(name = "fin_mois")),
+            @AttributeOverride(name = "annee", column = @Column(name = "fin_annee"))
+    })
     private Date fin;
 
     @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "jour", column = @Column(name = "rendu_jour")),
+            @AttributeOverride(name = "mois", column = @Column(name = "rendu_mois")),
+            @AttributeOverride(name = "annee", column = @Column(name = "rendu_annee"))
+    })
     private Date rendu;
 
     @ManyToOne
