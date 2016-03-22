@@ -4,7 +4,6 @@ import containers.Flotte;
 
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Création et modification d'un exemplaire d'un véhicule
