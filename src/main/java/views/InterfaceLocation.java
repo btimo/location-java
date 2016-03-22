@@ -135,8 +135,8 @@ public class InterfaceLocation {
         assuranceLabel.setFont(fontRetour);
         JLabel assurance =new JLabel("prendre une assurance:");
         ButtonGroup ouiNonAssurance = new ButtonGroup();
-        JRadioButton ouiButton =new JRadioButton("oui");
-        JRadioButton nonButton =new JRadioButton("non");
+        JRadioButton ouiButton =new JRadioButton("oui",false);
+        JRadioButton nonButton =new JRadioButton("non",true);
         ouiButton.setBackground(Color.ORANGE);
         nonButton.setBackground(Color.ORANGE);
         ouiNonAssurance.add(ouiButton);
@@ -155,10 +155,11 @@ public class InterfaceLocation {
         JLabel departLabel =new JLabel("date de depart :");
         UtilDateModel model = new UtilDateModel();
         Properties p = new Properties();
-        JDatePanelImpl datePanel = new JDatePanelImpl(model, p);
-        JDatePickerImpl datePicker = new JDatePickerImpl(datePanel, new DateLabelFormatter());
+        JDatePanelImpl dateDepart = new JDatePanelImpl(model, p);
+        JDatePickerImpl dateDepartPicker = new JDatePickerImpl(dateDepart, new DateLabelFormatter());
         dateDepartPanel.add(departLabel);
-        dateDepartPanel.add(datePicker);
+        dateDepartPanel.add(dateDepartPicker);
+        Date depart = (Date) dateDepartPicker.getModel().getValue();
 
 
         JPanel dateRetourPanel =new JPanel();
@@ -171,6 +172,8 @@ public class InterfaceLocation {
         JDatePickerImpl dateRetourPicker = new JDatePickerImpl(dateRetour, new DateLabelFormatter());
         dateRetourPanel.add(retourLabel);
         dateRetourPanel.add(dateRetourPicker);
+        Date retour = (Date) dateRetourPicker.getModel().getValue();
+
 
 
         JPanel devisPanel = new JPanel();
@@ -181,9 +184,20 @@ public class InterfaceLocation {
         calculButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
-
+                if (ouiButton.isSelected()){
+                    Location locationAvecAssurrance =new Location(depart,retour,true,true);
+                    Exemplaire exemplaire = new Exemplaire(250, locationAvecAssurrance, auto); //comment savoir quel auto a ete choisi avec toute les donner
+                    //personne.louer(exemplaire);
+                    personne.genererDevis();
+                }
+                else {
+                    Location locationSansAssurrance =new Location(depart,retour,false,true);
+                    Exemplaire exemplaire = new Exemplaire(250, locationSansAssurrance, auto);
+                    //personne.louer(exemplaire);
+                    personne.genererDevis();
+                }
             }
+
         });
 
         fenetrePanel.add(titrePanel);
