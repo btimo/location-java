@@ -20,13 +20,9 @@ public class InterfaceLocation {
         JFrame locationFrame = new JFrame();
         locationFrame.setTitle("Location de vehicule auto/moto");
         locationFrame.setSize(400,400);
-
         JPanel fenetrePanel =new JPanel();
         fenetrePanel.setLayout(new BoxLayout(fenetrePanel, BoxLayout.Y_AXIS));
-
-
         fenetrePanel.setBackground(Color.ORANGE);
-
         locationFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         JPanel titrePanel = new JPanel();
@@ -175,7 +171,6 @@ public class InterfaceLocation {
         Date retour = (Date) dateRetourPicker.getModel().getValue();
 
 
-
         JPanel devisPanel = new JPanel();
         devisPanel.setLayout(new FlowLayout());
         devisPanel.setBackground(Color.ORANGE);
@@ -185,21 +180,20 @@ public class InterfaceLocation {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (ouiButton.isSelected()){
-                    Location locationAvecAssurrance =new Location(depart,retour,true,true);
-                    Exemplaire exemplaire = new Exemplaire(250, locationAvecAssurrance, auto); //comment savoir quel auto a ete choisi avec toute les donner
+                   // Location locationAvecAssurrance =new Location(depart,retour,true,true);
+                   // Exemplaire exemplaire = new Exemplaire(250, locationAvecAssurrance, auto); //comment savoir quel auto a ete choisi avec toute les donner
                     //personne.louer(exemplaire);
-                    personne.genererDevis();
+                    //personne.genererDevis();
                 }
                 else {
-                    Location locationSansAssurrance =new Location(depart,retour,false,true);
-                    Exemplaire exemplaire = new Exemplaire(250, locationSansAssurrance, auto);
+                   // Location locationSansAssurrance =new Location(depart,retour,false,true);
+                    //Exemplaire exemplaire = new Exemplaire(250, locationSansAssurrance, auto);
                     //personne.louer(exemplaire);
-                    personne.genererDevis();
+                    //personne.genererDevis();
                 }
             }
 
         });
-
         fenetrePanel.add(titrePanel);
         fenetrePanel.add(identifiantPanel);
         fenetrePanel.add(adressePanel);
@@ -214,5 +208,5 @@ public class InterfaceLocation {
 
         locationFrame.setVisible(true);
     }
-}
 
+}
