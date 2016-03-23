@@ -16,19 +16,18 @@ import java.util.concurrent.TimeUnit;
 @Embeddable
 public class Date {
 
-    //@Transient
     private int jour;
-    //@Transient
+
     private int mois;
-    //@Transient
+
     private int annee;
 
-    //@Transient
-    private final String[] nomsMois = new String[]{"inconnu","Janvier","Février", "Mars", "Avril", "Mai", "Juin", "Juillet",
+    @Transient
+    private static final String[] nomsMois = new String[]{"inconnu","Janvier","Février", "Mars", "Avril", "Mai", "Juin", "Juillet",
             "Aout", "Septembre", "Octobre", "Novembre", "Decembre"};
 
-    //@Transient
-    private final int[] duration = new int[]{0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+    @Transient
+    private static final int[] duration = new int[]{0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
     public Date(int jour, int mois, int annee) {
         this.jour = jour;
