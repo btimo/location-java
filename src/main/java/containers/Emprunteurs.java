@@ -1,8 +1,6 @@
 package containers;
 
-import models.Date;
-import models.Emprunteur;
-import models.Vehicule;
+import models.*;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -63,14 +61,14 @@ public class Emprunteurs {
         return emprunteursSearch;
     }
 
-    /*
+
     public static ArrayList<Emprunteur> rechercheVehicule(Vehicule vehicule)
     {
         ArrayList<Emprunteur> emprunteursSearch = new ArrayList<Emprunteur>();
 
-        for(Emprunteur e : emprunteurs) {
-            if(e.getExemplaire() != null && e.getExemplaire().getVehicule() != null && e.getExemplaire().getVehicule().equals(vehicule)) {
-                emprunteursSearch.add(e);
+        for (Exemplaire e : vehicule.getExemplaires()) {
+            for (Location l : e.getLocations()) {
+                emprunteursSearch.add(l.getEmprunteur());
             }
         }
 
@@ -81,9 +79,11 @@ public class Emprunteurs {
     {
         ArrayList<Emprunteur> emprunteursSearch = new ArrayList<Emprunteur>();
 
-        for(Emprunteur e : emprunteurs) {
-            if(e.getExemplaire() != null && e.getExemplaire().getLocation() != null && e.getExemplaire().getLocation().isApprouvee()) {
-                emprunteursSearch.add(e);
+        for (Exemplaire e : Flotte.get()) {
+            for (Location l : e.getLocations()) {
+                if (l.isApprouvee()) {
+                    emprunteursSearch.add(l.getEmprunteur());
+                }
             }
         }
 
@@ -94,12 +94,11 @@ public class Emprunteurs {
     {
         ArrayList<Emprunteur> emprunteursSearch = new ArrayList<Emprunteur>();
 
-        for(Emprunteur e : emprunteurs) {
-            if(e.getExemplaire() != null && e.getExemplaire().getLocation() != null
-                    && e.getExemplaire().getLocation().getDebut() != null
-                    && e.getExemplaire().getLocation().isApprouvee()
-                    && e.getExemplaire().getLocation().getDebut().equals(d)) {
-                emprunteursSearch.add(e);
+        for (Exemplaire e : Flotte.get()) {
+            for (Location l : e.getLocations()) {
+                if (l.isApprouvee() && l.getDebut().equals(d)) {
+                    emprunteursSearch.add(l.getEmprunteur());
+                }
             }
         }
 
@@ -138,5 +137,4 @@ public class Emprunteurs {
             }
         });
     }
-    */
 }

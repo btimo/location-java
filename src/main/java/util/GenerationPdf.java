@@ -2,6 +2,7 @@ package util;
 
 import java.io.FileOutputStream;
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 import com.itextpdf.text.Anchor;
@@ -24,8 +25,6 @@ import models.*;
 
 
 public class GenerationPdf {
-    // valide Mac ?
-    private static String FILE = "pdf/Test.pdf";
     private static Font catFont = new Font(Font.FontFamily.TIMES_ROMAN, 18,
             Font.BOLD);
     private static Font redFont = new Font(Font.FontFamily.TIMES_ROMAN, 14,
@@ -35,19 +34,18 @@ public class GenerationPdf {
 
     private String type;
     private Emprunteur emprunteur;
-    private Exemplaire exemplaire;
-    private Location location;
-    private Vehicule vehicule;
+    private ArrayList<Location> locations;
+    private int locationId;
 
-    public GenerationPdf(String type, Emprunteur emprunteur) {
+    public GenerationPdf(String type, Emprunteur emprunteur, int locationId) {
         this.type = type.substring(0, 1).toUpperCase() + type.substring(1);
         this.emprunteur = emprunteur;
-        //this.exemplaire = emprunteur.getExemplaire();
-        //this.location = exemplaire.getLocation();
-        this.vehicule = exemplaire.getVehicule();
+        this.locations = emprunteur.getLocations();
+        this.locationId = locationId;
+
         try {
             Document document = new Document();
-            PdfWriter.getInstance(document, new FileOutputStream("pdf/"+type+"/"+ location.getId()+".pdf"));
+            PdfWriter.getInstance(document, new FileOutputStream("pdf/"+type+"/"+ emprunteur.getId()+".pdf"));
             document.open();
             addMetaData(document);
             addContent(document);
@@ -58,8 +56,8 @@ public class GenerationPdf {
     }
 
     private void addMetaData(Document document) {
-        document.addTitle("Facture #"+location.getId());
-        document.addSubject("Facture #"+location.getId());
+        document.addTitle("Facture #"+locationId);
+        document.addSubject("Facture #"+locationId);
         document.addKeywords("facture, location, projet java, efrei");
         document.addAuthor("Adrien Poupa, Stéphane Gateau, Timothée Barbot");
         document.addCreator("Adrien Poupa, Stéphane Gateau, Timothée Barbot");
@@ -74,7 +72,7 @@ public class GenerationPdf {
         Paragraph titre = new Paragraph("LocAppli", catFont);
         titre.setAlignment(Element.ALIGN_CENTER);
         preface.add(titre);
-        Paragraph titre2 = new Paragraph(type+" #"+location.getId(), catFont);
+        Paragraph titre2 = new Paragraph(type+" #"+locationId, catFont);
         titre2.setAlignment(Element.ALIGN_CENTER);
         preface.add(titre2);
 
@@ -109,77 +107,80 @@ public class GenerationPdf {
         table.setWidthPercentage(100);
 
         String nomVehicule;
-        if (vehicule instanceof Auto) {
-            nomVehicule = vehicule.getMarque() + " " + ((Auto) vehicule).getModele();
-        }
-        else { // Moto
-            nomVehicule = vehicule.getMarque() + " " + ((Moto) vehicule).getCylindree();
-        }
 
-        String periode = location.getDebut().toString() + " - " + location.getFin().toString();
+        for (Location location : locations) {
+            for (Exemplaire exemplaire : location.getExemplaires()) {
 
-        table.addCell("Véhicule loué : "+nomVehicule);
-        table.addCell(periode);
-        PdfPCell prix = new PdfPCell(new Phrase(exemplaire.getPrixFinalHorsAssurance()+"€"));
-        prix.setHorizontalAlignment(Element.ALIGN_CENTER);
-        table.addCell(prix);
+                if (exemplaire.getVehicule() instanceof Auto) {
+                    nomVehicule = exemplaire.getVehicule().getMarque() + " " + ((Auto) exemplaire.getVehicule()).getModele();
+                } else { // Moto
+                    nomVehicule = exemplaire.getVehicule().getMarque() + " " + ((Moto) exemplaire.getVehicule()).getCylindree();
+                }
 
-        if (location.isAssurance()) {
-            table.addCell("Assurance");
-            table.addCell(periode);
-            prix = new PdfPCell(new Phrase(vehicule.getPrixAssurance()+"€"));
-            prix.setHorizontalAlignment(Element.ALIGN_CENTER);
-            //prix.setMinimumHeight(150);
-            table.addCell(prix);
-        }
+                String periode = location.getDebut().toString() + " - " + location.getFin().toString();
 
-        if (type.equals("Facture")) {
-            if (exemplaire.getReservoir().equals("Vide")) {
-                table.addCell("Plein d'essence");
-                table.addCell(location.getFin().toString());
-                prix = new PdfPCell(new Phrase(Exemplaire.penaliteReservoir+"€"));
+                table.addCell("Véhicule loué : " + nomVehicule);
+                table.addCell(periode);
+                PdfPCell prix = new PdfPCell(new Phrase(exemplaire.getPrixFinalHorsAssurance() + "€"));
                 prix.setHorizontalAlignment(Element.ALIGN_CENTER);
                 table.addCell(prix);
-            }
 
-
-            if (exemplaire.isEndommage()) {
-                table.addCell("Réparation");
-                table.addCell(location.getFin().toString());
                 if (location.isAssurance()) {
-                    prix = new PdfPCell(new Phrase("0€ (assurance)"));
+                    table.addCell("Assurance");
+                    table.addCell(periode);
+                    prix = new PdfPCell(new Phrase(exemplaire.getVehicule().getPrixAssurance() + "€"));
+                    prix.setHorizontalAlignment(Element.ALIGN_CENTER);
+                    //prix.setMinimumHeight(150);
+                    table.addCell(prix);
                 }
-                else {
-                    prix = new PdfPCell(new Phrase(Exemplaire.penaliteEndommage+"€"));
+
+                if (type.equals("Facture")) {
+                    if (exemplaire.getReservoir().equals("Vide")) {
+                        table.addCell("Plein d'essence");
+                        table.addCell(location.getFin().toString());
+                        prix = new PdfPCell(new Phrase(Exemplaire.penaliteReservoir + "€"));
+                        prix.setHorizontalAlignment(Element.ALIGN_CENTER);
+                        table.addCell(prix);
+                    }
+
+
+                    if (exemplaire.isEndommage()) {
+                        table.addCell("Réparation");
+                        table.addCell(location.getFin().toString());
+                        if (location.isAssurance()) {
+                            prix = new PdfPCell(new Phrase("0€ (assurance)"));
+                        } else {
+                            prix = new PdfPCell(new Phrase(Exemplaire.penaliteEndommage + "€"));
+                        }
+                        prix.setHorizontalAlignment(Element.ALIGN_CENTER);
+                        table.addCell(prix);
+                    }
                 }
-                prix.setHorizontalAlignment(Element.ALIGN_CENTER);
-                table.addCell(prix);
+
+                preface.add(table);
+
+                addEmptyLine(preface, 1);
+
+                Paragraph total;
+
+                if (type.equals("Facture")) {
+                    total = new Paragraph("Total à régler : " + exemplaire.getPrixFinalRetour(location) + "€",
+                            redFont);
+                } else {
+                    total = new Paragraph("Total devis : " + exemplaire.getPrixFinalAvantLocation() + "€",
+                            redFont);
+                }
+
+                total.setAlignment(Element.ALIGN_RIGHT);
+                preface.add(total);
+
+                if (type.equals("Devis")) {
+                    Paragraph avert = new Paragraph("Attention : le devis ne contient d'éventuels frais de réparation et de plein " +
+                            "qui peuvent s'appliquer", smallBold);
+                    avert.setAlignment(Element.ALIGN_RIGHT);
+                    preface.add(avert);
+                }
             }
-        }
-
-        preface.add(table);
-
-        addEmptyLine(preface, 1);
-
-        Paragraph total;
-
-        if (type.equals("Facture")) {
-            total = new Paragraph("Total à régler : " + exemplaire.getPrixFinalRetour() + "€",
-                    redFont);
-        }
-        else {
-            total = new Paragraph("Total devis : " + exemplaire.getPrixFinalAvantLocation() + "€",
-                    redFont);
-        }
-
-        total.setAlignment(Element.ALIGN_RIGHT);
-        preface.add(total);
-
-        if (type.equals("Devis")) {
-            Paragraph avert = new Paragraph("Attention : le devis ne contient d'éventuels frais de réparation et de plein " +
-                    "qui peuvent s'appliquer", smallBold);
-            avert.setAlignment(Element.ALIGN_RIGHT);
-            preface.add(avert);
         }
 
         addEmptyLine(preface, 8);

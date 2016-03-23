@@ -33,14 +33,18 @@ public class Test {
          * Test d'emprunteur
          */
         Emprunteur emprunteur = new Emprunteur(adresse, "Adrien", "Poupa");
+        emprunteur.setId((long)1);
         Emprunteur emprunteur2 = new Emprunteur(adresse2, "Stéphane", "Gateau");
+        emprunteur2.setId((long)2);
         Emprunteur emprunteur3 = new Emprunteur(adresse3, "Timothée", "Barbot");
+        emprunteur3.setId((long)3);
         System.out.println(emprunteur);
 
         /**
          * Test de location
          */
         Location locationAvecAssurance = new Location(date, date2, true, true);
+        locationAvecAssurance.setId((long) 1);
         System.out.println(locationAvecAssurance);
 
         /**
@@ -54,25 +58,29 @@ public class Test {
         System.out.println(auto3);
 
         /**
-         * Test d'exmplaire
+         * Test d'exemplaire
          */
         try {
-            Exemplaire exemplaire = new Exemplaire(250, locationAvecAssurance, auto);
+            Exemplaire exemplaire = new Exemplaire(250, auto);
+            exemplaire.setId((long) 1);
+            exemplaire.addLocation(locationAvecAssurance);
             Exemplaire exemplaire2 = new Exemplaire(60000, auto2);
+            exemplaire2.setId((long) 2);
             //emprunteur.louer(exemplaire); // events?
-            emprunteur.genererDevis();
+            System.out.println(emprunteur);
+            locationAvecAssurance.louer(exemplaire);
+            emprunteur.louer(locationAvecAssurance); // events?
+            System.out.println(emprunteur);
+            emprunteur.genererDevis(1);
             exemplaire.setEndommage(true);
             exemplaire.setReservoir(0);
+            System.out.println("Location");
+            System.out.println("Ramener");
+            emprunteur.genererFacture(1);
+            emprunteur.ramener();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-
-        System.out.println("Location");
-        System.out.println(emprunteur);
-        System.out.println("Ramener");
-        emprunteur.genererFacture();
-        //emprunteur.ramener();
-        System.out.println(emprunteur);
 
         // Liste d'emprunteurs
         System.out.println("Liste d'emprunteurs");
@@ -84,19 +92,20 @@ public class Test {
         Emprunteurs.triId();
         System.out.println(Emprunteurs.get());
         System.out.println("Tri Code Postal");
-        //Emprunteurs.triCodePostal();
+        Emprunteurs.triCodePostal();
         System.out.println(Emprunteurs.get());
         System.out.println("Recherche pour le nom: Barbot");
         System.out.println(Emprunteurs.rechercheNom("Barbot"));
         System.out.println("Recherche pour le véhicule: Fiesta");
         try {
             Exemplaire exemplaire = new Exemplaire(250, locationAvecAssurance, auto);
+            exemplaire.setId((long) 1);
             Exemplaire exemplaire2 = new Exemplaire(150, auto2);
-            //emprunteur.setExemplaire(exemplaire);
+            exemplaire2.setId((long) 2);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        //System.out.println(Emprunteurs.rechercheVehicule(auto));
+        System.out.println(Emprunteurs.rechercheVehicule(auto));
 
         // Liste de véhicules
         System.out.println("Liste de véhicules");

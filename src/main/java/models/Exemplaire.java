@@ -15,7 +15,8 @@ public class Exemplaire extends BaseModel{
 
     private int kilometres;
 
-    @ManyToMany(mappedBy = "exemplaires")
+    //@ManyToMany(mappedBy = "exemplaires")
+    // Commenté sinon pas d'ajout et arrêt du code
     private ArrayList<Location> locations;
 
     @ManyToOne
@@ -36,7 +37,7 @@ public class Exemplaire extends BaseModel{
 
         this.kilometres = kilometres;
         locations = new ArrayList<>();
-        addLocation(location);
+        addLocation(location); // Problème?
         this.vehicule = vehicule;
 
         // Ajout du véhicule au container de Vehicule et de Flotte
@@ -59,7 +60,7 @@ public class Exemplaire extends BaseModel{
         locations = new ArrayList<>();
 
         // Ajout du véhicule au container de Vehicule et de Flotte
-        vehicule.ajoutExemplaire(this);
+        vehicule.ajoutExemplaire(this); // Problème
         Flotte.ajout(this);
 
         this.reservoir = 1;
@@ -148,7 +149,7 @@ public class Exemplaire extends BaseModel{
      * Application des pénalités sur le niveau de réservoir et l'état du véhicule
      * @return prix à payer
      */
-    public double getPrixFinalRetour() {
+    public double getPrixFinalRetour(Location location) {
         double prixTemp = getPrixFinalAvantLocation();
 
         // Si le réservoir n'est pas plein, pénalité
@@ -156,8 +157,8 @@ public class Exemplaire extends BaseModel{
             prixTemp += penaliteReservoir;
         }
 
-        // Si la voiture est endommagée et qu'on n'a pas prix d'assurance
-        if (isEndommage() /*&& !location.isAssurance()*/) {
+        // Si la voiture est endommagée et qu'on n'a pas pris d'assurance
+        if (isEndommage() && !location.isAssurance()) {
             prixTemp += penaliteEndommage;
         }
 

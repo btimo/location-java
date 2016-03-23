@@ -1,7 +1,7 @@
 package models;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.ArrayList;
 
 /**
  * Created by Adrien on 07/03/2016.
@@ -34,12 +34,14 @@ public class Location extends BaseModel {
     })
     private Date rendu;
 
-    @ManyToOne
+    //@ManyToOne
+    // Commenté sinon arrêt du code
     private Emprunteur emprunteur;
 
-    @ManyToMany
-    @JoinTable(name="exemplaire_location")
-    private List<Exemplaire> exemplaires;
+    //@ManyToMany
+    // Commenté sinon arrêt du code
+    //@JoinTable(name="exemplaire_location")
+    private ArrayList<Exemplaire> exemplaires;
 
     private boolean assurance;
 
@@ -50,6 +52,15 @@ public class Location extends BaseModel {
         this.debut = debut;
         this.assurance = assurance;
         this.approuvee = approuvee;
+        this.exemplaires = new ArrayList<Exemplaire>();
+    }
+
+    public Location(Date debut, Date fin, boolean assurance, boolean approuvee, ArrayList<Exemplaire> exemplaires) {
+        this.fin = fin;
+        this.debut = debut;
+        this.assurance = assurance;
+        this.approuvee = approuvee;
+        this.exemplaires = exemplaires;
     }
 
     public Date getDebut() {
@@ -82,6 +93,34 @@ public class Location extends BaseModel {
 
     public void setApprouvee(boolean approuvee) {
         this.approuvee = approuvee;
+    }
+
+    public Emprunteur getEmprunteur() {
+        return emprunteur;
+    }
+
+    public void setEmprunteur(Emprunteur emprunteur) {
+        this.emprunteur = emprunteur;
+    }
+
+    public ArrayList<Exemplaire> getExemplaires() {
+        return exemplaires;
+    }
+
+    public void setExemplaires(ArrayList<Exemplaire> exemplaires) {
+        this.exemplaires = exemplaires;
+    }
+
+    public void louer(Exemplaire e) {
+        exemplaires.add(e);
+    }
+
+    public Date getRendu() {
+        return rendu;
+    }
+
+    public void setRendu(Date rendu) {
+        this.rendu = rendu;
     }
 
     @Override

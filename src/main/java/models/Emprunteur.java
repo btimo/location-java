@@ -20,34 +20,37 @@ public class Emprunteur extends BaseModel  {
     @Embedded
     private Adresse adresse;
 
-    /*
-    @ManyToMany
-    private Exemplaire exemplaire;
-    */
-
-    @OneToMany(mappedBy = "emprunteur")
+    //@OneToMany(mappedBy = "emprunteur")
+    // Commenté sinon pas d'ajout et arrêt du code
     private ArrayList<Location> locations;
 
     public Emprunteur(Adresse adresse, String prenom, String nom) {
         this.adresse = adresse;
         this.prenom = prenom;
         this.nom = nom;
+        this.locations = new ArrayList<Location>();
 
         // Ajout de l'emprunteur
         Emprunteurs.ajout(this);
     }
 
-    /*
-    public Emprunteur(Adresse adresse, String prenom, String nom, Exemplaire exemplaire) {
+    public Emprunteur(Adresse adresse, String prenom, String nom, ArrayList<Location> locations) {
         this.adresse = adresse;
         this.prenom = prenom;
         this.nom = nom;
-        this.exemplaire = exemplaire;
+        this.locations = locations;
 
         // Ajout de l'emprunteur
         Emprunteurs.ajout(this);
     }
-    */
+
+    public ArrayList<Location> getLocations() {
+        return locations;
+    }
+
+    public void setLocations(ArrayList<Location> locations) {
+        this.locations = locations;
+    }
 
     public String getNom() {
         return nom;
@@ -73,33 +76,25 @@ public class Emprunteur extends BaseModel  {
         this.adresse = adresse;
     }
 
-    /*public Exemplaire getExemplaire() {
-        return exemplaire;
-    }
-
-    public void setExemplaire(Exemplaire exemplaire) {
-        this.exemplaire = exemplaire;
-    }
-
-    public void louer(Exemplaire e) {
-        this.exemplaire = e;
+    public void louer(Location l) {
+        locations.add(l);
+        l.setEmprunteur(this);
     }
 
     public void ramener() {
         // L'exemplaire n'a plus de location
-        exemplaire.setLocation(null);
+        //exemplaire.setLocation(null);
 
         // L'emprunteur n'a plus de véhicule
-        this.exemplaire = null;
-    }
-    */
-
-    public void genererFacture() {
-        new GenerationPdf("facture", this);
+        this.locations = new ArrayList<Location>();
     }
 
-    public void genererDevis() {
-        new GenerationPdf("devis", this);
+    public void genererFacture(int locationId) {
+        new GenerationPdf("facture", this, locationId);
+    }
+
+    public void genererDevis(int locationId) {
+        new GenerationPdf("devis", this, locationId);
     }
 
     @Override
@@ -112,7 +107,7 @@ public class Emprunteur extends BaseModel  {
         if (id != that.id) return false;
         if (!nom.equals(that.nom)) return false;
         if (!prenom.equals(that.prenom)) return false;
-        //if (!exemplaire.equals(that.exemplaire)) return false;
+        if (!locations.equals(that.locations)) return false;
         return adresse.equals(that.adresse);
 
     }
@@ -123,6 +118,7 @@ public class Emprunteur extends BaseModel  {
         result = 31 * result + nom.hashCode();
         result = 31 * result + prenom.hashCode();
         result = 31 * result + adresse.hashCode();
+        result = 31 * result + locations.hashCode();
         return result;
     }
 
@@ -133,7 +129,7 @@ public class Emprunteur extends BaseModel  {
                 ", nom='" + nom + '\'' +
                 ", prenom='" + prenom + '\'' +
                 ", adresse='" + adresse + '\'' +
-                //", exemplaire=" + exemplaire +
+                ", locations=" + locations +
                 '}';
     }
 }
