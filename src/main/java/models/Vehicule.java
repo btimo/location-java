@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.OneToMany;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Adrien on 07/03/2016.
@@ -14,9 +15,8 @@ public abstract class Vehicule extends BaseModel{
 
     protected String marque;
 
-    //@OneToMany(mappedBy = "vehicule")
-    // Commenté sinon pas d'ajout et arrêt du code
-    protected ArrayList<Exemplaire> exemplaires = new ArrayList<Exemplaire>();
+    @OneToMany(mappedBy = "vehicule")
+    protected List<Exemplaire> exemplaires = new ArrayList<Exemplaire>();
 
     protected int prixJour;
 
@@ -44,7 +44,7 @@ public abstract class Vehicule extends BaseModel{
         return prixAssurance;
     }
 
-    public ArrayList<Exemplaire> getExemplaires() {
+    public List<Exemplaire> getExemplaires() {
         return exemplaires;
     }
 

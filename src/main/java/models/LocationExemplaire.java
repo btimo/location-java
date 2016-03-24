@@ -1,5 +1,7 @@
 package models;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
+
 import javax.persistence.*;
 
 /**
@@ -19,6 +21,12 @@ public class LocationExemplaire extends BaseModel {
     private boolean assurance;
 
     public LocationExemplaire(){}
+
+    public LocationExemplaire(Location l, Exemplaire e, Boolean a){
+        exemplaire = e;
+        location = l;
+        assurance = a;
+    }
 
     public Exemplaire getExemplaire() {
         return exemplaire;
@@ -50,6 +58,7 @@ public class LocationExemplaire extends BaseModel {
      * @return prix à payer
      */
     public double getPrixFinalRetour() {
+        // todo: refaire pour prendre en compte assurance
         double prixTemp = exemplaire.getPrixFinalAvecAssurance();
 
         // Si le réservoir n'est pas plein, pénalité

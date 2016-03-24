@@ -47,6 +47,7 @@ public class Location extends BaseModel {
      */
     private boolean approuvee; // Devis accepté ?
 
+
     public Location(Date debut, Date fin, boolean approuvee) {
         this(debut, fin);
         this.approuvee = approuvee;
@@ -107,6 +108,11 @@ public class Location extends BaseModel {
 
     public void setApprouvee(boolean approuvee) {
         this.approuvee = approuvee;
+    }
+
+    public void louer(Exemplaire exemplaire, boolean assurance){
+        LocationExemplaire le = new LocationExemplaire(this, exemplaire, assurance);
+        locationExemplaires.add(le);
     }
 
 

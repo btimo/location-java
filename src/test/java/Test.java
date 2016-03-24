@@ -33,28 +33,31 @@ public class Test {
          * Test d'emprunteur
          */
         Emprunteur emprunteur = new Emprunteur(adresse, "Adrien", "Poupa");
-        emprunteur.setId((long)1);
+        emprunteur.save();
         Emprunteur emprunteur2 = new Emprunteur(adresse2, "Stéphane", "Gateau");
-        emprunteur2.setId((long)2);
+        emprunteur2.save();
         Emprunteur emprunteur3 = new Emprunteur(adresse3, "Timothée", "Barbot");
-        emprunteur3.setId((long)3);
+        emprunteur3.save();
         System.out.println(emprunteur);
 
         /**
          * Test de location
          */
-        Location locationAvecAssurance = new Location(date, date2, true, true);
-        locationAvecAssurance.setId((long) 1);
+        Location locationAvecAssurance = new Location(date, date2, true);
+        locationAvecAssurance.save();
         System.out.println(locationAvecAssurance);
 
         /**
          * Test d'auto
          */
         Auto auto = new Auto("Ford", "Fiesta", 200, 50, false);
+        auto.save();
         System.out.println(auto);
         Auto auto2 = new Auto("Dacia", "Sandero", 200, 30, false);
+        auto2.save();
         System.out.println(auto2);
         Auto auto3 = new Auto("Audi", "A1", 500, 100, true);
+        auto3.save();
         System.out.println(auto3);
 
         /**
@@ -62,16 +65,15 @@ public class Test {
          */
         try {
             Exemplaire exemplaire = new Exemplaire(250, auto);
-            exemplaire.setId((long) 1);
-            exemplaire.addLocationExemplaire(locationAvecAssurance);
+            exemplaire.save();
+            locationAvecAssurance.louer(exemplaire, true);
             Exemplaire exemplaire2 = new Exemplaire(60000, auto2);
-            exemplaire2.setId((long) 2);
-            //emprunteur.louer(exemplaire); // events?
+            exemplaire2.save();
             System.out.println(emprunteur);
-            locationAvecAssurance.louer(exemplaire);
-            emprunteur.louer(locationAvecAssurance); // events?
+            locationAvecAssurance.louer(exemplaire2, true);
+            emprunteur.louer(locationAvecAssurance);
             System.out.println(emprunteur);
-            emprunteur.genererDevis(1);
+            emprunteur.genererDevis(locationAvecAssurance.getId().intValue());
             exemplaire.setEndommage(true);
             exemplaire.setReservoir(0);
             System.out.println("Location");
@@ -98,10 +100,12 @@ public class Test {
         System.out.println(Emprunteurs.rechercheNom("Barbot"));
         System.out.println("Recherche pour le véhicule: Fiesta");
         try {
-            Exemplaire exemplaire = new Exemplaire(250, locationAvecAssurance, auto);
-            exemplaire.setId((long) 1);
+            Exemplaire exemplaire = new Exemplaire(250, auto);
+            exemplaire.save();
             Exemplaire exemplaire2 = new Exemplaire(150, auto2);
-            exemplaire2.setId((long) 2);
+            exemplaire2.save();
+            locationAvecAssurance.louer(exemplaire, true);
+            locationAvecAssurance.louer(exemplaire2, true);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

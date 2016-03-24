@@ -5,6 +5,7 @@ import util.GenerationPdf;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Adrien on 07/03/2016.
@@ -20,9 +21,8 @@ public class Emprunteur extends BaseModel  {
     @Embedded
     private Adresse adresse;
 
-    //@OneToMany(mappedBy = "emprunteur")
-    // Commenté sinon pas d'ajout et arrêt du code
-    private ArrayList<Location> locations;
+    @OneToMany(cascade= CascadeType.ALL , mappedBy = "emprunteur")
+    private List<Location> locations;
 
     public Emprunteur(Adresse adresse, String prenom, String nom) {
         this.adresse = adresse;
@@ -44,7 +44,7 @@ public class Emprunteur extends BaseModel  {
         Emprunteurs.ajout(this);
     }
 
-    public ArrayList<Location> getLocations() {
+    public List<Location> getLocations() {
         return locations;
     }
 
@@ -82,10 +82,6 @@ public class Emprunteur extends BaseModel  {
     }
 
     public void ramener() {
-        // L'exemplaire n'a plus de location
-        //exemplaire.setLocation(null);
-
-        // L'emprunteur n'a plus de véhicule
         this.locations = new ArrayList<Location>();
     }
 
