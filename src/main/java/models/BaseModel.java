@@ -4,6 +4,7 @@ import com.avaje.ebean.Model;
 import com.avaje.ebean.annotation.CreatedTimestamp;
 import com.avaje.ebean.annotation.UpdatedTimestamp;
 
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Version;
@@ -14,6 +15,7 @@ import java.sql.Timestamp;
 public abstract class BaseModel extends Model {
 
     @Id
+    @GeneratedValue
     Long id;
 
     @Version

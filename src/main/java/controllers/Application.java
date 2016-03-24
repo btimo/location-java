@@ -28,11 +28,9 @@ public class Application {
     private Application(){
         System.out.println("Application Location");
 
-        System.out.println(server.getName());
-
-        if (!AgentLoader.loadAgentFromClasspath("avaje-ebeanorm-agent","debug=1;packages=models.*")) {
+        /*if (!AgentLoader.loadAgentFromClasspath("avaje-ebeanorm-agent","debug=1;packages=models.*")) {
             System.out.println("avaje-ebeanorm-agent not found in classpath - not dynamically loaded");
-        }
+        }*/
 
         /*DbMigration migration = new DbMigration(server);
         migration.setPlatform(DbPlatformName.SQLITE);

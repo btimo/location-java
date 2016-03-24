@@ -14,7 +14,8 @@ public abstract class Vehicule extends BaseModel{
 
     protected String marque;
 
-    @OneToMany(mappedBy = "vehicule")
+    //@OneToMany(mappedBy = "vehicule")
+    // Commenté sinon pas d'ajout et arrêt du code
     protected ArrayList<Exemplaire> exemplaires = new ArrayList<Exemplaire>();
 
     protected int prixJour;
@@ -41,6 +42,10 @@ public abstract class Vehicule extends BaseModel{
 
     public int getPrixAssurance() {
         return prixAssurance;
+    }
+
+    public ArrayList<Exemplaire> getExemplaires() {
+        return exemplaires;
     }
 
     @Override
