@@ -34,10 +34,20 @@ public class Bouton {
         return button;
     }
 
-    public static JCheckBox nvCheckbox(Auto voiture){
-        JCheckBox checkBox = new JCheckBox(voiture.getModele()+""+voiture.);
-
+    public static JCheckBox nvCheckbox(Vehicule voiture){
+        JCheckBox checkBox = new JCheckBox();
+            if (voiture instanceof Auto) {
+                checkBox= new JCheckBox(voiture.getMarque() + " " + ((Auto) voiture).getModele()+""+voiture.getExemplaires()+"");
+            }
+            else{
+                checkBox= new JCheckBox(voiture.getMarque() +""+((Moto) voiture).getCylindree()+""+voiture.getExemplaires()+"");
+                }
+        return checkBox;
     }
+
+
+
+
 
     public static ButtonGroup nvgroupeButton( ArrayList<JRadioButton> boutons) {
         ButtonGroup groupeButton = new ButtonGroup();
@@ -46,6 +56,7 @@ public class Bouton {
         }
         return groupeButton;
     }
+
 
 
 }
