@@ -67,8 +67,8 @@ public class Emprunteurs {
         ArrayList<Emprunteur> emprunteursSearch = new ArrayList<Emprunteur>();
 
         for (Exemplaire e : vehicule.getExemplaires()) {
-            for (Location l : e.getLocations()) {
-                emprunteursSearch.add(l.getEmprunteur());
+            for (LocationExemplaire le : e.getLocationExemplaires()) {
+                emprunteursSearch.add(le.getLocation().getEmprunteur());
             }
         }
 
@@ -80,9 +80,9 @@ public class Emprunteurs {
         ArrayList<Emprunteur> emprunteursSearch = new ArrayList<Emprunteur>();
 
         for (Exemplaire e : Flotte.get()) {
-            for (Location l : e.getLocations()) {
-                if (l.isApprouvee()) {
-                    emprunteursSearch.add(l.getEmprunteur());
+            for (LocationExemplaire le : e.getLocationExemplaires()) {
+                if (le.getLocation().isApprouvee()) {
+                    emprunteursSearch.add(le.getLocation().getEmprunteur());
                 }
             }
         }
@@ -95,9 +95,9 @@ public class Emprunteurs {
         ArrayList<Emprunteur> emprunteursSearch = new ArrayList<Emprunteur>();
 
         for (Exemplaire e : Flotte.get()) {
-            for (Location l : e.getLocations()) {
-                if (l.isApprouvee() && l.getDebut().equals(d)) {
-                    emprunteursSearch.add(l.getEmprunteur());
+            for (LocationExemplaire le : e.getLocationExemplaires()) {
+                if (le.getLocation().isApprouvee() && le.getLocation().getDebut().equals(d)) {
+                    emprunteursSearch.add(le.getLocation().getEmprunteur());
                 }
             }
         }

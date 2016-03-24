@@ -7,18 +7,19 @@ import models.Moto;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 
 /**
  * Liste de tous les véhicules
  */
 public class Flotte {
-    private static ArrayList<Exemplaire> exemplaires = new ArrayList<Exemplaire>();
+    private static List<Exemplaire> exemplaires = new ArrayList<Exemplaire>();
 
     public static void ajout(Exemplaire e) {
         exemplaires.add(e);
     }
 
-    public static ArrayList<Exemplaire> get() {
+    public static List<Exemplaire> get() {
         return exemplaires;
     }
 

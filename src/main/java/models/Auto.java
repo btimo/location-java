@@ -2,6 +2,7 @@ package models;
 
 import containers.Vehicules;
 
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
@@ -9,7 +10,7 @@ import javax.persistence.Table;
  * Created by Adrien on 07/03/2016.
  */
 @Entity
-@Table(name= "auto")
+@DiscriminatorValue("auto")
 public class Auto extends Vehicule {
 
     private String modele;

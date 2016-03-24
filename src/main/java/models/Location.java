@@ -2,6 +2,8 @@ package models;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by Adrien on 07/03/2016.
@@ -34,33 +36,26 @@ public class Location extends BaseModel {
     })
     private Date rendu;
 
-    //@ManyToOne
-    // Commenté sinon arrêt du code
+    @ManyToOne
     private Emprunteur emprunteur;
 
-    //@ManyToMany
-    // Commenté sinon arrêt du code
-    //@JoinTable(name="exemplaire_location")
-    private ArrayList<Exemplaire> exemplaires;
+    @OneToMany(mappedBy = "location")
+    private List<LocationExemplaire> locationExemplaires = new ArrayList<>();
 
-    private boolean assurance;
-
+    /*
+     * Etat de la location : false -> devis; true -> entre devis et facture;
+     */
     private boolean approuvee; // Devis accepté ?
 
-    public Location(Date debut, Date fin, boolean assurance, boolean approuvee) {
-        this.fin = fin;
-        this.debut = debut;
-        this.assurance = assurance;
+
+    public Location(Date debut, Date fin, boolean approuvee) {
+        this(debut, fin);
         this.approuvee = approuvee;
-        this.exemplaires = new ArrayList<Exemplaire>();
     }
 
-    public Location(Date debut, Date fin, boolean assurance, boolean approuvee, ArrayList<Exemplaire> exemplaires) {
-        this.fin = fin;
+    public Location(Date debut, Date fin){
         this.debut = debut;
-        this.assurance = assurance;
-        this.approuvee = approuvee;
-        this.exemplaires = exemplaires;
+        this.fin = fin;
     }
 
     public Date getDebut() {
@@ -79,20 +74,12 @@ public class Location extends BaseModel {
         this.fin = fin;
     }
 
-    public boolean isAssurance() {
-        return assurance;
+    public Date getRendu() {
+        return rendu;
     }
 
-    public void setAssurance(boolean assurance) {
-        this.assurance = assurance;
-    }
-
-    public boolean isApprouvee() {
-        return approuvee;
-    }
-
-    public void setApprouvee(boolean approuvee) {
-        this.approuvee = approuvee;
+    public void setRendu(Date rendu) {
+        this.rendu = rendu;
     }
 
     public Emprunteur getEmprunteur() {
@@ -103,48 +90,48 @@ public class Location extends BaseModel {
         this.emprunteur = emprunteur;
     }
 
-    public ArrayList<Exemplaire> getExemplaires() {
-        return exemplaires;
+    public List<LocationExemplaire> getLocationExemplaires() {
+        return locationExemplaires;
     }
 
-    public void setExemplaires(ArrayList<Exemplaire> exemplaires) {
-        this.exemplaires = exemplaires;
+    public void setLocationExemplaires(List<LocationExemplaire> locationExemplaires) {
+        this.locationExemplaires = locationExemplaires;
     }
 
-    public void louer(Exemplaire e) {
-        exemplaires.add(e);
+    public void addLocationExemplaire(LocationExemplaire locationExemplaire){
+        this.locationExemplaires.add(locationExemplaire);
     }
 
-    public Date getRendu() {
-        return rendu;
+    public boolean isApprouvee() {
+        return approuvee;
     }
 
-    public void setRendu(Date rendu) {
-        this.rendu = rendu;
+    public void setApprouvee(boolean approuvee) {
+        this.approuvee = approuvee;
     }
+
+    public void louer(Exemplaire exemplaire, boolean assurance){
+        LocationExemplaire le = new LocationExemplaire(this, exemplaire, assurance);
+        locationExemplaires.add(le);
+    }
+
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Location location = (Location) o;
-
-        if (id != location.id) return false;
-        if (assurance != location.assurance) return false;
-        if (approuvee != location.approuvee) return false;
-        if (!debut.equals(location.debut)) return false;
-        return fin.equals(location.fin);
-
+        return isApprouvee() == location.isApprouvee() &&
+                Objects.equals(getDebut(), location.getDebut()) &&
+                Objects.equals(getFin(), location.getFin()) &&
+                Objects.equals(getRendu(), location.getRendu()) &&
+                Objects.equals(getEmprunteur(), location.getEmprunteur()) &&
+                Objects.equals(getLocationExemplaires(), location.getLocationExemplaires());
     }
 
     @Override
     public int hashCode() {
-        int result = debut.hashCode();
-        result = 31 * result + fin.hashCode();
-        result = 31 * result + (assurance ? 1 : 0);
-        result = 31 * result + (approuvee ? 1 : 0);
-        return result;
+        return Objects.hash(getDebut(), getFin(), getRendu(), getEmprunteur(), getLocationExemplaires(), isApprouvee());
     }
 
     @Override
@@ -153,7 +140,7 @@ public class Location extends BaseModel {
                 "id=" + id +
                 ", debut=" + debut +
                 ", fin=" + fin +
-                ", assurance=" + assurance +
+                ", rendu=" + rendu +
                 ", approuvee=" + approuvee +
                 '}';
     }

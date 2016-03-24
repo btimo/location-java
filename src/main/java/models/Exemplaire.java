@@ -4,6 +4,7 @@ import containers.Flotte;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Création et modification d'un exemplaire d'un véhicule
@@ -15,9 +16,8 @@ public class Exemplaire extends BaseModel{
 
     private int kilometres;
 
-    //@ManyToMany(mappedBy = "exemplaires")
-    // Commenté sinon pas d'ajout et arrêt du code
-    private ArrayList<Location> locations;
+    @OneToMany(mappedBy = "exemplaire")
+    private List<LocationExemplaire> locationExemplaires = new ArrayList<>();
 
     @ManyToOne
     private Vehicule vehicule;
@@ -29,15 +29,14 @@ public class Exemplaire extends BaseModel{
     public static final int penaliteReservoir = 30;
     public static final int penaliteEndommage = 500;
 
-    public Exemplaire(int kilometres, Location location, Vehicule vehicule) throws IllegalArgumentException {
+    public Exemplaire(int kilometres, List<LocationExemplaire> locationExemplaires, Vehicule vehicule) throws IllegalArgumentException {
 
         if (kilometres > 180000) {
             throw new IllegalArgumentException("Kilométrage maximum dépassé");
         }
 
         this.kilometres = kilometres;
-        locations = new ArrayList<>();
-        addLocation(location); // Problème?
+        this.locationExemplaires = locationExemplaires;
         this.vehicule = vehicule;
 
         // Ajout du véhicule au container de Vehicule et de Flotte
@@ -57,10 +56,9 @@ public class Exemplaire extends BaseModel{
 
         this.kilometres = kilometres;
         this.vehicule = vehicule;
-        locations = new ArrayList<>();
 
         // Ajout du véhicule au container de Vehicule et de Flotte
-        vehicule.ajoutExemplaire(this); // Problème
+        vehicule.ajoutExemplaire(this);
         Flotte.ajout(this);
 
         this.reservoir = 1;
@@ -76,12 +74,12 @@ public class Exemplaire extends BaseModel{
         this.kilometres = kilometres;
     }
 
-    public ArrayList<Location> getLocations() {
-        return locations;
+    public List<LocationExemplaire> getLocationExemplaires() {
+        return locationExemplaires;
     }
 
-    public void addLocation(Location location) {
-        locations.add(location);
+    public void setLocationExemplaires(List<LocationExemplaire> locationExemplaires) {
+        this.locationExemplaires = locationExemplaires;
     }
 
     public Vehicule getVehicule() {
@@ -119,8 +117,25 @@ public class Exemplaire extends BaseModel{
         }
     }
 
+    public float getPenaliteReservoir(){
+        if(reservoir < 0.25){
+            return penaliteReservoir * 4;
+        }
+        else if(reservoir < 0.5){
+            return penaliteReservoir * 3;
+        }
+        else if(reservoir < 0.75){
+            return penaliteReservoir * 2;
+        }
+        else if(reservoir < 1){
+            return penaliteReservoir * 1;
+        }
+        else
+            return 0;
+    }
+
     /**
-     * Retourne le prix final de la location par jour
+     * Retourne le prix final de la location de cet exemplaire par jour
      * 10% de réduction tous les 50 000 kms
      * @return prix final sans assurance
      */
@@ -129,40 +144,13 @@ public class Exemplaire extends BaseModel{
     }
 
     /**
-     * Retourne le prix final de la location par jour
+     * Retourne le prix final de la location de cet exemplaire par jour
      * 10% de réduction tous les 50 000 kms
-     * Ajout du prix de l'assurance si nécessaire
-     * @return prix final
+     * Ajout du prix de l'assurance
+     * @return prix final avec assurance
      */
-    public double getPrixFinalAvantLocation() {
-        double prixTemp = getPrixFinalHorsAssurance();
-
-        if (locations != null /*&& location.isAssurance()*/) {
-            prixTemp += vehicule.getPrixAssurance();
-        }
-
-        return prixTemp;
-    }
-
-    /**
-     * Calcul du prix facturé lors du retour du véhicule
-     * Application des pénalités sur le niveau de réservoir et l'état du véhicule
-     * @return prix à payer
-     */
-    public double getPrixFinalRetour(Location location) {
-        double prixTemp = getPrixFinalAvantLocation();
-
-        // Si le réservoir n'est pas plein, pénalité
-        if (reservoir != 1.0) {
-            prixTemp += penaliteReservoir;
-        }
-
-        // Si la voiture est endommagée et qu'on n'a pas pris d'assurance
-        if (isEndommage() && !location.isAssurance()) {
-            prixTemp += penaliteEndommage;
-        }
-
-        return prixTemp;
+    public double getPrixFinalAvecAssurance() {
+        return getPrixFinalHorsAssurance() + vehicule.getPrixAssurance();
     }
 
     @Override
@@ -172,21 +160,23 @@ public class Exemplaire extends BaseModel{
 
         Exemplaire that = (Exemplaire) o;
 
+        if (id != that.id) return false;
         if (kilometres != that.kilometres) return false;
-        if (Float.compare(that.reservoir, reservoir) != 0) return false;
         if (endommage != that.endommage) return false;
-        if (!locations.equals(that.locations)) return false;
+        if (Float.compare(that.reservoir, reservoir) != 0) return false;
+        //if (location != null ? !location.equals(that.location) : that.location != null) return false;
         return vehicule.equals(that.vehicule);
 
     }
 
     @Override
     public int hashCode() {
-        int result = kilometres;
-        result = 31 * result + locations.hashCode();
+        int result = id.intValue();
+        result = 31 * result + kilometres;
+        //result = 31 * result + (location != null ? location.hashCode() : 0);
         result = 31 * result + vehicule.hashCode();
-        result = 31 * result + (reservoir != +0.0f ? Float.floatToIntBits(reservoir) : 0);
         result = 31 * result + (endommage ? 1 : 0);
+        result = 31 * result + (reservoir != +0.0f ? Float.floatToIntBits(reservoir) : 0);
         return result;
     }
 
@@ -198,7 +188,8 @@ public class Exemplaire extends BaseModel{
                 //", location=" + location +
                 ", vehicule=" + vehicule +
                 ", reservoir=" + getReservoir() +
-                ", prixFinal=" + getPrixFinalAvantLocation() +
+                ", prix sans assurance= " + getPrixFinalAvecAssurance() +
+                ", prix avec assurance= " + getPrixFinalHorsAssurance() +
                 ", endommage=" + endommage +
                 '}';
     }
