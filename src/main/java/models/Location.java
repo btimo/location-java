@@ -115,7 +115,11 @@ public class Location extends BaseModel {
         locationExemplaires.add(le);
     }
 
-
+    /**
+     * Surcharge de equals
+     * @param o objet à comparer
+     * @return true/false selon égalité
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -129,11 +133,19 @@ public class Location extends BaseModel {
                 Objects.equals(getLocationExemplaires(), location.getLocationExemplaires());
     }
 
+    /**
+     * Surcharge de hashcode
+     * @return int hash unique
+     */
     @Override
     public int hashCode() {
         return Objects.hash(getDebut(), getFin(), getRendu(), getEmprunteur(), getLocationExemplaires(), isApprouvee());
     }
 
+    /**
+     * Surcharge de toString
+     * @return chaîne retournant les caractéristiques de la location
+     */
     @Override
     public String toString() {
         return "Location{" +

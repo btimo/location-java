@@ -7,7 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Adrien on 07/03/2016.
+ * Gestion du modèle d'un véhicule
+ * @author Adrien Poupa
+ * @author Timothée Barbot
  */
 @Entity
 @Inheritance
@@ -23,31 +25,67 @@ public abstract class Vehicule extends BaseModel{
     protected int prixAssurance;
 
 
-
+    /**
+     * Getter de la marque
+     * @return marque marque du véhicule
+     */
     public String getMarque() {
         return marque;
     }
 
+    /**
+     * Setter de la marque
+     * @param marque marque du véhicule
+     */
     public void setMarque(String marque) {
         this.marque = marque;
     }
 
+    /**
+     * Ajout d'un exemplaire à la liste des exemplaires d'un véhicule
+     * @param e exemplaire à ajouter
+     */
     public void ajoutExemplaire(Exemplaire e) {
         exemplaires.add(e);
     }
 
+    /**
+     * Suppression d'un exemplaire à la liste des exemplaires d'un véhicule
+     * @param e exemplaire à supprimer
+     */
+    public void suppressionExemplaire(Exemplaire e) {
+        exemplaires.remove(e);
+    }
+
+    /**
+     * Getter du prix de location journalier
+     * @return prix de location journalier
+     */
     public int getPrixJour() {
         return prixJour;
     }
 
+    /**
+     * Getter du prix de l'assurance
+     * @return prix de l'assurance
+     */
     public int getPrixAssurance() {
         return prixAssurance;
     }
 
+    /**
+     * Getter des exemplaires
+     * @return exemplaires
+     */
     public List<Exemplaire> getExemplaires() {
         return exemplaires;
     }
 
+    /**
+     * Surcharge de equals
+     * @param o objet à comparer
+     * @return true/false selon égalité
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -61,6 +99,10 @@ public abstract class Vehicule extends BaseModel{
 
     }
 
+    /**
+     * Surcharge de hashcode
+     * @return int hash unique
+     */
     @Override
     public int hashCode() {
         int result = marque.hashCode();
@@ -69,6 +111,10 @@ public abstract class Vehicule extends BaseModel{
         return result;
     }
 
+    /**
+     * Surcharge de toString
+     * @return chaîne retournant les caractéristiques du véhicule
+     */
     @Override
     public String toString() {
         return "Vehicule{" +

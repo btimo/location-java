@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 public class LocationViews {
     public static  JFrame locationFrame = Fenetre.nvFenetre("Location de vehicule auto/moto",500,500);
-    public static JTabbedPane donnee =Onglet.nvOnglet();
+    public static JTabbedPane donnee = Onglet.nvOnglet();
     public static Auto auto = new Auto("Ford", "Fiesta", 200,0,false);
     public static Auto auto2 = new Auto("Dacia", "Sandero", 200,0,true);
     public static Auto auto3 = new Auto("Audi", "A1", 500,0,false);
@@ -23,16 +23,16 @@ public class LocationViews {
          // JTabbedPane donnee =Onglet.nvOnglet();
           JPanel fenetrePanel =Panel.nvPanelBox(Color.ORANGE);
           donnee.add("Choix de voiture",fenetrePanel);
-          JPanel titrePanel =Panel.nvPanelFlow(Color.ORANGE);
+          JPanel titrePanel = Panel.nvPanelFlow(Color.ORANGE);
           JLabel reservationLabel = Label.nvLabel("Reservation de vehicule :","Calibri", Font.PLAIN, 25);
           titrePanel.add(reservationLabel);
-          JPanel identifiantPanel =Panel.identification(Color.ORANGE);
+          JPanel identifiantPanel = Panel.identification(Color.ORANGE);
 
           JPanel adressePanel = Panel.adresse(Color.ORANGE);
 
           JPanel choixPanel = Panel.choixPanel("louer:",Color.ORANGE,"une auto","une moto");
 
-          JPanel modelPanel =Panel.nvPanelFlow(Color.ORANGE);
+          JPanel modelPanel = Panel.nvPanelFlow(Color.ORANGE);
           JLabel constructeurModel = Label.nvLabel("Constructeur et modele :","Arial",Font.BOLD,14 );
           modelPanel.add(constructeurModel);
           modelPanel.add(Panel.listeAutoMoto(Color.ORANGE));

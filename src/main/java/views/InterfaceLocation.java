@@ -16,7 +16,7 @@ import java.util.Properties;
 
 
 public class InterfaceLocation {
-    public static void main(String[] args) {
+    public static void load() {
         JFrame locationFrame = new JFrame();
         locationFrame.setTitle("Location de vehicule auto/moto");
         locationFrame.setSize(400,400);
@@ -28,7 +28,7 @@ public class InterfaceLocation {
         JPanel titrePanel = new JPanel();
         titrePanel.setLayout(new FlowLayout());
         titrePanel.setBackground(Color.ORANGE);
-        JLabel reservationLabel = new JLabel("Reservation de vehicule :");
+        JLabel reservationLabel = new JLabel("Reservation de véhicule :");
         Font f = new Font("Calibri", Font.PLAIN, 25);
         reservationLabel.setFont(f);
         titrePanel.add(reservationLabel);
@@ -36,9 +36,9 @@ public class InterfaceLocation {
         JPanel identifiantPanel =new JPanel();
         identifiantPanel.setBackground(Color.ORANGE);
         identifiantPanel.setLayout(new FlowLayout());
-        JLabel nomLabel= new JLabel("Nom et prenom:");
+        JLabel nomLabel= new JLabel("Nom et prénom:");
         JTextField nomTexte = new JTextField(" nom",10);
-        JTextField prenomTexte =new JTextField(" prenom",10);
+        JTextField prenomTexte =new JTextField(" prénom",10);
         identifiantPanel.add(nomLabel);
         identifiantPanel.add(nomTexte);
         identifiantPanel.add(prenomTexte);
@@ -47,7 +47,7 @@ public class InterfaceLocation {
         adressePanel.setBackground(Color.ORANGE);
         adressePanel.setLayout(new FlowLayout());
         JLabel adresseLabel = new JLabel("Adresse :");
-        JTextField numeroTexte = new JTextField("5",3);
+        JTextField numeroTexte = new JTextField("1",3);
         JTextField rueTexte = new JTextField("rue",13);
         JTextField codeTexte = new JTextField("CP",5);
         JTextField villeTexte = new JTextField("ville",5);
@@ -58,7 +58,7 @@ public class InterfaceLocation {
         adressePanel.add(villeTexte);
 
         int num = Integer.parseInt(numeroTexte.getText());
-        String cp =codeTexte.getText();
+        String cp = codeTexte.getText();
         Adresse adresse =new Adresse(num,rueTexte.getText(),cp,villeTexte.getText());
         Emprunteur personne = new Emprunteur(adresse,prenomTexte.getText(),nomTexte.getText());
 
@@ -83,7 +83,7 @@ public class InterfaceLocation {
         JPanel modelPanel =new JPanel();
         modelPanel.setBackground(Color.ORANGE);
         modelPanel.setLayout(new FlowLayout());
-        JLabel constructeurModelLabel = new JLabel("constructeur et le model :");
+        JLabel constructeurModelLabel = new JLabel("Constructeur et modèle :");
         Font fontDepart = new Font("Arial", Font.BOLD, 14);
         constructeurModelLabel.setFont(fontDepart);
 
@@ -129,7 +129,7 @@ public class InterfaceLocation {
         JLabel assuranceLabel = new JLabel("Assurance :");
         Font fontRetour = new Font("Arial", Font.BOLD, 14);
         assuranceLabel.setFont(fontRetour);
-        JLabel assurance =new JLabel("prendre une assurance:");
+        JLabel assurance =new JLabel("Prendre une assurance:");
         ButtonGroup ouiNonAssurance = new ButtonGroup();
         JRadioButton ouiButton =new JRadioButton("oui",false);
         JRadioButton nonButton =new JRadioButton("non",true);
@@ -148,7 +148,7 @@ public class InterfaceLocation {
         JPanel dateDepartPanel =new JPanel();
         dateDepartPanel.setBackground(Color.ORANGE);
         dateDepartPanel.setLayout(new FlowLayout());
-        JLabel departLabel =new JLabel("date de depart :");
+        JLabel departLabel =new JLabel("Date de depart :");
         UtilDateModel model = new UtilDateModel();
         Properties p = new Properties();
         JDatePanelImpl dateDepart = new JDatePanelImpl(model, p);
@@ -161,7 +161,7 @@ public class InterfaceLocation {
         JPanel dateRetourPanel =new JPanel();
         dateRetourPanel.setBackground(Color.ORANGE);
         dateRetourPanel.setLayout(new FlowLayout());
-        JLabel retourLabel =new JLabel("date de retour :");
+        JLabel retourLabel =new JLabel("Date de retour :");
         UtilDateModel retourModel = new UtilDateModel();
         Properties retourProperties = new Properties();
         JDatePanelImpl dateRetour = new JDatePanelImpl(retourModel, retourProperties);
@@ -174,7 +174,7 @@ public class InterfaceLocation {
         JPanel devisPanel = new JPanel();
         devisPanel.setLayout(new FlowLayout());
         devisPanel.setBackground(Color.ORANGE);
-        JButton calculButton =new JButton("calculer le devis");
+        JButton calculButton =new JButton("Calculer le devis");
         devisPanel.add(calculButton);
         calculButton.addActionListener(new ActionListener() {
             @Override

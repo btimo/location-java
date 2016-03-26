@@ -8,7 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Adrien on 07/03/2016.
+ * Modélisation d'un emprunteur
+ * @author Adrien Poupa
+ * @author Timothée Barbot
  */
 @Entity
 @Table(name="emprunteur")
@@ -24,6 +26,12 @@ public class Emprunteur extends BaseModel  {
     @OneToMany(cascade= CascadeType.ALL , mappedBy = "emprunteur")
     private List<Location> locations;
 
+    /**
+     * Constructeur de base d'un emprunteur
+     * @param adresse adresse de l'emprunteur
+     * @param prenom prénom de l'emprunteur
+     * @param nom nom du l'emprunteur
+     */
     public Emprunteur(Adresse adresse, String prenom, String nom) {
         this.adresse = adresse;
         this.prenom = prenom;
@@ -34,65 +42,120 @@ public class Emprunteur extends BaseModel  {
         Emprunteurs.ajout(this);
     }
 
+    /**
+     * Constructeur de base d'un emprunteur avec ArrayList de locations
+     * @param adresse adresse de l'emprunteur
+     * @param prenom prénom de l'emprunteur
+     * @param nom nom du l'emprunteur
+     * @param locations ArrayList des locations effectuées par l'emprunteur
+     */
     public Emprunteur(Adresse adresse, String prenom, String nom, ArrayList<Location> locations) {
-        this.adresse = adresse;
-        this.prenom = prenom;
-        this.nom = nom;
+        this(adresse, prenom, nom);
         this.locations = locations;
-
-        // Ajout de l'emprunteur
-        Emprunteurs.ajout(this);
     }
 
+    /**
+     * Getter des locations effectuées par l'emprunteur
+     * @return locations effectuées par l'emprunteur
+     */
     public List<Location> getLocations() {
         return locations;
     }
 
+    /**
+     * Setter des locations effectuées par l'emprunteur
+     * @param locations effectuées par l'emprunteur
+     */
     public void setLocations(ArrayList<Location> locations) {
         this.locations = locations;
     }
 
+    /**
+     * Getter du nom
+     * @return nom de l'emprunteur
+     */
     public String getNom() {
         return nom;
     }
 
+    /**
+     * Setter du nom
+     * @param nom de l'emprunteur
+     */
     public void setNom(String nom) {
         this.nom = nom;
     }
 
+    /**
+     * Getter du prénom
+     * @return prénom de l'emprunteur
+     */
     public String getPrenom() {
         return prenom;
     }
 
+    /**
+     * Setter du prénom
+     * @param prenom prénom de l'emprunteur
+     */
     public void setPrenom(String prenom) {
         this.prenom = prenom;
     }
 
+    /**
+     * Getter de l'adresse
+     * @return adresse de l'emprunteur
+     */
     public Adresse getAdresse() {
         return adresse;
     }
 
+    /**
+     * Setter de l'adresse
+     * @param adresse adresse de l'emprunteur
+     */
     public void setAdresse(Adresse adresse) {
         this.adresse = adresse;
     }
 
+    /**
+     * Ajout d'une location à un emprunteur
+     * Ajout de la location à la liste de l'instance et mise à jour de l'emprunteur dans la location passée
+     * @param l location à ajouter
+     */
     public void louer(Location l) {
         locations.add(l);
         l.setEmprunteur(this);
     }
 
+    /**
+     * On ramène la (les) voiture(s) louée(s) : la liste doit être vidée
+     */
     public void ramener() {
         this.locations = new ArrayList<Location>();
     }
 
+    /**
+     * Génération de la facture
+     * @param locationId ID de la location à générer
+     */
     public void genererFacture(int locationId) {
         new GenerationPdf("facture", this, locationId);
     }
 
+    /**
+     * Génération du devis
+     * @param locationId ID du devis à générer
+     */
     public void genererDevis(int locationId) {
         new GenerationPdf("devis", this, locationId);
     }
 
+    /**
+     * Surcharge de equals
+     * @param o objet à comparer
+     * @return true/false selon égalité
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -108,6 +171,10 @@ public class Emprunteur extends BaseModel  {
 
     }
 
+    /**
+     * Surcharge de hashcode
+     * @return int hash unique
+     */
     @Override
     public int hashCode() {
         int result = getId().intValue();
@@ -118,6 +185,10 @@ public class Emprunteur extends BaseModel  {
         return result;
     }
 
+    /**
+     * Surcharge de toString
+     * @return chaîne retournant les caractéristiques de l'emprunteur
+     */
     @Override
     public String toString() {
         return "Emprunteur{" +

@@ -7,7 +7,10 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 /**
- * Created by Adrien on 07/03/2016.
+ * Gestion d'un modèle d'auto
+ * Etend Véhicule
+ * @author Adrien Poupa
+ * @author Timothée Barbot
  */
 @Entity
 @DiscriminatorValue("auto")
@@ -17,6 +20,14 @@ public class Auto extends Vehicule {
 
     private boolean luxe;
 
+    /**
+     * Constructeur de base d'une auto
+     * @param marque nom du constructeur
+     * @param modele nom du modèle
+     * @param prixJour prix journalier de la location
+     * @param prixAssurance prix de l'assurance
+     * @param luxe booléen : voiture de luxe ?
+     */
     public Auto(String marque, String modele, int prixJour, int prixAssurance, boolean luxe) {
         this.marque = marque;
         this.modele = modele;
@@ -28,22 +39,43 @@ public class Auto extends Vehicule {
         Vehicules.ajout(this);
     }
 
+    /**
+     * Getter de modèle
+     * @return nom du modèle
+     */
     public String getModele() {
         return modele;
     }
 
+    /**
+     * Setter de modèle
+     * @param modele nom du modèle
+     */
     public void setModele(String modele) {
         this.modele = modele;
     }
 
+    /**
+     * Getter de luxe
+     * @return booléen luxe?
+     */
     public boolean isLuxe() {
         return luxe;
     }
 
+    /**
+     * Setter de luxe
+     * @param luxe booléen luxe?
+     */
     public void setLuxe(boolean luxe) {
         this.luxe = luxe;
     }
 
+    /**
+     * Surcharge de equals
+     * @param o objet à comparer
+     * @return true/false selon égalité
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -57,6 +89,10 @@ public class Auto extends Vehicule {
 
     }
 
+    /**
+     * Surcharge de hashcode
+     * @return int hash unique
+     */
     @Override
     public int hashCode() {
         int result = super.hashCode();
@@ -65,6 +101,10 @@ public class Auto extends Vehicule {
         return result;
     }
 
+    /**
+     * Surcharge de toString
+     * @return chaîne retournant les caractéristiques de l'auto
+     */
     @Override
     public String toString() {
         return "Auto{" +

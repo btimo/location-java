@@ -10,19 +10,31 @@ import java.util.Comparator;
 import java.util.List;
 
 /**
- * Liste de tous les véhicules
+ * Liste de tous les exemplaires de véhicules et recherches variées
+ * @author Adrien Poupa
  */
 public class Flotte {
     private static List<Exemplaire> exemplaires = new ArrayList<Exemplaire>();
 
+    /**
+     * Ajout d'un exemplaire à la flotte
+     * @param e exemplaire à rajouter
+     */
     public static void ajout(Exemplaire e) {
         exemplaires.add(e);
     }
 
+    /**
+     * Retour de tous les exemplaires actuellement stockés
+     * @return liste des exemplaires
+     */
     public static List<Exemplaire> get() {
         return exemplaires;
     }
 
+    /**
+     * Tri des exemplaires par ID
+     */
     public static void triId()
     {
         Collections.sort(exemplaires, new Comparator<Exemplaire>()
@@ -40,6 +52,9 @@ public class Flotte {
         });
     }
 
+    /**
+     * Tri des exemplaires par kilométrage
+     */
     public static void triKm()
     {
         Collections.sort(exemplaires, new Comparator<Exemplaire>()
@@ -57,6 +72,12 @@ public class Flotte {
         });
     }
 
+    /**
+     * Recherche des exemplaires en fonction d'un kilométrage précis
+     * @param operator opérande sélectionné : <, > ou = par défaut
+     * @param km kilométrage recherché
+     * @return liste d'exemplaires
+     */
     public static ArrayList<Exemplaire> rechercheKm(String operator, int km)
     {
         ArrayList<Exemplaire> vehiculesSearch = new ArrayList<Exemplaire>();
@@ -76,6 +97,29 @@ public class Flotte {
         return vehiculesSearch;
     }
 
+    /**
+     * Recherche des exemplaires entre deux kilométrages précis
+     * @param km1 kilométrage 1
+     * @param km2 kilométrage 2
+     * @return liste d'exemplaires
+     */
+    public static ArrayList<Exemplaire> rechercheKm(int km1, int km2)
+    {
+        ArrayList<Exemplaire> vehiculesSearch = new ArrayList<Exemplaire>();
+
+        for(Exemplaire e : exemplaires) {
+            if (e.getKilometres() >= km1 && e.getKilometres() <= km2) {
+                vehiculesSearch.add(e);
+            }
+        }
+
+        return vehiculesSearch;
+    }
+
+    /**
+     * Liste des exemplaires de motos
+     * @return liste des exemplaires de motos
+     */
     public static ArrayList<Exemplaire> listeMoto()
     {
         ArrayList<Exemplaire> motos = new ArrayList<Exemplaire>();
@@ -89,6 +133,10 @@ public class Flotte {
         return motos;
     }
 
+    /**
+     * Liste des voitures standards
+     * @return liste des voitures standards
+     */
     public static ArrayList<Exemplaire> listeVoitureStandard()
     {
         ArrayList<Exemplaire> autos = new ArrayList<Exemplaire>();
@@ -102,6 +150,10 @@ public class Flotte {
         return autos;
     }
 
+    /**
+     * Liste des voitures de luxe
+     * @return liste des voitures de luxe
+     */
     public static ArrayList<Exemplaire> listeVoitureLuxe()
     {
         ArrayList<Exemplaire> autos = new ArrayList<Exemplaire>();

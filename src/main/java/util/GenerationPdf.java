@@ -23,7 +23,10 @@ import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import models.*;
 
-
+/**
+ * Classe utilisée pour générer un devis ou une facture au format PDF
+ * @author Adrien Poupa
+ */
 public class GenerationPdf {
     private static Font catFont = new Font(Font.FontFamily.TIMES_ROMAN, 18,
             Font.BOLD);
@@ -37,6 +40,12 @@ public class GenerationPdf {
     private ArrayList<Location> locations;
     private int locationId;
 
+    /**
+     * Constructeur dans lequel se fait la génération
+     * @param type devis ou facture
+     * @param emprunteur emprunteur qui va réaliser la location
+     * @param locationId ID location
+     */
     public GenerationPdf(String type, Emprunteur emprunteur, int locationId) {
         this.type = type.substring(0, 1).toUpperCase() + type.substring(1);
         this.emprunteur = emprunteur;
@@ -55,6 +64,10 @@ public class GenerationPdf {
         }
     }
 
+    /**
+     * Ajout des metadatas (auteurs, nom...)
+     * @param document document dans lequel ajouter les datas
+     */
     private void addMetaData(Document document) {
         document.addTitle("Facture #"+locationId);
         document.addSubject("Facture #"+locationId);
@@ -63,6 +76,11 @@ public class GenerationPdf {
         document.addCreator("Adrien Poupa, Stéphane Gateau, Timothée Barbot");
     }
 
+    /**
+     * Ajout du contenu
+     * @param document document dans lequel ajouter le contenu
+     * @throws DocumentException exception en cas de comportement anormal
+     */
     private void addContent(Document document)
             throws DocumentException {
         Paragraph preface = new Paragraph();
@@ -112,7 +130,6 @@ public class GenerationPdf {
 
         for (Location location : locations) {
             for (LocationExemplaire locationExemplaire : location.getLocationExemplaires()) {
-                System.out.println("tt");
                 if (locationExemplaire.getExemplaire().getVehicule() instanceof Auto) {
                     nomVehicule = locationExemplaire.getExemplaire().getVehicule().getMarque() + " " + ((Auto) locationExemplaire.getExemplaire().getVehicule()).getModele();
                 } else { // Moto
@@ -203,6 +220,11 @@ public class GenerationPdf {
         document.newPage();
     }
 
+    /**
+     * Ajout de lignes vides
+     * @param paragraph paragraphe dans lequel ajouter les lignes vides
+     * @param number nombre de lignes à ajouter
+     */
     private void addEmptyLine(Paragraph paragraph, int number) {
         for (int i = 0; i < number; i++) {
             paragraph.add(new Paragraph(" "));

@@ -7,6 +7,7 @@ import com.avaje.ebean.dbmigration.DbMigration;
 import org.avaje.agentloader.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import views.InterfaceLocation;
 
 import java.io.IOException;
 
@@ -25,6 +26,9 @@ public class Application {
         Application app = getApp();
     }
 
+    /**
+     * Constructeur privé
+     */
     private Application(){
         System.out.println("Application Location");
 
@@ -45,8 +49,10 @@ public class Application {
 
     }
 
-
-
+    /**
+     * Obtention du singleton
+     * @return singleton App
+     */
     public static Application getApp()
     {
         if(app == null){
@@ -54,5 +60,12 @@ public class Application {
         }
 
         return app;
+    }
+
+    /**
+     * Chargement de l'interfae Swing
+     */
+    public void load() {
+        InterfaceLocation.load();
     }
 }

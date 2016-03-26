@@ -9,6 +9,7 @@ import java.util.List;
 /**
  * Création et modification d'un exemplaire d'un véhicule
  * @author Adrien Poupa
+ * @author Timothée Barbot
  */
 @Entity
 @Table(name="exemplaire")
@@ -29,25 +30,27 @@ public class Exemplaire extends BaseModel{
     public static final int penaliteReservoir = 30;
     public static final int penaliteEndommage = 500;
 
-    public Exemplaire(int kilometres, List<LocationExemplaire> locationExemplaires, Vehicule vehicule) throws IllegalArgumentException {
+    /**
+     * Constructeur complet d'un exemplaire
+     * @param kilometres kilométrage de l'exemplaire
+     * @param locationExemplaires liste de locations
+     * @param vehicule type du véhicule
+     * @throws IllegalArgumentException si dépassement des 180 000km au compteur
+     */
+    public Exemplaire(int kilometres, Vehicule vehicule, List<LocationExemplaire> locationExemplaires)
+            throws IllegalArgumentException {
 
-        if (kilometres > 180000) {
-            throw new IllegalArgumentException("Kilométrage maximum dépassé");
-        }
+        this(kilometres, vehicule);
 
-        this.kilometres = kilometres;
         this.locationExemplaires = locationExemplaires;
-        this.vehicule = vehicule;
-
-        // Ajout du véhicule au container de Vehicule et de Flotte
-        vehicule.ajoutExemplaire(this);
-        Flotte.ajout(this);
-
-        this.reservoir = 1;
-
-        this.endommage = false;
     }
 
+    /**
+     * Constructeur par défaut d'un exemplaire
+     * @param kilometres kilométrage de l'exemplaire
+     * @param vehicule type du véhicule
+     * @throws IllegalArgumentException si dépassement des 180 000km au compteur
+     */
     public Exemplaire(int kilometres, Vehicule vehicule) throws IllegalArgumentException {
 
         if (kilometres > 180000) {
@@ -66,38 +69,74 @@ public class Exemplaire extends BaseModel{
         this.endommage = false;
     }
 
+    /**
+     * Getter du nombre de kilomètres
+     * @return nombre de kilomètres parcourus par l'exemplaire
+     */
     public int getKilometres() {
         return kilometres;
     }
 
+    /**
+     * Setter du nombre de kilomètres
+     * @param kilometres nombre de kilomètres parcourus par l'exemplaire
+     */
     public void setKilometres(int kilometres) {
         this.kilometres = kilometres;
     }
 
+    /**
+     * Getter de la liste de locations du véhicules
+     * @return liste de locations du véhicules
+     */
     public List<LocationExemplaire> getLocationExemplaires() {
         return locationExemplaires;
     }
 
+    /**
+     * Setter de la liste de locations du véhicules
+     * @param locationExemplaires liste de locations du véhicules
+     */
     public void setLocationExemplaires(List<LocationExemplaire> locationExemplaires) {
         this.locationExemplaires = locationExemplaires;
     }
 
+    /**
+     * Getter du véhicule attaché à l'exemplaire
+     * @return véhicule attaché à l'exemplaire
+     */
     public Vehicule getVehicule() {
         return vehicule;
     }
 
+    /**
+     * Setter du véhicule attaché à l'exemplaire
+     * @param vehicule véhicule attaché à l'exemplaire
+     */
     public void setVehicule(Vehicule vehicule) {
         this.vehicule = vehicule;
     }
 
+    /**
+     * Getter du boolean indiquant l'état du véhicule
+     * @return véhicule endommagé ou non
+     */
     public boolean isEndommage() {
         return endommage;
     }
 
+    /**
+     * Setter du boolean indiquant l'état du véhicule
+     * @param endommage véhicule endommagé ou non
+     */
     public void setEndommage(boolean endommage) {
         this.endommage = endommage;
     }
 
+    /**
+     * Getter 'intelligent' du réservoir
+     * @return string Vide/Plein ou niveau actuel (1/2, 1/4, 3/4)
+     */
     public String getReservoir() {
         if (reservoir == 0.0) {
             return "Vide";
@@ -108,6 +147,10 @@ public class Exemplaire extends BaseModel{
         return Float.toString(reservoir);
     }
 
+    /**
+     * Setter 'intelligent' du réservoir
+     * @param reservoir string Vide/Plein ou niveau actuel (1/2, 1/4, 3/4)
+     */
     public void setReservoir(float reservoir) {
         if (this.reservoir == 0 | this.reservoir == 0.25  || this.reservoir == 0.5 || this.reservoir == 0.75 || this.reservoir == 1) {
             this.reservoir = reservoir;
@@ -117,6 +160,11 @@ public class Exemplaire extends BaseModel{
         }
     }
 
+    /**
+     * Getter de la pénalité appliquée en cas de rendu du véhicule sans plein
+     * Le montant de celle-ci diffère selon le niveau de remplissage du réservoir
+     * @return flottant montant à payer
+     */
     public float getPenaliteReservoir(){
         if(reservoir < 0.25){
             return penaliteReservoir * 4;
@@ -128,7 +176,7 @@ public class Exemplaire extends BaseModel{
             return penaliteReservoir * 2;
         }
         else if(reservoir < 1){
-            return penaliteReservoir * 1;
+            return penaliteReservoir;
         }
         else
             return 0;
@@ -153,6 +201,11 @@ public class Exemplaire extends BaseModel{
         return getPrixFinalHorsAssurance() + vehicule.getPrixAssurance();
     }
 
+    /**
+     * Surcharge de equals
+     * @param o objet à comparer
+     * @return true/false selon égalité
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -169,6 +222,10 @@ public class Exemplaire extends BaseModel{
 
     }
 
+    /**
+     * Surcharge de hashcode
+     * @return int hash unique
+     */
     @Override
     public int hashCode() {
         int result = id.intValue();
@@ -180,6 +237,10 @@ public class Exemplaire extends BaseModel{
         return result;
     }
 
+    /**
+     * Surcharge de toString
+     * @return chaîne retournant les caractéristiques de l'exemplaire
+     */
     @Override
     public String toString() {
         return "Exemplaire{" +
