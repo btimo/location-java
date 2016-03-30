@@ -1,6 +1,8 @@
 package containers;
 
+import com.avaje.ebean.Model.*;
 import models.Auto;
+import models.Emprunteur;
 import models.Vehicule;
 
 import java.util.ArrayList;
@@ -13,6 +15,11 @@ import java.util.Comparator;
  */
 public class Vehicules {
     private static ArrayList<Vehicule> vehicules = new ArrayList<Vehicule>();
+    public static final Find<Long, Vehicule> find = new Find<Long, Vehicule>(){};
+
+    public static void fetchAll(){
+        vehicules = new ArrayList<>(find.all());
+    }
 
     /**
      * Ajout d'un véhicule

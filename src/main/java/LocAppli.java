@@ -30,4 +30,8 @@ public class LocAppli {
         }
 
     }
+
+    public void initData(){
+
+    }
 }

@@ -1,6 +1,8 @@
 package containers;
 
+import com.avaje.ebean.Model.*;
 import models.Auto;
+import models.Emprunteur;
 import models.Exemplaire;
 import models.Moto;
 
@@ -15,6 +17,11 @@ import java.util.List;
  */
 public class Flotte {
     private static List<Exemplaire> exemplaires = new ArrayList<Exemplaire>();
+    public static final Find<Long,Exemplaire> find = new Find<Long, Exemplaire>(){};
+
+    public static void fetchAll(){
+        exemplaires = new ArrayList<>(find.all());
+    }
 
     /**
      * Ajout d'un exemplaire à la flotte

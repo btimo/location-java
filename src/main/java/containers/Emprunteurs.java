@@ -1,5 +1,6 @@
 package containers;
 
+import com.avaje.ebean.Model.*;
 import models.*;
 
 import java.util.ArrayList;
@@ -12,6 +13,11 @@ import java.util.Comparator;
  */
 public class Emprunteurs {
     private static ArrayList<Emprunteur> emprunteurs = new ArrayList<Emprunteur>();
+    public static final Find<Long,Emprunteur> find = new Find<Long, Emprunteur>(){};
+
+    public static void fetchAll(){
+        emprunteurs = new ArrayList<>(find.all());
+    }
 
     /**
      * Ajout d'un emprunteur

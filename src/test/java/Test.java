@@ -14,23 +14,14 @@ import org.jfree.data.category.DefaultCategoryDataset;
  * @author Adrien Poupa
  */
 public class Test {
+
     /**
      * Jeu de tests
      * @param args arguments par défaut
      */
     public static void main (String[] args) {
-        /**
-         * Test de date
-         */
-        Date date = new Date(1, 1, 2016);
-        //System.out.println(date);
-
+        Date date1 = new Date(1, 1, 2016);
         Date date2 = new Date(1, "Février", 2016);
-        //System.out.println(date2);
-
-        /*System.out.println("Jours entre deux dates:");
-        System.out.println(date2.daysBetween(date));*/
-
         /**
          * Test d'adresse
          */
@@ -53,7 +44,7 @@ public class Test {
         /**
          * Test de location
          */
-        Location locationAvecAssurance = new Location(date, date2, true);
+        Location locationAvecAssurance = new Location(date1, date2, true);
         locationAvecAssurance.save();
         System.out.println(locationAvecAssurance);
 
