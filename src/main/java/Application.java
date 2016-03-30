@@ -2,6 +2,8 @@ import com.avaje.ebean.Ebean;
 import com.avaje.ebean.EbeanServer;
 import com.avaje.ebean.EbeanServerFactory;
 import com.avaje.ebean.config.ServerConfig;
+import models.Adresse;
+import models.Emprunteur;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import views.InterfaceLocation;
@@ -50,7 +52,7 @@ public class Application {
         System.out.println("Application Location");
 
         // initialize data of the application
-        // initData();
+        initData();
     }
 
     /**
@@ -77,7 +79,8 @@ public class Application {
      * Ajout des données aux programmes
      * Utilisé en phase de développement seulement
      */
-    public void initData(){
-        //
+    private void initData(){
+        System.out.println("Initialisation des données");
+        new Emprunteur(new Adresse(3, "avenue de la République", "94800", "Villejuif"), "Adrien", "Poupa").save();
     }
 }
