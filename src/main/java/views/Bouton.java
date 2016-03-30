@@ -34,14 +34,14 @@ public class Bouton {
         return button;
     }
 
-    public static JCheckBox nvCheckbox(Vehicule voiture){
-        JCheckBox checkBox = new JCheckBox();
-            if (voiture instanceof Auto) {
-                checkBox= new JCheckBox(voiture.getMarque() + " " + ((Auto) voiture).getModele()+""+voiture.getExemplaires()+"");
+    public static JCheckBox nvCheckbox(Vehicule vehicule){
+        JCheckBox checkBox;
+            if (vehicule instanceof Auto) {
+                checkBox = new JCheckBox(vehicule.getMarque() + " " + ((Auto) vehicule).getModele() + " " + vehicule.getExemplaires() + " ");
             }
             else{
-                checkBox= new JCheckBox(voiture.getMarque() +""+((Moto) voiture).getCylindree()+""+voiture.getExemplaires()+"");
-                }
+                checkBox= new JCheckBox(vehicule.getMarque() + " " + ((Moto) vehicule).getCylindree() + " " + vehicule.getExemplaires() + " ");
+            }
         return checkBox;
     }
 
