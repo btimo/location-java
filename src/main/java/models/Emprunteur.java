@@ -39,7 +39,7 @@ public class Emprunteur extends BaseModel  {
         this.locations = new ArrayList<Location>();
 
         // Ajout de l'emprunteur
-        Emprunteurs.ajout(this);
+        //Emprunteurs.ajout(this);
     }
 
     /**
