@@ -13,10 +13,10 @@ import java.util.ArrayList;
 public class LocationViews {
     public static  JFrame locationFrame = Fenetre.nvFenetre("Location de vehicule auto/moto",500,500);
     public static JTabbedPane donnee = Onglet.nvOnglet();
-    public static Auto auto = new Auto("Ford", "Fiesta", 200,0,false);
+   /* public static Auto auto = new Auto("Ford", "Fiesta", 200,0,false);
     public static Auto auto2 = new Auto("Dacia", "Sandero", 200,0,true);
     public static Auto auto3 = new Auto("Audi", "A1", 500,0,false);
-    public static Moto moto = new Moto("Harley Davidson", 300, 200);
+    public static Moto moto = new Moto("Harley Davidson", 300, 200);*/
 
       public static void main(String[] args) {
           //JFrame locationFrame = Fenetre.nvFenetre("Location de vehicule auto/moto",500,500);
@@ -42,7 +42,7 @@ public class LocationViews {
           JPanel dateRetourPanel = Panel.datePanel("date de retour :", Color.ORANGE);
 
           JPanel listePanel = Panel.listePanel(Color.ORANGE);
-          JPanel liste = Panel.checkBoxPanel(Panel.listeAutoMoto(Color.ORANGE),listeVehicule());
+          JPanel liste = Panel.checkBoxPanel(Panel.listeAutoMoto(Color.ORANGE), Vehicules.get());
 
           fenetrePanel.add(titrePanel);
           fenetrePanel.add(identifiantPanel);
@@ -55,17 +55,8 @@ public class LocationViews {
           fenetrePanel.add(liste);
           fenetrePanel.add(listePanel);
 
-
           locationFrame.add(donnee);
           locationFrame.setVisible(true);
       }
-    public static ArrayList<Vehicule> listeVehicule (){
-        ArrayList<Vehicule> liste =new ArrayList<>();
-        liste.add(auto);
-        liste.add(auto2);
-        liste.add(auto3);
-        liste.add(moto);
-        return liste;
-    }
 
 }

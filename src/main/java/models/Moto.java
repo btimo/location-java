@@ -27,9 +27,6 @@ public class Moto extends Vehicule {
         this.cylindree = cylindree;
         this.marque = marque;
         this.prixJour = prixJour;
-
-        // Ajout du véhicule actuel
-        Vehicules.ajout(this);
     }
 
     /**

@@ -60,9 +60,10 @@ public class Exemplaire extends BaseModel{
         this.kilometres = kilometres;
         this.vehicule = vehicule;
 
-        // Ajout du véhicule au container de Vehicule et de Flotte
+        // Ajout du véhicule au container de Vehicule
+        // todo: test ajoutExemplaire encore utile ...
         vehicule.ajoutExemplaire(this);
-        Flotte.ajout(this);
+
 
         this.reservoir = 1;
 

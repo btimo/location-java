@@ -17,7 +17,7 @@ public class Vehicules {
     private static ArrayList<Vehicule> vehicules = new ArrayList<Vehicule>();
     public static final Find<Long, Vehicule> find = new Find<Long, Vehicule>(){};
 
-    public static void fetchAll(){
+    private static void fetchAll(){
         vehicules = new ArrayList<>(find.all());
     }
 
@@ -34,6 +34,7 @@ public class Vehicules {
      * @return liste des véhicules actuellement stockés
      */
     public static ArrayList<Vehicule> get() {
+        fetchAll();
         return vehicules;
     }
 

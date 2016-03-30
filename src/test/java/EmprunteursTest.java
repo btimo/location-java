@@ -5,9 +5,6 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-/**
- * Created by Timote on 30/03/2016.
- */
 public class EmprunteursTest {
 
     @Test
@@ -16,14 +13,10 @@ public class EmprunteursTest {
         Adresse adresse2 = new Adresse(3, "avenue des champs Elysées", "75800", "Paris");
         Adresse adresse3 = new Adresse(3, "place de la Comédie", "34000", "Montpellier");
 
-        Emprunteur emprunteur = new Emprunteur(adresse, "Adrien", "Poupa");
-        emprunteur.save();
-        Emprunteur emprunteur2 = new Emprunteur(adresse2, "Stéphane", "Gateau");
-        emprunteur2.save();
-        Emprunteur emprunteur3 = new Emprunteur(adresse3, "Timothée", "Barbot");
-        emprunteur3.save();
+        new Emprunteur(adresse, "Adrien", "Poupa").save();
+        new Emprunteur(adresse2, "Stéphane", "Gateau").save();
+        new Emprunteur(adresse3, "Timothée", "Barbot").save();
 
-        Emprunteurs.fetchAll();
-        assertEquals("Il devrait y avoir 3 emprunteur", 3, Emprunteurs.get().size());
+        assertEquals("Il devrait y avoir 3 emprunteurs", 3, Emprunteurs.get().size());
     }
 }
