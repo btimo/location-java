@@ -22,11 +22,13 @@ public class Moto extends Vehicule {
      * @param marque marque de la moto
      * @param cylindree cylindrée
      * @param prixJour prix de location journalier
+     * @param prixAssurance prix de l'assurance
      */
-    public Moto(String marque, int cylindree, int prixJour) {
+    public Moto(String marque, int cylindree, int prixJour, int prixAssurance) {
         this.cylindree = cylindree;
         this.marque = marque;
         this.prixJour = prixJour;
+        this.prixAssurance = prixAssurance;
     }
 
     /**
@@ -82,6 +84,7 @@ public class Moto extends Vehicule {
         return "Moto{" +
                 "marque='" + getMarque() + ", " + '\'' +
                 "prix de base=" + prixJour + ", " +
+                "prix assurance=" + prixAssurance + ", " +
                 "cylindree=" + cylindree +
                 '}';
     }

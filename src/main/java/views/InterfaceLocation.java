@@ -91,7 +91,7 @@ public class InterfaceLocation {
         Auto auto = new Auto("Ford", "Fiesta", 200,0,false);
         Auto auto2 = new Auto("Dacia", "Sandero", 200,0,true);
         Auto auto3 = new Auto("Audi", "A1", 500,0,false);
-        Moto moto = new Moto("Harley Davidson", 300, 200);
+        Moto moto = new Moto("Harley Davidson", 300, 200, 100);
 
 
         JComboBox liste1 = new JComboBox();
