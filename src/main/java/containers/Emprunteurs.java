@@ -15,7 +15,7 @@ public class Emprunteurs {
     private static ArrayList<Emprunteur> emprunteurs = new ArrayList<Emprunteur>();
     public static final Find<Long,Emprunteur> find = new Find<Long, Emprunteur>(){};
 
-    public static void fetchAll(){
+    private static void fetchAll(){
         emprunteurs = new ArrayList<>(find.all());
     }
 
@@ -32,6 +32,7 @@ public class Emprunteurs {
      * @return liste des emprunteurs
      */
     public static ArrayList<Emprunteur> get() {
+        fetchAll();
         return emprunteurs;
     }
 

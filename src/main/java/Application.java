@@ -27,22 +27,6 @@ public class Application {
 
     public static void main(String[] args){
         Application app = getApp();
-
-        ServerConfig c = new ServerConfig();
-        c.setName("sqlite");
-
-        // read the ebean.properties and load
-        // those settings into this serverConfig object
-        c.loadFromProperties();
-
-        // generate DDL and run it
-        c.setDdlGenerate(isDeveloppement);
-        c.setDdlRun(isDeveloppement);
-
-        // register as the 'Default' server
-        c.setDefaultServer(true);
-
-        server = EbeanServerFactory.create(c);
     }
 
     /**
@@ -50,6 +34,8 @@ public class Application {
      */
     private Application(){
         System.out.println("Application Location");
+
+        initEbeanServer();
 
         // initialize data of the application
         initData();
@@ -73,6 +59,24 @@ public class Application {
      */
     public void load() {
         InterfaceLocation.load();
+    }
+
+    private void initEbeanServer(){
+        ServerConfig c = new ServerConfig();
+        c.setName("sqlite");
+
+        // read the ebean.properties and load
+        // those settings into this serverConfig object
+        c.loadFromProperties();
+
+        // generate DDL and run it
+        c.setDdlGenerate(isDeveloppement);
+        c.setDdlRun(isDeveloppement);
+
+        // register as the 'Default' server
+        c.setDefaultServer(true);
+
+        server = EbeanServerFactory.create(c);
     }
 
     /**

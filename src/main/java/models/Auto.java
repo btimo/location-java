@@ -34,9 +34,6 @@ public class Auto extends Vehicule {
         this.luxe = luxe;
         this.prixJour = prixJour;
         this.prixAssurance = prixAssurance;
-
-        // Ajout du véhicule actuel
-        Vehicules.ajout(this);
     }
 
     /**

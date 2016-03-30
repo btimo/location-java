@@ -37,9 +37,6 @@ public class Emprunteur extends BaseModel  {
         this.prenom = prenom;
         this.nom = nom;
         this.locations = new ArrayList<Location>();
-
-        // Ajout de l'emprunteur
-        //Emprunteurs.ajout(this);
     }
 
     /**

@@ -19,7 +19,7 @@ public class Flotte {
     private static List<Exemplaire> exemplaires = new ArrayList<Exemplaire>();
     public static final Find<Long,Exemplaire> find = new Find<Long, Exemplaire>(){};
 
-    public static void fetchAll(){
+    private static void fetchAll(){
         exemplaires = new ArrayList<>(find.all());
     }
 
@@ -36,6 +36,7 @@ public class Flotte {
      * @return liste des exemplaires
      */
     public static List<Exemplaire> get() {
+        fetchAll();
         return exemplaires;
     }
 
