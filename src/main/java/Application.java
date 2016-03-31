@@ -1,4 +1,3 @@
-import com.avaje.ebean.Ebean;
 import com.avaje.ebean.EbeanServer;
 import com.avaje.ebean.EbeanServerFactory;
 import com.avaje.ebean.config.ServerConfig;
@@ -6,7 +5,6 @@ import containers.Vehicules;
 import models.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import views.InterfaceLocation;
 import views.LocationViews;
 
 /**
@@ -56,13 +54,6 @@ public class Application {
         }
 
         return app;
-    }
-
-    /**
-     * Chargement de l'interfae Swing
-     */
-    public void load() {
-        InterfaceLocation.load();
     }
 
     private void initEbeanServer(){

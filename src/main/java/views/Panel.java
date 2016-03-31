@@ -58,9 +58,9 @@ public class Panel {
     public static JPanel identification(Color bgColor) {
         JPanel identifiantPanel = nvPanelFlow(bgColor);
 
-        JLabel nomLabel = Label.nvLabel("nom et prenom : ");
-        JTextField nomTexte = Texte.nvTextField(" nom", 10);
-        JTextField prenomTexte = Texte.nvTextField(" prenom", 10);
+        JLabel nomLabel = Label.nvLabel("Nom et prénom : ");
+        JTextField nomTexte = Texte.nvTextField(" Nom", 10);
+        JTextField prenomTexte = Texte.nvTextField(" Prénom", 10);
 
         identifiantPanel.add(nomLabel);
         identifiantPanel.add(nomTexte);
@@ -154,10 +154,10 @@ public class Panel {
 
         JPanel ajoutOnglet = nvPanelFlow(couleur);
         JButton nouveau = new JButton("Valider");
-        JPanel fenetrePanel =Panel.nvPanelBox(Color.ORANGE);
+        JPanel fenetrePanel = Panel.nvPanelBox(Color.ORANGE);
 
         nouveau.addActionListener(e -> {
-            LocationViews.donnee.add("liste des voiture",fenetrePanel);
+            LocationViews.donnee.add("Liste des voitures", fenetrePanel);
             LocationViews.locationFrame.add(LocationViews.donnee);
         });
         ajoutOnglet.add(nouveau);
@@ -174,5 +174,11 @@ public class Panel {
             }
         });
         return  comboPanel;
+    }
+
+    public static JCheckBox addCheckbox(String message) {
+        JCheckBox checkbox = new JCheckBox(message);
+        checkbox.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+        return checkbox;
     }
 }
