@@ -11,18 +11,16 @@ import org.jdatepicker.impl.UtilDateModel;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.Objects;
 import java.util.Properties;
 
 public class Panel {
     protected static JRadioButton premierButton = Bouton.radioBouton("oui",false,Color.ORANGE);
     protected static JRadioButton deuxButton = Bouton.radioBouton("non",true,Color.ORANGE);
+    protected static Vehicule[] listeVehicule ;
 
     /**
-     * Simple panel with color background parameter
+     * Simple panel with BoxLayout and color background parameter
      * @param bgColor, color of the panel background
      * @return JPanel
      */
@@ -94,10 +92,9 @@ public class Panel {
 
     /**
      * ComboBox to select
-     * @param bgColor, background color
      * @return
      */
-    public static JComboBox listeAutoMoto(Color bgColor){
+    public static JComboBox listeAutoMoto(){
         JComboBox comboBox = new JComboBox();
         ArrayList<String> marques = new ArrayList<>();
         premierButton.addActionListener(e -> {
@@ -106,6 +103,7 @@ public class Panel {
                 if (v instanceof Auto) {
                     marques.add(v.getMarque() + " " + ((Auto) v).getModele());
                 }
+
             }
             comboBox.setModel(new DefaultComboBoxModel(marques.toArray()));
         });
@@ -122,12 +120,12 @@ public class Panel {
         return comboBox;
     }
 
-    public static JPanel choixPanel(String nom, Color couleur, String nomBouton1, String nomBouton2){
-        JPanel panel = nvPanelFlow(couleur);
+    public static JPanel choixPanel(String nom, Color bgColor, String nomBouton1, String nomBouton2){
+        JPanel panel = nvPanelFlow(bgColor);
         JLabel label = Label.nvLabel(nom);
         ArrayList<JRadioButton> boutonListe = new ArrayList();
-        premierButton = Bouton.radioBouton(nomBouton1,false,couleur);
-        deuxButton = Bouton.radioBouton(nomBouton2,true,couleur);
+        premierButton = Bouton.radioBouton(nomBouton1,false,bgColor);
+        deuxButton = Bouton.radioBouton(nomBouton2,true,bgColor);
         boutonListe.add(premierButton);
         boutonListe.add(deuxButton);
         ButtonGroup groupe = Bouton.nvgroupeButton(boutonListe);
@@ -137,8 +135,8 @@ public class Panel {
         return panel;
     }
 
-    public static JPanel datePanel(String nom, Color couleur) {
-        JPanel datePanel = nvPanelFlow(couleur);
+    public static JPanel datePanel(String nom, Color bgColor) {
+        JPanel datePanel = nvPanelFlow(bgColor);
         JLabel departLabel = Label.nvLabel(nom);
         UtilDateModel model = new UtilDateModel();
         Properties p = new Properties();
@@ -150,15 +148,17 @@ public class Panel {
         return datePanel;
     }
 
-    public static JPanel listePanel(Color couleur) {
+    public static JPanel listePanel(Color bgCoulor) {
 
-        JPanel ajoutOnglet = nvPanelFlow(couleur);
+        JPanel ajoutOnglet = nvPanelFlow(bgCoulor);
         JButton nouveau = new JButton("Valider");
         JPanel fenetrePanel =Panel.nvPanelBox(Color.ORANGE);
+        JList jListVehicuel = new JList(listeVehicule);
 
         nouveau.addActionListener(e -> {
-            LocationViews.donnee.add("liste des voiture",fenetrePanel);
+            LocationViews.donnee.add("    liste des voiture",fenetrePanel);
             LocationViews.locationFrame.add(LocationViews.donnee);
+            LocationViews.donnee.add(jListVehicuel);
         });
         ajoutOnglet.add(nouveau);
         return ajoutOnglet;
@@ -175,4 +175,11 @@ public class Panel {
         });
         return  comboPanel;
     }
+
+   /* public static JPanel recapitulatifPanel(Color bgColor) {
+        JPanel recapPanel= nvPanelBox(bgColor);
+
+
+
+    }*/
 }
