@@ -7,6 +7,7 @@ import models.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import views.InterfaceLocation;
+import views.LocationViews;
 
 /**
  * Classe utilisée pour le lancement des fenêtres
@@ -39,6 +40,9 @@ public class Application {
 
         // initialize data of the application
         initData();
+
+        //initialize frame
+        LocationViews fenetreLocation = new LocationViews();
     }
 
     /**
