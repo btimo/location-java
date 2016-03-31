@@ -179,8 +179,7 @@ public class Exemplaire extends BaseModel{
         else if(reservoir < 1){
             return penaliteReservoir;
         }
-        else
-            return 0;
+        return 0;
     }
 
     /**
