@@ -39,6 +39,19 @@ public class GenerationPdf {
     private Emprunteur emprunteur;
     private ArrayList<Location> locations;
     private int locationId;
+    private boolean test;
+
+    /**
+     * Constructeur dans lequel se fait la génération
+     * @param type devis ou facture
+     * @param emprunteur emprunteur qui va réaliser la location
+     * @param locationId ID location
+     * @param test appel dans le cadre d'un test
+     */
+    public GenerationPdf(String type, Emprunteur emprunteur, int locationId, boolean test) {
+        this(type, emprunteur, locationId);
+        this.test = test;
+    }
 
     /**
      * Constructeur dans lequel se fait la génération
@@ -51,10 +64,16 @@ public class GenerationPdf {
         this.emprunteur = emprunteur;
         this.locations= new ArrayList<Location>(emprunteur.getLocations());
         this.locationId = locationId;
+        this.test = false;
+    }
 
+    /**
+     * Fonction de génération du PDF
+     */
+    public void generateDocument() {
         try {
             Document document = new Document();
-            PdfWriter.getInstance(document, new FileOutputStream("pdf/"+type+"/"+ emprunteur.getId()+".pdf"));
+            PdfWriter.getInstance(document, new FileOutputStream("pdf/"+type+"/"+ locationId +".pdf"));
             document.open();
             addMetaData(document);
             addContent(document);
@@ -96,12 +115,15 @@ public class GenerationPdf {
 
         addEmptyLine(preface, 2);
 
-        Date time = new Date();
-        DateFormat dfl = DateFormat.getDateTimeInstance(DateFormat.FULL, DateFormat.FULL);
+        if (!test) {
+            Date time = new Date();
+            DateFormat dfl = DateFormat.getDateTimeInstance(DateFormat.FULL, DateFormat.FULL);
 
-        preface.add(new Paragraph("Document généré le " + dfl.format(time),
-                smallBold));
-        addEmptyLine(preface, 1);
+            preface.add(new Paragraph("Document généré le " + dfl.format(time),
+                    smallBold));
+            addEmptyLine(preface, 1);
+        }
+
         preface.add(new Paragraph(type+" pour "+emprunteur.getPrenom()+" "+emprunteur.getNom(),
                 smallBold));
 

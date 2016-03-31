@@ -137,7 +137,15 @@ public class Emprunteur extends BaseModel  {
      * @param locationId ID de la location à générer
      */
     public void genererFacture(int locationId) {
-        new GenerationPdf("facture", this, locationId);
+        new GenerationPdf("facture", this, locationId).generateDocument();
+    }
+
+    /**
+     * Génération de la facture
+     * @param locationId ID de la location à générer
+     */
+    public void genererFacture(int locationId, boolean test) {
+        new GenerationPdf("facture", this, locationId, test).generateDocument();
     }
 
     /**
@@ -145,7 +153,16 @@ public class Emprunteur extends BaseModel  {
      * @param locationId ID du devis à générer
      */
     public void genererDevis(int locationId) {
-        new GenerationPdf("devis", this, locationId);
+        new GenerationPdf("devis", this, locationId).generateDocument();
+    }
+
+    /**
+     * Génération du devis
+     * @param locationId ID du devis à générer
+     * @param test fichier de test
+     */
+    public void genererDevis(int locationId, boolean test) {
+        new GenerationPdf("devis", this, locationId, test).generateDocument();
     }
 
     /**

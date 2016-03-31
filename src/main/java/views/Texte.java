@@ -7,7 +7,7 @@ import javax.swing.*;
  */
 public class Texte {
     public static JTextField nvTextField(String texte, int longeur){
-        JTextField textField =new JTextField(texte,longeur);
+        JTextField textField = new JTextField(texte,longeur);
         return textField;
     }
 }

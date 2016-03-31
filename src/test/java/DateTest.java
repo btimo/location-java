@@ -8,8 +8,8 @@ import static org.junit.Assert.assertEquals;
  */
 public class DateTest {
 
-    Date date1;
-    Date date2;
+    private Date date1;
+    private Date date2;
 
 
     @Before
@@ -23,7 +23,4 @@ public class DateTest {
     public void daysBetweenShouldReturn31(){
         assertEquals("Nombre de jours entre " + date1 + " et " + date2 + " doit être 31", -31, date1.daysBetween(date2));
     }
-
-        /*System.out.println("Jours entre deux dates:");
-        System.out.println(date2.daysBetween(date));*/
 }
