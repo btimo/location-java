@@ -1,20 +1,16 @@
 package views;
 
 import containers.Vehicules;
-import models.Auto;
-import models.Moto;
-import models.Vehicule;
-
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
+
 
 
 public class LocationViews {
     public static  JFrame locationFrame = Fenetre.nvFenetre("Location de vehicule auto/moto",500,500);
     public static JTabbedPane donnee = Onglet.nvOnglet();
 
-    public static void main(String[] args) {
+    public LocationViews() {
 
         // Fenetre principal
         JPanel fenetrePanel = Panel.nvPanelBox(Color.ORANGE);
