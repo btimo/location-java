@@ -96,6 +96,8 @@ public class Panel {
      */
     public static JComboBox listeAutoMoto(Color bgColor, boolean firstLauch){
         JComboBox comboBox = new JComboBox();
+        JPanel checkBoxrecap= nvPanelBox(Color.ORANGE);
+        JTable tableauRecap = Tableau.tableau();
         ArrayList<String> marques = new ArrayList<>();
         premierButton.addActionListener(e -> {
             marques.clear();
@@ -115,6 +117,9 @@ public class Panel {
             }
             comboBox.setModel(new DefaultComboBoxModel(marques.toArray()));
         });
+        checkBoxrecap.add(comboBox);
+        tableauRecap.add(comboBox.getSelectedItem());
+        checkBoxrecap.add(tableauRecap);
 
         if (firstLauch) {
             for(Vehicule v : Vehicules.get()) {
@@ -170,17 +175,16 @@ public class Panel {
         return ajoutOnglet;
     }
 
-    public static JPanel checkBoxPanel(JComboBox comboBox, ArrayList<Vehicule> vehicules){
+    /*public static JPanel checkBoxPanel(JComboBox comboBox, Vehicule vehicules){
         JPanel comboPanel = nvPanelBox(Color.ORANGE);
         comboBox.addActionListener(e -> {
-            for(Vehicule v: vehicules){
-                System.out.println(v.getClass());
-                JCheckBox check = Bouton.nvCheckbox(v);
+                JCheckBox check = Bouton.nvCheckbox(vehicules);
                 comboPanel.add(check);
-            }
-        });
+            });
         return  comboPanel;
-    }
+    }*/
+
+   // public static JPanel
 
     public static JCheckBox addCheckbox(String message) {
         JCheckBox checkbox = new JCheckBox(message);
