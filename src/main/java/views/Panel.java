@@ -8,6 +8,7 @@ import models.Vehicule;
 import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
+import views.components.misc.Label;
 
 import javax.swing.*;
 import java.awt.*;
@@ -52,10 +53,10 @@ public class Panel {
      * @param bgColor, background color
      * @return JPanel
      */
-    public static JPanel identification(Color bgColor) {
+    /*public static JPanel identification(Color bgColor) {
         JPanel identifiantPanel = nvPanelFlow(bgColor);
 
-        JLabel nomLabel = Label.nvLabel("Nom et prénom : ");
+        JLabel nomLabel = views.components.misc.Label.nvLabel("Nom et prénom : ");
         JTextField nomTexte = Texte.nvTextField(" Nom", 10);
         JTextField prenomTexte = Texte.nvTextField(" Prénom", 10);
 
@@ -64,14 +65,14 @@ public class Panel {
         identifiantPanel.add(prenomTexte);
 
         return identifiantPanel;
-    }
+    }*/
 
     /**
      * Panel containing adresse labels and fields
      * @param bgColor, background color
      * @return JPanel
      */
-    public static JPanel adresse(Color bgColor){
+    /*public static JPanel adresse(Color bgColor){
         JPanel adressePanel = nvPanelFlow(bgColor);
 
         JLabel adresseLabel = Label.nvLabel("Adresse :");
@@ -87,7 +88,7 @@ public class Panel {
         adressePanel.add(villeTexte);
 
         return adressePanel;
-    }
+    }*/
 
     /**
      * ComboBox to select
@@ -133,7 +134,7 @@ public class Panel {
         return comboBox;
     }
 
-    public static JPanel choixPanel(String nom, Color couleur, String nomBouton1, String nomBouton2){
+    /*public static JPanel choixPanel(String nom, Color couleur, String nomBouton1, String nomBouton2){
         JPanel panel = nvPanelFlow(couleur);
         JLabel label = Label.nvLabel(nom);
         ArrayList<JRadioButton> boutonListe = new ArrayList();
@@ -159,7 +160,7 @@ public class Panel {
         datePanel.add(dateDepartPicker);
         Date date = (Date) dateDepartPicker.getModel().getValue();
         return datePanel;
-    }
+    }*/
 
     public static JPanel listePanel(Color couleur) {
 

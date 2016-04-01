@@ -1,6 +1,6 @@
 package views;
 
-import containers.Vehicules;
+import views.components.misc.Label;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,10 +10,10 @@ import java.awt.*;
  */
 public class AjoutLocation {
 
-    public AjoutLocation(JPanel fenetrePanel) {
+    /*public AjoutLocation(JPanel fenetrePanel) {
         // rajout du titre
         JPanel titrePanel = Panel.nvPanelFlow(Color.ORANGE);
-        JLabel reservationLabel = Label.nvLabel("LocAppli","Calibri", Font.PLAIN, 25);
+        JLabel reservationLabel = views.components.misc.Label.nvLabel("LocAppli","Calibri", Font.PLAIN, 25);
         titrePanel.add(reservationLabel);
 
         // Panel identification
@@ -52,5 +52,5 @@ public class AjoutLocation {
         fenetrePanel.add(assurancePanel);
         //fenetrePanel.add(selectedVehicules);
         fenetrePanel.add(listePanel);
-    }
+    }*/
 }

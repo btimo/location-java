@@ -1,5 +1,8 @@
 package views;
 
+import views.components.misc.*;
+import views.components.misc.Label;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -10,7 +13,7 @@ public class Locations {
     public Locations(JPanel fenetrePanel) {
         // rajout du titre
         JPanel titrePanel = Panel.nvPanelFlow(Color.ORANGE);
-        JLabel reservationLabel = Label.nvLabel("Liste des locations","Calibri", Font.PLAIN, 25);
+        JLabel reservationLabel = new Label("Liste des locations","Calibri", Font.PLAIN, 25);
         titrePanel.add(reservationLabel);
 
         // Bouton rajout Ajouter une location

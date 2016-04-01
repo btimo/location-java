@@ -23,11 +23,11 @@ public class LocationForm extends JPanel {
 
     // init the panel with its components
     private void initContent(){
-        // label + field for the user lastname
+        // label + field to select the user
 
-        // label + field for the user firstname
+        // labels + fields to select vehicules
 
-        // labels + fields for the user adress
+        // recap table of selected vehicules
 
         // button to cancel any modification + close the window
 

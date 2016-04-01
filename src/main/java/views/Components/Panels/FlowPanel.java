@@ -1,0 +1,18 @@
+package views.components.panels;
+
+import javax.swing.*;
+import java.awt.*;
+
+public class FlowPanel extends JPanel {
+
+    public FlowPanel(){
+        super();
+        setLayout(new FlowLayout());
+    }
+
+    public FlowPanel(Color bgColor){
+        super();
+        setLayout(new FlowLayout());
+        setBackground(bgColor);
+    }
+}

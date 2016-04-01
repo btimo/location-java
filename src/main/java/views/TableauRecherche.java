@@ -3,11 +3,11 @@ package views;
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
-import java.awt.*;
+import java.awt.Color;
+import views.components.misc.Label;
+import views.components.misc.TextField;
 
-/**
- * Created by Adrien on 01/04/2016.
- */
+
 public class TableauRecherche extends Tableau {
 
     public TableauRecherche(JPanel fenetre, Object[][] donnees, String[] entetes){
@@ -18,8 +18,8 @@ public class TableauRecherche extends Tableau {
 
         JPanel searchPanel = Panel.nvPanelFlow(Color.orange);
 
-        JLabel nomLabel = Label.nvLabel("Recherche : ");
-        JTextField nomTexte = Texte.nvTextField("", 10);
+        JLabel nomLabel = new Label("Recherche : ");
+        JTextField nomTexte = new TextField("", 10);
 
         nomTexte.getDocument().addDocumentListener(new DocumentListener() {
             @Override
