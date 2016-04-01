@@ -97,7 +97,7 @@ public class Panel {
      * @param bgColor, background color
      * @return
      */
-    public static JPanel listeAutoMoto(Color bgColor){
+    public static JComboBox listeAutoMoto(Color bgColor, boolean firstLauch){
         JComboBox comboBox = new JComboBox();
         JPanel checkBoxrecap= nvPanelBox(Color.ORANGE);
         JTable tableauRecap = Tableau.tableau();
@@ -124,15 +124,24 @@ public class Panel {
         tableauRecap.add(comboBox.getSelectedItem());
         checkBoxrecap.add(tableauRecap);
 
-        return checkBoxrecap;
+        if (firstLauch) {
+            for(Vehicule v : Vehicules.get()) {
+                if (v instanceof Auto) {
+                    marques.add(v.getMarque() + " " + ((Auto) v).getModele());
+                }
+            }
+            comboBox.setModel(new DefaultComboBoxModel(marques.toArray()));
+        }
+
+        return comboBox;
     }
 
     public static JPanel choixPanel(String nom, Color couleur, String nomBouton1, String nomBouton2){
         JPanel panel = nvPanelFlow(couleur);
         JLabel label = Label.nvLabel(nom);
         ArrayList<JRadioButton> boutonListe = new ArrayList();
-        premierButton = Bouton.radioBouton(nomBouton1,false,couleur);
-        deuxButton = Bouton.radioBouton(nomBouton2,true,couleur);
+        premierButton = Bouton.radioBouton(nomBouton1,true,couleur);
+        deuxButton = Bouton.radioBouton(nomBouton2,false,couleur);
         boutonListe.add(premierButton);
         boutonListe.add(deuxButton);
         ButtonGroup groupe = Bouton.nvgroupeButton(boutonListe);
