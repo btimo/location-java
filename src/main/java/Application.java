@@ -160,5 +160,24 @@ public class Application {
             new Exemplaire((int) (Math.random() * (180000)), v).save();
             new Exemplaire((int) (Math.random() * (180000)), v).save();
         }
+
+        // Quelques locations...
+        Emprunteur emp = new Emprunteur(new Adresse(3, "avenue de la République", "94800", "Villejuif"), "Adrien", "Poupa");
+        emp.save();
+        Date date1 = new Date(1, 1, 2016);
+        Date date2 = new Date(1, "Février", 2016);
+
+        Location locationAvecAssurance = new Location(date1, date2, true);
+
+        Auto auto = new Auto("Dacia", "Sandero", 200, 30, false);
+        auto.save();
+
+        Exemplaire exemplaire = new Exemplaire(60000, auto);
+        exemplaire.save();
+
+        locationAvecAssurance.louer(exemplaire, true);
+        emp.louer(locationAvecAssurance);
+
+        locationAvecAssurance.save();
     }
 }

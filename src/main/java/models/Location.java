@@ -36,7 +36,7 @@ public class Location extends BaseModel {
             @AttributeOverride(name = "mois", column = @Column(name = "rendu_mois")),
             @AttributeOverride(name = "annee", column = @Column(name = "rendu_annee"))
     })
-    private Date rendu;
+    private Date rendu = new Date();
 
     @ManyToOne
     private Emprunteur emprunteur;
@@ -53,8 +53,21 @@ public class Location extends BaseModel {
     public Location(){
         // used by LocationForm
     }
+
     /**
      * Constructeur complet
+     * @param debut date de début de location
+     * @param fin date de fin de location
+     * @param approuvee location signée?
+     * @param rendu date de rendu
+     */
+    public Location(Date debut, Date fin, boolean approuvee, Date rendu) {
+        this(debut, fin, approuvee);
+        this.rendu = rendu;
+    }
+
+    /**
+     * Constructeur semi-complet
      * @param debut date de début de location
      * @param fin date de fin de location
      * @param approuvee location signée?

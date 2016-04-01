@@ -1,5 +1,9 @@
 package views;
 
+import models.Exemplaire;
+import models.Location;
+import models.LocationExemplaire;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -18,7 +22,32 @@ public class Locations {
         JButton ajouter = new JButton("Ajouter une location");
         ajoutPanel.add(ajouter);
 
-        Object[][] donnees = {
+        // Données tableau
+        String[] entetes = {"Numéro", "Locataire", "Date début", "Date fin", "Devis accepté", "Prix TTC", "Actions"};
+
+        Object[][] donnees = new Object[containers.Locations.get().size()][7];
+
+        int count = 0;
+        for (Location l : containers.Locations.get()) {
+            donnees[count][0] = l.getId();
+            donnees[count][1] = l.getEmprunteur().getDisplayName();
+            donnees[count][2] = l.getDebut().toString();
+            donnees[count][3] = l.getFin().toString();
+            donnees[count][4] = (l.isApprouvee()) ? "Oui" : "Non";
+
+            double prixFinal = 0;
+            // todo: prix ne marche pas
+            for (LocationExemplaire e : l.getLocationExemplaires()) {
+                prixFinal += e.getPrixFinalRetour();
+            }
+
+            donnees[count][5] = prixFinal;
+            donnees[count][6] = "Bouton";
+
+            count++;
+        }
+
+        /*Object[][] donnees = {
                 {"Johnathan", "Sykes", Color.RED, true, "Tennis"},
                 {"Johnathan", "Sykes", Color.RED, true, "Tennis"},
                 {"Johnathan", "Sykes", Color.RED, true, "Tennis"},
@@ -27,9 +56,7 @@ public class Locations {
                 {"Adrien", "Sykes", Color.RED, true, "Tennis"},
                 {"Johnathan", "Sykes", Color.RED, true, "Tennis"},
                 {"Johnathan", "Aykes", Color.RED, true, "Tennis"},
-        };
-
-        String[] entetes = {"Prénom", "Nom", "Couleur favorite", "Homme", "Sport"};
+        };*/
 
         fenetrePanel.add(titrePanel);
 
