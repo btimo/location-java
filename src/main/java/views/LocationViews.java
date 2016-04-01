@@ -1,6 +1,8 @@
 package views;
 
 import containers.Vehicules;
+import models.Auto;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -33,13 +35,13 @@ public class LocationViews {
         JPanel modelPanel = Panel.nvPanelFlow(Color.ORANGE);
         JLabel constructeurModel = Label.nvLabel("Choix du véhicule","Arial",Font.BOLD,14);
         modelPanel.add(constructeurModel);
-        modelPanel.add(Panel.listeAutoMoto());
+        modelPanel.add(Panel.listeAutoMoto(Color.ORANGE));
 
         // Panel date
         JPanel dateDepartPanel = Panel.datePanel("Date de départ", Color.ORANGE);
         JPanel dateRetourPanel = Panel.datePanel("Date de retour", Color.ORANGE);
 
-        JPanel selectedVehicules = Panel.checkBoxPanel(Panel.listeAutoMoto(), Vehicules.get());
+        //JPanel selectedVehicules = Panel.checkBoxPanel(Panel.listeAutoMoto(Color.ORANGE).getSelectedObjects());
         JPanel listePanel = Panel.listePanel(Color.ORANGE);
 
         // Panel assurance
@@ -54,7 +56,7 @@ public class LocationViews {
         fenetrePanel.add(dateDepartPanel);
         fenetrePanel.add(dateRetourPanel);
         fenetrePanel.add(assurancePanel);
-        fenetrePanel.add(selectedVehicules);
+        //fenetrePanel.add(selectedVehicules);
         fenetrePanel.add(listePanel);
 
         locationFrame.add(donnee);

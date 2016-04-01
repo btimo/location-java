@@ -97,8 +97,10 @@ public class Panel {
      * @param bgColor, background color
      * @return
      */
-    public static JComboBox listeAutoMoto(Color bgColor){
+    public static JPanel listeAutoMoto(Color bgColor){
         JComboBox comboBox = new JComboBox();
+        JPanel checkBoxrecap= nvPanelBox(Color.ORANGE);
+        JTable tableauRecap = Tableau.tableau();
         ArrayList<String> marques = new ArrayList<>();
         premierButton.addActionListener(e -> {
             marques.clear();
@@ -118,8 +120,11 @@ public class Panel {
             }
             comboBox.setModel(new DefaultComboBoxModel(marques.toArray()));
         });
+        checkBoxrecap.add(comboBox);
+        tableauRecap.add(comboBox.getSelectedItem());
+        checkBoxrecap.add(tableauRecap);
 
-        return comboBox;
+        return checkBoxrecap;
     }
 
     public static JPanel choixPanel(String nom, Color couleur, String nomBouton1, String nomBouton2){
@@ -164,17 +169,16 @@ public class Panel {
         return ajoutOnglet;
     }
 
-    public static JPanel checkBoxPanel(JComboBox comboBox, ArrayList<Vehicule> vehicules){
+    /*public static JPanel checkBoxPanel(JComboBox comboBox, Vehicule vehicules){
         JPanel comboPanel = nvPanelBox(Color.ORANGE);
         comboBox.addActionListener(e -> {
-            for(Vehicule v: vehicules){
-                System.out.println(v.getClass());
-                JCheckBox check = Bouton.nvCheckbox(v);
+                JCheckBox check = Bouton.nvCheckbox(vehicules);
                 comboPanel.add(check);
-            }
-        });
+            });
         return  comboPanel;
-    }
+    }*/
+
+   // public static JPanel
 
     public static JCheckBox addCheckbox(String message) {
         JCheckBox checkbox = new JCheckBox(message);
