@@ -35,4 +35,36 @@ public class AdressePanel extends FlowPanel {
         add(codeTexte);
         add(villeTexte);
     }
+
+    public TextField getNumeroTexte() {
+        return numeroTexte;
+    }
+
+    public void setNumeroTexte(TextField numeroTexte) {
+        this.numeroTexte = numeroTexte;
+    }
+
+    public TextField getRueTexte() {
+        return rueTexte;
+    }
+
+    public void setRueTexte(TextField rueTexte) {
+        this.rueTexte = rueTexte;
+    }
+
+    public TextField getCodeTexte() {
+        return codeTexte;
+    }
+
+    public void setCodeTexte(TextField codeTexte) {
+        this.codeTexte = codeTexte;
+    }
+
+    public TextField getVilleTexte() {
+        return villeTexte;
+    }
+
+    public void setVilleTexte(TextField villeTexte) {
+        this.villeTexte = villeTexte;
+    }
 }

@@ -63,6 +63,10 @@ public class EmprunteurForm extends JPanel {
 
         });
 
+        add(identifiantPanel);
+        add(adressePanel);
+        add(cancelButton);
+        add(validButton);
     }
 
     // take data from identification and adressePanel to build an Emprunter entity
