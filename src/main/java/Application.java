@@ -16,7 +16,7 @@ public class Application {
      * Change this variable if in production mode
      * This will stop Ebean from deleting and re-creating the DB
      */
-    private static final boolean isDeveloppement = true;
+    private static final boolean isDeveloppement = false;
 
     private static EbeanServer server;
 
@@ -37,7 +37,9 @@ public class Application {
         initEbeanServer();
 
         // initialize data of the application
-        initData();
+        if (isDeveloppement) {
+            initData();
+        }
 
         //initialize frame
         LocationViews fenetreLocation = new LocationViews();

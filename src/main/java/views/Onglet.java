@@ -11,7 +11,7 @@ public class Onglet {
 
 
     public static JTabbedPane nvOnglet(){
-        JTabbedPane onglet= new JTabbedPane();
+        JTabbedPane onglet = new JTabbedPane();
         return onglet;
     }
 }

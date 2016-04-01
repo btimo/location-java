@@ -11,10 +11,7 @@ import org.jdatepicker.impl.UtilDateModel;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.Objects;
 import java.util.Properties;
 
 public class Panel {
@@ -166,8 +163,8 @@ public class Panel {
         JPanel fenetrePanel = Panel.nvPanelBox(Color.ORANGE);
 
         nouveau.addActionListener(e -> {
-            LocationViews.donnee.add("Liste des voitures", fenetrePanel);
-            LocationViews.locationFrame.add(LocationViews.donnee);
+            LocationViews.tabs.add("Liste des voitures", fenetrePanel);
+            LocationViews.locationFrame.add(LocationViews.tabs);
         });
         ajoutOnglet.add(nouveau);
         return ajoutOnglet;

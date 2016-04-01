@@ -7,57 +7,28 @@ import java.awt.*;
 
 
 public class LocationViews {
-    public static  JFrame locationFrame = Fenetre.nvFenetre("LocAppli",500,500);
-    public static JTabbedPane donnee = Onglet.nvOnglet();
+    public static JFrame locationFrame = Fenetre.nvFenetre("LocAppli",600,600);
+    public static JTabbedPane tabs;
 
     public LocationViews() {
 
         // Fenetre principale
         JPanel fenetrePanel = Panel.nvPanelBox(Color.ORANGE);
-        donnee.add("Choix de voiture",fenetrePanel);
-        // rajout du titre
-        JPanel titrePanel = Panel.nvPanelFlow(Color.ORANGE);
-        JLabel reservationLabel = Label.nvLabel("LocAppli","Calibri", Font.PLAIN, 25);
-        titrePanel.add(reservationLabel);
+        JPanel fenetrePanel2 = Panel.nvPanelBox(Color.ORANGE);
+        JPanel fenetrePanel3 = Panel.nvPanelBox(Color.ORANGE);
+        JPanel fenetrePanel4 = Panel.nvPanelBox(Color.ORANGE);
+        JPanel fenetrePanel5 = Panel.nvPanelBox(Color.ORANGE);
+        // Tabs = container des onglets
+        tabs = Onglet.nvOnglet();
+        tabs.addTab("Location",fenetrePanel5);
+        tabs.addTab("Emprunteurs",fenetrePanel2);
+        tabs.addTab("Exemplaires",fenetrePanel3);
+        tabs.addTab("Véhicules",fenetrePanel4);
+        tabs.addTab("Ajout location - à bouger",fenetrePanel);
 
-        // Panel identification
-        JPanel identifiantPanel = Panel.identification(Color.ORANGE);
+        new AjoutLocation(fenetrePanel);
 
-        // Panel adresse
-        JPanel adressePanel = Panel.adresse(Color.ORANGE);
-
-        // Panel choix type de vehicule
-        JPanel choixPanel = Panel.choixPanel("Type de location",Color.ORANGE,"Auto","Moto");
-
-        // Panel selection du vehicule
-        JPanel modelPanel = Panel.nvPanelFlow(Color.ORANGE);
-        JLabel constructeurModel = Label.nvLabel("Choix du véhicule","Arial",Font.BOLD,14);
-        modelPanel.add(constructeurModel);
-        modelPanel.add(Panel.listeAutoMoto(Color.ORANGE, true));
-
-        // Panel date
-        JPanel dateDepartPanel = Panel.datePanel("Date de départ", Color.ORANGE);
-        JPanel dateRetourPanel = Panel.datePanel("Date de retour", Color.ORANGE);
-
-        JPanel selectedVehicules = Panel.checkBoxPanel(Panel.listeAutoMoto(Color.ORANGE, true), Vehicules.get());
-        JPanel listePanel = Panel.listePanel(Color.ORANGE);
-
-        // Panel assurance
-        JCheckBox assurancePanel = Panel.addCheckbox("Assurance");
-        assurancePanel.setBackground(Color.ORANGE);
-
-        fenetrePanel.add(titrePanel);
-        fenetrePanel.add(identifiantPanel);
-        fenetrePanel.add(adressePanel);
-        fenetrePanel.add(choixPanel);
-        fenetrePanel.add(modelPanel);
-        fenetrePanel.add(dateDepartPanel);
-        fenetrePanel.add(dateRetourPanel);
-        fenetrePanel.add(assurancePanel);
-        fenetrePanel.add(selectedVehicules);
-        fenetrePanel.add(listePanel);
-
-        locationFrame.add(donnee);
+        locationFrame.add(tabs);
         locationFrame.setVisible(true);
     }
 
