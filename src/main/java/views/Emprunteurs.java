@@ -3,7 +3,10 @@ package views;
 import models.Emprunteur;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
 
 /**
  * Created by Adrien on 02/04/2016.
