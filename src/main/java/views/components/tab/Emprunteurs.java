@@ -4,6 +4,7 @@ import models.Emprunteur;
 import views.Panel;
 import views.Tableau;
 import views.TableauRecherche;
+import views.components.dialog.EmprunteurFormDialog;
 import views.components.misc.Label;
 
 import javax.swing.*;
@@ -25,6 +26,9 @@ public class Emprunteurs {
         // Bouton rajout Ajouter un emprunteur
         JPanel ajoutPanel = Panel.nvPanelFlow(Color.ORANGE);
         JButton ajouter = new JButton("Ajouter un emprunteur");
+        ajouter.addActionListener(e -> {
+            new EmprunteurFormDialog((JFrame)((JButton)e.getSource()).getParent().getParent().getParent().getParent().getParent().getParent().getParent());
+        });
         ajoutPanel.add(ajouter);
 
         // Données tableau

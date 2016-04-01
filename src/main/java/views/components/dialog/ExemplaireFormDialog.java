@@ -24,6 +24,8 @@ public class ExemplaireFormDialog extends JDialog {
     }
 
     private void initExemplaireFormDialog(){
-        this.add(exemplaireForm);
+        setContentPane(exemplaireForm);
+        pack();
+        setVisible(true);
     }
 }

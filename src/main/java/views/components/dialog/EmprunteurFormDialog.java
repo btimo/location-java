@@ -24,6 +24,8 @@ public class EmprunteurFormDialog extends JDialog {
     }
 
     private void initEmprunteurFormDialog(){
-        this.add(emprunteurForm);
+        setContentPane(emprunteurForm);
+        pack();
+        setVisible(true);
     }
 }
