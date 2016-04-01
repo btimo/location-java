@@ -97,7 +97,7 @@ public class Panel {
     public static JComboBox listeAutoMoto(Color bgColor, boolean firstLauch){
         JComboBox comboBox = new JComboBox();
         JPanel checkBoxrecap= nvPanelBox(Color.ORANGE);
-        JTable tableauRecap = Tableau.tableau();
+        //JTable tableauRecap = Tableau.tableau();
         ArrayList<String> marques = new ArrayList<>();
         premierButton.addActionListener(e -> {
             marques.clear();
@@ -119,7 +119,7 @@ public class Panel {
         });
         checkBoxrecap.add(comboBox);
         //tableauRecap.add(comboBox.getSelectedItem());
-        checkBoxrecap.add(tableauRecap);
+        //checkBoxrecap.add(tableauRecap);
 
         if (firstLauch) {
             for(Vehicule v : Vehicules.get()) {
