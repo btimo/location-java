@@ -24,6 +24,8 @@ public class VehiculeFormDialog extends JDialog {
     }
 
     private void initVehiculeFormDialog(){
-        this.add(vehiculeForm);
+        setContentPane(vehiculeForm);
+        pack();
+        setVisible(true);
     }
 }

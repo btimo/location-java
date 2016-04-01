@@ -44,23 +44,21 @@ public class EmprunteurForm extends JPanel {
         // button to cancel any modification + close the window
         cancelButton = new JButton("Annuler");
         cancelButton.addActionListener(e -> {
-            EmprunteurForm me = (EmprunteurForm) e.getSource();
-            EmprunteurFormDialog meParent = (EmprunteurFormDialog) me.getParent();
-            meParent.setVisible(false);
-            meParent.dispatchEvent(new WindowEvent(
-                    meParent, WindowEvent.WINDOW_CLOSING));
+            /*JButton me = (JButton) e.getSource();
+            EmprunteurFormDialog dialog = (EmprunteurFormDialog) me.getParent().getParent();
+            dialog.setVisible(false);
+            dialog.dispatchEvent(new WindowEvent(dialog, WindowEvent.WINDOW_CLOSING));*/
         });
 
         // button to validate the form + close the window
         validButton = new JButton("Valider");
         validButton.addActionListener(e -> {
-            EmprunteurForm me = (EmprunteurForm) e.getSource();
-            EmprunteurFormDialog meParent = (EmprunteurFormDialog) me.getParent();
-            me.buildAndSaveEmprunteur();
-            meParent.setVisible(false);
-            meParent.dispatchEvent(new WindowEvent(
-                    meParent, WindowEvent.WINDOW_CLOSING));
-
+            // todo: rewrite with Event
+            /*JButton me = (JButton) e.getSource();
+            EmprunteurFormDialog dialog = (EmprunteurFormDialog) me.getParent().getParent();
+            ((EmprunteurForm) me.getParent()).buildAndSaveEmprunteur();
+            dialog.setVisible(false);
+            dialog.dispatchEvent(new WindowEvent(dialog, WindowEvent.WINDOW_CLOSING));*/
         });
 
         add(identifiantPanel);

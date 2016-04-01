@@ -1,6 +1,10 @@
 package views.components.tab;
 
 import models.Emprunteur;
+import views.Panel;
+import views.Tableau;
+import views.TableauRecherche;
+import views.components.dialog.EmprunteurFormDialog;
 import views.components.misc.TableauRecherche;
 import views.components.misc.Label;
 
@@ -26,6 +30,9 @@ public class Emprunteurs extends JPanel {
 
         // Bouton rajout Ajouter un emprunteur
         JButton ajouter = new JButton("Ajouter un emprunteur");
+        ajouter.addActionListener(e -> {
+            new EmprunteurFormDialog((JFrame)((JButton)e.getSource()).getParent().getParent().getParent().getParent().getParent().getParent().getParent());
+        });
         ajouter.setAlignmentX(Component.CENTER_ALIGNMENT);
         add(ajouter);
 

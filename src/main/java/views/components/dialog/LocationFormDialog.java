@@ -24,6 +24,8 @@ public class LocationFormDialog extends JDialog {
     }
 
     private void initLocationFormDialog(){
-        this.add(locationForm);
+        setContentPane(locationForm);
+        pack();
+        setVisible(true);
     }
 }
