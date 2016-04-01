@@ -1,9 +1,6 @@
 package views.components.tab;
 
 import models.Emprunteur;
-import views.Panel;
-import views.Tableau;
-import views.TableauRecherche;
 import views.components.dialog.EmprunteurFormDialog;
 import views.components.misc.TableauRecherche;
 import views.components.misc.Label;
