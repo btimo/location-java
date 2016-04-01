@@ -1,4 +1,4 @@
-package views;
+package views.components.misc;
 
 import java.awt.*;
 import java.awt.event.*;

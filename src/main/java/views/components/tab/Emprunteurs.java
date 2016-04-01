@@ -1,31 +1,33 @@
 package views.components.tab;
 
 import models.Emprunteur;
-import views.Panel;
-import views.Tableau;
-import views.TableauRecherche;
+import views.components.misc.TableauRecherche;
 import views.components.misc.Label;
 
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.KeyEvent;
 import java.awt.Color;
 import java.awt.Font;
 
 
-public class Emprunteurs {
-    public Emprunteurs(JPanel fenetrePanel) {
+public class Emprunteurs extends JPanel {
+    public Emprunteurs() {
+        super();
+        setBackground(Color.orange);
+        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        initContent();
+    }
+
+    private void initContent() {
         // rajout du titre
-        JPanel titrePanel = Panel.nvPanelFlow(Color.ORANGE);
         JLabel reservationLabel = new Label("Liste des emprunteurs","Calibri", Font.PLAIN, 25);
-        titrePanel.add(reservationLabel);
+        reservationLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        add(reservationLabel);
 
         // Bouton rajout Ajouter un emprunteur
-        JPanel ajoutPanel = Panel.nvPanelFlow(Color.ORANGE);
         JButton ajouter = new JButton("Ajouter un emprunteur");
-        ajoutPanel.add(ajouter);
+        ajouter.setAlignmentX(Component.CENTER_ALIGNMENT);
+        add(ajouter);
 
         // Données tableau
         String[] entetes = {"Numéro", "Nom", "Prénom", "Adresse", "Actions"};
@@ -43,12 +45,6 @@ public class Emprunteurs {
             count++;
         }
 
-        fenetrePanel.add(titrePanel);
-
-        fenetrePanel.add(ajoutPanel);
-
-        Tableau tableau = new TableauRecherche(fenetrePanel, donnees, entetes);
-        tableau.generer();
-
+        add(new TableauRecherche(donnees, entetes));
     }
 }

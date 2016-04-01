@@ -1,6 +1,5 @@
 package views.components.tab;
 
-import views.*;
 import views.components.misc.*;
 import views.components.misc.Label;
 
@@ -9,22 +8,26 @@ import models.LocationExemplaire;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.Panel;
 
 /**
  * Created by Adrien on 01/04/2016.
  */
-public class Locations {
-    public Locations(JPanel fenetrePanel) {
+public class Locations extends JPanel {
+    public Locations() {
+        super();
+        setBackground(Color.orange);
+        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        initContent();
+    }
+
+    private void initContent() {
         // rajout du titre
-        JPanel titrePanel = views.Panel.nvPanelFlow(Color.ORANGE);
         JLabel reservationLabel = new Label("Liste des locations","Calibri", Font.PLAIN, 25);
-        titrePanel.add(reservationLabel);
+        add(reservationLabel);
 
         // Bouton rajout Ajouter une location
-        JPanel ajoutPanel = views.Panel.nvPanelFlow(Color.ORANGE);
         JButton ajouter = new JButton("Ajouter une location");
-        ajoutPanel.add(ajouter);
+        add(ajouter);
 
         // Données tableau
         String[] entetes = {"Numéro", "Locataire", "Date début", "Date fin", "Devis accepté", "Prix TTC", "Actions"};
@@ -50,12 +53,6 @@ public class Locations {
             count++;
         }
 
-        fenetrePanel.add(titrePanel);
-
-        fenetrePanel.add(ajoutPanel);
-
-        Tableau tableau = new TableauRecherche(fenetrePanel, donnees, entetes);
-        tableau.generer();
-
+        add(new TableauRecherche(donnees, entetes));
     }
 }

@@ -3,9 +3,7 @@ package views.components.tab;
 import models.Auto;
 import models.Moto;
 import models.Vehicule;
-import views.Panel;
-import views.Tableau;
-import views.TableauRecherche;
+import views.components.misc.TableauRecherche;
 import views.components.misc.Label;
 
 import javax.swing.*;
@@ -13,17 +11,22 @@ import java.awt.Color;
 import java.awt.Font;
 
 
-public class Vehicules {
-    public Vehicules(JPanel fenetrePanel) {
+public class Vehicules extends JPanel {
+    public Vehicules() {
+        super();
+        setBackground(Color.orange);
+        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        initContent();
+    }
+
+    public void initContent() {
         // rajout du titre
-        JPanel titrePanel = Panel.nvPanelFlow(Color.ORANGE);
         JLabel reservationLabel = new Label("Liste des véhicules","Calibri", Font.PLAIN, 25);
-        titrePanel.add(reservationLabel);
+        add(reservationLabel);
 
         // Bouton rajout Ajouter un exemplaire
-        JPanel ajoutPanel = Panel.nvPanelFlow(Color.ORANGE);
         JButton ajouter = new JButton("Ajouter un véhicule");
-        ajoutPanel.add(ajouter);
+        add(ajouter);
 
         // Données tableau
         String[] entetes = {"Numéro", "Marque", "Modèle/Cylindrée", "Prix journalier", "Prix assurance", "Actions"};
@@ -55,12 +58,6 @@ public class Vehicules {
             count++;
         }
 
-        fenetrePanel.add(titrePanel);
-
-        fenetrePanel.add(ajoutPanel);
-
-        Tableau tableau = new TableauRecherche(fenetrePanel, donnees, entetes);
-        tableau.generer();
-
+        add(new TableauRecherche(donnees, entetes));
     }
 }

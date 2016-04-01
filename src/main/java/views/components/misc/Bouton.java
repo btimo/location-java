@@ -1,4 +1,4 @@
-package views;
+package views.components.misc;
 
 import containers.Vehicules;
 import models.Auto;
