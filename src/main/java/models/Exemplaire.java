@@ -30,6 +30,10 @@ public class Exemplaire extends BaseModel{
     public static final int penaliteReservoir = 30;
     public static final int penaliteEndommage = 500;
 
+    public Exemplaire(){
+        // used by ExemplaireForm.class
+    }
+
     /**
      * Constructeur complet d'un exemplaire
      * @param kilometres kilométrage de l'exemplaire
@@ -201,6 +205,10 @@ public class Exemplaire extends BaseModel{
         return getPrixFinalHorsAssurance() + vehicule.getPrixAssurance();
     }
 
+
+    public String getDisplayName(){
+        return "#" + getId() + " - " + getVehicule().getMarque();
+    }
     /**
      * Surcharge de equals
      * @param o objet à comparer

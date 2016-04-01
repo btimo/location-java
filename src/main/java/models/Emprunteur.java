@@ -26,6 +26,10 @@ public class Emprunteur extends BaseModel  {
     @OneToMany(cascade= CascadeType.ALL , mappedBy = "emprunteur")
     private List<Location> locations;
 
+    public Emprunteur(){
+        // used by EmprunteurForm.class
+    }
+
     /**
      * Constructeur de base d'un emprunteur
      * @param adresse adresse de l'emprunteur
@@ -163,6 +167,11 @@ public class Emprunteur extends BaseModel  {
      */
     public void genererDevis(int locationId, boolean test) {
         new GenerationPdf("devis", this, locationId, test).generateDocument();
+    }
+
+    @Transient
+    public String getDisplayName(){
+        return getNom() + " " + getPrenom();
     }
 
     /**

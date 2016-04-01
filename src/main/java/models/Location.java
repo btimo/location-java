@@ -50,6 +50,9 @@ public class Location extends BaseModel {
     private boolean approuvee; // Devis accepté ?
 
 
+    public Location(){
+        // used by LocationForm
+    }
     /**
      * Constructeur complet
      * @param debut date de début de location
