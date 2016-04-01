@@ -1,6 +1,5 @@
 package views;
 
-import models.Exemplaire;
 import models.Location;
 import models.LocationExemplaire;
 
@@ -36,7 +35,6 @@ public class Locations {
             donnees[count][4] = (l.isApprouvee()) ? "Oui" : "Non";
 
             double prixFinal = 0;
-            // todo: prix ne marche pas
             for (LocationExemplaire e : l.getLocationExemplaires()) {
                 prixFinal += e.getPrixFinalRetour();
             }
@@ -47,23 +45,11 @@ public class Locations {
             count++;
         }
 
-        /*Object[][] donnees = {
-                {"Johnathan", "Sykes", Color.RED, true, "Tennis"},
-                {"Johnathan", "Sykes", Color.RED, true, "Tennis"},
-                {"Johnathan", "Sykes", Color.RED, true, "Tennis"},
-                {"Johnathan", "Sykes", Color.RED, true, "Tennis"},
-                {"Johnathan", "Sykes", Color.RED, true, "Tennis"},
-                {"Adrien", "Sykes", Color.RED, true, "Tennis"},
-                {"Johnathan", "Sykes", Color.RED, true, "Tennis"},
-                {"Johnathan", "Aykes", Color.RED, true, "Tennis"},
-        };*/
-
         fenetrePanel.add(titrePanel);
 
         fenetrePanel.add(ajoutPanel);
 
         Tableau tableau = new TableauRecherche(fenetrePanel, donnees, entetes);
         tableau.generer();
-
     }
 }

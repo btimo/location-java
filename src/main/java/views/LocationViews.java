@@ -27,6 +27,9 @@ public class LocationViews {
         tabs.addTab("Ajout location - à bouger",fenetrePanel);
 
         new AjoutLocation(fenetrePanel);
+        new Emprunteurs(fenetrePanel2);
+        new Exemplaires(fenetrePanel3);
+        new views.Vehicules(fenetrePanel4);
         new Locations(fenetrePanel5);
 
         locationFrame.add(tabs);

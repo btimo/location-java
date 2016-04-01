@@ -199,6 +199,19 @@ public class Location extends BaseModel {
     public void louer(Exemplaire exemplaire, boolean assurance){
         LocationExemplaire le = new LocationExemplaire(this, exemplaire, assurance);
         locationExemplaires.add(le);
+        //le.save();
+    }
+
+    /**
+     * Sauvegarde en BDD
+     * On boucle sur locationExemplaires pour mettre à jour la table quand l'ID est inséré
+     */
+    @Override
+    public void save() {
+        super.save();
+        for (LocationExemplaire l : locationExemplaires) {
+            l.save();
+        }
     }
 
     /**
