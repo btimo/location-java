@@ -7,6 +7,10 @@ import views.TableauRecherche;
 import views.components.misc.Label;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
 import java.awt.Color;
 import java.awt.Font;
 
