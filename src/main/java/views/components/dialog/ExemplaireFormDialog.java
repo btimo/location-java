@@ -1,6 +1,7 @@
-package views;
+package views.components.dialog;
 
 import models.Exemplaire;
+import views.components.form.ExemplaireForm;
 
 import javax.swing.*;
 import java.awt.*;

@@ -1,21 +1,25 @@
-package views;
+package views.components.tab;
 
 import models.Emprunteur;
+import views.Panel;
+import views.Tableau;
+import views.TableauRecherche;
+import views.components.misc.Label;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.awt.Color;
+import java.awt.Font;
 
-/**
- * Created by Adrien on 02/04/2016.
- */
+
 public class Emprunteurs {
     public Emprunteurs(JPanel fenetrePanel) {
         // rajout du titre
         JPanel titrePanel = Panel.nvPanelFlow(Color.ORANGE);
-        JLabel reservationLabel = Label.nvLabel("Liste des emprunteurs","Calibri", Font.PLAIN, 25);
+        JLabel reservationLabel = new Label("Liste des emprunteurs","Calibri", Font.PLAIN, 25);
         titrePanel.add(reservationLabel);
 
         // Bouton rajout Ajouter un emprunteur

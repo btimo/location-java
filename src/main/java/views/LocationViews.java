@@ -1,6 +1,10 @@
 package views;
 
-import containers.Vehicules;
+import views.components.tab.Emprunteurs;
+import views.components.tab.Exemplaires;
+import views.components.tab.Locations;
+import views.components.tab.Vehicules;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -26,10 +30,10 @@ public class LocationViews {
         tabs.addTab("Véhicules",fenetrePanel4);
         tabs.addTab("Ajout location - à bouger",fenetrePanel);
 
-        new AjoutLocation(fenetrePanel);
+        //new AjoutLocation(fenetrePanel);
         new Emprunteurs(fenetrePanel2);
         new Exemplaires(fenetrePanel3);
-        new views.Vehicules(fenetrePanel4);
+        new Vehicules(fenetrePanel4);
         new Locations(fenetrePanel5);
 
         locationFrame.add(tabs);

@@ -1,20 +1,23 @@
-package views;
+package views.components.tab;
 
 import models.Auto;
 import models.Moto;
 import models.Vehicule;
+import views.Panel;
+import views.Tableau;
+import views.TableauRecherche;
+import views.components.misc.Label;
 
 import javax.swing.*;
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Font;
 
-/**
- * Created by Adrien on 02/04/2016.
- */
+
 public class Vehicules {
     public Vehicules(JPanel fenetrePanel) {
         // rajout du titre
         JPanel titrePanel = Panel.nvPanelFlow(Color.ORANGE);
-        JLabel reservationLabel = Label.nvLabel("Liste des véhicules","Calibri", Font.PLAIN, 25);
+        JLabel reservationLabel = new Label("Liste des véhicules","Calibri", Font.PLAIN, 25);
         titrePanel.add(reservationLabel);
 
         // Bouton rajout Ajouter un exemplaire

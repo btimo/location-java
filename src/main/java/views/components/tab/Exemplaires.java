@@ -1,20 +1,22 @@
-package views;
+package views.components.tab;
 
 import models.Auto;
 import models.Exemplaire;
 import models.Moto;
+import views.Panel;
+import views.Tableau;
+import views.TableauRecherche;
+import views.components.misc.Label;
 
 import javax.swing.*;
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Font;
 
-/**
- * Created by Adrien on 02/04/2016.
- */
 public class Exemplaires {
     public Exemplaires(JPanel fenetrePanel) {
         // rajout du titre
         JPanel titrePanel = Panel.nvPanelFlow(Color.ORANGE);
-        JLabel reservationLabel = Label.nvLabel("Liste des exemplaires","Calibri", Font.PLAIN, 25);
+        JLabel reservationLabel = new Label("Liste des exemplaires","Calibri", Font.PLAIN, 25);
         titrePanel.add(reservationLabel);
 
         // Bouton rajout Ajouter un exemplaire

@@ -1,10 +1,15 @@
-package views;
+package views.components.tab;
+
+import views.*;
+import views.components.misc.*;
+import views.components.misc.Label;
 
 import models.Location;
 import models.LocationExemplaire;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.Panel;
 
 /**
  * Created by Adrien on 01/04/2016.
@@ -12,12 +17,12 @@ import java.awt.*;
 public class Locations {
     public Locations(JPanel fenetrePanel) {
         // rajout du titre
-        JPanel titrePanel = Panel.nvPanelFlow(Color.ORANGE);
-        JLabel reservationLabel = Label.nvLabel("Liste des locations","Calibri", Font.PLAIN, 25);
+        JPanel titrePanel = views.Panel.nvPanelFlow(Color.ORANGE);
+        JLabel reservationLabel = new Label("Liste des locations","Calibri", Font.PLAIN, 25);
         titrePanel.add(reservationLabel);
 
         // Bouton rajout Ajouter une location
-        JPanel ajoutPanel = Panel.nvPanelFlow(Color.ORANGE);
+        JPanel ajoutPanel = views.Panel.nvPanelFlow(Color.ORANGE);
         JButton ajouter = new JButton("Ajouter une location");
         ajoutPanel.add(ajouter);
 
@@ -51,5 +56,6 @@ public class Locations {
 
         Tableau tableau = new TableauRecherche(fenetrePanel, donnees, entetes);
         tableau.generer();
+
     }
 }

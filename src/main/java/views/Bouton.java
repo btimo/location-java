@@ -49,15 +49,4 @@ public class Bouton {
 
 
 
-
-    public static ButtonGroup nvgroupeButton( ArrayList<JRadioButton> boutons) {
-        ButtonGroup groupeButton = new ButtonGroup();
-        for (JRadioButton btn : boutons) {
-            groupeButton.add(btn);
-        }
-        return groupeButton;
-    }
-
-
-
 }
