@@ -20,13 +20,14 @@ public class LocationViews {
         JPanel fenetrePanel5 = Panel.nvPanelBox(Color.ORANGE);
         // Tabs = container des onglets
         tabs = Onglet.nvOnglet();
-        tabs.addTab("Location",fenetrePanel5);
+        tabs.addTab("Locations",fenetrePanel5);
         tabs.addTab("Emprunteurs",fenetrePanel2);
         tabs.addTab("Exemplaires",fenetrePanel3);
         tabs.addTab("Véhicules",fenetrePanel4);
         tabs.addTab("Ajout location - à bouger",fenetrePanel);
 
         new AjoutLocation(fenetrePanel);
+        new Locations(fenetrePanel5);
 
         locationFrame.add(tabs);
         locationFrame.setVisible(true);

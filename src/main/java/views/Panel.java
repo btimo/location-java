@@ -118,7 +118,7 @@ public class Panel {
             comboBox.setModel(new DefaultComboBoxModel(marques.toArray()));
         });
         checkBoxrecap.add(comboBox);
-        tableauRecap.add(comboBox.getSelectedItem());
+        //tableauRecap.add(comboBox.getSelectedItem());
         checkBoxrecap.add(tableauRecap);
 
         if (firstLauch) {

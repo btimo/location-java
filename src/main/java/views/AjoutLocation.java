@@ -35,7 +35,7 @@ public class AjoutLocation {
         JPanel dateDepartPanel = Panel.datePanel("Date de départ", Color.ORANGE);
         JPanel dateRetourPanel = Panel.datePanel("Date de retour", Color.ORANGE);
 
-        JPanel selectedVehicules = Panel.checkBoxPanel(Panel.listeAutoMoto(Color.ORANGE, true), Vehicules.get());
+        //JPanel selectedVehicules = Panel.checkBoxPanel(Panel.listeAutoMoto(Color.ORANGE, true), Vehicules.get());
         JPanel listePanel = Panel.listePanel(Color.ORANGE);
 
         // Panel assurance
@@ -50,7 +50,7 @@ public class AjoutLocation {
         fenetrePanel.add(dateDepartPanel);
         fenetrePanel.add(dateRetourPanel);
         fenetrePanel.add(assurancePanel);
-        fenetrePanel.add(selectedVehicules);
+        //fenetrePanel.add(selectedVehicules);
         fenetrePanel.add(listePanel);
     }
 }
