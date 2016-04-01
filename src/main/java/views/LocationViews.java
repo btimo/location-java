@@ -33,13 +33,13 @@ public class LocationViews {
         JPanel modelPanel = Panel.nvPanelFlow(Color.ORANGE);
         JLabel constructeurModel = Label.nvLabel("Choix du véhicule","Arial",Font.BOLD,14);
         modelPanel.add(constructeurModel);
-        modelPanel.add(Panel.listeAutoMoto(Color.ORANGE));
+        modelPanel.add(Panel.listeAutoMoto(Color.ORANGE, true));
 
         // Panel date
         JPanel dateDepartPanel = Panel.datePanel("Date de départ", Color.ORANGE);
         JPanel dateRetourPanel = Panel.datePanel("Date de retour", Color.ORANGE);
 
-        JPanel selectedVehicules = Panel.checkBoxPanel(Panel.listeAutoMoto(Color.ORANGE), Vehicules.get());
+        JPanel selectedVehicules = Panel.checkBoxPanel(Panel.listeAutoMoto(Color.ORANGE, true), Vehicules.get());
         JPanel listePanel = Panel.listePanel(Color.ORANGE);
 
         // Panel assurance
