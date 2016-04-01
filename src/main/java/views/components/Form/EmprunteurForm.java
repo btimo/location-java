@@ -1,8 +1,9 @@
-package views;
+package views.components.form;
 
 import models.Emprunteur;
-import views.components.panels.IdentificationPanel;
-import views.components.panels.AdressePanel;
+import views.components.dialog.EmprunteurFormDialog;
+import views.components.panel.IdentificationPanel;
+import views.components.panel.AdressePanel;
 
 import javax.swing.*;
 import java.awt.*;

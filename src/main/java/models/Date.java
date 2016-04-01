@@ -28,6 +28,15 @@ public class Date {
             "Aout", "Septembre", "Octobre", "Novembre", "Decembre"};
 
     /**
+     * Constructeur par défaut, date de rendu par exemple
+     */
+    public Date() {
+        this.jour = -1;
+        this.mois = -1;
+        this.annee = -1;
+    }
+
+    /**
      * Constructeur par défaut de date
      * @param jour jour 1-31
      * @param mois mois 1-12
@@ -189,6 +198,9 @@ public class Date {
      */
     @Override
     public String toString() {
-        return jour + " " + nomsMois[mois] + " " + annee;
+        if (jour != -1 || mois != -1 || annee != -1) {
+            return jour + " " + nomsMois[mois] + " " + annee;
+        }
+        return "Inconnu";
     }
 }

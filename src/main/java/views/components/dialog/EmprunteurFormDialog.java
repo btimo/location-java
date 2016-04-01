@@ -1,6 +1,7 @@
-package views;
+package views.components.dialog;
 
 import models.Emprunteur;
+import views.components.form.EmprunteurForm;
 
 import javax.swing.*;
 import java.awt.*;

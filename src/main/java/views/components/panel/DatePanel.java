@@ -1,10 +1,9 @@
-package views.components.panels;
+package views.components.panel;
 
-import models.Date;
 import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
-import views.DateLabelFormatter;
+import views.components.misc.DateLabelFormatter;
 import views.components.misc.Label;
 
 import javax.swing.*;

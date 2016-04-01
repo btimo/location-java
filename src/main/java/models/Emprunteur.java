@@ -127,6 +127,7 @@ public class Emprunteur extends BaseModel  {
     public void louer(Location l) {
         locations.add(l);
         l.setEmprunteur(this);
+        l.save();
     }
 
     /**

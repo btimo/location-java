@@ -1,6 +1,7 @@
-package views;
+package views.components.dialog;
 
 import models.Location;
+import views.components.form.LocationForm;
 
 import javax.swing.*;
 import java.awt.*;

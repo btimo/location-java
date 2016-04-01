@@ -1,6 +1,7 @@
-package views;
+package views.components.dialog;
 
 import models.Vehicule;
+import views.components.form.VehiculeForm;
 
 import javax.swing.*;
 import java.awt.*;

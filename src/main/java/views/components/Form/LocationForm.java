@@ -1,4 +1,4 @@
-package views;
+package views.components.form;
 
 
 import models.Location;

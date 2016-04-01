@@ -1,4 +1,4 @@
-package views.components.panels;
+package views.components.panel;
 
 
 import views.components.misc.Label;

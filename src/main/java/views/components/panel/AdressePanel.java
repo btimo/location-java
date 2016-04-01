@@ -1,9 +1,8 @@
-package views.components.panels;
+package views.components.panel;
 
 import views.components.misc.Label;
 import views.components.misc.TextField;
 
-import javax.swing.*;
 import java.awt.Color;
 
 public class AdressePanel extends FlowPanel {

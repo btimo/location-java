@@ -1,12 +1,10 @@
-package views.components.panels;
+package views.components.panel;
 
 import views.Bouton;
-import views.components.misc.*;
 import views.components.misc.Label;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
 
 public class TwoRadioPanel extends FlowPanel {
 
