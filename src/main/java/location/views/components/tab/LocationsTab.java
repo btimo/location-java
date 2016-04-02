@@ -8,6 +8,7 @@ import location.models.LocationExemplaire;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 
 /**
  * Created by Adrien on 01/04/2016.
@@ -22,12 +23,14 @@ public class LocationsTab extends JPanel {
 
     private void initContent() {
         // rajout du titre
-        JLabel reservationLabel = new CustomFontLabel("Liste des locations","Calibri", Font.PLAIN, 25);
-        add(reservationLabel);
+        JLabel title = new CustomFontLabel("Liste des locations","Calibri", Font.PLAIN, 25);
+        title.setAlignmentX(Component.CENTER_ALIGNMENT);
+        add(title);
 
         // Bouton rajout Ajouter une location
-        JButton ajouter = new JButton("Ajouter une location");
-        add(ajouter);
+        JButton addLocationButton = new JButton("Ajouter une location");
+        addLocationButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        add(addLocationButton);
 
         // Données tableau
         String[] entetes = {"Numéro", "Locataire", "Date début", "Date fin", "Devis accepté", "Prix TTC", "Actions"};
@@ -53,6 +56,14 @@ public class LocationsTab extends JPanel {
             count++;
         }
 
-        add(new TableauRecherche(donnees, entetes));
+        add(new TableauRecherche(donnees, entetes, new AbstractAction()
+        {
+            public void actionPerformed(ActionEvent e)
+            {
+                JTable table = (JTable)e.getSource();
+                // Récupère l'ID - 1
+                int modelRow = Integer.valueOf( e.getActionCommand() );
+            }
+        }));
     }
 }

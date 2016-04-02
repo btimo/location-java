@@ -130,10 +130,15 @@ public class Emprunteur extends BaseModel  {
     }
 
     /**
-     * On ramène la (les) voiture(s) louée(s) : la liste doit être vidée
+     * On ramène la (les) voiture(s) louée(s) : réparation et plein
+     * @param l location ramenée
      */
-    public void ramener() {
-        this.locations = new ArrayList<Location>();
+    public void ramener(Location l) {
+        for (LocationExemplaire le : l.getLocationExemplaires()) {
+            Exemplaire e = le.getExemplaire();
+            e.setReservoir(1); // Plein
+            e.setEndommage(false); // Réparation
+        }
     }
 
     /**

@@ -15,6 +15,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.*;
+import java.awt.event.ActionEvent;
 
 
 public class VehiculesTab extends JPanel {
@@ -30,11 +32,13 @@ public class VehiculesTab extends JPanel {
 
     public void initContent() {
         // rajout du titre
-        JLabel reservationLabel = new CustomFontLabel("Liste des véhicules","Calibri", Font.PLAIN, 25);
-        add(reservationLabel);
+        JLabel title = new CustomFontLabel("Liste des véhicules","Calibri", Font.PLAIN, 25);
+        title.setAlignmentX(Component.CENTER_ALIGNMENT);
+        add(title);
 
         // Bouton rajout Ajouter un exemplaire
         addVehiculeButton = new JButton("Ajouter un véhicule");
+        addVehiculeButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         addVehiculeButton.addActionListener(new ButtonListener());
         add(addVehiculeButton);
 
@@ -68,7 +72,15 @@ public class VehiculesTab extends JPanel {
             count++;
         }
 
-        add(new TableauRecherche(donnees, entetes));
+        add(new TableauRecherche(donnees, entetes, new AbstractAction()
+        {
+            public void actionPerformed(ActionEvent e)
+            {
+                JTable table = (JTable)e.getSource();
+                // Récupère l'ID - 1
+                int modelRow = Integer.valueOf( e.getActionCommand() );
+            }
+        }));
     }
 
     private class ButtonListener implements ActionListener {

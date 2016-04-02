@@ -3,18 +3,22 @@ package location.views.components.misc;
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import java.awt.*;
 
 
 public class TableauRecherche extends Tableau {
 
-    public TableauRecherche(Object[][] donnees, String[] entetes){
-        super(donnees, entetes);
+    public TableauRecherche(Object[][] donnees, String[] entetes, AbstractAction action){
+        super(donnees, entetes, action);
     }
 
     public void generer(){
         JLabel nomLabel = new CustomFontLabel("Recherche : ");
+        nomLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+
         JTextField nomTexte = new JTextField("", 10);
-        //nomTexte.setMaximumSize(new Dimension(100,10));
+        nomTexte.setMaximumSize( new Dimension( 200, 24 ) );
+        nomTexte.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         nomTexte.getDocument().addDocumentListener(new DocumentListener() {
             @Override
