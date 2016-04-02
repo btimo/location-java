@@ -62,7 +62,7 @@ public class EmprunteursTab extends JPanel{
             donnees[count][1] = e.getNom();
             donnees[count][2] = e.getPrenom();
             donnees[count][3] = e.getAdresse().toString();
-            donnees[count][4] = "Bouton";
+            donnees[count][4] = "Détails";
 
             count++;
         }

@@ -48,6 +48,7 @@ public class LocationForm extends JPanel {
     public LocationForm(Location l){
         super();
         location = l;
+        initContent();
         initContentWithData();
     }
 

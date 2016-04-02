@@ -49,8 +49,8 @@ public class LocationFormDialog extends JDialog {
     private void initLocationFormDialog(){
         setContentPane(locationForm);
 
-        locationForm.getValidButton().addActionListener(new LocationFormDialog.ButtonListener());
-        locationForm.getCancelButton().addActionListener(new LocationFormDialog.ButtonListener());
+        locationForm.getValidButton().addActionListener(new ButtonListener());
+        locationForm.getCancelButton().addActionListener(new ButtonListener());
 
         pack();
         setVisible(true);
