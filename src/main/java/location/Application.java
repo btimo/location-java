@@ -9,6 +9,8 @@ import location.views.LocationView;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.swing.*;
+
 /**
  * Classe utilisée pour le lancement des fenêtres
  * @author Timothée Barbot
@@ -43,7 +45,7 @@ public class Application {
      * Constructeur privé
      */
     private Application(){
-        System.out.println("location.Application Location");
+        System.out.println("Lancement de l'application en cours...");
 
         initEbeanServer();
 
@@ -52,8 +54,12 @@ public class Application {
             initData();
         }
 
-        //initialize frame
-        view = new LocationView();
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                // initialize frame
+                view = new LocationView();
+            }
+        });
     }
 
     /**

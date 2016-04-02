@@ -58,7 +58,7 @@ public class GenerationPdf {
     /**
      * Fonction de génération du PDF
      */
-    public void generateDocument() {
+    public synchronized void generateDocument() {
         try {
             Document document = new Document();
             PdfWriter.getInstance(document, new FileOutputStream("pdf/"+type+"/"+ locationId +".pdf"));
@@ -75,7 +75,7 @@ public class GenerationPdf {
      * Ajout des metadatas (auteurs, nom...)
      * @param document document dans lequel ajouter les datas
      */
-    private void addMetaData(Document document) {
+    private synchronized void addMetaData(Document document) {
         document.addTitle("Facture #"+locationId);
         document.addSubject("Facture #"+locationId);
         document.addKeywords("facture, location, projet java, efrei");
@@ -88,7 +88,7 @@ public class GenerationPdf {
      * @param document document dans lequel ajouter le contenu
      * @throws DocumentException exception en cas de comportement anormal
      */
-    private void addContent(Document document)
+    private synchronized void addContent(Document document)
             throws DocumentException {
         Paragraph preface = new Paragraph();
         // We add one empty line
@@ -235,7 +235,7 @@ public class GenerationPdf {
      * @param paragraph paragraphe dans lequel ajouter les lignes vides
      * @param number nombre de lignes à ajouter
      */
-    private void addEmptyLine(Paragraph paragraph, int number) {
+    private synchronized void addEmptyLine(Paragraph paragraph, int number) {
         for (int i = 0; i < number; i++) {
             paragraph.add(new Paragraph(" "));
         }

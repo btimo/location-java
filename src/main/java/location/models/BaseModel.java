@@ -37,7 +37,7 @@ public abstract class BaseModel extends Model {
      * Getter de ID
      * @return ID unique
      */
-    public Long getId() {
+    public synchronized Long getId() {
         return id;
     }
 
@@ -45,7 +45,7 @@ public abstract class BaseModel extends Model {
      * Setter de UD
      * @param id id unique
      */
-    public void setId(Long id) {
+    public synchronized void setId(Long id) {
         this.id = id;
     }
 
@@ -53,7 +53,7 @@ public abstract class BaseModel extends Model {
      * Getter de version
      * @return numéro de version
      */
-    public Long getVersion() {
+    public synchronized Long getVersion() {
         return version;
     }
 
@@ -61,7 +61,7 @@ public abstract class BaseModel extends Model {
      * Setter de version
      * @param version numéro de version
      */
-    public void setVersion(Long version) {
+    public synchronized void setVersion(Long version) {
         this.version = version;
     }
 
@@ -69,7 +69,7 @@ public abstract class BaseModel extends Model {
      * Getter du timestamp de création de l'objet
      * @return timestamp de création de l'objet
      */
-    public Timestamp getWhenCreated() {
+    public synchronized Timestamp getWhenCreated() {
         return whenCreated;
     }
 
@@ -77,7 +77,7 @@ public abstract class BaseModel extends Model {
      * Setter du timestamp de création de l'objet
      * @param whenCreated timestamp de création de l'objet
      */
-    public void setWhenCreated(Timestamp whenCreated) {
+    public synchronized void setWhenCreated(Timestamp whenCreated) {
         this.whenCreated = whenCreated;
     }
 
@@ -85,7 +85,7 @@ public abstract class BaseModel extends Model {
      * Getter du timestamp de mise à jour de l'objet
      * @return timestamp de la mise à jour de l'objet
      */
-    public Timestamp getWhenUpdated() {
+    public synchronized Timestamp getWhenUpdated() {
         return whenUpdated;
     }
 
@@ -93,7 +93,7 @@ public abstract class BaseModel extends Model {
      * Setter de timestamp de mise à jour de l'objet
      * @param whenUpdated timestamp de la mise à jour de l'objet
      */
-    public void setWhenUpdated(Timestamp whenUpdated) {
+    public synchronized void setWhenUpdated(Timestamp whenUpdated) {
         this.whenUpdated = whenUpdated;
     }
 
@@ -101,7 +101,7 @@ public abstract class BaseModel extends Model {
      * Getter de l'activité de l'objet
      * @return booléen : objet actif?
      */
-    public Boolean getActive() {
+    public synchronized Boolean getActive() {
         return isActive;
     }
 
@@ -109,7 +109,7 @@ public abstract class BaseModel extends Model {
      * Setter de l'activité de l'objet
      * @param active booléen : objet actif?
      */
-    public void setActive(Boolean active) {
+    public synchronized void setActive(Boolean active) {
         isActive = active;
     }
 }

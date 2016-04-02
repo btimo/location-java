@@ -18,7 +18,10 @@ public class Flotte {
     private static List<Exemplaire> exemplaires = new ArrayList<Exemplaire>();
     public static final Find<Long,Exemplaire> find = new Find<Long, Exemplaire>(){};
 
-    private static void fetchAll(){
+    /**
+     * Récupération de tous les exemplaires
+     */
+    private synchronized static void fetchAll(){
         exemplaires = new ArrayList<>(find.all());
     }
 
@@ -26,7 +29,7 @@ public class Flotte {
      * Ajout d'un exemplaire à la flotte
      * @param e exemplaire à rajouter
      */
-    public static void ajout(Exemplaire e) {
+    public synchronized static void ajout(Exemplaire e) {
         exemplaires.add(e);
     }
 
@@ -34,7 +37,7 @@ public class Flotte {
      * Retour de tous les exemplaires actuellement stockés
      * @return liste des exemplaires
      */
-    public static List<Exemplaire> get() {
+    public synchronized static List<Exemplaire> get() {
         fetchAll();
         return exemplaires;
     }
@@ -42,11 +45,11 @@ public class Flotte {
     /**
      * Tri des exemplaires par ID
      */
-    public static void triId()
+    public synchronized static void triId()
     {
         Collections.sort(exemplaires, new Comparator<Exemplaire>()
         {
-            public int compare(Exemplaire e1, Exemplaire e2)
+            public synchronized int compare(Exemplaire e1, Exemplaire e2)
             {
                 if (e1.getId() > e2.getId()) {
                     return 1;
@@ -62,11 +65,11 @@ public class Flotte {
     /**
      * Tri des exemplaires par kilométrage
      */
-    public static void triKm()
+    public synchronized static void triKm()
     {
         Collections.sort(exemplaires, new Comparator<Exemplaire>()
         {
-            public int compare(Exemplaire e1, Exemplaire e2)
+            public synchronized int compare(Exemplaire e1, Exemplaire e2)
             {
                 if (e1.getKilometres() > e2.getKilometres()) {
                     return 1;
@@ -85,7 +88,7 @@ public class Flotte {
      * @param km kilométrage recherché
      * @return liste d'exemplaires
      */
-    public static ArrayList<Exemplaire> rechercheKm(String operator, int km)
+    public synchronized static ArrayList<Exemplaire> rechercheKm(String operator, int km)
     {
         ArrayList<Exemplaire> vehiculesSearch = new ArrayList<Exemplaire>();
 
@@ -110,7 +113,7 @@ public class Flotte {
      * @param km2 kilométrage 2
      * @return liste d'exemplaires
      */
-    public static ArrayList<Exemplaire> rechercheKm(int km1, int km2)
+    public synchronized static ArrayList<Exemplaire> rechercheKm(int km1, int km2)
     {
         ArrayList<Exemplaire> vehiculesSearch = new ArrayList<Exemplaire>();
 
@@ -127,7 +130,7 @@ public class Flotte {
      * Liste des exemplaires de motos
      * @return liste des exemplaires de motos
      */
-    public static ArrayList<Exemplaire> listeMoto()
+    public synchronized static ArrayList<Exemplaire> listeMoto()
     {
         ArrayList<Exemplaire> motos = new ArrayList<Exemplaire>();
 
@@ -144,7 +147,7 @@ public class Flotte {
      * Liste des voitures standards
      * @return liste des voitures standards
      */
-    public static ArrayList<Exemplaire> listeVoitureStandard()
+    public synchronized static ArrayList<Exemplaire> listeVoitureStandard()
     {
         ArrayList<Exemplaire> autos = new ArrayList<Exemplaire>();
 
@@ -161,7 +164,7 @@ public class Flotte {
      * Liste des voitures de luxe
      * @return liste des voitures de luxe
      */
-    public static ArrayList<Exemplaire> listeVoitureLuxe()
+    public synchronized static ArrayList<Exemplaire> listeVoitureLuxe()
     {
         ArrayList<Exemplaire> autos = new ArrayList<Exemplaire>();
 

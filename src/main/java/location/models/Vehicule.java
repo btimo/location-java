@@ -46,7 +46,7 @@ public abstract class Vehicule extends BaseModel{
      * Ajout d'un exemplaire à la liste des exemplaires d'un véhicule
      * @param e exemplaire à ajouter
      */
-    public void ajoutExemplaire(Exemplaire e) {
+    public synchronized void ajoutExemplaire(Exemplaire e) {
         exemplaires.add(e);
     }
 
@@ -54,7 +54,7 @@ public abstract class Vehicule extends BaseModel{
      * Suppression d'un exemplaire à la liste des exemplaires d'un véhicule
      * @param e exemplaire à supprimer
      */
-    public void suppressionExemplaire(Exemplaire e) {
+    public synchronized void suppressionExemplaire(Exemplaire e) {
         exemplaires.remove(e);
     }
 
@@ -86,7 +86,7 @@ public abstract class Vehicule extends BaseModel{
      * Getter des exemplaires
      * @return exemplaires
      */
-    public List<Exemplaire> getExemplaires() {
+    public synchronized List<Exemplaire> getExemplaires() {
         return exemplaires;
     }
 

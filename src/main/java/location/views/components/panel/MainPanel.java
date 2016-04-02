@@ -1,9 +1,6 @@
 package location.views.components.panel;
 
-import location.views.components.tab.EmprunteursTab;
-import location.views.components.tab.ExemplairesTab;
-import location.views.components.tab.LocationsTab;
-import location.views.components.tab.VehiculesTab;
+import location.views.components.tab.*;
 
 import javax.swing.*;
 
@@ -18,6 +15,7 @@ public class MainPanel extends JTabbedPane {
     private ExemplairesTab exemplairesTab;
     private LocationsTab locationsTab;
     private VehiculesTab vehiculesTab;
+    private AProposTab aProposTab;
 
     /**
      * Constructeur par défaut
@@ -35,11 +33,13 @@ public class MainPanel extends JTabbedPane {
         exemplairesTab = new ExemplairesTab();
         locationsTab = new LocationsTab();
         vehiculesTab = new VehiculesTab();
+        aProposTab = new AProposTab();
 
         addTab("Locations", locationsTab);
         addTab("Emprunteurs", emprunteurTab);
         addTab("Exemplaires", exemplairesTab);
         addTab("Vehicules", vehiculesTab);
+        addTab("A propos", aProposTab);
 
         setVisible(true);
     }
@@ -106,5 +106,21 @@ public class MainPanel extends JTabbedPane {
      */
     public void setVehiculesTab(VehiculesTab vehiculesTab) {
         this.vehiculesTab = vehiculesTab;
+    }
+
+    /**
+     * Onglet A propos
+     * @return onglet
+     */
+    public VehiculesTab getAProposTab() {
+        return vehiculesTab;
+    }
+
+    /**
+     * Modification onglet à propos
+     * @param aProposTab onglet
+     */
+    public void setAProposTab(AProposTab aProposTab) {
+        this.aProposTab = aProposTab;
     }
 }

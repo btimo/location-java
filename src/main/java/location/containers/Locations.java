@@ -15,7 +15,10 @@ public class Locations {
     private static ArrayList<Location> locations = new ArrayList<Location>();
     public static final Find<Long, Location> find = new Find<Long, Location>(){};
 
-    private static void fetchAll(){
+    /**
+     * Récupération de toutes les locations
+     */
+    private synchronized static void fetchAll(){
         locations = new ArrayList<>(find.all());
     }
 
@@ -23,7 +26,7 @@ public class Locations {
      * Ajout d'un véhicule
      * @param v véhicule à ajouter
      */
-    public static void ajout(Location v) {
+    public synchronized static void ajout(Location v) {
         locations.add(v);
     }
 
@@ -31,7 +34,7 @@ public class Locations {
      * Liste des locations
      * @return liste des locations stockées
      */
-    public static ArrayList<Location> get() {
+    public synchronized static ArrayList<Location> get() {
         fetchAll();
         return locations;
     }
@@ -39,11 +42,11 @@ public class Locations {
     /**
      * Tri par ID
      */
-    public static void triID()
+    public synchronized static void triID()
     {
         Collections.sort(locations, new Comparator<Location>()
         {
-            public int compare(Location l1, Location l2)
+            public synchronized int compare(Location l1, Location l2)
             {
                 return l1.getId().compareTo(l2.getId());
             }
