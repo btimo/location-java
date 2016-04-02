@@ -78,6 +78,21 @@ public class Exemplaire extends BaseModel{
         this.endommage = false;
     }
 
+    public boolean isAvailable(Date debut, Date fin){
+        boolean res = true;
+        for(LocationExemplaire le: locationExemplaires){
+            Location l = le.getLocation();
+            if((l.getDebut().asLocalDate().isAfter(debut.asLocalDate()) && l.getDebut().asLocalDate().isBefore(fin.asLocalDate()))
+                    || (l.getFin().asLocalDate().isAfter(debut.asLocalDate()) && l.getFin().asLocalDate().isBefore(fin.asLocalDate()))
+                    || (l.getDebut().asLocalDate().isBefore(debut.asLocalDate()) && l.getFin().asLocalDate().isAfter(fin.asLocalDate()))){
+                res = false;
+                break;
+            }
+        }
+
+        return res;
+    }
+
     /**
      * Getter du nombre de kilomètres
      * @return nombre de kilomètres parcourus par l'exemplaire

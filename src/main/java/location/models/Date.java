@@ -34,6 +34,12 @@ public class Date {
         this.annee = -1;
     }
 
+    public Date (java.util.Date d){
+        this.jour = d.getDate();
+        this.mois = d.getMonth() + 1;
+        this.annee = d.getYear() + 1900;
+    }
+
     /**
      * Constructeur par défaut de date
      * @param jour jour 1-31
@@ -75,6 +81,10 @@ public class Date {
     public static Date now(){
         LocalDate l = LocalDate.now();
         return new Date(l.getDayOfMonth(), l.getMonthValue(), l.getYear());
+    }
+
+    public LocalDate asLocalDate(){
+        return LocalDate.of(annee, mois, jour);
     }
 
     public java.util.Date asUtilDate(){

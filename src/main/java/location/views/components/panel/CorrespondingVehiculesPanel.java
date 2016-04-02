@@ -8,6 +8,7 @@ import location.views.components.dialog.ExemplaireFormDialog;
 import location.views.components.misc.Fenetre;
 import location.views.components.misc.Tableau;
 import location.views.components.misc.TableauRecherche;
+import location.views.components.tab.ExemplairesTab;
 
 import javax.swing.*;
 import javax.swing.table.TableModel;
@@ -157,37 +158,11 @@ public class CorrespondingVehiculesPanel extends BoxPanel {
         add(chosenTable);
     }
 
-    public void setSearchParam(Vehicule vehiculeChoisi/*, Date debut, Date fin*/){
+    public void setSearchParam(Vehicule vehiculeChoisi, Date debut, Date fin){
 
-        /*Object[][] donnees = new Object[location.containers.Flotte.get().size()][7];
+        System.out.println("Recherche de: " + vehiculeChoisi.getDisplayName() + ", d: " + debut + ", f: " + fin);
 
-        int count = 0;
-        for (Exemplaire e : location.containers.Flotte.get()) {
-            donnees[count][0] = e.getId();
-            donnees[count][1] = e.getVehicule().getMarque();
-
-            String modeleCylindree;
-
-            if (e.getVehicule().equals(vehiculeChoisi)) {
-                if (e.getVehicule() instanceof Auto) {
-                    modeleCylindree = ((Auto) e.getVehicule()).getModele();
-                }
-                else {
-                    modeleCylindree = Integer.toString(((Moto) e.getVehicule()).getCylindree());
-                }
-
-                donnees[count][2] = modeleCylindree;
-                donnees[count][3] = e.getKilometres();
-                donnees[count][4] = e.getReservoir();
-                donnees[count][5] = (e.isEndommage()) ? "Mauvais" : "OK";
-                donnees[count][6] = "Détails";
-
-                count++;
-            }
-        }*/
-        //table.setData(donnees);
-
-        RowFilter<TableModel, Object> firstFiler;
+        /*RowFilter<TableModel, Object> firstFiler;
         RowFilter<TableModel, Object> secondFilter;
         List<RowFilter<TableModel,Object>> filters = new ArrayList<>();
         RowFilter<TableModel, Object> compoundRowFilter;
@@ -199,6 +174,21 @@ public class CorrespondingVehiculesPanel extends BoxPanel {
         compoundRowFilter = RowFilter.andFilter(filters);
 
         table.search(compoundRowFilter);
+        */
+        
+        table.clearTable();
+
+        System.out.println(table.getTableau().getRowCount());
+
+        for(Exemplaire ex: Flotte.get()){
+            if(ex.getVehicule().getDisplayName().equals(vehiculeChoisi.getDisplayName())){
+                if(ex.isAvailable(debut, fin)) {
+                    table.addRow(new Object[]{ex.getId(), ex.getVehicule().getMarque(),
+                            getModeleCylindree(ex.getVehicule()), ex.getKilometres(), ex.getReservoir(),
+                            ((ex.isEndommage()) ? "Mauvais" : "OK"), "Ajouter"});
+                }
+            }
+        }
     }
 
     /**

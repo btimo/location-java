@@ -19,9 +19,9 @@ public class ChooseVehiculePanel extends BoxPanel {
 
     private FlowPanel modelPanel;
 
-    private JPanel dateDepartPanel;
+    private DatePanel dateDepartPanel;
 
-    private JPanel dateRetourPanel;
+    private DatePanel dateRetourPanel;
 
     private JCheckBox assurancePanel;
 
@@ -106,34 +106,23 @@ public class ChooseVehiculePanel extends BoxPanel {
         // search btn
         searchBtn = new JButton("Rechercher disponibilité");
         searchBtn.addActionListener(e -> {
-            //correspondingVehiculesPanel.
-        });
-
-        // table showing exemplaire corresponding to search
-        correspondingVehiculesPanel = new CorrespondingVehiculesPanel(location);
-
-        vehiculesComboBox.addActionListener(e->{
             if (vehiculesComboBox.getSelectedItem() != null) {
                 String value = vehiculesComboBox.getSelectedItem().toString();
 
-                // Récupération du véhicule choisi
                 for(Vehicule v: Vehicules.get()){
                     if(value != null && value.equals(v.getDisplayName())) {
                         vehiculeChoisi = v;
                     }
                 }
 
-                if (vehiculeChoisi instanceof Auto) {
-                    modeleCylindree = ((Auto) vehiculeChoisi).getModele();
-                }
-                else {
-                    modeleCylindree = Integer.toString(((Moto) vehiculeChoisi).getCylindree());
-                }
-
-                correspondingVehiculesPanel.setSearchParam(vehiculeChoisi/*, dateDepartPanel, dateRetourPanel*/);
+                correspondingVehiculesPanel.setSearchParam(vehiculeChoisi, new Date(dateDepartPanel.getDate()) , new Date(dateRetourPanel.getDate()));
             }
-
         });
+
+        // table showing exemplaire corresponding to search
+        correspondingVehiculesPanel = new CorrespondingVehiculesPanel(location);
+
+
         JPanel typeModelPanel = new BoxPanel();
         typeModelPanel.setBackground(Color.ORANGE);
         typeModelPanel.add(typeVehicule);
@@ -147,6 +136,7 @@ public class ChooseVehiculePanel extends BoxPanel {
         add(typeModelPanel);
         add(datePanel);
         add(assurancePanel);
+        add(searchBtn);
         add(correspondingVehiculesPanel);
     }
 
@@ -162,7 +152,7 @@ public class ChooseVehiculePanel extends BoxPanel {
         return dateDepartPanel;
     }
 
-    public void setDateDepartPanel(JPanel dateDepartPanel) {
+    public void setDateDepartPanel(DatePanel dateDepartPanel) {
         this.dateDepartPanel = dateDepartPanel;
     }
 
@@ -170,7 +160,7 @@ public class ChooseVehiculePanel extends BoxPanel {
         return dateRetourPanel;
     }
 
-    public void setDateRetourPanel(JPanel dateRetourPanel) {
+    public void setDateRetourPanel(DatePanel dateRetourPanel) {
         this.dateRetourPanel = dateRetourPanel;
     }
 

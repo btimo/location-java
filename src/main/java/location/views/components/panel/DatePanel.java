@@ -4,7 +4,6 @@ import location.models.Date;
 import location.views.components.misc.CustomFontLabel;
 import location.views.components.misc.DateLabelFormatter;
 import org.jdatepicker.DateModel;
-import org.jdatepicker.JDatePicker;
 import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
