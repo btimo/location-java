@@ -28,7 +28,7 @@ public class ExemplaireForm extends BoxPanel {
 
     private JButton validButton;
 
-    private JButton deletBoutton;
+    private JButton deletButton;
 
     /**
      * Constructeur par défaut
@@ -73,15 +73,21 @@ public class ExemplaireForm extends BoxPanel {
         // button to validate the form + close the window
         validButton = new JButton("Valider");
 
-        deletBoutton = new JButton("Supprimer");
+        deletButton =new JButton(("Supprimer"));
+
+        deletButton = new JButton("Supprimer");
         if(exemplaire != null && exemplaire.getVehicule() != null ){
             vehiculesComboBox.setEnabled(false);
             kmTexte.setText(Integer.toString(exemplaire.getKilometres()));
+            deletButton.setVisible(false);
+        }
+        else{
+            deletButton.setVisible(false);
         }
 
         boutonPanel.add(cancelButton);
         boutonPanel.add(validButton);
-        boutonPanel.add(deletBoutton);
+        boutonPanel.add(deletButton);
 
         vehiculePanel.add(vehiculeLabel);
         vehiculePanel.add(vehiculesComboBox);
@@ -141,11 +147,11 @@ public class ExemplaireForm extends BoxPanel {
         this.validButton = validButton;
     }
 
-    public JButton getDeletBoutton() {
-        return deletBoutton;
+    public JButton getDeletButton() {
+        return deletButton;
     }
 
-    public void setDeletBoutton(JButton deletBoutton) {
-        this.deletBoutton = deletBoutton;
+    public void setDeletButton(JButton deletBoutton) {
+        this.deletButton = deletBoutton;
     }
 }

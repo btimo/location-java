@@ -97,7 +97,14 @@ public class VehiculeFormDialog extends JDialog {
                 dialog.setVisible(false);
                 dialog.dispatchEvent(new WindowEvent(dialog, WindowEvent.WINDOW_CLOSING));
             }
-
+           /* else if(me.equals(vehiculeForm.getDeletButton())){
+            JTable table = (JTable)event.getSource();
+            // Récupère l'ID - 1
+            int modelRow = Integer.valueOf( event.getActionCommand() );
+            Vehicule ex = Vehicules.get().get(modelRow);
+                dialog.deleteRox(ex.getId());
+            }
+            */
         }
     }
 }
