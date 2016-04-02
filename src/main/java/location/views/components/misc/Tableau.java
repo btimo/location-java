@@ -15,12 +15,14 @@ public class Tableau extends JPanel {
     protected TableRowSorter<TableModel> rowSorter;
     protected JTable tableau;
     protected String[] entetes;
+    protected AbstractAction action;
 
-    public Tableau(Object[][] donnees, String[] entetes){
+    public Tableau(Object[][] donnees, String[] entetes, AbstractAction action){
         super();
         this.entetes = entetes;
         this.tableau = new JTable(donnees, entetes);
         this.rowSorter = new TableRowSorter< >(tableau.getModel());
+        this.action = action;
         setBackground(Color.orange);
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         generer();
@@ -29,20 +31,8 @@ public class Tableau extends JPanel {
     public void generer(){
         tableau.setRowSorter(rowSorter);
 
-        // todo: etre capable de passer des abstractAction en parametre lors de la creation d'un tableau
-        // - abstractAction pour le delete dans le choix des vehicule
-        // - abstractAction pour l'affichage des détails dans les tableaux des 4 onglets
-        Action delete = new AbstractAction()
-        {
-            public void actionPerformed(ActionEvent e)
-            {
-                JTable table = (JTable)e.getSource();
-                // Récupère l'ID - 1
-                int modelRow = Integer.valueOf( e.getActionCommand() );
-            }
-        };
-
-        ButtonColumn buttonColumn = new ButtonColumn(tableau, delete, entetes.length-1);
+        // Ajout du bouton passé en dernière position
+        ButtonColumn buttonColumn = new ButtonColumn(tableau, action, entetes.length-1);
         buttonColumn.setMnemonic(KeyEvent.VK_D);
 
         add(tableau.getTableHeader(), BorderLayout.NORTH);

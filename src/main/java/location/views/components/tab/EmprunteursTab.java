@@ -59,7 +59,15 @@ public class EmprunteursTab extends JPanel{
             count++;
         }
 
-        add(new TableauRecherche(donnees, entetes));
+        add(new TableauRecherche(donnees, entetes, new AbstractAction()
+        {
+            public void actionPerformed(ActionEvent e)
+            {
+                JTable table = (JTable)e.getSource();
+                // Récupère l'ID - 1
+                int modelRow = Integer.valueOf( e.getActionCommand() );
+            }
+        }));
     }
 
     private class ButtonListener implements ActionListener{

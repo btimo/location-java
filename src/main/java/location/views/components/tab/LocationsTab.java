@@ -8,6 +8,7 @@ import location.models.LocationExemplaire;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 
 /**
  * Created by Adrien on 01/04/2016.
@@ -53,6 +54,14 @@ public class LocationsTab extends JPanel {
             count++;
         }
 
-        add(new TableauRecherche(donnees, entetes));
+        add(new TableauRecherche(donnees, entetes, new AbstractAction()
+        {
+            public void actionPerformed(ActionEvent e)
+            {
+                JTable table = (JTable)e.getSource();
+                // Récupère l'ID - 1
+                int modelRow = Integer.valueOf( e.getActionCommand() );
+            }
+        }));
     }
 }

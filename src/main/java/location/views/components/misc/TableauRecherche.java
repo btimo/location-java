@@ -7,8 +7,8 @@ import javax.swing.event.DocumentListener;
 
 public class TableauRecherche extends Tableau {
 
-    public TableauRecherche(Object[][] donnees, String[] entetes){
-        super(donnees, entetes);
+    public TableauRecherche(Object[][] donnees, String[] entetes, AbstractAction action){
+        super(donnees, entetes, action);
     }
 
     public void generer(){

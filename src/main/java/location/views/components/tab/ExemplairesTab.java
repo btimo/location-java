@@ -9,6 +9,7 @@ import location.views.components.misc.CustomFontLabel;
 import javax.swing.*;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
 
 public class ExemplairesTab extends JPanel {
     public ExemplairesTab() {
@@ -55,6 +56,14 @@ public class ExemplairesTab extends JPanel {
             count++;
         }
 
-        add(new TableauRecherche(donnees, entetes));
+        add(new TableauRecherche(donnees, entetes, new AbstractAction()
+        {
+            public void actionPerformed(ActionEvent e)
+            {
+                JTable table = (JTable)e.getSource();
+                // Récupère l'ID - 1
+                int modelRow = Integer.valueOf( e.getActionCommand() );
+            }
+        }));
     }
 }
