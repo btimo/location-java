@@ -51,13 +51,11 @@ public class VehiculeForm extends JPanel {
         // label + field for the vehicle type (boolean or string -> not saved but used for the end of the form)
         vehiculeTypePanel = new TwoRadioPanel(Fenetre.defaultColor, "Type de vehicule", "Auto", "Moto");
         vehiculeTypePanel.getBtn1().addActionListener(e -> {
-            System.out.println("Auto selected");
             motoPanel.setVisible(false);
             autoPanel.setVisible(true);
         });
 
         vehiculeTypePanel.getBtn2().addActionListener(e -> {
-            System.out.println("Moto selected");
             motoPanel.setVisible(true);
             autoPanel.setVisible(false);
         });
@@ -68,11 +66,11 @@ public class VehiculeForm extends JPanel {
 
         // label + field for the vehicule price/day (int)
         JLabel priceLabel = new JLabel("Prix à la journée: ");
-        priceTexte = new JTextField("prix", 10);
+        priceTexte = new JTextField("0", 10);
 
         // label + field for the vehicule price for assurance (int)
         JLabel insuranceLabel = new JLabel("Prix de l'assurance: ");
-        insuranceTexte = new JTextField("assurance", 10);
+        insuranceTexte = new JTextField("0", 10);
 
         // Only if type is Auto
         autoPanel = new AutoPanel(Fenetre.defaultColor);
@@ -81,9 +79,22 @@ public class VehiculeForm extends JPanel {
         // label + field for the vehicule cylinder (int)
         motoPanel = new MotoPanel(Fenetre.defaultColor);
 
-        if(vehicule != null && vehicule.getClass().equals("Moto")){
-            motoPanel.setVisible(true);
-            autoPanel.setVisible(false);
+        if(vehicule != null) {
+            if (vehicule.getClass().equals("Moto")) {
+                motoPanel.setVisible(true);
+                autoPanel.setVisible(false);
+                motoPanel.getCylindreeTexte().setText(Integer.toString(((Moto) vehicule).getCylindree()));
+
+            } else {
+                autoPanel.setVisible(true);
+                motoPanel.setVisible(false);
+                autoPanel.getLuxeCheckbox().setSelected(((Auto) vehicule).isLuxe());
+                autoPanel.getModeleTexte().setText(((Auto) vehicule).getModele());
+            }
+
+            marqueTexte.setText(vehicule.getMarque());
+            priceTexte.setText(Integer.toString(vehicule.getPrixJour()));
+            insuranceTexte.setText(Integer.toString(vehicule.getPrixAssurance()));
         }
         else {
             autoPanel.setVisible(true);
@@ -113,19 +124,20 @@ public class VehiculeForm extends JPanel {
         if(vehicule == null){
             if(vehiculeTypePanel.getBtn1().isSelected()){
                 vehicule = new Auto();
+                ((Auto) vehicule).setModele(autoPanel.getModeleTexte().getText());
+                ((Auto) vehicule).setLuxe(autoPanel.getLuxeCheckbox().isSelected());
             }
             else {
                 vehicule = new Moto();
+                ((Moto) vehicule).setCylindree(Integer.parseInt(motoPanel.getCylindreeTexte().getText()));
             }
         }
 
-        System.out.println(vehicule);
-
-        /*
-        vehicule.setMarque();
-        vehicule.setKilometres(Integer.parseInt(kmTexte.getText().trim()));
+        vehicule.setMarque(marqueTexte.getText());
+        vehicule.setPrixJour(Integer.parseInt(priceTexte.getText()));
+        vehicule.setPrixAssurance(Integer.parseInt(insuranceTexte.getText()));
+        //System.out.println(vehicule.toString());
         vehicule.save();
-        */
     }
 
     public JButton getCancelButton() {

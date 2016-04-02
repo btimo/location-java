@@ -20,7 +20,7 @@ public class MotoPanel extends FlowPanel {
 
     private void initMotoPanel(){
         JLabel cylindreeLabel = new JLabel("cylindree : ");
-        cylindreeTexte = new JTextField("cylindree", 10);
+        cylindreeTexte = new JTextField("0", 10);
 
         add(cylindreeLabel);
         add(cylindreeTexte);
