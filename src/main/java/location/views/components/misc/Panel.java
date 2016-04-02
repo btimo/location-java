@@ -87,7 +87,8 @@ public class Panel {
     /**
      * ComboBox to select
      * @param bgColor, background color
-     * @return
+     * @param firstLauch booléen premier lancement
+     * @return comboBox générée
      */
     public static JComboBox listeAutoMoto(Color bgColor, boolean firstLauch){
         JComboBox comboBox = new JComboBox();

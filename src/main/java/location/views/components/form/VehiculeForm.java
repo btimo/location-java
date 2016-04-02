@@ -34,7 +34,7 @@ public class VehiculeForm extends BoxPanel {
 
     private JButton validButton;
 
-    private JButton deletButton;
+    private JButton deleteButton;
 
     /**
      * Constructeur par défaut
@@ -90,7 +90,7 @@ public class VehiculeForm extends BoxPanel {
         // Only if type is Moto
         // label + field for the vehicule cylinder (int)
         motoPanel = new MotoPanel(Fenetre.defaultColor);
-        deletButton = new JButton("Supprimer");
+        deleteButton = new JButton("Supprimer");
         if(vehicule != null) {
             if (vehicule instanceof Moto) {
                 motoPanel.setVisible(true);
@@ -109,7 +109,7 @@ public class VehiculeForm extends BoxPanel {
             insuranceTexte.setText(Integer.toString(vehicule.getPrixAssurance()));
         }
         else {
-            deletButton.setVisible(false);
+            deleteButton.setVisible(false);
             autoPanel.setVisible(true);
             motoPanel.setVisible(false);
         }
@@ -130,7 +130,7 @@ public class VehiculeForm extends BoxPanel {
 
         boutonPanel.add(cancelButton);
         boutonPanel.add(validButton);
-        boutonPanel.add(deletButton);
+        boutonPanel.add(deleteButton);
 
         pricePanel.add(priceLabel);
         pricePanel.add(priceTexte);
@@ -146,6 +146,7 @@ public class VehiculeForm extends BoxPanel {
 
     /**
      * Sauvegarde véhicule
+     * @return véhicule
      */
     public Vehicule buildAndSaveVehicule(){
         if(vehicule == null){
@@ -203,17 +204,17 @@ public class VehiculeForm extends BoxPanel {
 
     /**
      * Recuperation bouton supprimer
-     * @return
+     * @return bouton de suppression
      */
-    public JButton getDeletButton() {
-        return deletButton;
+    public JButton getDeleteButton() {
+        return deleteButton;
     }
 
     /**
      * Modification bouton supprimer
-     * @param deletButton
+     * @param deleteButton bouton de suppression
      */
-    public void setDeletButton(JButton deletButton) {
-        this.deletButton = deletButton;
+    public void setdeleteButton(JButton deleteButton) {
+        this.deleteButton = deleteButton;
     }
 }

@@ -27,6 +27,7 @@ public class VehiculeFormDialog extends JDialog {
     /**
      * Constructeur frame
      * @param owner frame owner
+     * @param table tableau de véhicules
      */
     public VehiculeFormDialog(Frame owner, TableauRecherche table){
         super(owner, TITLE, ModalityType.APPLICATION_MODAL);

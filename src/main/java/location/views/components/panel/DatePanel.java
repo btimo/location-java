@@ -1,6 +1,5 @@
 package location.views.components.panel;
 
-import location.models.Date;
 import location.views.components.misc.CustomFontLabel;
 import location.views.components.misc.DateLabelFormatter;
 import org.jdatepicker.DateModel;
@@ -10,10 +9,6 @@ import org.jdatepicker.impl.UtilDateModel;
 
 import javax.swing.*;
 import java.awt.*;
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.ZoneId;
 import java.util.Properties;
 
 /**
@@ -36,10 +31,11 @@ public class DatePanel extends FlowPanel{
      * Constructeur complet
      * @param bgColor couleur de fond
      * @param nom nom de la date
+     * @param d date au format java.util.Date
      */
     public DatePanel(Color bgColor, String nom, java.util.Date d){
         super(bgColor);
-        date = new java.util.Date(d.getTime());
+        date = d;
 
         initDatePanel(nom);
     }
@@ -70,7 +66,8 @@ public class DatePanel extends FlowPanel{
 
         datePicker.addActionListener(e -> {
             DateModel t = ((JDatePanelImpl)e.getSource()).getModel();
-            date = new java.util.Date(t.getDay(), t.getMonth(), t.getYear());
+            date = new java.util.Date(t.getYear() - 1900, t.getMonth(), t.getDay());
+            //System.out.println("changed: " + date);
         });
     }
 

@@ -1,52 +1,73 @@
 package location.views.components.panel;
 
 
-import location.Application;
 import location.containers.Flotte;
 import location.models.*;
-import location.views.components.dialog.ExemplaireFormDialog;
-import location.views.components.misc.Fenetre;
+import location.util.SelectedExemplaireWithAssurance;
 import location.views.components.misc.Tableau;
-import location.views.components.misc.TableauRecherche;
-import location.views.components.tab.ExemplairesTab;
 
 import javax.swing.*;
-import javax.swing.table.TableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ContainerAdapter;
 import java.util.ArrayList;
-import java.util.List;
 
+/**
+ * Véhicules correspondants
+ * @author Timothée Barbot
+ * @author Adrien Poupa
+ */
 public class CorrespondingVehiculesPanel extends BoxPanel {
 
     private Tableau table;
     private Tableau table2;
     private String modeleCylindree;
     private Location locationChoisie;
+    private boolean assurance;
 
+    private ArrayList<Exemplaire> searchResults = new ArrayList<>();
 
+    private ArrayList<SelectedExemplaireWithAssurance> selectedExemplaireWithAssurances = new ArrayList<>();
+
+    /**
+     * Constructeur par défaut
+     */
     public CorrespondingVehiculesPanel(){
         super();
         initCorrespondigVehiculesPanel();
     }
 
-    public CorrespondingVehiculesPanel(Location l){
+    /**
+     * Constructeur avec location
+     * @param l location
+     * @param a booléan
+     */
+    public CorrespondingVehiculesPanel(Location l, boolean a){
         super();
         this.locationChoisie = l;
+        assurance = a;
         initCorrespondigVehiculesPanel();
     }
 
+    /**
+     * Constructeur coloré
+     * @param bgColor couleur
+     */
     public CorrespondingVehiculesPanel(Color bgColor){
         super(bgColor);
         initCorrespondigVehiculesPanel();
     }
 
+    /**
+     * Initialisation
+     */
     private void initCorrespondigVehiculesPanel(){
         addChoiceTable();
         addChosenTable();
     }
 
+    /**
+     * Tableau de choix possibles
+     */
     private void addChoiceTable() {
         // Données tableau
         String[] entetes = {"Numéro", "Marque", "Modèle/Cylindrée", "Kilométrage", "Réservoir", "Etat", "Actions"};
@@ -93,7 +114,8 @@ public class CorrespondingVehiculesPanel extends BoxPanel {
                 // Récupère l'ID - 1
                 int modelRow = Integer.valueOf( e.getActionCommand() );
 
-                Exemplaire ex = Flotte.get().get(modelRow);
+                Exemplaire ex = searchResults.get(modelRow);
+                selectedExemplaireWithAssurances.add(new SelectedExemplaireWithAssurance(ex, assurance));
 
                 Object[] object = new Object[]{ex.getId(), ex.getVehicule().getMarque(),
                     getModeleCylindree(ex.getVehicule()), ex.getKilometres(), ex.getReservoir(),
@@ -111,6 +133,9 @@ public class CorrespondingVehiculesPanel extends BoxPanel {
         add(firstTable);
     }
 
+    /**
+     * Tableau des choix réalisés
+     */
     private void addChosenTable() {
         JPanel chosenTable = new JPanel();
         chosenTable.setBackground(Color.ORANGE);
@@ -136,6 +161,7 @@ public class CorrespondingVehiculesPanel extends BoxPanel {
                 int modelRow = Integer.valueOf( e.getActionCommand() );
 
                 table2.deleteRow(modelRow);
+                selectedExemplaireWithAssurances.remove(modelRow);
             }
         });
 
@@ -158,9 +184,15 @@ public class CorrespondingVehiculesPanel extends BoxPanel {
         add(chosenTable);
     }
 
+    /**
+     * Nettoyage du tableau des choix
+     * @param vehiculeChoisi véhicule choisi
+     * @param debut date de débit
+     * @param fin date de fin
+     */
     public void setSearchParam(Vehicule vehiculeChoisi, Date debut, Date fin){
 
-        System.out.println("Recherche de: " + vehiculeChoisi.getDisplayName() + ", d: " + debut + ", f: " + fin);
+        //System.out.println("Recherche de: " + vehiculeChoisi.getDisplayName() + ", d: " + debut + ", f: " + fin);
 
         /*RowFilter<TableModel, Object> firstFiler;
         RowFilter<TableModel, Object> secondFilter;
@@ -175,14 +207,14 @@ public class CorrespondingVehiculesPanel extends BoxPanel {
 
         table.search(compoundRowFilter);
         */
-        
-        table.clearTable();
 
-        System.out.println(table.getTableau().getRowCount());
+        table.clearTable();
+        searchResults.clear();
 
         for(Exemplaire ex: Flotte.get()){
             if(ex.getVehicule().getDisplayName().equals(vehiculeChoisi.getDisplayName())){
                 if(ex.isAvailable(debut, fin)) {
+                    searchResults.add(ex);
                     table.addRow(new Object[]{ex.getId(), ex.getVehicule().getMarque(),
                             getModeleCylindree(ex.getVehicule()), ex.getKilometres(), ex.getReservoir(),
                             ((ex.isEndommage()) ? "Mauvais" : "OK"), "Ajouter"});
@@ -205,5 +237,9 @@ public class CorrespondingVehiculesPanel extends BoxPanel {
         }
 
         return modeleCylindree;
+    }
+
+    public ArrayList<SelectedExemplaireWithAssurance> getSelectedExemplaireWithAssurances() {
+        return selectedExemplaireWithAssurances;
     }
 }

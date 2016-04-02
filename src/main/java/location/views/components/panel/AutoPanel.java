@@ -1,12 +1,11 @@
 package location.views.components.panel;
 
-import location.models.Auto;
-
 import javax.swing.*;
 import java.awt.*;
 
 /**
- * Created by Timote on 02/04/2016.
+ * Gestion d'un JPanel Auto
+ * @author Timothée Barbot
  */
 public class AutoPanel extends FlowPanel {
 
@@ -14,16 +13,26 @@ public class AutoPanel extends FlowPanel {
 
     private JCheckBox luxeCheckbox;
 
+    /**
+     * Constructeur par défaut
+     */
     public AutoPanel(){
         super();
         initAutoPanel();
     }
 
+    /**
+     * Constructeur coloré
+     * @param bgColor couleur
+     */
     public AutoPanel(Color bgColor){
         super(bgColor);
         initAutoPanel();
     }
 
+    /**
+     * Initialisation
+     */
     private void initAutoPanel(){
         JLabel modeleLabel = new JLabel("Modele : ");
         modeleTexte = new JTextField("modele", 10);
@@ -37,18 +46,34 @@ public class AutoPanel extends FlowPanel {
         add(luxeCheckbox);
     }
 
+    /**
+     * Champ de texte
+     * @return champ de texte
+     */
     public JTextField getModeleTexte() {
         return modeleTexte;
     }
 
+    /**
+     * Modification champ de texte
+     * @param modeleTexte champ de texte
+     */
     public void setModeleTexte(JTextField modeleTexte) {
         this.modeleTexte = modeleTexte;
     }
 
+    /**
+     * Checkbox luxe
+     * @return checkbox luxe
+     */
     public JCheckBox getLuxeCheckbox() {
         return luxeCheckbox;
     }
 
+    /**
+     * Modification checkbox luxe
+     * @param luxeCheckbox checkbox luxe
+     */
     public void setLuxeCheckbox(JCheckBox luxeCheckbox) {
         this.luxeCheckbox = luxeCheckbox;
     }

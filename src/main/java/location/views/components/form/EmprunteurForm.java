@@ -4,11 +4,9 @@ import location.models.Adresse;
 import location.models.Emprunteur;
 import location.views.components.panel.AdressePanel;
 import location.views.components.panel.BoxPanel;
-import location.views.components.panel.FlowPanel;
 import location.views.components.panel.IdentificationPanel;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 
 /**
@@ -91,6 +89,7 @@ public class EmprunteurForm extends BoxPanel {
 
     /**
      * Take data from identification and adressePanel to build an Emprunter entity
+     * @return emprunteur
      */
     public Emprunteur buildAndSaveEmprunteur(){
 

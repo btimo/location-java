@@ -155,6 +155,7 @@ public class Emprunteur extends BaseModel  {
     /**
      * Génération de la facture
      * @param locationId ID de la location à générer
+     * @param test booléen de test utilisé par les tests unitaires
      */
     public void genererFacture(int locationId, boolean test) {
         new GenerationPdf("facture", this, locationId, test).generateDocument();

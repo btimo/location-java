@@ -2,16 +2,15 @@ package location.views.components.form;
 
 
 import location.containers.Emprunteurs;
-import location.containers.Vehicules;
+import location.models.Date;
 import location.models.Emprunteur;
 import location.models.Exemplaire;
 import location.models.Location;
-import location.models.Vehicule;
+import location.util.SelectedExemplaireWithAssurance;
 import location.views.components.misc.CustomFontLabel;
 import location.views.components.misc.Fenetre;
 import location.views.components.panel.BoxPanel;
 import location.views.components.panel.ChooseVehiculePanel;
-import location.views.components.panel.CorrespondingVehiculesPanel;
 import location.views.components.panel.FlowPanel;
 
 import javax.swing.*;
@@ -107,6 +106,17 @@ public class LocationForm extends BoxPanel {
     }
 
     public void buildAndSaveLocation(){
-        // todo
+        if(location == null) location = new Location();
+
+        location.setEmprunteur(Emprunteurs.get().get(emprunteursComboBox.getSelectedIndex()));
+        location.setDebut(new Date(chooseVehiculePanel.getDateDepartPanel().getDate()));
+        location.setFin(new Date(chooseVehiculePanel.getDateRetourPanel().getDate()));
+
+        for(SelectedExemplaireWithAssurance sewa: chooseVehiculePanel.getCorrespondingVehiculesPanel().getSelectedExemplaireWithAssurances()){
+            location.louer(sewa.getExemplaire(), sewa.isAssurance());
+        }
+
+        System.out.println(location);
+        location.save();
     }
 }

@@ -1,6 +1,5 @@
 package location.views.components.panel;
 
-import com.avaje.ebeaninternal.server.lib.util.Str;
 import location.containers.Vehicules;
 import location.models.*;
 import location.views.components.misc.CustomFontLabel;
@@ -118,9 +117,10 @@ public class ChooseVehiculePanel extends BoxPanel {
                 correspondingVehiculesPanel.setSearchParam(vehiculeChoisi, new Date(dateDepartPanel.getDate()) , new Date(dateRetourPanel.getDate()));
             }
         });
+        searchBtn.setAlignmentX(CENTER_ALIGNMENT);
 
         // table showing exemplaire corresponding to search
-        correspondingVehiculesPanel = new CorrespondingVehiculesPanel(location);
+        correspondingVehiculesPanel = new CorrespondingVehiculesPanel(location, assurancePanel.isSelected());
 
 
         JPanel typeModelPanel = new BoxPanel();
@@ -148,7 +148,7 @@ public class ChooseVehiculePanel extends BoxPanel {
         this.typeVehicule = typeVehicule;
     }
 
-    public JPanel getDateDepartPanel() {
+    public DatePanel getDateDepartPanel() {
         return dateDepartPanel;
     }
 
@@ -156,7 +156,7 @@ public class ChooseVehiculePanel extends BoxPanel {
         this.dateDepartPanel = dateDepartPanel;
     }
 
-    public JPanel getDateRetourPanel() {
+    public DatePanel getDateRetourPanel() {
         return dateRetourPanel;
     }
 
@@ -178,5 +178,9 @@ public class ChooseVehiculePanel extends BoxPanel {
 
     public void setVehiculesComboBox(JComboBox vehiculesComboBox) {
         this.vehiculesComboBox = vehiculesComboBox;
+    }
+
+    public CorrespondingVehiculesPanel getCorrespondingVehiculesPanel() {
+        return correspondingVehiculesPanel;
     }
 }

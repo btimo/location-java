@@ -1,12 +1,6 @@
-
 import location.containers.Emprunteurs;
 import location.containers.Flotte;
 import location.containers.Vehicules;
-import org.jfree.chart.ChartFactory;
-import org.jfree.chart.ChartFrame;
-import org.jfree.chart.JFreeChart;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.data.category.DefaultCategoryDataset;
 
 /**
  * Classe de tests
