@@ -5,13 +5,27 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import java.awt.*;
 
-
+/**
+ * Gestion d'un tableau
+ * Ajout d'un formulaire de recherche
+ * @author Adrien Poupa
+ */
 public class TableauRecherche extends Tableau {
 
-    public TableauRecherche(Object[][] donnees, String[] entetes, AbstractAction action){
-        super(donnees, entetes, action);
+    /**
+     * Constructeur complet
+     * @param donnees données du tableau
+     * @param entetes intitulé des en-têtes
+     * @param numData en-têtes numériques
+     * @param action action accrochée au bouton du tableau
+     */
+    public TableauRecherche(Object[][] donnees, String[] entetes, Integer[] numData, AbstractAction action){
+        super(donnees, entetes, numData, action);
     }
 
+    /**
+     * Création du formulaire de recherche avant génération du tableau par fonction mère
+     */
     public void generer(){
         JLabel nomLabel = new CustomFontLabel("Recherche : ");
         nomLabel.setAlignmentX(Component.CENTER_ALIGNMENT);

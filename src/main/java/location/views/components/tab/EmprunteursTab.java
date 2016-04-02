@@ -57,7 +57,9 @@ public class EmprunteursTab extends JPanel{
             count++;
         }
 
-        add(new TableauRecherche(donnees, entetes, new AbstractAction()
+        Integer[] numData = {0};
+
+        add(new TableauRecherche(donnees, entetes, numData, new AbstractAction()
         {
             public void actionPerformed(ActionEvent e)
             {
