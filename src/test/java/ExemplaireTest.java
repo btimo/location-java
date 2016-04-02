@@ -1,5 +1,5 @@
-import models.Auto;
-import models.Exemplaire;
+import location.models.Auto;
+import location.models.Exemplaire;
 import org.junit.*;
 
 import static org.junit.Assert.assertEquals;

@@ -1,4 +1,4 @@
-import models.Auto;
+import location.models.Auto;
 import org.junit.*;
 
 import static org.junit.Assert.assertEquals;

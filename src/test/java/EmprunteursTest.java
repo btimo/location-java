@@ -1,6 +1,6 @@
-import containers.Emprunteurs;
-import models.Adresse;
-import models.Emprunteur;
+import location.containers.Emprunteurs;
+import location.models.Adresse;
+import location.models.Emprunteur;
 import org.junit.Before;
 import org.junit.Test;
 

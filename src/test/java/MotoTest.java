@@ -1,4 +1,4 @@
-import models.Moto;
+import location.models.Moto;
 import org.junit.*;
 
 import static org.junit.Assert.assertEquals;

@@ -1,8 +1,7 @@
 
-import containers.Emprunteurs;
-import containers.Flotte;
-import containers.Vehicules;
-import models.*;
+import location.containers.Emprunteurs;
+import location.containers.Flotte;
+import location.containers.Vehicules;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartFrame;
 import org.jfree.chart.JFreeChart;

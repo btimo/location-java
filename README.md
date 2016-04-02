@@ -9,7 +9,7 @@ gradle build
 ```
 2. Installer le plugin `EbeanORM Enhancement` sur IntelliJ
 3. Compiler le dossier *models*
-4. Lancer Application.main()
+4. Lancer location.Application.main()
 
 
 ## Ebean

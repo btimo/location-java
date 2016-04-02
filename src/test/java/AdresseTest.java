@@ -1,4 +1,4 @@
-import models.Adresse;
+import location.models.Adresse;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
