@@ -1,5 +1,6 @@
 package location.views.components.panel;
 
+import com.avaje.ebeaninternal.server.lib.util.Str;
 import location.containers.Vehicules;
 import location.models.Auto;
 import location.models.Moto;
@@ -31,6 +32,10 @@ public class ChooseVehiculePanel extends JPanel {
     private JComboBox vehiculesComboBox;
 
     private JButton searchBtn;
+
+    private Vehicule vehiculeChoisi;
+
+    private String modeleCylindree;
 
     /**
      * Constructeur par défaut
@@ -104,6 +109,26 @@ public class ChooseVehiculePanel extends JPanel {
 
         // table showing exemplaire corresponding to search
         correspondingVehiculesPanel = new CorrespondingVehiculesPanel();
+
+        vehiculesComboBox.addActionListener(e->{
+            String value = vehiculesComboBox.getSelectedItem().toString();
+
+            // Récupération du véhicule choisi
+            for(Vehicule v: Vehicules.get()){
+                if(value != null && value.equals(v.getDisplayName())) {
+                    vehiculeChoisi = v;
+                }
+            }
+
+            if (vehiculeChoisi instanceof Auto) {
+                modeleCylindree = ((Auto) vehiculeChoisi).getModele();
+            }
+            else {
+                modeleCylindree = Integer.toString(((Moto) vehiculeChoisi).getCylindree());
+            }
+
+            correspondingVehiculesPanel.setSearchParam(vehiculeChoisi/*, dateDepartPanel, dateRetourPanel*/);
+        });
 
         add(typeVehicule);
         add(modelPanel);
