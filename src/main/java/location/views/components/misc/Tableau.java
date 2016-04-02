@@ -156,6 +156,9 @@ public class Tableau extends JPanel {
         model.removeRow(row);
     }
 
+    /**
+     * Nettoyage du tableau
+     */
     public void clearTable(){
         while(tableau.getRowCount() > 0){
             deleteRow(tableau.getRowCount() - 1);
