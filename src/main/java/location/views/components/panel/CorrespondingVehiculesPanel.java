@@ -5,7 +5,7 @@ import location.models.Date;
 
 import java.awt.*;
 
-public class CorrespondingVehiculesPanel extends FlowPanel {
+public class CorrespondingVehiculesPanel extends BoxPanel {
 
 
     public CorrespondingVehiculesPanel(){

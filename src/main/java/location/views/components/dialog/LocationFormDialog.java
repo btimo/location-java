@@ -24,10 +24,12 @@ public class LocationFormDialog extends JDialog {
      * Constructeur frame
      * @param owner frame owner
      */
+
     public LocationFormDialog(Frame owner){
         super(owner, TITLE, ModalityType.APPLICATION_MODAL);
         ((Fenetre) owner).setLocationFormDialog(this);
         locationForm = new LocationForm();
+        locationForm.setBackground(Color.ORANGE);
         initLocationFormDialog();
     }
 
@@ -47,11 +49,12 @@ public class LocationFormDialog extends JDialog {
      * Initialisation de la fenêtre
      */
     private void initLocationFormDialog(){
+
         setContentPane(locationForm);
 
         locationForm.getValidButton().addActionListener(new LocationFormDialog.ButtonListener());
         locationForm.getCancelButton().addActionListener(new LocationFormDialog.ButtonListener());
-
+        setSize(400,500);
         pack();
         setVisible(true);
     }

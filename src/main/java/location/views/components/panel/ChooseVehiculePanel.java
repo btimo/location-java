@@ -14,7 +14,7 @@ import java.awt.*;
  * @author Timothée Barbot
  * @author Stéphane Gâteau
  */
-public class ChooseVehiculePanel extends JPanel {
+public class ChooseVehiculePanel extends BoxPanel {
 
     private TwoRadioPanel typeVehicule;
 
@@ -55,6 +55,7 @@ public class ChooseVehiculePanel extends JPanel {
      */
     private void initChooseVehiculePanel(){
         // Panel choix type de vehicule
+
         typeVehicule = new TwoRadioPanel(Color.ORANGE, "Type de location", "Auto", "Moto");
         typeVehicule.getBtn1().addActionListener(e->{
             vehiculesComboBox.removeAllItems();
@@ -75,7 +76,7 @@ public class ChooseVehiculePanel extends JPanel {
 
         // Panel selection du vehicule
         modelPanel = new FlowPanel(Color.ORANGE);
-        JLabel constructeurModel = new CustomFontLabel("Choix du véhicule","Arial", Font.BOLD,14);
+        JLabel constructeurModel = new CustomFontLabel("Choix du véhicule","Arial", 0,12);
         modelPanel.add(constructeurModel);
 
 
@@ -105,10 +106,21 @@ public class ChooseVehiculePanel extends JPanel {
         // table showing exemplaire corresponding to search
         correspondingVehiculesPanel = new CorrespondingVehiculesPanel();
 
-        add(typeVehicule);
-        add(modelPanel);
-        add(dateDepartPanel);
-        add(dateRetourPanel);
+        JPanel typeModelPanel = new BoxPanel();
+        typeModelPanel.setBackground(Color.ORANGE);
+        typeModelPanel.add(typeVehicule);
+        typeModelPanel.add(modelPanel);
+
+        JPanel datePanel = new JPanel(new FlowLayout());
+        datePanel.setBackground(Color.ORANGE);
+        datePanel.add(dateDepartPanel);
+        datePanel.add(dateRetourPanel);
+
+
+
+
+        add(typeModelPanel);
+        add(datePanel);
         add(assurancePanel);
         add(correspondingVehiculesPanel);
     }

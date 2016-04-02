@@ -7,18 +7,22 @@ import location.models.Emprunteur;
 import location.models.Exemplaire;
 import location.models.Location;
 import location.models.Vehicule;
+import location.views.components.misc.CustomFontLabel;
 import location.views.components.misc.Fenetre;
+import location.views.components.panel.BoxPanel;
 import location.views.components.panel.ChooseVehiculePanel;
 import location.views.components.panel.CorrespondingVehiculesPanel;
+import location.views.components.panel.FlowPanel;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 
 /**
  * Formulaire d'ajout location
  * @author Timothée Barbot
  */
-public class LocationForm extends JPanel {
+public class LocationForm extends BoxPanel {
 
     private Location location;
 
@@ -56,7 +60,9 @@ public class LocationForm extends JPanel {
      */
     private void initContent(){
         // label + field to select the user
-        JLabel emprunterLabel = new JLabel("Emprunteur : ");
+        JPanel emprunteurPanel =new FlowPanel(Color.ORANGE);
+
+        JLabel emprunterLabel = new CustomFontLabel("Emprunteur : ","Arial",Font.BOLD,20);
         emprunteursComboBox = new JComboBox();
         for(Emprunteur e: Emprunteurs.get()){
             emprunteursComboBox.addItem(e.getDisplayName());
@@ -73,11 +79,18 @@ public class LocationForm extends JPanel {
         // button to validate the form + close the window
         validButton = new JButton("Valider");
 
-        add(emprunterLabel);
-        add(emprunteursComboBox);
+        JPanel boutonPanel =new JPanel(new FlowLayout());
+        boutonPanel.setBackground(Color.ORANGE);
+
+        emprunteurPanel.add(emprunterLabel);
+
+        emprunteurPanel.add(emprunteursComboBox);
+        boutonPanel.add(cancelButton);
+        boutonPanel.add(validButton);
+
+        add(emprunteurPanel);
         add(chooseVehiculePanel);
-        add(cancelButton);
-        add(validButton);
+        add(boutonPanel);
         setVisible(true);
     }
 

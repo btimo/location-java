@@ -48,9 +48,9 @@ public class ExemplaireFormDialog extends JDialog {
      */
     private void initExemplaireFormDialog(){
         setContentPane(exemplaireForm);
-
         exemplaireForm.getCancelButton().addActionListener(new ButtonListener());
         exemplaireForm.getValidButton().addActionListener(new ButtonListener());
+        setSize(400,500);
         pack();
         setVisible(true);
     }

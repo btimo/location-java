@@ -48,9 +48,11 @@ public class EmprunteurFormDialog extends JDialog{
      */
     private void initEmprunteurFormDialog(){
         setContentPane(emprunteurForm);
+        setBackground(Color.ORANGE);
         emprunteurForm.getCancelButton().addActionListener(new ButtonListener());
         emprunteurForm.getValidButton().addActionListener(new ButtonListener());
         pack();
+        setSize(400,200);
         setVisible(true);
     }
 

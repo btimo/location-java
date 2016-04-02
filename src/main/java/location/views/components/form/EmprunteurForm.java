@@ -3,17 +3,19 @@ package location.views.components.form;
 import location.models.Adresse;
 import location.models.Emprunteur;
 import location.views.components.panel.AdressePanel;
+import location.views.components.panel.BoxPanel;
 import location.views.components.panel.FlowPanel;
 import location.views.components.panel.IdentificationPanel;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 
 /**
  * Formulaire d'ajout d'emprunteur
  * @author Timothée Barbot
  */
-public class EmprunteurForm extends FlowPanel{
+public class EmprunteurForm extends BoxPanel {
 
     private Emprunteur emprunteur;
 
@@ -64,16 +66,18 @@ public class EmprunteurForm extends FlowPanel{
             adressePanel.getVilleTexte().setText(emprunteur.getAdresse().getVille());
         }
 
+        JPanel boutonPanel = new JPanel(new FlowLayout());
+        boutonPanel.setBackground(Color.ORANGE);
         // button to cancel any modification + close the window
         cancelButton = new JButton("Annuler");
-
         // button to validate the form + close the window
         validButton = new JButton("Valider");
 
         add(identifiantPanel);
         add(adressePanel);
-        add(cancelButton);
-        add(validButton);
+        boutonPanel.add(cancelButton);
+        boutonPanel.add(validButton);
+        add(boutonPanel);
     }
 
     /**

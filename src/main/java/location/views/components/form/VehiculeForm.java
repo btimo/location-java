@@ -5,17 +5,16 @@ import location.models.Auto;
 import location.models.Moto;
 import location.models.Vehicule;
 import location.views.components.misc.Fenetre;
-import location.views.components.panel.AutoPanel;
-import location.views.components.panel.MotoPanel;
-import location.views.components.panel.TwoRadioPanel;
+import location.views.components.panel.*;
 
 import javax.swing.*;
+import java.awt.*;
 
 /**
  * Formulaire d'ajout véhicule
  * @author Timothée Barbot
  */
-public class VehiculeForm extends JPanel {
+public class VehiculeForm extends BoxPanel {
 
     private Vehicule vehicule;
 
@@ -70,15 +69,17 @@ public class VehiculeForm extends JPanel {
         });
 
         // label + field for the vehicule make (string)
+        JPanel marqueModelPanel = new FlowPanel(Color.ORANGE);
         JLabel marqueLabel = new JLabel("Marque : ");
         marqueTexte = new JTextField("marque", 20);
 
         // label + field for the vehicule price/day (int)
+        JPanel pricePanel = new FlowPanel(Color.ORANGE);
         JLabel priceLabel = new JLabel("Prix à la journée: ");
         priceTexte = new JTextField("0", 10);
 
         // label + field for the vehicule price for assurance (int)
-        JLabel insuranceLabel = new JLabel("Prix de l'assurance: ");
+        JLabel insuranceLabel = new JLabel("       Prix de l'assurance: ");
         insuranceTexte = new JTextField("0", 10);
 
         // Only if type is Auto
@@ -110,23 +111,31 @@ public class VehiculeForm extends JPanel {
             motoPanel.setVisible(false);
         }
 
+        JPanel boutonPanel =new FlowPanel(Color.ORANGE);
         // button to cancel any modification + close the window
         cancelButton = new JButton("Annuler");
 
         // button to validate the form + close the window
         validButton = new JButton("Valider");
 
+        marqueModelPanel.add(marqueLabel);
+        marqueModelPanel.add(marqueTexte);
+        marqueModelPanel.add(autoPanel);
+        marqueModelPanel.add(motoPanel);
+
+        boutonPanel.add(cancelButton);
+        boutonPanel.add(validButton);
+
+        pricePanel.add(priceLabel);
+        pricePanel.add(priceTexte);
+        pricePanel.add(insuranceLabel);
+        pricePanel.add(insuranceTexte);
+
         add(vehiculeTypePanel);
-        add(marqueLabel);
-        add(marqueTexte);
-        add(priceLabel);
-        add(priceTexte);
-        add(insuranceLabel);
-        add(insuranceTexte);
-        add(autoPanel);
-        add(motoPanel);
-        add(cancelButton);
-        add(validButton);
+        add(marqueModelPanel);
+        add(pricePanel);
+        add(boutonPanel);
+
     }
 
     /**
