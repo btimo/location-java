@@ -27,6 +27,8 @@ public class EmprunteurForm extends BoxPanel {
 
     private JButton validButton;
 
+    private JButton deletButton;
+
     /**
      * Constructeur par défaut
      */
@@ -73,10 +75,14 @@ public class EmprunteurForm extends BoxPanel {
         // button to validate the form + close the window
         validButton = new JButton("Valider");
 
+        //button to delet the form + close the window
+        deletButton = new JButton("Supprimer");
+
         add(identifiantPanel);
         add(adressePanel);
         boutonPanel.add(cancelButton);
         boutonPanel.add(validButton);
+        boutonPanel.add(deletButton);
         add(boutonPanel);
     }
 
