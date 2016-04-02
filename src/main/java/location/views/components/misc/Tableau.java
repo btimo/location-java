@@ -42,6 +42,10 @@ public class Tableau extends JPanel {
 
         this.tableau = new JTable(model);
         this.rowSorter = new TableRowSorter< >(tableau.getModel());
+
+        tableau.setRowSorter(rowSorter);
+        tableau.setAlignmentX(Component.CENTER_ALIGNMENT);
+
         this.action = action;
         setBackground(Color.orange);
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -52,15 +56,14 @@ public class Tableau extends JPanel {
      * Génération du tableau
      */
     public void generer(){
-        tableau.setRowSorter(rowSorter);
-
-        tableau.setAlignmentX(Component.CENTER_ALIGNMENT);
-
         // Ajout du bouton passé en dernière position
         ButtonColumn buttonColumn = new ButtonColumn(tableau, action, entetes.length-1);
         buttonColumn.setMnemonic(KeyEvent.VK_D);
 
         add(tableau.getTableHeader(), BorderLayout.NORTH);
         add(tableau, BorderLayout.CENTER);
+
+        JScrollPane scrollPane = new JScrollPane(tableau, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        add(scrollPane);
     }
 }
