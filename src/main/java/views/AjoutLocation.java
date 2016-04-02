@@ -1,10 +1,5 @@
 package views;
 
-import views.components.misc.Label;
-
-import javax.swing.*;
-import java.awt.*;
-
 /**
  * Created by Adrien on 01/04/2016.
  */

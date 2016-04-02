@@ -1,7 +1,7 @@
 package views.components.tab;
 
 import views.components.misc.*;
-import views.components.misc.Label;
+import views.components.misc.CustomFontLabel;
 
 import models.Location;
 import models.LocationExemplaire;
@@ -22,7 +22,7 @@ public class LocationsTab extends JPanel {
 
     private void initContent() {
         // rajout du titre
-        JLabel reservationLabel = new Label("Liste des locations","Calibri", Font.PLAIN, 25);
+        JLabel reservationLabel = new CustomFontLabel("Liste des locations","Calibri", Font.PLAIN, 25);
         add(reservationLabel);
 
         // Bouton rajout Ajouter une location

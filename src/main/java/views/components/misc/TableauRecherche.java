@@ -3,7 +3,6 @@ package views.components.misc;
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
-import java.awt.*;
 
 
 public class TableauRecherche extends Tableau {
@@ -13,8 +12,8 @@ public class TableauRecherche extends Tableau {
     }
 
     public void generer(){
-        JLabel nomLabel = new Label("Recherche : ");
-        JTextField nomTexte = new TextField("", 10);
+        JLabel nomLabel = new CustomFontLabel("Recherche : ");
+        JTextField nomTexte = new JTextField("", 10);
         //nomTexte.setMaximumSize(new Dimension(100,10));
 
         nomTexte.getDocument().addDocumentListener(new DocumentListener() {

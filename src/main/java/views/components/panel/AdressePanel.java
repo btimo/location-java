@@ -1,18 +1,18 @@
 package views.components.panel;
 
-import views.components.misc.Label;
-import views.components.misc.TextField;
+import views.components.misc.CustomFontLabel;
 
+import javax.swing.*;
 import java.awt.Color;
 
 public class AdressePanel extends FlowPanel {
 
-    private Label adresseLabel;
+    private CustomFontLabel adresseLabel;
 
-    private TextField numeroTexte;
-    private TextField rueTexte;
-    private TextField codeTexte;
-    private TextField villeTexte;
+    private JTextField numeroTexte;
+    private JTextField rueTexte;
+    private JTextField codeTexte;
+    private JTextField villeTexte;
 
     public AdressePanel(){
         super();
@@ -23,11 +23,11 @@ public class AdressePanel extends FlowPanel {
     }
 
     private void initAdressePanel(){
-        adresseLabel = new Label("Adresse :");
-        numeroTexte = new TextField("5",3);
-        rueTexte = new TextField("rue",13);
-        codeTexte = new TextField("CP",5);
-        villeTexte = new TextField("ville",5);
+        adresseLabel = new CustomFontLabel("Adresse :");
+        numeroTexte = new JTextField("5",3);
+        rueTexte = new JTextField("rue",13);
+        codeTexte = new JTextField("CP",5);
+        villeTexte = new JTextField("ville",5);
 
         add(adresseLabel);
         add(numeroTexte);
@@ -36,35 +36,35 @@ public class AdressePanel extends FlowPanel {
         add(villeTexte);
     }
 
-    public TextField getNumeroTexte() {
+    public JTextField getNumeroTexte() {
         return numeroTexte;
     }
 
-    public void setNumeroTexte(TextField numeroTexte) {
+    public void setNumeroTexte(JTextField numeroTexte) {
         this.numeroTexte = numeroTexte;
     }
 
-    public TextField getRueTexte() {
+    public JTextField getRueTexte() {
         return rueTexte;
     }
 
-    public void setRueTexte(TextField rueTexte) {
+    public void setRueTexte(JTextField rueTexte) {
         this.rueTexte = rueTexte;
     }
 
-    public TextField getCodeTexte() {
+    public JTextField getCodeTexte() {
         return codeTexte;
     }
 
-    public void setCodeTexte(TextField codeTexte) {
+    public void setCodeTexte(JTextField codeTexte) {
         this.codeTexte = codeTexte;
     }
 
-    public TextField getVilleTexte() {
+    public JTextField getVilleTexte() {
         return villeTexte;
     }
 
-    public void setVilleTexte(TextField villeTexte) {
+    public void setVilleTexte(JTextField villeTexte) {
         this.villeTexte = villeTexte;
     }
 }

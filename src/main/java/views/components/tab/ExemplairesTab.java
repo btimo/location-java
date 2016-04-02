@@ -4,7 +4,7 @@ import models.Auto;
 import models.Exemplaire;
 import models.Moto;
 import views.components.misc.TableauRecherche;
-import views.components.misc.Label;
+import views.components.misc.CustomFontLabel;
 
 import javax.swing.*;
 import java.awt.Color;
@@ -20,7 +20,7 @@ public class ExemplairesTab extends JPanel {
 
     private void initContent() {
         // rajout du titre
-        JLabel reservationLabel = new Label("Liste des exemplaires","Calibri", Font.PLAIN, 25);
+        JLabel reservationLabel = new CustomFontLabel("Liste des exemplaires","Calibri", Font.PLAIN, 25);
         add(reservationLabel);
 
         // Bouton rajout Ajouter un exemplaire

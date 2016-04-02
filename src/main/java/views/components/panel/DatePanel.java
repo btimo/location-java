@@ -4,7 +4,7 @@ import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
 import views.components.misc.DateLabelFormatter;
-import views.components.misc.Label;
+import views.components.misc.CustomFontLabel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -22,7 +22,7 @@ public class DatePanel extends FlowPanel{
     }
 
     private void initDatePanel(String nom) {
-        JLabel departLabel = new Label(nom);
+        JLabel departLabel = new CustomFontLabel(nom);
 
         UtilDateModel model = new UtilDateModel();
         Properties p = new Properties();

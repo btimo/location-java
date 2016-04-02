@@ -3,7 +3,7 @@ package views.components.tab;
 import models.Emprunteur;
 import views.components.dialog.EmprunteurFormDialog;
 import views.components.misc.TableauRecherche;
-import views.components.misc.Label;
+import views.components.misc.CustomFontLabel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -21,7 +21,7 @@ public class EmprunteursTab extends JPanel {
 
     private void initContent() {
         // rajout du titre
-        JLabel reservationLabel = new Label("Liste des emprunteurs","Calibri", Font.PLAIN, 25);
+        JLabel reservationLabel = new CustomFontLabel("Liste des emprunteurs","Calibri", Font.PLAIN, 25);
         reservationLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         add(reservationLabel);
 

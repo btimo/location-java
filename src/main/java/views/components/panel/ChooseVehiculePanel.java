@@ -1,7 +1,7 @@
 package views.components.panel;
 
 import views.components.misc.Panel;
-import views.components.misc.Label;
+import views.components.misc.CustomFontLabel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -32,7 +32,7 @@ public class ChooseVehiculePanel extends FlowPanel {
 
         // Panel selection du vehicule
         modelPanel = new FlowPanel(Color.ORANGE);
-        JLabel constructeurModel = new Label("Choix du véhicule","Arial", Font.BOLD,14);
+        JLabel constructeurModel = new CustomFontLabel("Choix du véhicule","Arial", Font.BOLD,14);
         modelPanel.add(constructeurModel);
         modelPanel.add(Panel.listeAutoMoto(Color.ORANGE, true));
 

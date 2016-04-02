@@ -1,9 +1,5 @@
 package views.components.panel;
 
-
-import views.components.misc.Label;
-import views.components.misc.TextField;
-
 import javax.swing.*;
 import java.awt.Color;
 
@@ -24,9 +20,9 @@ public class IdentificationPanel extends FlowPanel{
     }
 
     private void initIdentificationPanel(){
-        nomLabel = new Label("Nom et prénom : ");
-        nomTexte = new TextField(" Nom", 10);
-        prenomTexte = new TextField(" Prénom", 10);
+        nomLabel = new JLabel("Nom et prénom : ");
+        nomTexte = new JTextField(" Nom", 10);
+        prenomTexte = new JTextField(" Prénom", 10);
 
         add(nomLabel);
         add(nomTexte);
