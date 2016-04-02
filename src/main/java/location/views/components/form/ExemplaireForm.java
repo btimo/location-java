@@ -2,13 +2,15 @@ package location.views.components.form;
 
 
 import location.containers.Vehicules;
-import location.models.Auto;
 import location.models.Exemplaire;
 import location.models.Vehicule;
 
 import javax.swing.*;
-import java.util.ArrayList;
 
+/**
+ * Formulaire d'ajout exemplaire
+ * @author Timothée Barbot
+ */
 public class ExemplaireForm extends JPanel {
 
     private Exemplaire exemplaire;
@@ -23,19 +25,28 @@ public class ExemplaireForm extends JPanel {
 
     private JButton validButton;
 
+    /**
+     * Constructeur par défaut
+     */
     public ExemplaireForm(){
         super();
         exemplaire = new Exemplaire();
         initContent();
     }
 
+    /**
+     * Constructeur complet avec exemplaire (modification)
+     * @param e exemplaire
+     */
     public ExemplaireForm(Exemplaire e){
         super();
         exemplaire = e;
         initContent();
     }
 
-    // init the panel with its components
+    /**
+     * init the panel with its components
+     */
     private void initContent(){
         // label + field for the exemplaire vehicule
         vehiculeLabel = new JLabel("Vehicule : ");
@@ -61,6 +72,9 @@ public class ExemplaireForm extends JPanel {
         add(validButton);
     }
 
+    /**
+     * Sauvegarde exemplaire
+     */
     public void buildAndSaveExemplaire(){
         if(exemplaire == null) exemplaire = new Exemplaire();
 
@@ -69,18 +83,34 @@ public class ExemplaireForm extends JPanel {
         exemplaire.save();
     }
 
+    /**
+     * Récupération bouton annulation
+     * @return bouton annulation
+     */
     public JButton getCancelButton() {
         return cancelButton;
     }
 
+    /**
+     * Modification bouton annulation
+     * @param cancelButton bouton anulation
+     */
     public void setCancelButton(JButton cancelButton) {
         this.cancelButton = cancelButton;
     }
 
+    /**
+     * Récupération bouton validation
+     * @return bouton validation
+     */
     public JButton getValidButton() {
         return validButton;
     }
 
+    /**
+     * Modification bouton validation
+     * @param validButton bouton validation
+     */
     public void setValidButton(JButton validButton) {
         this.validButton = validButton;
     }

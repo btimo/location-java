@@ -3,25 +3,29 @@ package location.views.components.tab;
 import location.Application;
 import location.models.Emprunteur;
 import location.views.components.dialog.EmprunteurFormDialog;
+import location.views.components.misc.CustomFontLabel;
 import location.views.components.misc.Fenetre;
 import location.views.components.misc.TableauRecherche;
-import location.views.components.misc.CustomFontLabel;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.Color;
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Objects;
 
-
+/**
+ * Fenêtre de l'onglet Emprunteurs
+ * @author Timothée Barbot
+ * @author Adrien Poupa
+ */
 public class EmprunteursTab extends JPanel{
 
     private JLabel title;
 
     private JButton addEmprunteurButton;
 
+    /**
+     * Initialisation de la fenêtre
+     */
     public EmprunteursTab() {
         super();
         setBackground(Color.orange);
@@ -29,6 +33,9 @@ public class EmprunteursTab extends JPanel{
         initContent();
     }
 
+    /**
+     * Contenu de la fenêtre
+     */
     private void initContent() {
         // rajout du titre
         title = new CustomFontLabel("Liste des emprunteurs","Calibri", Font.PLAIN, 25);
@@ -70,6 +77,9 @@ public class EmprunteursTab extends JPanel{
         }));
     }
 
+    /**
+     * Ecouteur du bouton de la fenêtre
+     */
     private class ButtonListener implements ActionListener{
 
         @Override

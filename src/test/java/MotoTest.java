@@ -1,16 +1,20 @@
 import location.models.Moto;
-import org.junit.*;
+import org.junit.Before;
 
 import static org.junit.Assert.assertEquals;
 
 /**
- * Created by Adrien on 31/03/2016.
+ * Test d'une moto
+ * @author Adrien Poupa
  */
 public class MotoTest {
     private Moto moto;
     private Moto moto2;
     private Moto moto3;
 
+    /**
+     * Initialisation du test
+     */
     @Before
     public void setUp(){
         moto = new Moto("Harley Davidson", 1000, 150, 30);
@@ -27,21 +31,33 @@ public class MotoTest {
         assertEquals("Il devrait y avoir 3 voitures", 3, Vehicules.get().size());
     }*/
 
+    /**
+     * Vérification de la marque
+     */
     @org.junit.Test
     public void getBrandShouldReturnHarleyDavidson(){
         assertEquals("La marque devrait être Harley Davidson", "Harley Davidson", moto.getMarque());
     }
 
+    /**
+     * Vérification de la cylindrée
+     */
     @org.junit.Test
     public void getCylindreeShouldReturn1000(){
         assertEquals("La cylindrée devrait être de 1000", 1000, moto.getCylindree());
     }
 
+    /**
+     * Vérification du prix journalier
+     */
     @org.junit.Test
     public void getPrixJourShouldReturn140(){
         assertEquals("Le prix journalier devrait être 140", 140, moto2.getPrixJour());
     }
 
+    /**
+     * Vérification du prix assurance
+     */
     @org.junit.Test
     public void getPrixAssuranceShouldReturn50(){
         assertEquals("Le prix journalier devrait être 50", 50, moto3.getPrixAssurance());

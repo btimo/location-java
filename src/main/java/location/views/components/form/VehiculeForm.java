@@ -1,18 +1,18 @@
 package location.views.components.form;
 
 
-import location.Application;
-import location.containers.Vehicules;
 import location.models.Auto;
-import location.models.Exemplaire;
 import location.models.Moto;
 import location.models.Vehicule;
-import location.views.LocationView;
 import location.views.components.misc.Fenetre;
 import location.views.components.panel.TwoRadioPanel;
 
 import javax.swing.*;
 
+/**
+ * Formulaire d'ajout véhicule
+ * @author Timothée Barbot
+ */
 public class VehiculeForm extends JPanel {
 
     private Vehicule vehicule;
@@ -29,18 +29,27 @@ public class VehiculeForm extends JPanel {
 
     private JButton validButton;
 
+    /**
+     * Constructeur par défaut
+     */
     public VehiculeForm(){
         super();
         initContent();
     }
 
+    /**
+     * Constructeur complet avec véhicule (modification)
+     * @param v véhicule à modifier
+     */
     public VehiculeForm(Vehicule v){
         super();
         vehicule = v;
         initContent();
     }
 
-    // init the panel with its components
+    /**
+     * init the panel with its components
+     */
     private void initContent(){
         // label + field for the vehicle type (boolean or string -> not saved but used for the end of the form)
         vehiculeTypePanel = new TwoRadioPanel(Fenetre.defaultColor, "Type de vehicule", "Auto", "Moto");
@@ -92,6 +101,9 @@ public class VehiculeForm extends JPanel {
         add(validButton);
     }
 
+    /**
+     * Sauvegarde véhicule
+     */
     public void buildAndSaveVehicule(){
         if(vehicule == null){
             if(vehiculeTypePanel.getBtn1().isSelected()){
@@ -111,18 +123,34 @@ public class VehiculeForm extends JPanel {
         */
     }
 
+    /**
+     * Récupération bouton annulation
+     * @return bouton annulation
+     */
     public JButton getCancelButton() {
         return cancelButton;
     }
 
+    /**
+     * Modification bouton annulation
+     * @param cancelButton bouton anulation
+     */
     public void setCancelButton(JButton cancelButton) {
         this.cancelButton = cancelButton;
     }
 
+    /**
+     * Récupération bouton validation
+     * @return bouton validation
+     */
     public JButton getValidButton() {
         return validButton;
     }
 
+    /**
+     * Modification bouton validation
+     * @param validButton bouton validation
+     */
     public void setValidButton(JButton validButton) {
         this.validButton = validButton;
     }

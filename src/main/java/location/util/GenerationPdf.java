@@ -1,21 +1,15 @@
 package location.util;
 
-import java.io.FileOutputStream;
-import java.text.DateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-
-import com.itextpdf.text.BaseColor;
-import com.itextpdf.text.Document;
-import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.Element;
-import com.itextpdf.text.Font;
-import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.Phrase;
+import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import location.models.*;
+
+import java.io.FileOutputStream;
+import java.text.DateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Classe utilisée pour générer un devis ou une facture au format PDF

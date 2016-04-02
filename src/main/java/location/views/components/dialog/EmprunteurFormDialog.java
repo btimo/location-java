@@ -4,7 +4,6 @@ import location.Application;
 import location.models.Emprunteur;
 import location.views.components.form.EmprunteurForm;
 import location.views.components.misc.Fenetre;
-import location.views.components.panel.AdressePanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,11 +11,19 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 
+/**
+ * Fenêtre modale Emprunteur
+ * @author Timothée Barbot
+ */
 public class EmprunteurFormDialog extends JDialog{
 
     private EmprunteurForm emprunteurForm;
     private static final String TITLE = "Formulaire emprunteur";
 
+    /**
+     * Constructeur frame
+     * @param owner frame owner
+     */
     public EmprunteurFormDialog(Frame owner){
         super(owner, TITLE, ModalityType.APPLICATION_MODAL);
         ((Fenetre) owner).setEmprunteurFormDialog(this);
@@ -24,6 +31,11 @@ public class EmprunteurFormDialog extends JDialog{
         initEmprunteurFormDialog();
     }
 
+    /**
+     * Constructeur frame / emprunteur
+     * @param owner frame owner
+     * @param e emprunteur
+     */
     public EmprunteurFormDialog(Frame owner, Emprunteur e){
         super(owner, TITLE + ": " + e.getDisplayName(), ModalityType.APPLICATION_MODAL);
         ((Fenetre) owner).setEmprunteurFormDialog(this);
@@ -31,6 +43,9 @@ public class EmprunteurFormDialog extends JDialog{
         initEmprunteurFormDialog();
     }
 
+    /**
+     * Initialisation de la fenêtre
+     */
     private void initEmprunteurFormDialog(){
         setContentPane(emprunteurForm);
         emprunteurForm.getCancelButton().addActionListener(new ButtonListener());
@@ -39,6 +54,9 @@ public class EmprunteurFormDialog extends JDialog{
         setVisible(true);
     }
 
+    /**
+     * Ecouteur du bouton
+     */
     private class ButtonListener implements ActionListener{
 
         @Override

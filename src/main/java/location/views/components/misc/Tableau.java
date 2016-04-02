@@ -5,11 +5,13 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.util.Arrays;
 
-
+/**
+ * Gestion d'un tableau
+ * @author Adrien Poupa
+ */
 public class Tableau extends JPanel {
     protected TableRowSorter<TableModel> rowSorter;
     protected JTable tableau;

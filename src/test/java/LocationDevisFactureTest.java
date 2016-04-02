@@ -1,5 +1,4 @@
 import location.models.*;
-import models.*;
 import org.apache.commons.io.FileUtils;
 import org.junit.Before;
 import org.junit.Test;
@@ -12,6 +11,10 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+/**
+ * Test d'une location, d'un devis, d'une facture
+ * @author Adrien Poupa
+ */
 public class LocationDevisFactureTest {
 
     private Date date1;
@@ -22,6 +25,9 @@ public class LocationDevisFactureTest {
     private Auto auto;
     private Exemplaire exemplaire;
 
+    /**
+     * Initialisation du test
+     */
     @Before
     public void testInit(){
         date1 = new Date(1, 1, 2016);
@@ -46,6 +52,9 @@ public class LocationDevisFactureTest {
         locationAvecAssurance.save();
     }
 
+    /**
+     * Nombre de jours entre deux locations
+     */
     @Test
     public void daysBetweenLocation() {
         assertEquals("Nombre de jours entre " + locationAvecAssurance.getDebut() + " et " +

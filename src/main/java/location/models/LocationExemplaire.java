@@ -1,6 +1,8 @@
 package location.models;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 /**
  * Gestion de la liste des locations d'un exemplaire

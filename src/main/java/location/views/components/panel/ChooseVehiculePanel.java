@@ -1,11 +1,16 @@
 package location.views.components.panel;
 
-import location.views.components.misc.Panel;
 import location.views.components.misc.CustomFontLabel;
+import location.views.components.misc.Panel;
 
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Panneau de choix d'un véhicule
+ * @author Timothée Barbot
+ * @author Stéphane Gâteau
+ */
 public class ChooseVehiculePanel extends FlowPanel {
 
     private TwoRadioPanel typeVehicule;
@@ -18,14 +23,24 @@ public class ChooseVehiculePanel extends FlowPanel {
 
     private JCheckBox assurancePanel;
 
+    /**
+     * Constructeur par défaut
+     */
     public ChooseVehiculePanel(){
         super();
     }
 
+    /**
+     * Constructeur avec couleur
+     * @param bgColor couleur
+     */
     public ChooseVehiculePanel(Color bgColor){
         super(bgColor);
     }
 
+    /**
+     * Initialisation de la fenêtre
+     */
     private void initChooseVehiculePanel(){
         // Panel choix type de vehicule
         typeVehicule = new TwoRadioPanel(Color.ORANGE, "Type de location", "Auto", "Moto");
@@ -50,6 +65,5 @@ public class ChooseVehiculePanel extends FlowPanel {
         //JPanel listePanel = Panel.listePanel(Color.ORANGE);
 
         // Panel assurance
-
     }
 }

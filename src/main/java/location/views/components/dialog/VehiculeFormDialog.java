@@ -11,11 +11,19 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 
+/**
+ * Fenêtre modale Emprunteur
+ * @author Timothée Barbot
+ */
 public class VehiculeFormDialog extends JDialog {
 
     private VehiculeForm vehiculeForm;
     private static final String TITLE = "Formulaire vehicule";
 
+    /**
+     * Constructeur frame
+     * @param owner frame owner
+     */
     public VehiculeFormDialog(Frame owner){
         super(owner, TITLE, ModalityType.APPLICATION_MODAL);
         ((Fenetre) owner).setVehiculeFormDialog(this);
@@ -23,6 +31,11 @@ public class VehiculeFormDialog extends JDialog {
         initVehiculeFormDialog();
     }
 
+    /**
+     * Constructeur frame / emprunteur
+     * @param owner frame owner
+     * @param v vehicule
+     */
     public VehiculeFormDialog(Frame owner, Vehicule v){
         super(owner, TITLE + ": " + v.getMarque(), ModalityType.APPLICATION_MODAL);
         ((Fenetre) owner).setVehiculeFormDialog(this);
@@ -30,6 +43,9 @@ public class VehiculeFormDialog extends JDialog {
         initVehiculeFormDialog();
     }
 
+    /**
+     * Initialisation de la fenêtre
+     */
     private void initVehiculeFormDialog(){
         setContentPane(vehiculeForm);
 
@@ -39,6 +55,9 @@ public class VehiculeFormDialog extends JDialog {
         setVisible(true);
     }
 
+    /**
+     * Ecouteur du bouton
+     */
     private class ButtonListener implements ActionListener {
 
         @Override

@@ -5,12 +5,15 @@ import com.avaje.ebean.EbeanServerFactory;
 import com.avaje.ebean.config.ServerConfig;
 import location.containers.Vehicules;
 import location.models.*;
+import location.views.LocationView;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import location.views.LocationView;
 
 /**
  * Classe utilisée pour le lancement des fenêtres
+ * @author Timothée Barbot
+ * @author Stéphane Gâteau
+ * @author Adrien Poupa
  */
 public class Application {
 
@@ -28,6 +31,10 @@ public class Application {
 
     private LocationView view;
 
+    /**
+     * Lancement de l'application
+     * @param args arguments par défaut
+     */
     public static void main(String[] args){
         Application app = getApp();
     }
@@ -62,6 +69,9 @@ public class Application {
         return app;
     }
 
+    /**
+     * Initialisation du serveur eBean
+     */
     private void initEbeanServer(){
         ServerConfig c = new ServerConfig();
         c.setName("sqlite");
@@ -185,10 +195,18 @@ public class Application {
         locationAvecAssurance.save();
     }
 
+    /**
+     * Récupération de la vue
+     * @return vue
+     */
     public LocationView getView() {
         return view;
     }
 
+    /**
+     * Mise à jour de la vue
+     * @param view vue
+     */
     public void setView(LocationView view) {
         this.view = view;
     }

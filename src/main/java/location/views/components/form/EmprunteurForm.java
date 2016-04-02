@@ -2,13 +2,17 @@ package location.views.components.form;
 
 import location.models.Adresse;
 import location.models.Emprunteur;
+import location.views.components.panel.AdressePanel;
 import location.views.components.panel.FlowPanel;
 import location.views.components.panel.IdentificationPanel;
-import location.views.components.panel.AdressePanel;
 
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Formulaire d'ajout d'emprunteur
+ * @author Timothée Barbot
+ */
 public class EmprunteurForm extends FlowPanel{
 
     private Emprunteur emprunteur;
@@ -21,17 +25,27 @@ public class EmprunteurForm extends FlowPanel{
 
     private JButton validButton;
 
+    /**
+     * Constructeur par défaut
+     */
     public EmprunteurForm(){
         super();
         initContent();
     }
 
+    /**
+     * Constructeur complet avec emprunteur (modification)
+     * @param e emprunteur
+     */
     public EmprunteurForm(Emprunteur e){
         super();
         emprunteur = e;
         initContent();
     }
 
+    /**
+     * Initialisation fenêtre
+     */
     // init the panel with its components
     private void initContent(){
         // Panel identification
@@ -62,7 +76,9 @@ public class EmprunteurForm extends FlowPanel{
         add(validButton);
     }
 
-    // take data from identification and adressePanel to build an Emprunter entity
+    /**
+     * Take data from identification and adressePanel to build an Emprunter entity
+     */
     public void buildAndSaveEmprunteur(){
 
         if(emprunteur == null) emprunteur = new Emprunteur();
@@ -77,42 +93,82 @@ public class EmprunteurForm extends FlowPanel{
         emprunteur.save();
     }
 
+    /**
+     * Récupération emprunteur
+     * @return emprunteur
+     */
     public Emprunteur getEmprunteur() {
         return emprunteur;
     }
 
+    /**
+     * Modification emprunteur
+     * @param emprunteur emprunteur
+     */
     public void setEmprunteur(Emprunteur emprunteur) {
         this.emprunteur = emprunteur;
     }
 
+    /**
+     * Récupération panneau identification
+     * @return panneau identification
+     */
     public IdentificationPanel getIdentifiantPanel() {
         return identifiantPanel;
     }
 
+    /**
+     * Modification panneau identification
+     * @param identifiantPanel panneau identification
+     */
     public void setIdentifiantPanel(IdentificationPanel identifiantPanel) {
         this.identifiantPanel = identifiantPanel;
     }
 
+    /**
+     * Récupération panneau adresse
+     * @return panneau adresse
+     */
     public AdressePanel getAdressePanel() {
         return adressePanel;
     }
 
+    /**
+     * Modification panneau adresse
+     * @param adressePanel panneau adresse
+     */
     public void setAdressePanel(AdressePanel adressePanel) {
         this.adressePanel = adressePanel;
     }
 
+    /**
+     * Récupération bouton annulation
+     * @return bouton annulation
+     */
     public JButton getCancelButton() {
         return cancelButton;
     }
 
+    /**
+     * Modification bouton annulation
+     * @param cancelButton bouton anulation
+     */
     public void setCancelButton(JButton cancelButton) {
         this.cancelButton = cancelButton;
     }
 
+    /**
+     * Récupération bouton validation
+     * @return bouton validation
+     */
     public JButton getValidButton() {
         return validButton;
     }
 
+    /**
+     * Modification bouton validation
+     * @param validButton bouton validation
+     */
     public void setValidButton(JButton validButton) {
         this.validButton = validButton;
     }

@@ -1,26 +1,43 @@
 package location.views.components.panel;
 
+import location.views.components.misc.CustomFontLabel;
+import location.views.components.misc.DateLabelFormatter;
 import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
-import location.views.components.misc.DateLabelFormatter;
-import location.views.components.misc.CustomFontLabel;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.Properties;
 
+/**
+ * Panneau de la date
+ * @author Timothée Barbot
+ * @author Stéphane Gâteau
+ */
 public class DatePanel extends FlowPanel{
 
+    /**
+     * Constructeur par défaut
+     */
     public DatePanel(){
         super();
     }
 
+    /**
+     * Constructeur complet
+     * @param bgColor couleur de fond
+     * @param nom nom de la date
+     */
     public DatePanel(Color bgColor, String nom){
         super(bgColor);
         initDatePanel(nom);
     }
 
+    /**
+     * Initialisation
+     * @param nom nom de la date
+     */
     private void initDatePanel(String nom) {
         JLabel departLabel = new CustomFontLabel(nom);
 

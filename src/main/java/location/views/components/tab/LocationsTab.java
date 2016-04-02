@@ -1,19 +1,24 @@
 package location.views.components.tab;
 
-import location.views.components.misc.*;
-import location.views.components.misc.CustomFontLabel;
-
 import location.models.Location;
 import location.models.LocationExemplaire;
+import location.views.components.misc.CustomFontLabel;
+import location.views.components.misc.TableauRecherche;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
 /**
- * Created by Adrien on 01/04/2016.
+ * Fenêtre de l'onglet Locations
+ * @author Timothée Barbot
+ * @author Adrien Poupa
  */
 public class LocationsTab extends JPanel {
+
+    /**
+     * Initialisation de la fenêtre
+     */
     public LocationsTab() {
         super();
         setBackground(Color.orange);
@@ -21,6 +26,9 @@ public class LocationsTab extends JPanel {
         initContent();
     }
 
+    /**
+     * Contenu de la fenêtre
+     */
     private void initContent() {
         // rajout du titre
         JLabel title = new CustomFontLabel("Liste des locations","Calibri", Font.PLAIN, 25);

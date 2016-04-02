@@ -1,6 +1,6 @@
 package location.containers;
 
-import com.avaje.ebean.Model.*;
+import com.avaje.ebean.Model.Find;
 import location.models.Auto;
 import location.models.Exemplaire;
 import location.models.Moto;

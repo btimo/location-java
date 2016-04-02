@@ -5,19 +5,27 @@ import location.models.Auto;
 import location.models.Exemplaire;
 import location.models.Moto;
 import location.views.components.dialog.ExemplaireFormDialog;
+import location.views.components.misc.CustomFontLabel;
 import location.views.components.misc.Fenetre;
 import location.views.components.misc.TableauRecherche;
-import location.views.components.misc.CustomFontLabel;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Fenêtre de l'onglet Exemplaires
+ * @author Timothée Barbot
+ * @author Adrien Poupa
+ */
 public class ExemplairesTab extends JPanel {
 
     private JButton addExemplaireButton;
 
+    /**
+     * Initialisation de la fenêtre
+     */
     public ExemplairesTab() {
         super();
         setBackground(Color.orange);
@@ -25,6 +33,9 @@ public class ExemplairesTab extends JPanel {
         initContent();
     }
 
+    /**
+     * Contenu de la fenêtre
+     */
     private void initContent() {
         // rajout du titre
         JLabel title = new CustomFontLabel("Liste des exemplaires","Calibri", Font.PLAIN, 25);
@@ -78,6 +89,9 @@ public class ExemplairesTab extends JPanel {
         }));
     }
 
+    /**
+     * Ecouteur du bouton de la fenêtre
+     */
     private class ButtonListener implements ActionListener {
 
         @Override

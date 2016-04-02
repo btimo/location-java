@@ -11,11 +11,19 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 
+/**
+ * Fenêtre modale Emprunteur
+ * @author Timothée Barbot
+ */
 public class ExemplaireFormDialog extends JDialog {
 
     private ExemplaireForm exemplaireForm;
     private static final String TITLE = "Formulaire exemplaire";
 
+    /**
+     * Constructeur frame
+     * @param owner frame owner
+     */
     public ExemplaireFormDialog(Frame owner){
         super(owner, TITLE, ModalityType.APPLICATION_MODAL);
         ((Fenetre) owner).setExemplaireFormDialog(this);
@@ -23,6 +31,11 @@ public class ExemplaireFormDialog extends JDialog {
         initExemplaireFormDialog();
     }
 
+    /**
+     * Constructeur frame / emprunteur
+     * @param owner frame owner
+     * @param e exemplaire
+     */
     public ExemplaireFormDialog(Frame owner, Exemplaire e){
         super(owner, TITLE + ": " + e.getDisplayName(), ModalityType.APPLICATION_MODAL);
         ((Fenetre) owner).setExemplaireFormDialog(this);
@@ -30,6 +43,9 @@ public class ExemplaireFormDialog extends JDialog {
         initExemplaireFormDialog();
     }
 
+    /**
+     * Initialisation de la fenêtre
+     */
     private void initExemplaireFormDialog(){
         setContentPane(exemplaireForm);
 
@@ -39,6 +55,9 @@ public class ExemplaireFormDialog extends JDialog {
         setVisible(true);
     }
 
+    /**
+     * Ecouteur du bouton
+     */
     private class ButtonListener implements ActionListener {
 
         @Override

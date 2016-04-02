@@ -6,6 +6,10 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
+/**
+ * Test d'un emprunteur
+ * @author Adrien Poupa
+ */
 public class EmprunteursTest {
 
     private Adresse adresse;
@@ -15,6 +19,9 @@ public class EmprunteursTest {
     private Emprunteur emprunteur2;
     private Emprunteur emprunteur3;
 
+    /**
+     * Initialisation du test
+     */
     @Before
     public void testInit() {
         adresse = new Adresse(3, "avenue de la République", "94800", "Villejuif");
@@ -29,6 +36,9 @@ public class EmprunteursTest {
         emprunteur3.save();
     }
 
+    /**
+     * Test d'ajout des emprunteurs dans le container
+     */
     @Test
     public void getLengthshouldReturn3(){
         assertEquals("Il devrait y avoir 3 emprunteurs", 3, Emprunteurs.get().size());

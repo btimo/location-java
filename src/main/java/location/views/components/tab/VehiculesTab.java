@@ -4,25 +4,28 @@ import location.Application;
 import location.models.Auto;
 import location.models.Moto;
 import location.models.Vehicule;
-import location.views.components.dialog.ExemplaireFormDialog;
 import location.views.components.dialog.VehiculeFormDialog;
+import location.views.components.misc.CustomFontLabel;
 import location.views.components.misc.Fenetre;
 import location.views.components.misc.TableauRecherche;
-import location.views.components.misc.CustomFontLabel;
 
 import javax.swing.*;
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-
+/**
+ * Fenêtre de l'onglet Véhicules
+ * @author Timothée Barbot
+ * @author Adrien Poupa
+ */
 public class VehiculesTab extends JPanel {
 
     private JButton addVehiculeButton;
 
+    /**
+     * Initialisation de la fenêtre
+     */
     public VehiculesTab() {
         super();
         setBackground(Color.orange);
@@ -30,6 +33,9 @@ public class VehiculesTab extends JPanel {
         initContent();
     }
 
+    /**
+     * Contenu de la fenêtre
+     */
     public void initContent() {
         // rajout du titre
         JLabel title = new CustomFontLabel("Liste des véhicules","Calibri", Font.PLAIN, 25);
@@ -85,6 +91,9 @@ public class VehiculesTab extends JPanel {
         }));
     }
 
+    /**
+     * Ecouteur du bouton d'ajout
+     */
     private class ButtonListener implements ActionListener {
 
         @Override

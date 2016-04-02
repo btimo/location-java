@@ -9,7 +9,8 @@ import java.awt.*;
 import java.util.ArrayList;
 
 /**
- * Created by sgate on 23/03/2016.
+ * Création d'un bouton radio
+ * @author Stéphane Gâteau
  */
 public class Bouton {
     public static ArrayList<JRadioButton> ouiNon = new ArrayList<>();
