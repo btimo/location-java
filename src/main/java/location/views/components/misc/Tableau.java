@@ -122,6 +122,25 @@ public class Tableau extends JPanel {
     }
 
     /**
+     * Recherche dans un tableau et une colonne
+     * @param search chaîne recherchée
+     * @param col colonne où chercher
+     */
+    public void search(String search, int col) {
+        rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + search, col));
+        tableau.repaint();
+    }
+
+    /**
+     * Recherche dans un tableau et une colonne
+     * @param compoundRowFilter ensemble de filtres
+     */
+    public void search(RowFilter<TableModel, Object> compoundRowFilter) {
+        rowSorter.setRowFilter(compoundRowFilter);
+        tableau.repaint();
+    }
+
+    /**
      * Ajout d'une ligne
      * @param row ligne
      */
