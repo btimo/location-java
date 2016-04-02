@@ -25,6 +25,7 @@ import java.awt.event.ActionListener;
 public class VehiculesTab extends JPanel {
 
     private JButton addVehiculeButton;
+    private TableauRecherche table;
 
     /**
      * Initialisation de la fenêtre
@@ -78,14 +79,12 @@ public class VehiculesTab extends JPanel {
             donnees[count][2] = modeleCylindree;
             donnees[count][3] = v.getPrixJour();
             donnees[count][4] = v.getPrixAssurance();
-
-            // todo  pb bouton detail pour les moto (Vehicule)
             donnees[count][5] = "Détails";
 
             count++;
         }
 
-        add(new TableauRecherche(donnees, entetes, numData, new AbstractAction()
+        table = new TableauRecherche(donnees, entetes, numData, new AbstractAction()
         {
             public void actionPerformed(ActionEvent e)
             {
@@ -96,7 +95,9 @@ public class VehiculesTab extends JPanel {
                 Fenetre mainFenetre = Application.getApp().getView().getLocationFenetre();
                 new VehiculeFormDialog(mainFenetre, Vehicules.get().get(modelRow));
             }
-        }));
+        });
+
+        add(table);
     }
 
     /**
@@ -110,7 +111,7 @@ public class VehiculesTab extends JPanel {
 
             if(me.equals(addVehiculeButton)){
                 Fenetre mainFenetre = Application.getApp().getView().getLocationFenetre();
-                new VehiculeFormDialog(mainFenetre);
+                new VehiculeFormDialog(mainFenetre, table);
             }
         }
     }

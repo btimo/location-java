@@ -26,6 +26,8 @@ public class EmprunteursTab extends JPanel{
 
     private JButton addEmprunteurButton;
 
+    private TableauRecherche table;
+
     /**
      * Initialisation de la fenêtre
      */
@@ -69,7 +71,7 @@ public class EmprunteursTab extends JPanel{
 
         Integer[] numData = {0};
 
-        add(new TableauRecherche(donnees, entetes, numData, new AbstractAction()
+        table = new TableauRecherche(donnees, entetes, numData, new AbstractAction()
         {
             public void actionPerformed(ActionEvent e)
             {
@@ -80,7 +82,9 @@ public class EmprunteursTab extends JPanel{
                 Fenetre mainFenetre = Application.getApp().getView().getLocationFenetre();
                 new EmprunteurFormDialog(mainFenetre, Emprunteurs.get().get(modelRow));
             }
-        }));
+        });
+
+        add(table);
     }
 
     /**
@@ -94,7 +98,7 @@ public class EmprunteursTab extends JPanel{
 
             if(me.equals(addEmprunteurButton)){
                 Fenetre mainFenetre = Application.getApp().getView().getLocationFenetre();
-                new EmprunteurFormDialog(mainFenetre);
+                new EmprunteurFormDialog(mainFenetre, table);
             }
         }
     }

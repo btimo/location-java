@@ -92,7 +92,7 @@ public class VehiculeForm extends BoxPanel {
         motoPanel = new MotoPanel(Fenetre.defaultColor);
 
         if(vehicule != null) {
-            if (vehicule.getClass().equals("Moto")) {
+            if (vehicule instanceof Moto) {
                 motoPanel.setVisible(true);
                 autoPanel.setVisible(false);
                 motoPanel.getCylindreeTexte().setText(Integer.toString(((Moto) vehicule).getCylindree()));
@@ -146,7 +146,7 @@ public class VehiculeForm extends BoxPanel {
     /**
      * Sauvegarde véhicule
      */
-    public void buildAndSaveVehicule(){
+    public Vehicule buildAndSaveVehicule(){
         if(vehicule == null){
             if(vehiculeTypePanel.getBtn1().isSelected()){
                 vehicule = new Auto();
@@ -162,8 +162,9 @@ public class VehiculeForm extends BoxPanel {
         vehicule.setMarque(marqueTexte.getText());
         vehicule.setPrixJour(Integer.parseInt(priceTexte.getText()));
         vehicule.setPrixAssurance(Integer.parseInt(insuranceTexte.getText()));
-        //System.out.println(vehicule.toString());
         vehicule.save();
+
+        return vehicule;
     }
 
 

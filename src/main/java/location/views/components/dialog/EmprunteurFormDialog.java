@@ -4,6 +4,7 @@ import location.Application;
 import location.models.Emprunteur;
 import location.views.components.form.EmprunteurForm;
 import location.views.components.misc.Fenetre;
+import location.views.components.misc.TableauRecherche;
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,14 +20,16 @@ public class EmprunteurFormDialog extends JDialog{
 
     private EmprunteurForm emprunteurForm;
     private static final String TITLE = "Formulaire emprunteur";
+    private TableauRecherche table;
 
     /**
      * Constructeur frame
      * @param owner frame owner
      */
-    public EmprunteurFormDialog(Frame owner){
+    public EmprunteurFormDialog(Frame owner, TableauRecherche table){
         super(owner, TITLE, ModalityType.APPLICATION_MODAL);
         ((Fenetre) owner).setEmprunteurFormDialog(this);
+        this.table = table;
         emprunteurForm = new EmprunteurForm();
         initEmprunteurFormDialog();
     }
@@ -71,8 +74,10 @@ public class EmprunteurFormDialog extends JDialog{
                 dialog.dispatchEvent(new WindowEvent(dialog, WindowEvent.WINDOW_CLOSING));
             }
             else if(me.equals(emprunteurForm.getValidButton())){
-                emprunteurForm.buildAndSaveEmprunteur();
-                // todo: update Emprunteurs containers and redraw table
+                Emprunteur newEmprunteur = emprunteurForm.buildAndSaveEmprunteur();
+                Object [] newEmprunteurRow = new Object[]{newEmprunteur.getId(), newEmprunteur.getNom(),
+                        newEmprunteur.getPrenom(), newEmprunteur.getAdresse().toString(), "Détails"};
+                table.addRow(newEmprunteurRow);
                 dialog.setVisible(false);
                 dialog.dispatchEvent(new WindowEvent(dialog, WindowEvent.WINDOW_CLOSING));
             }

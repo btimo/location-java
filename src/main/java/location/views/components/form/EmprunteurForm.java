@@ -89,7 +89,7 @@ public class EmprunteurForm extends BoxPanel {
     /**
      * Take data from identification and adressePanel to build an Emprunter entity
      */
-    public void buildAndSaveEmprunteur(){
+    public Emprunteur buildAndSaveEmprunteur(){
 
         if(emprunteur == null) emprunteur = new Emprunteur();
 
@@ -101,6 +101,8 @@ public class EmprunteurForm extends BoxPanel {
                 adressePanel.getVilleTexte().getText())
         );
         emprunteur.save();
+
+        return emprunteur;
     }
 
     /**
