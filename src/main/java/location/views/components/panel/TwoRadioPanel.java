@@ -36,4 +36,28 @@ public class TwoRadioPanel extends FlowPanel {
         add(btn1);
         add(btn2);
     }
+
+    public ButtonGroup getBtnGroup() {
+        return btnGroup;
+    }
+
+    public void setBtnGroup(ButtonGroup btnGroup) {
+        this.btnGroup = btnGroup;
+    }
+
+    public JRadioButton getBtn1() {
+        return btn1;
+    }
+
+    public void setBtn1(JRadioButton btn1) {
+        this.btn1 = btn1;
+    }
+
+    public JRadioButton getBtn2() {
+        return btn2;
+    }
+
+    public void setBtn2(JRadioButton btn2) {
+        this.btn2 = btn2;
+    }
 }

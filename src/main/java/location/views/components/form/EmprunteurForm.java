@@ -64,7 +64,6 @@ public class EmprunteurForm extends FlowPanel{
 
     // take data from identification and adressePanel to build an Emprunter entity
     public void buildAndSaveEmprunteur(){
-        System.out.println("building emprunteur entity from scratch ...");
 
         if(emprunteur == null) emprunteur = new Emprunteur();
 

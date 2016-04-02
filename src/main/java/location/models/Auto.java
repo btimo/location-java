@@ -2,6 +2,7 @@ package location.models;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.Transient;
 
 /**
  * Gestion d'un modèle d'auto
@@ -16,6 +17,10 @@ public class Auto extends Vehicule {
     private String modele;
 
     private boolean luxe;
+
+    public Auto(){
+
+    }
 
     /**
      * Constructeur de base d'une auto
@@ -63,6 +68,12 @@ public class Auto extends Vehicule {
      */
     public void setLuxe(boolean luxe) {
         this.luxe = luxe;
+    }
+
+    @Transient
+    @Override
+    public String getDisplayName(){
+        return getMarque() + " - " + getModele() + (isLuxe() ? " - luxe": "");
     }
 
     /**

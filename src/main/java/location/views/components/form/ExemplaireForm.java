@@ -1,13 +1,27 @@
 package location.views.components.form;
 
 
+import location.containers.Vehicules;
+import location.models.Auto;
 import location.models.Exemplaire;
+import location.models.Vehicule;
 
 import javax.swing.*;
+import java.util.ArrayList;
 
 public class ExemplaireForm extends JPanel {
 
     private Exemplaire exemplaire;
+
+    private JLabel vehiculeLabel;
+    private JComboBox vehiculesComboBox;
+
+    private JLabel kmLabel;
+    private JTextField kmTexte;
+
+    private JButton cancelButton;
+
+    private JButton validButton;
 
     public ExemplaireForm(){
         super();
@@ -24,15 +38,50 @@ public class ExemplaireForm extends JPanel {
     // init the panel with its components
     private void initContent(){
         // label + field for the exemplaire vehicule
-
+        vehiculeLabel = new JLabel("Vehicule : ");
+        vehiculesComboBox = new JComboBox();
+        for(Vehicule v: Vehicules.get()){
+            vehiculesComboBox.addItem(v.getDisplayName());
+        }
         // label + field for the exemplaire kmCounter
-
-        // label + field for the exemplaire tank level
-
-        // label + field for the exemplaire state (dommaged?)
+        kmLabel = new JLabel("Kilométrage : ");
+        kmTexte = new JTextField(" km", 10);
 
         // button to cancel any modification + close the window
+        cancelButton = new JButton("Annuler");
 
         // button to validate the form + close the window
+        validButton = new JButton("Valider");
+
+        add(vehiculeLabel);
+        add(vehiculesComboBox);
+        add(kmLabel);
+        add(kmTexte);
+        add(cancelButton);
+        add(validButton);
+    }
+
+    public void buildAndSaveExemplaire(){
+        if(exemplaire == null) exemplaire = new Exemplaire();
+
+        exemplaire.setVehicule(Vehicules.get().get(vehiculesComboBox.getSelectedIndex()));
+        exemplaire.setKilometres(Integer.parseInt(kmTexte.getText().trim()));
+        exemplaire.save();
+    }
+
+    public JButton getCancelButton() {
+        return cancelButton;
+    }
+
+    public void setCancelButton(JButton cancelButton) {
+        this.cancelButton = cancelButton;
+    }
+
+    public JButton getValidButton() {
+        return validButton;
+    }
+
+    public void setValidButton(JButton validButton) {
+        this.validButton = validButton;
     }
 }

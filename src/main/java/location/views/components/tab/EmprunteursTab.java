@@ -22,8 +22,6 @@ public class EmprunteursTab extends JPanel{
 
     private JButton addEmprunteurButton;
 
-    private EmprunteurFormDialog emprunteurFormDialog;
-
     public EmprunteursTab() {
         super();
         setBackground(Color.orange);
@@ -73,13 +71,5 @@ public class EmprunteursTab extends JPanel{
                 new EmprunteurFormDialog(mainFenetre);
             }
         }
-    }
-
-    public EmprunteurFormDialog getEmprunteurFormDialog() {
-        return emprunteurFormDialog;
-    }
-
-    public void setEmprunteurFormDialog(EmprunteurFormDialog emprunteurFormDialog) {
-        this.emprunteurFormDialog = emprunteurFormDialog;
     }
 }

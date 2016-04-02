@@ -1,17 +1,26 @@
 package location.views.components.tab;
 
+import location.Application;
 import location.models.Auto;
 import location.models.Moto;
 import location.models.Vehicule;
+import location.views.components.dialog.ExemplaireFormDialog;
+import location.views.components.dialog.VehiculeFormDialog;
+import location.views.components.misc.Fenetre;
 import location.views.components.misc.TableauRecherche;
 import location.views.components.misc.CustomFontLabel;
 
 import javax.swing.*;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 
 public class VehiculesTab extends JPanel {
+
+    private JButton addVehiculeButton;
+
     public VehiculesTab() {
         super();
         setBackground(Color.orange);
@@ -25,8 +34,9 @@ public class VehiculesTab extends JPanel {
         add(reservationLabel);
 
         // Bouton rajout Ajouter un exemplaire
-        JButton ajouter = new JButton("Ajouter un véhicule");
-        add(ajouter);
+        addVehiculeButton = new JButton("Ajouter un véhicule");
+        addVehiculeButton.addActionListener(new ButtonListener());
+        add(addVehiculeButton);
 
         // Données tableau
         String[] entetes = {"Numéro", "Marque", "Modèle/Cylindrée", "Prix journalier", "Prix assurance", "Actions"};
@@ -59,5 +69,18 @@ public class VehiculesTab extends JPanel {
         }
 
         add(new TableauRecherche(donnees, entetes));
+    }
+
+    private class ButtonListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent event){
+            JButton me = (JButton) event.getSource();
+
+            if(me.equals(addVehiculeButton)){
+                Fenetre mainFenetre = Application.getApp().getView().getLocationFenetre();
+                new VehiculeFormDialog(mainFenetre);
+            }
+        }
     }
 }

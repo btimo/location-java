@@ -26,6 +26,7 @@ public class EmprunteurFormDialog extends JDialog{
 
     public EmprunteurFormDialog(Frame owner, Emprunteur e){
         super(owner, TITLE + ": " + e.getDisplayName(), ModalityType.APPLICATION_MODAL);
+        ((Fenetre) owner).setEmprunteurFormDialog(this);
         emprunteurForm = new EmprunteurForm(e);
         initEmprunteurFormDialog();
     }

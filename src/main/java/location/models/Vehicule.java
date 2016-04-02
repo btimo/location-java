@@ -3,6 +3,7 @@ package location.models;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -79,6 +80,11 @@ public abstract class Vehicule extends BaseModel{
      */
     public List<Exemplaire> getExemplaires() {
         return exemplaires;
+    }
+
+    @Transient
+    public String getDisplayName(){
+        return marque;
     }
 
     /**

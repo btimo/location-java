@@ -2,6 +2,7 @@ package location.models;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.Transient;
 
 /**
  * Gestion d'un modèle d'une moto
@@ -13,6 +14,10 @@ import javax.persistence.Entity;
 public class Moto extends Vehicule {
 
     private int cylindree;
+
+    public Moto(){
+
+    }
 
     /**
      * Constructeur par défaut
@@ -42,6 +47,12 @@ public class Moto extends Vehicule {
      */
     public void setCylindree(int cylindree) {
         this.cylindree = cylindree;
+    }
+
+    @Transient
+    @Override
+    public String getDisplayName(){
+        return getMarque() + " - " + getCylindree();
     }
 
     /**

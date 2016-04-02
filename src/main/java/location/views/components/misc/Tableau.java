@@ -8,9 +8,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
 
-/**
- * Created by sgate on 24/03/2016.
- */
 public class Tableau extends JPanel {
     protected TableRowSorter<TableModel> rowSorter;
     protected JTable tableau;
