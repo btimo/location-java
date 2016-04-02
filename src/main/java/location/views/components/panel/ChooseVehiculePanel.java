@@ -1,7 +1,10 @@
 package location.views.components.panel;
 
+import location.containers.Vehicules;
+import location.models.Auto;
+import location.models.Moto;
+import location.models.Vehicule;
 import location.views.components.misc.CustomFontLabel;
-import location.views.components.misc.Panel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,7 +14,7 @@ import java.awt.*;
  * @author Timothée Barbot
  * @author Stéphane Gâteau
  */
-public class ChooseVehiculePanel extends FlowPanel {
+public class ChooseVehiculePanel extends JPanel {
 
     private TwoRadioPanel typeVehicule;
 
@@ -23,11 +26,18 @@ public class ChooseVehiculePanel extends FlowPanel {
 
     private JCheckBox assurancePanel;
 
+    private CorrespondingVehiculesPanel correspondingVehiculesPanel;
+
+    private JComboBox vehiculesComboBox;
+
+    private JButton searchBtn;
+
     /**
      * Constructeur par défaut
      */
     public ChooseVehiculePanel(){
         super();
+        initChooseVehiculePanel();
     }
 
     /**
@@ -35,7 +45,9 @@ public class ChooseVehiculePanel extends FlowPanel {
      * @param bgColor couleur
      */
     public ChooseVehiculePanel(Color bgColor){
-        super(bgColor);
+        super();
+        setBackground(bgColor);
+        initChooseVehiculePanel();
     }
 
     /**
@@ -44,12 +56,36 @@ public class ChooseVehiculePanel extends FlowPanel {
     private void initChooseVehiculePanel(){
         // Panel choix type de vehicule
         typeVehicule = new TwoRadioPanel(Color.ORANGE, "Type de location", "Auto", "Moto");
+        typeVehicule.getBtn1().addActionListener(e->{
+            vehiculesComboBox.removeAllItems();
+            for(Vehicule v: Vehicules.get()){
+                if(v instanceof Auto){
+                    vehiculesComboBox.addItem(v.getDisplayName());
+                }
+            }
+        });
+        typeVehicule.getBtn2().addActionListener(e->{
+            vehiculesComboBox.removeAllItems();
+            for(Vehicule v: Vehicules.get()){
+                if(v instanceof Moto){
+                    vehiculesComboBox.addItem(v.getDisplayName());
+                }
+            }
+        });
 
         // Panel selection du vehicule
         modelPanel = new FlowPanel(Color.ORANGE);
         JLabel constructeurModel = new CustomFontLabel("Choix du véhicule","Arial", Font.BOLD,14);
         modelPanel.add(constructeurModel);
-        modelPanel.add(Panel.listeAutoMoto(Color.ORANGE, true));
+
+
+        vehiculesComboBox = new JComboBox();
+        for(Vehicule v: Vehicules.get()){
+            if(v instanceof Auto)
+                vehiculesComboBox.addItem(v.getDisplayName());
+        }
+
+        modelPanel.add(vehiculesComboBox);
 
         // Panel date
         dateDepartPanel = new DatePanel(Color.ORANGE, "Date de départ");
@@ -60,10 +96,60 @@ public class ChooseVehiculePanel extends FlowPanel {
         assurancePanel.setAlignmentX(CENTER_ALIGNMENT);
         assurancePanel.setBackground(Color.ORANGE);
 
+        // search btn
+        searchBtn = new JButton("Rechercher disponibilité");
+        searchBtn.addActionListener(e -> {
+            //correspondingVehiculesPanel.
+        });
 
-        //JPanel selectedVehicules = Panel.checkBoxPanel(Panel.listeAutoMoto(Color.ORANGE, true), Vehicules.get());
-        //JPanel listePanel = Panel.listePanel(Color.ORANGE);
+        // table showing exemplaire corresponding to search
+        correspondingVehiculesPanel = new CorrespondingVehiculesPanel();
 
-        // Panel assurance
+        add(typeVehicule);
+        add(modelPanel);
+        add(dateDepartPanel);
+        add(dateRetourPanel);
+        add(assurancePanel);
+        add(correspondingVehiculesPanel);
+    }
+
+    public TwoRadioPanel getTypeVehicule() {
+        return typeVehicule;
+    }
+
+    public void setTypeVehicule(TwoRadioPanel typeVehicule) {
+        this.typeVehicule = typeVehicule;
+    }
+
+    public JPanel getDateDepartPanel() {
+        return dateDepartPanel;
+    }
+
+    public void setDateDepartPanel(JPanel dateDepartPanel) {
+        this.dateDepartPanel = dateDepartPanel;
+    }
+
+    public JPanel getDateRetourPanel() {
+        return dateRetourPanel;
+    }
+
+    public void setDateRetourPanel(JPanel dateRetourPanel) {
+        this.dateRetourPanel = dateRetourPanel;
+    }
+
+    public JCheckBox getAssurancePanel() {
+        return assurancePanel;
+    }
+
+    public void setAssurancePanel(JCheckBox assurancePanel) {
+        this.assurancePanel = assurancePanel;
+    }
+
+    public JComboBox getVehiculesComboBox() {
+        return vehiculesComboBox;
+    }
+
+    public void setVehiculesComboBox(JComboBox vehiculesComboBox) {
+        this.vehiculesComboBox = vehiculesComboBox;
     }
 }

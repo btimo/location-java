@@ -1,13 +1,21 @@
 package location.views.components.tab;
 
+import location.Application;
+import location.containers.Flotte;
+import location.containers.Locations;
 import location.models.Location;
 import location.models.LocationExemplaire;
+import location.views.components.dialog.ExemplaireFormDialog;
+import location.views.components.dialog.LocationFormDialog;
+import location.views.components.dialog.VehiculeFormDialog;
 import location.views.components.misc.CustomFontLabel;
+import location.views.components.misc.Fenetre;
 import location.views.components.misc.TableauRecherche;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * Fenêtre de l'onglet Locations
@@ -15,6 +23,8 @@ import java.awt.event.ActionEvent;
  * @author Adrien Poupa
  */
 public class LocationsTab extends JPanel {
+
+    private JButton addLocationButton;
 
     /**
      * Initialisation de la fenêtre
@@ -36,8 +46,9 @@ public class LocationsTab extends JPanel {
         add(title);
 
         // Bouton rajout Ajouter une location
-        JButton addLocationButton = new JButton("Ajouter une location");
+        addLocationButton = new JButton("Ajouter une location");
         addLocationButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        addLocationButton.addActionListener(new ButtonListener());
         add(addLocationButton);
 
         // Données tableau
@@ -73,7 +84,26 @@ public class LocationsTab extends JPanel {
                 JTable table = (JTable)e.getSource();
                 // Récupère l'ID - 1
                 int modelRow = Integer.valueOf( e.getActionCommand() );
+
+                Fenetre mainFenetre = Application.getApp().getView().getLocationFenetre();
+                new LocationFormDialog(mainFenetre, Locations.get().get(modelRow));
             }
         }));
+    }
+
+    /**
+     * Ecouteur du bouton d'ajout
+     */
+    private class ButtonListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent event){
+            JButton me = (JButton) event.getSource();
+
+            if(me.equals(addLocationButton)){
+                Fenetre mainFenetre = Application.getApp().getView().getLocationFenetre();
+                new LocationFormDialog(mainFenetre);
+            }
+        }
     }
 }

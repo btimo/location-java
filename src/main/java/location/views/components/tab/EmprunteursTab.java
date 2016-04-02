@@ -1,8 +1,11 @@
 package location.views.components.tab;
 
 import location.Application;
+import location.containers.Emprunteurs;
+import location.containers.Flotte;
 import location.models.Emprunteur;
 import location.views.components.dialog.EmprunteurFormDialog;
+import location.views.components.dialog.ExemplaireFormDialog;
 import location.views.components.misc.CustomFontLabel;
 import location.views.components.misc.Fenetre;
 import location.views.components.misc.TableauRecherche;
@@ -73,6 +76,9 @@ public class EmprunteursTab extends JPanel{
                 JTable table = (JTable)e.getSource();
                 // Récupère l'ID - 1
                 int modelRow = Integer.valueOf( e.getActionCommand() );
+
+                Fenetre mainFenetre = Application.getApp().getView().getLocationFenetre();
+                new EmprunteurFormDialog(mainFenetre, Emprunteurs.get().get(modelRow));
             }
         }));
     }

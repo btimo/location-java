@@ -1,6 +1,7 @@
 package location.views.components.tab;
 
 import location.Application;
+import location.containers.Flotte;
 import location.models.Auto;
 import location.models.Exemplaire;
 import location.models.Moto;
@@ -85,6 +86,9 @@ public class ExemplairesTab extends JPanel {
                 JTable table = (JTable)e.getSource();
                 // Récupère l'ID - 1
                 int modelRow = Integer.valueOf( e.getActionCommand() );
+
+                Fenetre mainFenetre = Application.getApp().getView().getLocationFenetre();
+                new ExemplaireFormDialog(mainFenetre, Flotte.get().get(modelRow));
             }
         }));
     }

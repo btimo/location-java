@@ -1,9 +1,12 @@
 package location.views.components.tab;
 
 import location.Application;
+import location.containers.Flotte;
+import location.containers.Vehicules;
 import location.models.Auto;
 import location.models.Moto;
 import location.models.Vehicule;
+import location.views.components.dialog.ExemplaireFormDialog;
 import location.views.components.dialog.VehiculeFormDialog;
 import location.views.components.misc.CustomFontLabel;
 import location.views.components.misc.Fenetre;
@@ -87,6 +90,9 @@ public class VehiculesTab extends JPanel {
                 JTable table = (JTable)e.getSource();
                 // Récupère l'ID - 1
                 int modelRow = Integer.valueOf( e.getActionCommand() );
+
+                Fenetre mainFenetre = Application.getApp().getView().getLocationFenetre();
+                new VehiculeFormDialog(mainFenetre, Vehicules.get().get(modelRow));
             }
         }));
     }
