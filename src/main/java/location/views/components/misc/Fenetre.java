@@ -1,9 +1,6 @@
 package location.views.components.misc;
 
-import location.views.components.dialog.EmprunteurFormDialog;
-import location.views.components.dialog.ExemplaireFormDialog;
-import location.views.components.dialog.LocationFormDialog;
-import location.views.components.dialog.VehiculeFormDialog;
+import location.views.components.dialog.*;
 import location.views.components.panel.MainPanel;
 
 import javax.swing.*;
@@ -26,6 +23,10 @@ public class Fenetre extends JFrame{
     private VehiculeFormDialog vehiculeFormDialog;
 
     private LocationFormDialog locationFormDialog;
+
+    private HistogrammeFlotteDialog histogrammeFlotteDialog;
+
+    private HistogrammeLocationsDialog histogrammeLocationsDialog;
 
     protected String nom;
     protected int hauteur;
@@ -85,6 +86,38 @@ public class Fenetre extends JFrame{
      */
     public void setExemplaireFormDialog(ExemplaireFormDialog exemplaireFormDialog) {
         this.exemplaireFormDialog = exemplaireFormDialog;
+    }
+
+    /**
+     * Fenêtre modale histogramme
+     * @return fenêtre modale histogramme
+     */
+    public HistogrammeFlotteDialog getHistogrammeFlotteDialog() {
+        return histogrammeFlotteDialog;
+    }
+
+    /**
+     * Modification fenêtre modale histogramme
+     * @param histogrammeFlotteDialog fenêtre modale histogramme
+     */
+    public void setHistogrammeFlotteDialog(HistogrammeFlotteDialog histogrammeFlotteDialog) {
+        this.histogrammeFlotteDialog = histogrammeFlotteDialog;
+    }
+
+    /**
+     * Fenêtre modale histogramme
+     * @return fenêtre modale histogramme
+     */
+    public HistogrammeLocationsDialog getHistogrammeLocationsDialog() {
+        return histogrammeLocationsDialog;
+    }
+
+    /**
+     * Modification fenêtre modale histogramme
+     * @param histogrammeLocationsDialog fenêtre modale histogramme
+     */
+    public void setHistogrammeLocationsDialog(HistogrammeLocationsDialog histogrammeLocationsDialog) {
+        this.histogrammeLocationsDialog = histogrammeLocationsDialog;
     }
 
     /**

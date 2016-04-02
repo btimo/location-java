@@ -5,9 +5,7 @@ import location.containers.Flotte;
 import location.containers.Locations;
 import location.models.Location;
 import location.models.LocationExemplaire;
-import location.views.components.dialog.ExemplaireFormDialog;
-import location.views.components.dialog.LocationFormDialog;
-import location.views.components.dialog.VehiculeFormDialog;
+import location.views.components.dialog.*;
 import location.views.components.misc.CustomFontLabel;
 import location.views.components.misc.Fenetre;
 import location.views.components.misc.TableauRecherche;
@@ -25,6 +23,7 @@ import java.awt.event.ActionListener;
 public class LocationsTab extends JPanel {
 
     private JButton addLocationButton;
+    private JButton histogramme;
 
     /**
      * Initialisation de la fenêtre
@@ -50,6 +49,12 @@ public class LocationsTab extends JPanel {
         addLocationButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         addLocationButton.addActionListener(new ButtonListener());
         add(addLocationButton);
+
+        // Bouton histogramme
+        histogramme = new JButton("Histogramme");
+        histogramme.setAlignmentX(Component.CENTER_ALIGNMENT);
+        histogramme.addActionListener(new ButtonListener());
+        add(histogramme);
 
         // Données tableau
         String[] entetes = {"Numéro", "Locataire", "Date début", "Date fin", "Devis accepté", "Prix TTC", "Actions"};
@@ -100,9 +105,14 @@ public class LocationsTab extends JPanel {
         public void actionPerformed(ActionEvent event){
             JButton me = (JButton) event.getSource();
 
-            if(me.equals(addLocationButton)){
+            if (me.equals(addLocationButton)){
                 Fenetre mainFenetre = Application.getApp().getView().getLocationFenetre();
                 new LocationFormDialog(mainFenetre);
+            }
+
+            if (me.equals(histogramme)){
+                Fenetre mainFenetre = Application.getApp().getView().getLocationFenetre();
+                new HistogrammeLocationsDialog(mainFenetre);
             }
         }
     }

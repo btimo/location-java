@@ -12,7 +12,7 @@ import org.jfree.data.category.DefaultCategoryDataset;
  * Classe de tests
  * @author Adrien Poupa
  */
-public class Test {
+public class LegacyTest {
 
     /**
      * Jeu de tests
@@ -62,7 +62,7 @@ public class Test {
          * Histogramme
          */
 
-        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+        /*DefaultCategoryDataset dataset = new DefaultCategoryDataset();
         dataset.setValue(Flotte.rechercheKm(0, 5000).size(), "Véhicules", "0, 5 000");
         dataset.setValue(Flotte.rechercheKm(5000, 20000).size(), "Véhicules", "5 000, 20 000");
         dataset.setValue(Flotte.rechercheKm(20000, 40000).size(), "Véhicules", "20 000, 40 000");
@@ -74,21 +74,21 @@ public class Test {
         //create and display a frame...
         ChartFrame frame = new ChartFrame("Répartition kilométrique de la flotte",chart);
         frame.pack();
-        frame.setVisible(true);
+        frame.setVisible(true);*/
 
-        DefaultCategoryDataset dataset2 = new DefaultCategoryDataset();
+        /*DefaultCategoryDataset dataset2 = new DefaultCategoryDataset();
         dataset2.setValue(Emprunteurs.rechercheMontant(0, 100).size(), "Factures", "0, 100");
         dataset2.setValue(Emprunteurs.rechercheMontant(100, 500).size(), "Factures", "100, 500");
         dataset2.setValue(Emprunteurs.rechercheMontant(500, 1000).size(), "Factures", "500, 1 000");
         dataset2.setValue(Emprunteurs.rechercheMontant(1000, 3000).size(), "Factures", "1 000, 3 000");
         dataset2.setValue(Emprunteurs.rechercheMontant(3000, 5000).size(), "Factures", "3 000, 5 000");
         JFreeChart chart2 = ChartFactory.createBarChart("Répartition des montants de factures",
-                "Kilométrage", "Nombre de Factures", dataset2, PlotOrientation.VERTICAL,
+                "Prix", "Nombre de Factures", dataset2, PlotOrientation.VERTICAL,
                 false, true, false);
 
         //create and display a frame...
         ChartFrame frame2 = new ChartFrame("Répartition des montants de factures",chart2);
         frame2.pack();
-        frame2.setVisible(true);
+        frame2.setVisible(true);*/
     }
 }

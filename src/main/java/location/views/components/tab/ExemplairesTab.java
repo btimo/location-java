@@ -6,6 +6,7 @@ import location.models.Auto;
 import location.models.Exemplaire;
 import location.models.Moto;
 import location.views.components.dialog.ExemplaireFormDialog;
+import location.views.components.dialog.HistogrammeFlotteDialog;
 import location.views.components.misc.CustomFontLabel;
 import location.views.components.misc.Fenetre;
 import location.views.components.misc.TableauRecherche;
@@ -23,6 +24,7 @@ import java.awt.event.ActionListener;
 public class ExemplairesTab extends JPanel {
 
     private JButton addExemplaireButton;
+    private JButton histogramme;
 
     /**
      * Initialisation de la fenêtre
@@ -48,6 +50,12 @@ public class ExemplairesTab extends JPanel {
         addExemplaireButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         addExemplaireButton.addActionListener(new ButtonListener());
         add(addExemplaireButton);
+
+        // Bouton histogramme
+        histogramme = new JButton("Histogramme");
+        histogramme.setAlignmentX(Component.CENTER_ALIGNMENT);
+        histogramme.addActionListener(new ButtonListener());
+        add(histogramme);
 
         // Données tableau
         String[] entetes = {"Numéro", "Marque", "Modèle/Cylindrée", "Kilométrage", "Réservoir", "Etat", "Actions"};
@@ -102,9 +110,14 @@ public class ExemplairesTab extends JPanel {
         public void actionPerformed(ActionEvent event){
             JButton me = (JButton) event.getSource();
 
-            if(me.equals(addExemplaireButton)){
+            if (me.equals(addExemplaireButton)){
                 Fenetre mainFenetre = Application.getApp().getView().getLocationFenetre();
                 new ExemplaireFormDialog(mainFenetre);
+            }
+
+            if (me.equals(histogramme)){
+                Fenetre mainFenetre = Application.getApp().getView().getLocationFenetre();
+                new HistogrammeFlotteDialog(mainFenetre);
             }
         }
     }
