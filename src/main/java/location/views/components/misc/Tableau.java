@@ -1,26 +1,50 @@
 package location.views.components.misc;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.util.Arrays;
 
 
 /**
- * Created by sgate on 24/03/2016.
+ * Gestion d'un tableau
+ * @author Adrien Poupa
  */
 public class Tableau extends JPanel {
     protected TableRowSorter<TableModel> rowSorter;
     protected JTable tableau;
     protected String[] entetes;
     protected AbstractAction action;
+    protected Integer[] numData;
 
-    public Tableau(Object[][] donnees, String[] entetes, AbstractAction action){
+    /**
+     * Constructeur complet
+     * @param donnees données du tableau
+     * @param entetes intitulé des en-têtes
+     * @param numData en-têtes numériques
+     * @param action action accrochée au bouton du tableau
+     */
+    public Tableau(Object[][] donnees, String[] entetes, Integer[] numData, AbstractAction action){
         super();
         this.entetes = entetes;
-        this.tableau = new JTable(donnees, entetes);
+        this.numData = numData;
+
+        // Utilisation du tri adéquat (tri d'Integer si présence de la colonne dans numData)
+        DefaultTableModel model = new DefaultTableModel(donnees, entetes) {
+            @Override
+            public Class getColumnClass(int entetes) {
+                if (Arrays.asList(numData).contains(entetes)) {
+                    return Integer.class;
+                }
+                return String.class;
+            }
+        };
+
+        this.tableau = new JTable(model);
         this.rowSorter = new TableRowSorter< >(tableau.getModel());
         this.action = action;
         setBackground(Color.orange);
@@ -28,6 +52,9 @@ public class Tableau extends JPanel {
         generer();
     }
 
+    /**
+     * Génération du tableau
+     */
     public void generer(){
         tableau.setRowSorter(rowSorter);
 

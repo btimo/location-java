@@ -35,6 +35,8 @@ public class VehiculesTab extends JPanel {
 
         Object[][] donnees = new Object[location.containers.Vehicules.get().size()][6];
 
+        Integer[] numData = {0, 3, 4};
+
         int count = 0;
         for (Vehicule v : location.containers.Vehicules.get()) {
             donnees[count][0] = v.getId();
@@ -60,7 +62,7 @@ public class VehiculesTab extends JPanel {
             count++;
         }
 
-        add(new TableauRecherche(donnees, entetes, new AbstractAction()
+        add(new TableauRecherche(donnees, entetes, numData, new AbstractAction()
         {
             public void actionPerformed(ActionEvent e)
             {
