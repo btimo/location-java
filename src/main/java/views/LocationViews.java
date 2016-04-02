@@ -1,5 +1,6 @@
 package views;
 
+import views.components.dialog.EmprunteurFormDialog;
 import views.components.tab.Emprunteurs;
 import views.components.tab.Exemplaires;
 import views.components.tab.Locations;

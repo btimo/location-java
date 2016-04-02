@@ -1,6 +1,7 @@
 package views.components.tab;
 
 import models.Emprunteur;
+import views.LocationViews;
 import views.Panel;
 import views.Tableau;
 import views.TableauRecherche;
@@ -27,7 +28,7 @@ public class Emprunteurs {
         JPanel ajoutPanel = Panel.nvPanelFlow(Color.ORANGE);
         JButton ajouter = new JButton("Ajouter un emprunteur");
         ajouter.addActionListener(e -> {
-            new EmprunteurFormDialog((JFrame)((JButton)e.getSource()).getParent().getParent().getParent().getParent().getParent().getParent().getParent());
+            //LocationViews.emprunteurFormDialog = new EmprunteurFormDialog(LocationViews.locationFrame);
         });
         ajoutPanel.add(ajouter);
 

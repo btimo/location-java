@@ -5,11 +5,14 @@ import views.components.dialog.EmprunteurFormDialog;
 import views.components.panel.IdentificationPanel;
 import views.components.panel.AdressePanel;
 
+import views.components.dialog.EmprunteurFormDialog.ButtonListener;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 
-public class EmprunteurForm extends JPanel {
+public class EmprunteurForm extends JPanel{
 
     private Emprunteur emprunteur;
 
@@ -43,23 +46,9 @@ public class EmprunteurForm extends JPanel {
 
         // button to cancel any modification + close the window
         cancelButton = new JButton("Annuler");
-        cancelButton.addActionListener(e -> {
-            /*JButton me = (JButton) e.getSource();
-            EmprunteurFormDialog dialog = (EmprunteurFormDialog) me.getParent().getParent();
-            dialog.setVisible(false);
-            dialog.dispatchEvent(new WindowEvent(dialog, WindowEvent.WINDOW_CLOSING));*/
-        });
 
         // button to validate the form + close the window
         validButton = new JButton("Valider");
-        validButton.addActionListener(e -> {
-            // todo: rewrite with Event
-            /*JButton me = (JButton) e.getSource();
-            EmprunteurFormDialog dialog = (EmprunteurFormDialog) me.getParent().getParent();
-            ((EmprunteurForm) me.getParent()).buildAndSaveEmprunteur();
-            dialog.setVisible(false);
-            dialog.dispatchEvent(new WindowEvent(dialog, WindowEvent.WINDOW_CLOSING));*/
-        });
 
         add(identifiantPanel);
         add(adressePanel);
@@ -69,7 +58,7 @@ public class EmprunteurForm extends JPanel {
 
     // take data from identification and adressePanel to build an Emprunter entity
     public void buildAndSaveEmprunteur(){
-        // todo
+        System.out.println("building emprunteur entity from scratch ...");
     }
 
     public Emprunteur getEmprunteur() {
