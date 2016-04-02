@@ -20,3 +20,21 @@ Il va générer deux fichiers :
 
 Une fois qu'on aura une base de données stables,
 on fera juste des migrations en passant par `flywaydb`.
+
+
+
+## TODO
+- lier btn tableau et dialogue
+- formulaire location
+	- champs basiques
+	- tableau exemplaire dispo
+	- tableau exemplaire selectionné
+- choix chemin pdf (devis et facture)
+- Dialogue detail location:
+	- btn "generer devis" -> accepter devis -> approuvee = true -> btn devient "rendre vehicule"
+	- btn "rendre vehicule" -> formulaire :
+		- date rendu
+		- etat vehicule
+		- etat reservoir
+		-> active btn generer facture
+	- btn "generer facture" -> date rendu, vehicule reparer/rempli/disponible.
