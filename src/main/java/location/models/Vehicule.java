@@ -17,12 +17,9 @@ import java.util.List;
 public abstract class Vehicule extends BaseModel{
 
     protected String marque;
-
     @OneToMany(mappedBy = "vehicule")
     protected List<Exemplaire> exemplaires = new ArrayList<Exemplaire>();
-
     protected int prixJour;
-
     protected int prixAssurance;
 
 

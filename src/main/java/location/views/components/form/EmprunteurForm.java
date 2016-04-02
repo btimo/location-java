@@ -57,8 +57,9 @@ public class EmprunteurForm extends BoxPanel {
 
         // Panel adresse
         adressePanel = new AdressePanel(Color.ORANGE);
-
+        deletButton = new JButton("Supprimer");
         if(emprunteur != null){
+
             identifiantPanel.getNomTexte().setText(emprunteur.getNom());
             identifiantPanel.getPrenomTexte().setText(emprunteur.getPrenom());
 
@@ -66,6 +67,9 @@ public class EmprunteurForm extends BoxPanel {
             adressePanel.getRueTexte().setText(emprunteur.getAdresse().getRue());
             adressePanel.getCodeTexte().setText(emprunteur.getAdresse().getCp());
             adressePanel.getVilleTexte().setText(emprunteur.getAdresse().getVille());
+        }
+        else{
+            deletButton.setVisible(false);
         }
 
         JPanel boutonPanel = new JPanel(new FlowLayout());
@@ -75,8 +79,7 @@ public class EmprunteurForm extends BoxPanel {
         // button to validate the form + close the window
         validButton = new JButton("Valider");
 
-        //button to delet the form + close the window
-        deletButton = new JButton("Supprimer");
+
 
         add(identifiantPanel);
         add(adressePanel);
