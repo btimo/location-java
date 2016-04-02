@@ -70,7 +70,7 @@ public class LocationForm extends BoxPanel {
         }
 
         // labels + fields to select vehicules
-        chooseVehiculePanel = new ChooseVehiculePanel(Fenetre.defaultColor);
+        chooseVehiculePanel = new ChooseVehiculePanel(Fenetre.defaultColor, location);
 
         // recap table of selected vehicules
 

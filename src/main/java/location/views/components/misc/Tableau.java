@@ -18,6 +18,8 @@ public class Tableau extends JPanel {
     protected String[] entetes;
     protected AbstractAction action;
     protected Integer[] numData;
+    protected Object[][] donnees;
+    private DefaultTableModel model;
 
     /**
      * Constructeur complet
@@ -28,11 +30,12 @@ public class Tableau extends JPanel {
      */
     public Tableau(Object[][] donnees, String[] entetes, Integer[] numData, AbstractAction action){
         super();
+        this.donnees = donnees;
         this.entetes = entetes;
         this.numData = numData;
 
         // Utilisation du tri adéquat (tri d'Integer si présence de la colonne dans numData)
-        DefaultTableModel model = new DefaultTableModel(donnees, entetes) {
+        model = new DefaultTableModel(donnees, entetes) {
             @Override
             public Class getColumnClass(int entetes) {
                 if (Arrays.asList(numData).contains(entetes)) {
@@ -69,4 +72,76 @@ public class Tableau extends JPanel {
         add(scrollPane);
     }
 
+    /**
+     * Vérification de l'existance d'une ligne dans un tableau
+     * http://stackoverflow.com/questions/15639611/how-to-check-if-a-value-exists-in-jtable-which-i-am-trying-to-add
+     * @param table tableau où rechercher
+     * @param entry entrée à rechercher
+     * @return true/false
+     */
+    public static boolean existsInTable(JTable table, Object[] entry) {
+
+        // Get row and column count
+        int rowCount = table.getRowCount();
+        int colCount = table.getColumnCount();
+
+        // Get Current Table Entry
+        String curEntry = "";
+        for (Object o : entry) {
+            String e = o.toString();
+            curEntry = curEntry + " " + e;
+        }
+
+        // Check against all entries
+        for (int i = 0; i < rowCount; i++) {
+            String rowEntry = "";
+            for (int j = 0; j < colCount; j++)
+                rowEntry = rowEntry + " " + table.getValueAt(i, j).toString();
+            if (rowEntry.equalsIgnoreCase(curEntry)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Mise à jour des données du tableau
+     * @param donnees nouvelles données
+     */
+    public void setData(Object[][] donnees) {
+        this.donnees = donnees;
+    }
+
+    /**
+     * Recherche dans un tableau
+     * @param search chaîne recherchée
+     */
+    public void search(String search) {
+        rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + search));
+        tableau.repaint();
+    }
+
+    /**
+     * Ajout d'une ligne
+     * @param row ligne
+     */
+    public void addRow(Object[] row) {
+        model.addRow(row);
+    }
+
+    /**
+     * Suppression d'une ligne
+     * @param row ligne
+     */
+    public void deleteRow(int row) {
+        model.removeRow(row);
+    }
+
+    /**
+     * Getter de tableau
+     * @return tableau
+     */
+    public JTable getTableau() {
+        return tableau;
+    }
 }

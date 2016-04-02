@@ -3,6 +3,7 @@ package location.views.components.panel;
 import com.avaje.ebeaninternal.server.lib.util.Str;
 import location.containers.Vehicules;
 import location.models.Auto;
+import location.models.Location;
 import location.models.Moto;
 import location.models.Vehicule;
 import location.views.components.misc.CustomFontLabel;
@@ -37,6 +38,8 @@ public class ChooseVehiculePanel extends BoxPanel {
 
     private String modeleCylindree;
 
+    private Location location;
+
     /**
      * Constructeur par défaut
      */
@@ -48,9 +51,11 @@ public class ChooseVehiculePanel extends BoxPanel {
     /**
      * Constructeur avec couleur
      * @param bgColor couleur
+     * @param l location
      */
-    public ChooseVehiculePanel(Color bgColor){
+    public ChooseVehiculePanel(Color bgColor, Location l){
         super();
+        this.location = l;
         setBackground(bgColor);
         initChooseVehiculePanel();
     }
@@ -108,26 +113,29 @@ public class ChooseVehiculePanel extends BoxPanel {
         });
 
         // table showing exemplaire corresponding to search
-        correspondingVehiculesPanel = new CorrespondingVehiculesPanel();
+        correspondingVehiculesPanel = new CorrespondingVehiculesPanel(location);
 
         vehiculesComboBox.addActionListener(e->{
-            String value = vehiculesComboBox.getSelectedItem().toString();
+            if (vehiculesComboBox.getSelectedItem() != null) {
+                String value = vehiculesComboBox.getSelectedItem().toString();
 
-            // Récupération du véhicule choisi
-            for(Vehicule v: Vehicules.get()){
-                if(value != null && value.equals(v.getDisplayName())) {
-                    vehiculeChoisi = v;
+                // Récupération du véhicule choisi
+                for(Vehicule v: Vehicules.get()){
+                    if(value != null && value.equals(v.getDisplayName())) {
+                        vehiculeChoisi = v;
+                    }
                 }
+
+                if (vehiculeChoisi instanceof Auto) {
+                    modeleCylindree = ((Auto) vehiculeChoisi).getModele();
+                }
+                else {
+                    modeleCylindree = Integer.toString(((Moto) vehiculeChoisi).getCylindree());
+                }
+
+                correspondingVehiculesPanel.setSearchParam(vehiculeChoisi/*, dateDepartPanel, dateRetourPanel*/);
             }
 
-            if (vehiculeChoisi instanceof Auto) {
-                modeleCylindree = ((Auto) vehiculeChoisi).getModele();
-            }
-            else {
-                modeleCylindree = Integer.toString(((Moto) vehiculeChoisi).getCylindree());
-            }
-
-            correspondingVehiculesPanel.setSearchParam(vehiculeChoisi/*, dateDepartPanel, dateRetourPanel*/);
         });
         JPanel typeModelPanel = new BoxPanel();
         typeModelPanel.setBackground(Color.ORANGE);
@@ -138,9 +146,6 @@ public class ChooseVehiculePanel extends BoxPanel {
         datePanel.setBackground(Color.ORANGE);
         datePanel.add(dateDepartPanel);
         datePanel.add(dateRetourPanel);
-
-
-
 
         add(typeModelPanel);
         add(datePanel);

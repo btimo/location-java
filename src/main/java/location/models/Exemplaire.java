@@ -210,9 +210,14 @@ public class Exemplaire extends BaseModel{
     }
 
 
+    /**
+     * Nom d'affichage
+     * @return nom d'affichage
+     */
     public String getDisplayName(){
         return "#" + getId() + " - " + getVehicule().getMarque();
     }
+
     /**
      * Surcharge de equals
      * @param o objet à comparer
