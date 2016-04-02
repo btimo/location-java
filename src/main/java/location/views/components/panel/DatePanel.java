@@ -35,7 +35,7 @@ public class DatePanel extends FlowPanel{
      */
     public DatePanel(Color bgColor, String nom, java.util.Date d){
         super(bgColor);
-        date = new java.util.Date(d.getTime());
+        date = d;
 
         initDatePanel(nom);
     }
@@ -66,7 +66,8 @@ public class DatePanel extends FlowPanel{
 
         datePicker.addActionListener(e -> {
             DateModel t = ((JDatePanelImpl)e.getSource()).getModel();
-            date = new java.util.Date(t.getDay(), t.getMonth(), t.getYear());
+            date = new java.util.Date(t.getYear() - 1900, t.getMonth(), t.getDay());
+            //System.out.println("changed: " + date);
         });
     }
 
