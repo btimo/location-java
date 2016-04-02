@@ -1,13 +1,15 @@
 package location.views.components.form;
 
+import location.models.Adresse;
 import location.models.Emprunteur;
+import location.views.components.panel.FlowPanel;
 import location.views.components.panel.IdentificationPanel;
 import location.views.components.panel.AdressePanel;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class EmprunteurForm extends JPanel{
+public class EmprunteurForm extends FlowPanel{
 
     private Emprunteur emprunteur;
 
@@ -21,7 +23,6 @@ public class EmprunteurForm extends JPanel{
 
     public EmprunteurForm(){
         super();
-        emprunteur = new Emprunteur();
         initContent();
     }
 
@@ -39,6 +40,16 @@ public class EmprunteurForm extends JPanel{
         // Panel adresse
         adressePanel = new AdressePanel(Color.ORANGE);
 
+        if(emprunteur != null){
+            identifiantPanel.getNomTexte().setText(emprunteur.getNom());
+            identifiantPanel.getPrenomTexte().setText(emprunteur.getPrenom());
+
+            adressePanel.getNumeroTexte().setText(Integer.toString(emprunteur.getAdresse().getNumero()));
+            adressePanel.getRueTexte().setText(emprunteur.getAdresse().getRue());
+            adressePanel.getCodeTexte().setText(emprunteur.getAdresse().getCp());
+            adressePanel.getVilleTexte().setText(emprunteur.getAdresse().getVille());
+        }
+
         // button to cancel any modification + close the window
         cancelButton = new JButton("Annuler");
 
@@ -54,6 +65,17 @@ public class EmprunteurForm extends JPanel{
     // take data from identification and adressePanel to build an Emprunter entity
     public void buildAndSaveEmprunteur(){
         System.out.println("building emprunteur entity from scratch ...");
+
+        if(emprunteur == null) emprunteur = new Emprunteur();
+
+        emprunteur.setNom(identifiantPanel.getNomTexte().getText());
+        emprunteur.setPrenom(identifiantPanel.getPrenomTexte().getText());
+        emprunteur.setAdresse(new Adresse(Integer.parseInt(adressePanel.getNumeroTexte().getText()),
+                adressePanel.getRueTexte().getText(),
+                adressePanel.getCodeTexte().getText(),
+                adressePanel.getVilleTexte().getText())
+        );
+        emprunteur.save();
     }
 
     public Emprunteur getEmprunteur() {

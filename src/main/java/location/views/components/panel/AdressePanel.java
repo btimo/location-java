@@ -16,10 +16,12 @@ public class AdressePanel extends FlowPanel {
 
     public AdressePanel(){
         super();
+        initAdressePanel();
     }
 
     public AdressePanel(Color bgColor){
         super(bgColor);
+        initAdressePanel();
     }
 
     private void initAdressePanel(){

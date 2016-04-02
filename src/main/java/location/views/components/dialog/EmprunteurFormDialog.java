@@ -4,6 +4,7 @@ import location.Application;
 import location.models.Emprunteur;
 import location.views.components.form.EmprunteurForm;
 import location.views.components.misc.Fenetre;
+import location.views.components.panel.AdressePanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -37,7 +38,7 @@ public class EmprunteurFormDialog extends JDialog{
         setVisible(true);
     }
 
-    public class ButtonListener implements ActionListener{
+    private class ButtonListener implements ActionListener{
 
         @Override
         public void actionPerformed(ActionEvent event){
@@ -50,6 +51,7 @@ public class EmprunteurFormDialog extends JDialog{
             }
             else if(me.equals(emprunteurForm.getValidButton())){
                 emprunteurForm.buildAndSaveEmprunteur();
+                // todo: update Emprunteurs containers and redraw table
                 dialog.setVisible(false);
                 dialog.dispatchEvent(new WindowEvent(dialog, WindowEvent.WINDOW_CLOSING));
             }

@@ -28,4 +28,20 @@ public class IdentificationPanel extends FlowPanel{
         add(nomTexte);
         add(prenomTexte);
     }
+
+    public JTextField getNomTexte() {
+        return nomTexte;
+    }
+
+    public void setNomTexte(JTextField nomTexte) {
+        this.nomTexte = nomTexte;
+    }
+
+    public JTextField getPrenomTexte() {
+        return prenomTexte;
+    }
+
+    public void setPrenomTexte(JTextField prenomTexte) {
+        this.prenomTexte = prenomTexte;
+    }
 }
