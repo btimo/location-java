@@ -116,23 +116,26 @@ public class ChooseVehiculePanel extends BoxPanel {
         correspondingVehiculesPanel = new CorrespondingVehiculesPanel(location);
 
         vehiculesComboBox.addActionListener(e->{
-            String value = vehiculesComboBox.getSelectedItem().toString();
+            if (vehiculesComboBox.getSelectedItem() != null) {
+                String value = vehiculesComboBox.getSelectedItem().toString();
 
-            // Récupération du véhicule choisi
-            for(Vehicule v: Vehicules.get()){
-                if(value != null && value.equals(v.getDisplayName())) {
-                    vehiculeChoisi = v;
+                // Récupération du véhicule choisi
+                for(Vehicule v: Vehicules.get()){
+                    if(value != null && value.equals(v.getDisplayName())) {
+                        vehiculeChoisi = v;
+                    }
                 }
+
+                if (vehiculeChoisi instanceof Auto) {
+                    modeleCylindree = ((Auto) vehiculeChoisi).getModele();
+                }
+                else {
+                    modeleCylindree = Integer.toString(((Moto) vehiculeChoisi).getCylindree());
+                }
+
+                correspondingVehiculesPanel.setSearchParam(vehiculeChoisi/*, dateDepartPanel, dateRetourPanel*/);
             }
 
-            if (vehiculeChoisi instanceof Auto) {
-                modeleCylindree = ((Auto) vehiculeChoisi).getModele();
-            }
-            else {
-                modeleCylindree = Integer.toString(((Moto) vehiculeChoisi).getCylindree());
-            }
-
-            correspondingVehiculesPanel.setSearchParam(vehiculeChoisi/*, dateDepartPanel, dateRetourPanel*/);
         });
         JPanel typeModelPanel = new BoxPanel();
         typeModelPanel.setBackground(Color.ORANGE);
