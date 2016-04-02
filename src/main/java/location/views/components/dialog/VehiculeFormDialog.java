@@ -1,9 +1,13 @@
 package location.views.components.dialog;
 
 import location.Application;
+import location.containers.Flotte;
+import location.containers.Vehicules;
+import location.models.Exemplaire;
 import location.models.Vehicule;
 import location.views.components.form.VehiculeForm;
 import location.views.components.misc.Fenetre;
+import location.views.components.misc.Tableau;
 
 import javax.swing.*;
 import java.awt.*;
@@ -76,7 +80,14 @@ public class VehiculeFormDialog extends JDialog {
                 dialog.setVisible(false);
                 dialog.dispatchEvent(new WindowEvent(dialog, WindowEvent.WINDOW_CLOSING));
             }
-
+           /* else if(me.equals(vehiculeForm.getDeletButton())){
+            JTable table = (JTable)event.getSource();
+            // Récupère l'ID - 1
+            int modelRow = Integer.valueOf( event.getActionCommand() );
+            Vehicule ex = Vehicules.get().get(modelRow);
+                dialog.deleteRox(ex.getId());
+            }
+            */
         }
     }
 }

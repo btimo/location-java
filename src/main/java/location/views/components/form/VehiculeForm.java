@@ -90,8 +90,9 @@ public class VehiculeForm extends BoxPanel {
         // Only if type is Moto
         // label + field for the vehicule cylinder (int)
         motoPanel = new MotoPanel(Fenetre.defaultColor);
-
+        deletButton = new JButton("Supprimer");
         if(vehicule != null) {
+
             if (vehicule.getClass().equals("Moto")) {
                 motoPanel.setVisible(true);
                 autoPanel.setVisible(false);
@@ -109,6 +110,7 @@ public class VehiculeForm extends BoxPanel {
             insuranceTexte.setText(Integer.toString(vehicule.getPrixAssurance()));
         }
         else {
+            deletButton.setVisible(false);
             autoPanel.setVisible(true);
             motoPanel.setVisible(false);
         }
@@ -120,7 +122,7 @@ public class VehiculeForm extends BoxPanel {
         // button to validate the form + close the window
         validButton = new JButton("Valider");
 
-        deletButton = new JButton("Supprimer");
+
 
         marqueModelPanel.add(marqueLabel);
         marqueModelPanel.add(marqueTexte);
