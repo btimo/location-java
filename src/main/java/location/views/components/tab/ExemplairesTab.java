@@ -25,6 +25,7 @@ public class ExemplairesTab extends JPanel {
 
     private JButton addExemplaireButton;
     private JButton histogramme;
+    private TableauRecherche table;
 
     /**
      * Initialisation de la fenêtre
@@ -87,7 +88,7 @@ public class ExemplairesTab extends JPanel {
             count++;
         }
 
-        add(new TableauRecherche(donnees, entetes, numData, new AbstractAction()
+        table = new TableauRecherche(donnees, entetes, numData, new AbstractAction()
         {
             public void actionPerformed(ActionEvent e)
             {
@@ -98,7 +99,9 @@ public class ExemplairesTab extends JPanel {
                 Fenetre mainFenetre = Application.getApp().getView().getLocationFenetre();
                 new ExemplaireFormDialog(mainFenetre, Flotte.get().get(modelRow));
             }
-        }));
+        });
+
+        add(table);
     }
 
     /**
@@ -112,7 +115,7 @@ public class ExemplairesTab extends JPanel {
 
             if (me.equals(addExemplaireButton)){
                 Fenetre mainFenetre = Application.getApp().getView().getLocationFenetre();
-                new ExemplaireFormDialog(mainFenetre);
+                new ExemplaireFormDialog(mainFenetre, table);
             }
 
             if (me.equals(histogramme)){

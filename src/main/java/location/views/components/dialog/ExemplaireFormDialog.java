@@ -1,9 +1,12 @@
 package location.views.components.dialog;
 
 import location.Application;
+import location.models.Auto;
 import location.models.Exemplaire;
+import location.models.Moto;
 import location.views.components.form.ExemplaireForm;
 import location.views.components.misc.Fenetre;
+import location.views.components.misc.TableauRecherche;
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,15 +22,17 @@ public class ExemplaireFormDialog extends JDialog {
 
     private ExemplaireForm exemplaireForm;
     private static final String TITLE = "Formulaire exemplaire";
+    private TableauRecherche table;
 
     /**
      * Constructeur frame
      * @param owner frame owner
      */
-    public ExemplaireFormDialog(Frame owner){
+    public ExemplaireFormDialog(Frame owner, TableauRecherche table){
         super(owner, TITLE, ModalityType.APPLICATION_MODAL);
         ((Fenetre) owner).setExemplaireFormDialog(this);
         exemplaireForm = new ExemplaireForm();
+        this.table = table;
         initExemplaireFormDialog();
     }
 
@@ -70,8 +75,19 @@ public class ExemplaireFormDialog extends JDialog {
                 dialog.dispatchEvent(new WindowEvent(dialog, WindowEvent.WINDOW_CLOSING));
             }
             else if(me.equals(exemplaireForm.getValidButton())){
-                exemplaireForm.buildAndSaveExemplaire();
-                // todo: update Exemplaires containers and redraw table
+                Exemplaire newExamplaire = exemplaireForm.buildAndSaveExemplaire();
+
+                String modeleCylindree;
+                if (newExamplaire.getVehicule() instanceof Auto) {
+                    modeleCylindree = ((Auto) newExamplaire.getVehicule()).getModele();
+                }
+                else {
+                    modeleCylindree = Integer.toString(((Moto) newExamplaire.getVehicule()).getCylindree());
+                }
+
+                Object [] newExamplaireRow = new Object[]{newExamplaire.getId(), newExamplaire.getVehicule().getMarque(),
+                        modeleCylindree, newExamplaire.getKilometres(), newExamplaire.getReservoir(), ((newExamplaire.isEndommage()) ? "Mauvais" : "OK"), "Détails"};
+                table.addRow(newExamplaireRow);
                 dialog.setVisible(false);
                 dialog.dispatchEvent(new WindowEvent(dialog, WindowEvent.WINDOW_CLOSING));
             }

@@ -103,16 +103,18 @@ public class ExemplaireForm extends BoxPanel {
     /**
      * Sauvegarde exemplaire
      */
-    public void buildAndSaveExemplaire(){
+    public Exemplaire buildAndSaveExemplaire(){
         if(exemplaire == null) exemplaire = new Exemplaire();
 
         exemplaire.setVehicule(Vehicules.get().get(vehiculesComboBox.getSelectedIndex()));
         exemplaire.setKilometres(Integer.parseInt(kmTexte.getText().trim()));
+        exemplaire.setReservoir(1);
         exemplaire.save();
+
+        return exemplaire;
     }
 
-
-
+    
     /**
      * Récupération bouton annulation
      * @return bouton annulation
