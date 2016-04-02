@@ -118,6 +118,7 @@ public class ChooseVehiculePanel extends BoxPanel {
                 correspondingVehiculesPanel.setSearchParam(vehiculeChoisi, new Date(dateDepartPanel.getDate()) , new Date(dateRetourPanel.getDate()));
             }
         });
+        searchBtn.setAlignmentX(CENTER_ALIGNMENT);
 
         // table showing exemplaire corresponding to search
         correspondingVehiculesPanel = new CorrespondingVehiculesPanel(location);
