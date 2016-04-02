@@ -9,6 +9,8 @@ import location.models.Moto;
 import location.models.Vehicule;
 import location.views.LocationView;
 import location.views.components.misc.Fenetre;
+import location.views.components.panel.AutoPanel;
+import location.views.components.panel.MotoPanel;
 import location.views.components.panel.TwoRadioPanel;
 
 import javax.swing.*;
@@ -24,6 +26,10 @@ public class VehiculeForm extends JPanel {
     private JTextField priceTexte;
 
     private JTextField insuranceTexte;
+
+    private AutoPanel autoPanel;
+
+    private MotoPanel motoPanel;
 
     private JButton cancelButton;
 
@@ -45,13 +51,15 @@ public class VehiculeForm extends JPanel {
         // label + field for the vehicle type (boolean or string -> not saved but used for the end of the form)
         vehiculeTypePanel = new TwoRadioPanel(Fenetre.defaultColor, "Type de vehicule", "Auto", "Moto");
         vehiculeTypePanel.getBtn1().addActionListener(e -> {
-            // Auto
             System.out.println("Auto selected");
+            motoPanel.setVisible(false);
+            autoPanel.setVisible(true);
         });
 
         vehiculeTypePanel.getBtn2().addActionListener(e -> {
-            // Moto
             System.out.println("Moto selected");
+            motoPanel.setVisible(true);
+            autoPanel.setVisible(false);
         });
 
         // label + field for the vehicule make (string)
@@ -67,13 +75,20 @@ public class VehiculeForm extends JPanel {
         insuranceTexte = new JTextField("assurance", 10);
 
         // Only if type is Auto
-        // label + field for the vehicule model (string)
-
-        // Only if type is Auto
-        // label + field for the vehicule luxe (boolean)
+        autoPanel = new AutoPanel(Fenetre.defaultColor);
 
         // Only if type is Moto
         // label + field for the vehicule cylinder (int)
+        motoPanel = new MotoPanel(Fenetre.defaultColor);
+
+        if(vehicule != null && vehicule.getClass().equals("Moto")){
+            motoPanel.setVisible(true);
+            autoPanel.setVisible(false);
+        }
+        else {
+            autoPanel.setVisible(true);
+            motoPanel.setVisible(false);
+        }
 
         // button to cancel any modification + close the window
         cancelButton = new JButton("Annuler");
@@ -88,6 +103,8 @@ public class VehiculeForm extends JPanel {
         add(priceTexte);
         add(insuranceLabel);
         add(insuranceTexte);
+        add(autoPanel);
+        add(motoPanel);
         add(cancelButton);
         add(validButton);
     }
