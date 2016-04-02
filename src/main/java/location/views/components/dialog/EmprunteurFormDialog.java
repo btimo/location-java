@@ -25,6 +25,7 @@ public class EmprunteurFormDialog extends JDialog{
     /**
      * Constructeur frame
      * @param owner frame owner
+     * @param table tableau d'emprunteurs
      */
     public EmprunteurFormDialog(Frame owner, TableauRecherche table){
         super(owner, TITLE, ModalityType.APPLICATION_MODAL);

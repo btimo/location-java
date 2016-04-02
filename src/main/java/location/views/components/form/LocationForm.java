@@ -2,16 +2,13 @@ package location.views.components.form;
 
 
 import location.containers.Emprunteurs;
-import location.containers.Vehicules;
 import location.models.Emprunteur;
 import location.models.Exemplaire;
 import location.models.Location;
-import location.models.Vehicule;
 import location.views.components.misc.CustomFontLabel;
 import location.views.components.misc.Fenetre;
 import location.views.components.panel.BoxPanel;
 import location.views.components.panel.ChooseVehiculePanel;
-import location.views.components.panel.CorrespondingVehiculesPanel;
 import location.views.components.panel.FlowPanel;
 
 import javax.swing.*;

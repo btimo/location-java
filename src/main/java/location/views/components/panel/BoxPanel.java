@@ -4,7 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * Created by sgate on 02/04/2016.
+ * Gestion des BoxPanel
+ * @author Stéphane Gâteau
  */
 public class BoxPanel extends JPanel {
 

@@ -2,10 +2,6 @@ package location.views.components.form;
 
 
 import location.containers.Emprunteurs;
-import location.containers.Flotte;
-import location.containers.Vehicules;
-import location.models.Exemplaire;
-import location.models.Vehicule;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartFrame;
 import org.jfree.chart.JFreeChart;

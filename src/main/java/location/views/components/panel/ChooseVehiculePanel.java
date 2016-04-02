@@ -1,6 +1,5 @@
 package location.views.components.panel;
 
-import com.avaje.ebeaninternal.server.lib.util.Str;
 import location.containers.Vehicules;
 import location.models.*;
 import location.views.components.misc.CustomFontLabel;

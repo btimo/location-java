@@ -84,7 +84,7 @@ public class Flotte {
 
     /**
      * Recherche des exemplaires en fonction d'un kilométrage précis
-     * @param operator opérande sélectionné : <, > ou = par défaut
+     * @param operator opérande sélectionné : inf, sup ou égal par défaut
      * @param km kilométrage recherché
      * @return liste d'exemplaires
      */

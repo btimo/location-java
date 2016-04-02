@@ -1,11 +1,11 @@
 package location.views.components.tab;
 
 import location.Application;
-import location.containers.Flotte;
 import location.containers.Locations;
 import location.models.Location;
 import location.models.LocationExemplaire;
-import location.views.components.dialog.*;
+import location.views.components.dialog.HistogrammeLocationsDialog;
+import location.views.components.dialog.LocationFormDialog;
 import location.views.components.misc.CustomFontLabel;
 import location.views.components.misc.Fenetre;
 import location.views.components.misc.TableauRecherche;

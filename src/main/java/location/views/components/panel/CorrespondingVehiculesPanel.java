@@ -1,23 +1,19 @@
 package location.views.components.panel;
 
 
-import location.Application;
 import location.containers.Flotte;
 import location.models.*;
-import location.views.components.dialog.ExemplaireFormDialog;
-import location.views.components.misc.Fenetre;
 import location.views.components.misc.Tableau;
-import location.views.components.misc.TableauRecherche;
-import location.views.components.tab.ExemplairesTab;
 
 import javax.swing.*;
-import javax.swing.table.TableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ContainerAdapter;
-import java.util.ArrayList;
-import java.util.List;
 
+/**
+ * Véhicules correspondants
+ * @author Timothée Barbot
+ * @author Adrien Poupa
+ */
 public class CorrespondingVehiculesPanel extends BoxPanel {
 
     private Tableau table;
@@ -25,28 +21,44 @@ public class CorrespondingVehiculesPanel extends BoxPanel {
     private String modeleCylindree;
     private Location locationChoisie;
 
-
+    /**
+     * Constructeur par défaut
+     */
     public CorrespondingVehiculesPanel(){
         super();
         initCorrespondigVehiculesPanel();
     }
 
+    /**
+     * Constructeur avec location
+     * @param l location
+     */
     public CorrespondingVehiculesPanel(Location l){
         super();
         this.locationChoisie = l;
         initCorrespondigVehiculesPanel();
     }
 
+    /**
+     * Constructeur coloré
+     * @param bgColor couleur
+     */
     public CorrespondingVehiculesPanel(Color bgColor){
         super(bgColor);
         initCorrespondigVehiculesPanel();
     }
 
+    /**
+     * Initialisation
+     */
     private void initCorrespondigVehiculesPanel(){
         addChoiceTable();
         addChosenTable();
     }
 
+    /**
+     * Tableau de choix possibles
+     */
     private void addChoiceTable() {
         // Données tableau
         String[] entetes = {"Numéro", "Marque", "Modèle/Cylindrée", "Kilométrage", "Réservoir", "Etat", "Actions"};
@@ -111,6 +123,9 @@ public class CorrespondingVehiculesPanel extends BoxPanel {
         add(firstTable);
     }
 
+    /**
+     * Tableau des choix réalisés
+     */
     private void addChosenTable() {
         JPanel chosenTable = new JPanel();
         chosenTable.setBackground(Color.ORANGE);
@@ -158,6 +173,12 @@ public class CorrespondingVehiculesPanel extends BoxPanel {
         add(chosenTable);
     }
 
+    /**
+     * Nettoyage du tableau des choix
+     * @param vehiculeChoisi véhicule choisi
+     * @param debut date de débit
+     * @param fin date de fin
+     */
     public void setSearchParam(Vehicule vehiculeChoisi, Date debut, Date fin){
 
         System.out.println("Recherche de: " + vehiculeChoisi.getDisplayName() + ", d: " + debut + ", f: " + fin);

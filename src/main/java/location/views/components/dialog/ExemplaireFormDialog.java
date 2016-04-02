@@ -27,6 +27,7 @@ public class ExemplaireFormDialog extends JDialog {
     /**
      * Constructeur frame
      * @param owner frame owner
+     * @param table tableau d'exemplaires
      */
     public ExemplaireFormDialog(Frame owner, TableauRecherche table){
         super(owner, TITLE, ModalityType.APPLICATION_MODAL);

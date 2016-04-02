@@ -102,6 +102,7 @@ public class ExemplaireForm extends BoxPanel {
 
     /**
      * Sauvegarde exemplaire
+     * @return exemplaire
      */
     public Exemplaire buildAndSaveExemplaire(){
         if(exemplaire == null) exemplaire = new Exemplaire();
