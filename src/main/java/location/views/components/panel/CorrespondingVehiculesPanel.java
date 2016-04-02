@@ -4,13 +4,12 @@ package location.views.components.panel;
 import location.containers.Flotte;
 import location.models.*;
 import location.util.SelectedExemplaireWithAssurance;
-import location.views.components.dialog.ExemplaireFormDialog;
-import location.views.components.misc.Fenetre;
 import location.views.components.misc.Tableau;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
 
 /**
  * Véhicules correspondants

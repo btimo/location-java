@@ -2,8 +2,10 @@ package location.views.components.form;
 
 
 import location.containers.Emprunteurs;
-import location.containers.Vehicules;
-import location.models.*;
+import location.models.Date;
+import location.models.Emprunteur;
+import location.models.Exemplaire;
+import location.models.Location;
 import location.util.SelectedExemplaireWithAssurance;
 import location.views.components.misc.CustomFontLabel;
 import location.views.components.misc.Fenetre;
