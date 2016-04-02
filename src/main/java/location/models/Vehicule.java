@@ -66,12 +66,20 @@ public abstract class Vehicule extends BaseModel{
         return prixJour;
     }
 
+    public void setPrixJour(int prixJour) {
+        this.prixJour = prixJour;
+    }
+
     /**
      * Getter du prix de l'assurance
      * @return prix de l'assurance
      */
     public int getPrixAssurance() {
         return prixAssurance;
+    }
+
+    public void setPrixAssurance(int prixAssurance) {
+        this.prixAssurance = prixAssurance;
     }
 
     /**
