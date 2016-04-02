@@ -41,7 +41,6 @@ public class LocationForm extends BoxPanel {
      */
     public LocationForm(){
         super();
-        location = new Location();
         initContent();
     }
 
@@ -61,7 +60,7 @@ public class LocationForm extends BoxPanel {
      */
     private void initContent(){
         // label + field to select the user
-        JPanel emprunteurPanel =new FlowPanel(Color.ORANGE);
+        JPanel emprunteurPanel = new FlowPanel(Color.ORANGE);
 
         JLabel emprunterLabel = new CustomFontLabel("Emprunteur : ","Arial",Font.BOLD,20);
         emprunteursComboBox = new JComboBox();
@@ -80,7 +79,7 @@ public class LocationForm extends BoxPanel {
         // button to validate the form + close the window
         validButton = new JButton("Valider");
 
-        JPanel boutonPanel =new JPanel(new FlowLayout());
+        JPanel boutonPanel = new JPanel(new FlowLayout());
         boutonPanel.setBackground(Color.ORANGE);
 
         emprunteurPanel.add(emprunterLabel);

@@ -4,6 +4,7 @@ import javax.persistence.Embeddable;
 import javax.persistence.Transient;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
@@ -69,6 +70,15 @@ public class Date {
         this.setMois(mois);
 
         this.annee = annee;
+    }
+
+    public static Date now(){
+        LocalDate l = LocalDate.now();
+        return new Date(l.getDayOfMonth(), l.getMonthValue(), l.getYear());
+    }
+
+    public java.util.Date asUtilDate(){
+        return new java.util.Date(annee - 1900, mois-1, jour);
     }
 
     /**

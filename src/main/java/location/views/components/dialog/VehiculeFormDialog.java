@@ -51,6 +51,7 @@ public class VehiculeFormDialog extends JDialog {
 
         vehiculeForm.getValidButton().addActionListener(new ButtonListener());
         vehiculeForm.getCancelButton().addActionListener(new ButtonListener());
+
         setSize(500,400);
         pack();
         setVisible(true);

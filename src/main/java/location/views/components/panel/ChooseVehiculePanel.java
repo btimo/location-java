@@ -2,10 +2,7 @@ package location.views.components.panel;
 
 import com.avaje.ebeaninternal.server.lib.util.Str;
 import location.containers.Vehicules;
-import location.models.Auto;
-import location.models.Location;
-import location.models.Moto;
-import location.models.Vehicule;
+import location.models.*;
 import location.views.components.misc.CustomFontLabel;
 
 import javax.swing.*;
@@ -98,8 +95,8 @@ public class ChooseVehiculePanel extends BoxPanel {
         modelPanel.add(vehiculesComboBox);
 
         // Panel date
-        dateDepartPanel = new DatePanel(Color.ORANGE, "Date de départ");
-        dateRetourPanel = new DatePanel(Color.ORANGE, "Date de retour");
+        dateDepartPanel = new DatePanel(Color.ORANGE, "Date de départ", location != null ? location.getDebut().asUtilDate() : Date.now().asUtilDate());
+        dateRetourPanel = new DatePanel(Color.ORANGE, "Date de retour", location != null ? location.getFin().asUtilDate() : Date.now().asUtilDate());
 
         // assurance
         assurancePanel = new JCheckBox("Assurance");
