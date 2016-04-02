@@ -1,19 +1,14 @@
-package views;
+package views.components.misc;
 
 import containers.Vehicules;
 import models.Auto;
-import models.Date;
 import models.Moto;
 import models.Vehicule;
-import org.jdatepicker.impl.JDatePanelImpl;
-import org.jdatepicker.impl.JDatePickerImpl;
-import org.jdatepicker.impl.UtilDateModel;
-import views.components.misc.Label;
+import views.LocationView;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.Properties;
 
 public class Panel {
     protected static JRadioButton premierButton = Bouton.radioBouton("oui",false,Color.ORANGE);
@@ -169,8 +164,8 @@ public class Panel {
         JPanel fenetrePanel = Panel.nvPanelBox(Color.ORANGE);
 
         nouveau.addActionListener(e -> {
-            LocationViews.tabs.add("Liste des voitures", fenetrePanel);
-            LocationViews.locationFrame.add(LocationViews.tabs);
+            //LocationView.tabs.add("Liste des voitures", fenetrePanel);
+            //LocationViews.locationFrame.add(LocationViews.tabs);
         });
         ajoutOnglet.add(nouveau);
         return ajoutOnglet;

@@ -1,6 +1,6 @@
 package views.components.panel;
 
-import views.Panel;
+import views.components.misc.Panel;
 import views.components.misc.Label;
 
 import javax.swing.*;

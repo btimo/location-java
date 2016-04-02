@@ -5,7 +5,7 @@ import containers.Vehicules;
 import models.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import views.LocationViews;
+import views.LocationView;
 
 /**
  * Classe utilisée pour le lancement des fenêtres
@@ -23,6 +23,8 @@ public class Application {
     protected static Logger logger = LoggerFactory.getLogger(Application.class);
 
     private static Application app = null;
+
+    private LocationView view;
 
     public static void main(String[] args){
         Application app = getApp();
@@ -42,7 +44,7 @@ public class Application {
         }
 
         //initialize frame
-        LocationViews fenetreLocation = new LocationViews();
+        view = new LocationView();
     }
 
     /**

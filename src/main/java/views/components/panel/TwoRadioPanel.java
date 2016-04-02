@@ -1,6 +1,6 @@
 package views.components.panel;
 
-import views.Bouton;
+import views.components.misc.Bouton;
 import views.components.misc.Label;
 
 import javax.swing.*;

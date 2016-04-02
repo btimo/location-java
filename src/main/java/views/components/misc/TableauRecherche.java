@@ -1,25 +1,21 @@
-package views;
+package views.components.misc;
 
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
-import java.awt.Color;
-import views.components.misc.Label;
-import views.components.misc.TextField;
+import java.awt.*;
 
 
 public class TableauRecherche extends Tableau {
 
-    public TableauRecherche(JPanel fenetre, Object[][] donnees, String[] entetes){
-        super(fenetre, donnees, entetes);
+    public TableauRecherche(Object[][] donnees, String[] entetes){
+        super(donnees, entetes);
     }
 
-    public JPanel generer(){
-
-        JPanel searchPanel = Panel.nvPanelFlow(Color.orange);
-
+    public void generer(){
         JLabel nomLabel = new Label("Recherche : ");
         JTextField nomTexte = new TextField("", 10);
+        //nomTexte.setMaximumSize(new Dimension(100,10));
 
         nomTexte.getDocument().addDocumentListener(new DocumentListener() {
             @Override
@@ -47,13 +43,10 @@ public class TableauRecherche extends Tableau {
             }
         });
 
-        searchPanel.add(nomLabel);
-        searchPanel.add(nomTexte);
-        fenetre.add(searchPanel);
+        add(nomLabel);
+        add(nomTexte);
 
         // Appel fonction parente pour créer le tableau
-        fenetre = super.generer();
-
-        return fenetre;
+        super.generer();
     }
 }

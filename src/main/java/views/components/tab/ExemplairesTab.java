@@ -3,26 +3,29 @@ package views.components.tab;
 import models.Auto;
 import models.Exemplaire;
 import models.Moto;
-import views.Panel;
-import views.Tableau;
-import views.TableauRecherche;
+import views.components.misc.TableauRecherche;
 import views.components.misc.Label;
 
 import javax.swing.*;
 import java.awt.Color;
 import java.awt.Font;
 
-public class Exemplaires {
-    public Exemplaires(JPanel fenetrePanel) {
+public class ExemplairesTab extends JPanel {
+    public ExemplairesTab() {
+        super();
+        setBackground(Color.orange);
+        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        initContent();
+    }
+
+    private void initContent() {
         // rajout du titre
-        JPanel titrePanel = Panel.nvPanelFlow(Color.ORANGE);
         JLabel reservationLabel = new Label("Liste des exemplaires","Calibri", Font.PLAIN, 25);
-        titrePanel.add(reservationLabel);
+        add(reservationLabel);
 
         // Bouton rajout Ajouter un exemplaire
-        JPanel ajoutPanel = Panel.nvPanelFlow(Color.ORANGE);
         JButton ajouter = new JButton("Ajouter un exemplaire");
-        ajoutPanel.add(ajouter);
+        add(ajouter);
 
         // Données tableau
         String[] entetes = {"Numéro", "Marque", "Modèle/Cylindrée", "Kilométrage", "Réservoir", "Etat", "Actions"};
@@ -52,12 +55,6 @@ public class Exemplaires {
             count++;
         }
 
-        fenetrePanel.add(titrePanel);
-
-        fenetrePanel.add(ajoutPanel);
-
-        Tableau tableau = new TableauRecherche(fenetrePanel, donnees, entetes);
-        tableau.generer();
-
+        add(new TableauRecherche(donnees, entetes));
     }
 }
