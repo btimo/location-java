@@ -35,6 +35,7 @@ public class Date {
     }
 
     public Date (java.util.Date d){
+        System.out.println("ert:" + d);
         this.jour = d.getDate();
         this.mois = d.getMonth() + 1;
         this.annee = d.getYear() + 1900;
