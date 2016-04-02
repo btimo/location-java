@@ -53,7 +53,7 @@ public class ExemplaireForm extends JPanel {
         vehiculesComboBox = new JComboBox();
         for(Vehicule v: Vehicules.get()){
             vehiculesComboBox.addItem(v.getDisplayName());
-            if(exemplaire != null && exemplaire.getVehicule().getDisplayName().equals(v.getDisplayName())) vehiculesComboBox.setSelectedItem(v.getDisplayName());
+            if(exemplaire != null && exemplaire.getVehicule() != null && exemplaire.getVehicule().getDisplayName().equals(v.getDisplayName())) vehiculesComboBox.setSelectedItem(v.getDisplayName());
         }
         // label + field for the exemplaire kmCounter
         kmLabel = new JLabel("Kilométrage : ");
@@ -65,7 +65,7 @@ public class ExemplaireForm extends JPanel {
         // button to validate the form + close the window
         validButton = new JButton("Valider");
 
-        if(exemplaire != null){
+        if(exemplaire != null && exemplaire.getVehicule() != null ){
             vehiculesComboBox.setEnabled(false);
             kmTexte.setText(Integer.toString(exemplaire.getKilometres()));
         }

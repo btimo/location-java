@@ -77,7 +77,7 @@ public class LocationsTab extends JPanel {
             }
 
             donnees[count][5] = prixFinal;
-            donnees[count][6] = "Bouton";
+            donnees[count][6] = "Détails";
 
             count++;
         }

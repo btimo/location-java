@@ -52,6 +52,7 @@ public class LocationForm extends BoxPanel {
     public LocationForm(Location l){
         super();
         location = l;
+        initContent();
         initContentWithData();
     }
 

@@ -31,6 +31,9 @@ public class Exemplaire extends BaseModel{
     public static final int penaliteReservoir = 30;
     public static final int penaliteEndommage = 500;
 
+    /**
+     * Constructeur vide pour eBean
+     */
     public Exemplaire(){
         // used by ExemplaireForm.class
     }
@@ -95,7 +98,7 @@ public class Exemplaire extends BaseModel{
      * Getter de la liste de locations du véhicules
      * @return liste de locations du véhicules
      */
-    public List<LocationExemplaire> getLocationExemplaires() {
+    public synchronized List<LocationExemplaire> getLocationExemplaires() {
         return locationExemplaires;
     }
 
@@ -103,7 +106,7 @@ public class Exemplaire extends BaseModel{
      * Setter de la liste de locations du véhicules
      * @param locationExemplaires liste de locations du véhicules
      */
-    public void setLocationExemplaires(List<LocationExemplaire> locationExemplaires) {
+    public synchronized void setLocationExemplaires(List<LocationExemplaire> locationExemplaires) {
         this.locationExemplaires = locationExemplaires;
     }
 

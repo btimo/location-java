@@ -78,7 +78,7 @@ public class VehiculesTab extends JPanel {
             donnees[count][2] = modeleCylindree;
             donnees[count][3] = v.getPrixJour();
             donnees[count][4] = v.getPrixAssurance();
-            donnees[count][5] = "Bouton";
+            donnees[count][5] = "Détails";
 
             count++;
         }

@@ -24,7 +24,6 @@ public class LocationFormDialog extends JDialog {
      * Constructeur frame
      * @param owner frame owner
      */
-
     public LocationFormDialog(Frame owner){
         super(owner, TITLE, ModalityType.APPLICATION_MODAL);
         ((Fenetre) owner).setLocationFormDialog(this);
@@ -49,11 +48,10 @@ public class LocationFormDialog extends JDialog {
      * Initialisation de la fenêtre
      */
     private void initLocationFormDialog(){
-
         setContentPane(locationForm);
 
-        locationForm.getValidButton().addActionListener(new LocationFormDialog.ButtonListener());
-        locationForm.getCancelButton().addActionListener(new LocationFormDialog.ButtonListener());
+        locationForm.getValidButton().addActionListener(new ButtonListener());
+        locationForm.getCancelButton().addActionListener(new ButtonListener());
         setSize(400,500);
         pack();
         setVisible(true);

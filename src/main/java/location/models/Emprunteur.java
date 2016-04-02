@@ -25,6 +25,9 @@ public class Emprunteur extends BaseModel  {
     @OneToMany(cascade= CascadeType.ALL , mappedBy = "emprunteur")
     private List<Location> locations;
 
+    /**
+     * Constructeur vide pour eBean
+     */
     public Emprunteur(){
         // used by EmprunteurForm.class
     }
@@ -58,7 +61,7 @@ public class Emprunteur extends BaseModel  {
      * Getter des locations effectuées par l'emprunteur
      * @return locations effectuées par l'emprunteur
      */
-    public List<Location> getLocations() {
+    public synchronized List<Location> getLocations() {
         return locations;
     }
 
@@ -66,7 +69,7 @@ public class Emprunteur extends BaseModel  {
      * Setter des locations effectuées par l'emprunteur
      * @param locations effectuées par l'emprunteur
      */
-    public void setLocations(ArrayList<Location> locations) {
+    public synchronized void setLocations(ArrayList<Location> locations) {
         this.locations = locations;
     }
 
@@ -123,7 +126,7 @@ public class Emprunteur extends BaseModel  {
      * Ajout de la location à la liste de l'instance et mise à jour de l'emprunteur dans la location passée
      * @param l location à ajouter
      */
-    public void louer(Location l) {
+    public synchronized void louer(Location l) {
         locations.add(l);
         l.setEmprunteur(this);
         l.save();
@@ -133,7 +136,7 @@ public class Emprunteur extends BaseModel  {
      * On ramène la (les) voiture(s) louée(s) : réparation et plein
      * @param l location ramenée
      */
-    public void ramener(Location l) {
+    public synchronized void ramener(Location l) {
         for (LocationExemplaire le : l.getLocationExemplaires()) {
             Exemplaire e = le.getExemplaire();
             e.setReservoir(1); // Plein

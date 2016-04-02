@@ -18,6 +18,9 @@ public class Auto extends Vehicule {
 
     private boolean luxe;
 
+    /**
+     * Constructeur vide pour eBean
+     */
     public Auto(){
 
     }

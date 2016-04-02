@@ -1,5 +1,6 @@
 package location.views.components.panel;
 
+import com.avaje.ebeaninternal.server.lib.util.Str;
 import location.containers.Vehicules;
 import location.models.Auto;
 import location.models.Moto;
@@ -32,6 +33,10 @@ public class ChooseVehiculePanel extends BoxPanel {
 
     private JButton searchBtn;
 
+    private Vehicule vehiculeChoisi;
+
+    private String modeleCylindree;
+
     /**
      * Constructeur par défaut
      */
@@ -55,7 +60,6 @@ public class ChooseVehiculePanel extends BoxPanel {
      */
     private void initChooseVehiculePanel(){
         // Panel choix type de vehicule
-
         typeVehicule = new TwoRadioPanel(Color.ORANGE, "Type de location", "Auto", "Moto");
         typeVehicule.getBtn1().addActionListener(e->{
             vehiculesComboBox.removeAllItems();
@@ -106,6 +110,25 @@ public class ChooseVehiculePanel extends BoxPanel {
         // table showing exemplaire corresponding to search
         correspondingVehiculesPanel = new CorrespondingVehiculesPanel();
 
+        vehiculesComboBox.addActionListener(e->{
+            String value = vehiculesComboBox.getSelectedItem().toString();
+
+            // Récupération du véhicule choisi
+            for(Vehicule v: Vehicules.get()){
+                if(value != null && value.equals(v.getDisplayName())) {
+                    vehiculeChoisi = v;
+                }
+            }
+
+            if (vehiculeChoisi instanceof Auto) {
+                modeleCylindree = ((Auto) vehiculeChoisi).getModele();
+            }
+            else {
+                modeleCylindree = Integer.toString(((Moto) vehiculeChoisi).getCylindree());
+            }
+
+            correspondingVehiculesPanel.setSearchParam(vehiculeChoisi/*, dateDepartPanel, dateRetourPanel*/);
+        });
         JPanel typeModelPanel = new BoxPanel();
         typeModelPanel.setBackground(Color.ORANGE);
         typeModelPanel.add(typeVehicule);

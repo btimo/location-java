@@ -15,6 +15,9 @@ public class Moto extends Vehicule {
 
     private int cylindree;
 
+    /**
+     * Constructeur vide pour eBean
+     */
     public Moto(){
 
     }

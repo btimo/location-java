@@ -14,8 +14,11 @@ import java.util.Comparator;
  */
 public class Vehicules {
     private static ArrayList<Vehicule> vehicules = new ArrayList<Vehicule>();
-    public static final Find<Long, Vehicule> find = new Find<Long, Vehicule>(){};
+    private static final Find<Long, Vehicule> find = new Find<Long, Vehicule>(){};
 
+    /**
+     * Récupération de tous les véhicules
+     */
     private static void fetchAll(){
         vehicules = new ArrayList<>(find.all());
     }
@@ -24,7 +27,7 @@ public class Vehicules {
      * Ajout d'un véhicule
      * @param v véhicule à ajouter
      */
-    public static void ajout(Vehicule v) {
+    public synchronized static void ajout(Vehicule v) {
         vehicules.add(v);
     }
 
@@ -32,7 +35,7 @@ public class Vehicules {
      * Liste des véhicules
      * @return liste des véhicules actuellement stockés
      */
-    public static ArrayList<Vehicule> get() {
+    public synchronized static ArrayList<Vehicule> get() {
         fetchAll();
         return vehicules;
     }
@@ -40,11 +43,11 @@ public class Vehicules {
     /**
      * Tri par marque
      */
-    public static void triMarque()
+    public synchronized static void triMarque()
     {
         Collections.sort(vehicules, new Comparator<Vehicule>()
         {
-            public int compare(Vehicule v1, Vehicule v2)
+            public synchronized int compare(Vehicule v1, Vehicule v2)
             {
                 return v1.getMarque().compareTo(v2.getMarque());
             }
@@ -56,7 +59,7 @@ public class Vehicules {
      * @param marque marque à rechercher
      * @return liste de véhicules correspondant à la marque
      */
-    public static ArrayList<Vehicule> rechercheMarque(String marque)
+    public synchronized static ArrayList<Vehicule> rechercheMarque(String marque)
     {
         ArrayList<Vehicule> vehiculesSearch = new ArrayList<Vehicule>();
 
@@ -74,7 +77,7 @@ public class Vehicules {
      * @param modele modèle à rechercher
      * @return liste des véhicules du modèle donné
      */
-    public static ArrayList<Vehicule> triModele(String modele)
+    public synchronized static ArrayList<Vehicule> triModele(String modele)
     {
         ArrayList<Vehicule> vehiculesSearch = new ArrayList<Vehicule>();
 

@@ -82,7 +82,7 @@ public class ExemplairesTab extends JPanel {
             donnees[count][3] = e.getKilometres();
             donnees[count][4] = e.getReservoir();
             donnees[count][5] = (e.isEndommage()) ? "Mauvais" : "OK";
-            donnees[count][6] = "Bouton";
+            donnees[count][6] = "Détails";
 
             count++;
         }

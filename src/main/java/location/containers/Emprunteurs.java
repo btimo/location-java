@@ -15,7 +15,10 @@ public class Emprunteurs {
     private static ArrayList<Emprunteur> emprunteurs = new ArrayList<Emprunteur>();
     public static final Find<Long,Emprunteur> find = new Find<Long, Emprunteur>(){};
 
-    private static void fetchAll(){
+    /**
+     * Récupération de tous les emprunteurs
+     */
+    private synchronized static void fetchAll(){
         emprunteurs = new ArrayList<>(find.all());
     }
 
@@ -23,7 +26,7 @@ public class Emprunteurs {
      * Ajout d'un emprunteur
      * @param e emprunteur à ajouter
      */
-    public static void ajout(Emprunteur e) {
+    public synchronized static void ajout(Emprunteur e) {
         emprunteurs.add(e);
     }
 
@@ -31,7 +34,7 @@ public class Emprunteurs {
      * Liste des emprunteurs
      * @return liste des emprunteurs
      */
-    public static ArrayList<Emprunteur> get() {
+    public synchronized static ArrayList<Emprunteur> get() {
         fetchAll();
         return emprunteurs;
     }
@@ -39,11 +42,11 @@ public class Emprunteurs {
     /**
      * Tri par ID
      */
-    public static void triId()
+    public synchronized static void triId()
     {
         Collections.sort(emprunteurs, new Comparator<Emprunteur>()
         {
-            public int compare(Emprunteur e1, Emprunteur e2)
+            public synchronized int compare(Emprunteur e1, Emprunteur e2)
             {
                 if (e1.getId() > e2.getId()) {
                     return 1;
@@ -59,11 +62,11 @@ public class Emprunteurs {
     /**
      * Tri par nom
      */
-    public static void triNom()
+    public synchronized static void triNom()
     {
         Collections.sort(emprunteurs, new Comparator<Emprunteur>()
         {
-            public int compare(Emprunteur e1, Emprunteur e2)
+            public synchronized int compare(Emprunteur e1, Emprunteur e2)
             {
                 return e1.getNom().compareTo(e2.getNom());
             }
@@ -75,7 +78,7 @@ public class Emprunteurs {
      * @param name nom de l'empruteur à rechercher
      * @return liste des emprunteurs correspondants à ka recherche
      */
-    public static ArrayList<Emprunteur> rechercheNom(String name)
+    public synchronized static ArrayList<Emprunteur> rechercheNom(String name)
     {
         ArrayList<Emprunteur> emprunteursSearch = new ArrayList<Emprunteur>();
 
@@ -93,7 +96,7 @@ public class Emprunteurs {
      * @param vehicule véhicule à rechercher
      * @return liste des emprunteurs du véhicule
      */
-    public static ArrayList<Emprunteur> rechercheVehicule(Vehicule vehicule)
+    public synchronized static ArrayList<Emprunteur> rechercheVehicule(Vehicule vehicule)
     {
         ArrayList<Emprunteur> emprunteursSearch = new ArrayList<Emprunteur>();
 
@@ -110,7 +113,7 @@ public class Emprunteurs {
      * Recherche des empruteurs ayant une location en cours
      * @return liste d'emprunteurs ayant une location en cours
      */
-    public static ArrayList<Emprunteur> locationEnCours()
+    public synchronized static ArrayList<Emprunteur> locationEnCours()
     {
         ArrayList<Emprunteur> emprunteursSearch = new ArrayList<Emprunteur>();
 
@@ -131,7 +134,7 @@ public class Emprunteurs {
      * @param montant2 montant maximal
      * @return liste d'emprunteurs ayant réalisé une location entre deux montants
      */
-    public static ArrayList<Emprunteur> rechercheMontant(int montant1, int montant2)
+    public synchronized static ArrayList<Emprunteur> rechercheMontant(int montant1, int montant2)
     {
         ArrayList<Emprunteur> emprunteursSearch = new ArrayList<Emprunteur>();
 
@@ -151,7 +154,7 @@ public class Emprunteurs {
      * @param d date de début d
      * @return liste d'emprunteurs ayant une location avec une date de début
      */
-    public ArrayList<Emprunteur> locationDateDebut(Date d)
+    public synchronized static ArrayList<Emprunteur> locationDateDebut(Date d)
     {
         ArrayList<Emprunteur> emprunteursSearch = new ArrayList<Emprunteur>();
 
@@ -169,11 +172,11 @@ public class Emprunteurs {
     /**
      * Tri des emprunteurs par leur prénom
      */
-    public static void triPrenom()
+    public synchronized static void triPrenom()
     {
         Collections.sort(emprunteurs, new Comparator<Emprunteur>()
         {
-            public int compare(Emprunteur e1, Emprunteur e2)
+            public synchronized int compare(Emprunteur e1, Emprunteur e2)
             {
                 return e1.getPrenom().compareTo(e2.getPrenom());
             }
@@ -183,11 +186,11 @@ public class Emprunteurs {
     /**
      * Tri des emprunteurs par code postal
      */
-    public static void triCodePostal()
+    public synchronized static void triCodePostal()
     {
         Collections.sort(emprunteurs, new Comparator<Emprunteur>()
         {
-            public int compare(Emprunteur e1, Emprunteur e2)
+            public synchronized int compare(Emprunteur e1, Emprunteur e2)
             {
                 return e1.getAdresse().getCp().compareTo(e2.getAdresse().getCp());
             }
@@ -197,11 +200,11 @@ public class Emprunteurs {
     /**
      * Tri des emprunteurs par la ville
      */
-    public static void triVille()
+    public synchronized static void triVille()
     {
         Collections.sort(emprunteurs, new Comparator<Emprunteur>()
         {
-            public int compare(Emprunteur e1, Emprunteur e2)
+            public synchronized int compare(Emprunteur e1, Emprunteur e2)
             {
                 return e1.getAdresse().getVille().compareTo(e2.getAdresse().getVille());
             }

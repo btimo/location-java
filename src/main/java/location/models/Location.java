@@ -49,7 +49,9 @@ public class Location extends BaseModel {
      */
     private boolean approuvee; // Devis accepté ?
 
-
+    /**
+     * Constructeur vide pour eBean
+     */
     public Location(){
         // used by LocationForm
     }
@@ -155,7 +157,7 @@ public class Location extends BaseModel {
      * Récupération de la liste d'exemplaires de la location
      * @return liste d'exemplaires de la location
      */
-    public List<LocationExemplaire> getLocationExemplaires() {
+    public synchronized List<LocationExemplaire> getLocationExemplaires() {
         return locationExemplaires;
     }
 
@@ -171,7 +173,7 @@ public class Location extends BaseModel {
      * Ajout à la liste d'exemplaires de la location
      * @param locationExemplaire exemplaire de location
      */
-    public void addLocationExemplaire(LocationExemplaire locationExemplaire){
+    public synchronized void addLocationExemplaire(LocationExemplaire locationExemplaire){
         this.locationExemplaires.add(locationExemplaire);
     }
 
@@ -196,7 +198,7 @@ public class Location extends BaseModel {
      * @param exemplaire exemplaire à louer
      * @param assurance assurance?
      */
-    public void louer(Exemplaire exemplaire, boolean assurance){
+    public synchronized void louer(Exemplaire exemplaire, boolean assurance){
         LocationExemplaire le = new LocationExemplaire(this, exemplaire, assurance);
         locationExemplaires.add(le);
         //le.save();
@@ -207,7 +209,7 @@ public class Location extends BaseModel {
      * On boucle sur locationExemplaires pour mettre à jour la table quand l'ID est inséré
      */
     @Override
-    public void save() {
+    public synchronized void save() {
         super.save();
         for (LocationExemplaire l : locationExemplaires) {
             l.save();
