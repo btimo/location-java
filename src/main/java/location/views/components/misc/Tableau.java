@@ -29,6 +29,9 @@ public class Tableau extends JPanel {
     public void generer(){
         tableau.setRowSorter(rowSorter);
 
+        // todo: etre capable de passer des abstractAction en parametre lors de la creation d'un tableau
+        // - abstractAction pour le delete dans le choix des vehicule
+        // - abstractAction pour l'affichage des détails dans les tableaux des 4 onglets
         Action delete = new AbstractAction()
         {
             public void actionPerformed(ActionEvent e)
