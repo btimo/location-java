@@ -7,8 +7,7 @@ import location.views.components.misc.TableauRecherche;
 import location.views.components.misc.CustomFontLabel;
 
 import javax.swing.*;
-import java.awt.Color;
-import java.awt.Font;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 
 public class ExemplairesTab extends JPanel {
@@ -21,12 +20,14 @@ public class ExemplairesTab extends JPanel {
 
     private void initContent() {
         // rajout du titre
-        JLabel reservationLabel = new CustomFontLabel("Liste des exemplaires","Calibri", Font.PLAIN, 25);
-        add(reservationLabel);
+        JLabel title = new CustomFontLabel("Liste des exemplaires","Calibri", Font.PLAIN, 25);
+        title.setAlignmentX(Component.CENTER_ALIGNMENT);
+        add(title);
 
         // Bouton rajout Ajouter un exemplaire
-        JButton ajouter = new JButton("Ajouter un exemplaire");
-        add(ajouter);
+        JButton addExemplaireButton = new JButton("Ajouter un exemplaire");
+        addExemplaireButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        add(addExemplaireButton);
 
         // Données tableau
         String[] entetes = {"Numéro", "Marque", "Modèle/Cylindrée", "Kilométrage", "Réservoir", "Etat", "Actions"};

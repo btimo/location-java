@@ -7,8 +7,7 @@ import location.views.components.misc.TableauRecherche;
 import location.views.components.misc.CustomFontLabel;
 
 import javax.swing.*;
-import java.awt.Color;
-import java.awt.Font;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 
 
@@ -22,12 +21,14 @@ public class VehiculesTab extends JPanel {
 
     public void initContent() {
         // rajout du titre
-        JLabel reservationLabel = new CustomFontLabel("Liste des véhicules","Calibri", Font.PLAIN, 25);
-        add(reservationLabel);
+        JLabel title = new CustomFontLabel("Liste des véhicules","Calibri", Font.PLAIN, 25);
+        title.setAlignmentX(Component.CENTER_ALIGNMENT);
+        add(title);
 
         // Bouton rajout Ajouter un exemplaire
-        JButton ajouter = new JButton("Ajouter un véhicule");
-        add(ajouter);
+        JButton addVehiculeButton = new JButton("Ajouter un véhicule");
+        addVehiculeButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        add(addVehiculeButton);
 
         // Données tableau
         String[] entetes = {"Numéro", "Marque", "Modèle/Cylindrée", "Prix journalier", "Prix assurance", "Actions"};

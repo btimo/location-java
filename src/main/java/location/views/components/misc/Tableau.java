@@ -31,6 +31,8 @@ public class Tableau extends JPanel {
     public void generer(){
         tableau.setRowSorter(rowSorter);
 
+        tableau.setAlignmentX(Component.CENTER_ALIGNMENT);
+
         // Ajout du bouton passé en dernière position
         ButtonColumn buttonColumn = new ButtonColumn(tableau, action, entetes.length-1);
         buttonColumn.setMnemonic(KeyEvent.VK_D);

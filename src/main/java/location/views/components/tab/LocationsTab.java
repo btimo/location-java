@@ -23,12 +23,14 @@ public class LocationsTab extends JPanel {
 
     private void initContent() {
         // rajout du titre
-        JLabel reservationLabel = new CustomFontLabel("Liste des locations","Calibri", Font.PLAIN, 25);
-        add(reservationLabel);
+        JLabel title = new CustomFontLabel("Liste des locations","Calibri", Font.PLAIN, 25);
+        title.setAlignmentX(Component.CENTER_ALIGNMENT);
+        add(title);
 
         // Bouton rajout Ajouter une location
-        JButton ajouter = new JButton("Ajouter une location");
-        add(ajouter);
+        JButton addLocationButton = new JButton("Ajouter une location");
+        addLocationButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        add(addLocationButton);
 
         // Données tableau
         String[] entetes = {"Numéro", "Locataire", "Date début", "Date fin", "Devis accepté", "Prix TTC", "Actions"};
