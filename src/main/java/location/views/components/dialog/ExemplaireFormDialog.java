@@ -75,6 +75,7 @@ public class ExemplaireFormDialog extends JDialog {
                 dialog.setVisible(false);
                 dialog.dispatchEvent(new WindowEvent(dialog, WindowEvent.WINDOW_CLOSING));
             }
+
         }
     }
 }

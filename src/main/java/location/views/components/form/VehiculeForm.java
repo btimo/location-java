@@ -34,6 +34,8 @@ public class VehiculeForm extends BoxPanel {
 
     private JButton validButton;
 
+    private JButton deletButton;
+
     /**
      * Constructeur par défaut
      */
@@ -118,6 +120,8 @@ public class VehiculeForm extends BoxPanel {
         // button to validate the form + close the window
         validButton = new JButton("Valider");
 
+        deletButton = new JButton("Supprimer");
+
         marqueModelPanel.add(marqueLabel);
         marqueModelPanel.add(marqueTexte);
         marqueModelPanel.add(autoPanel);
@@ -125,6 +129,7 @@ public class VehiculeForm extends BoxPanel {
 
         boutonPanel.add(cancelButton);
         boutonPanel.add(validButton);
+        boutonPanel.add(deletButton);
 
         pricePanel.add(priceLabel);
         pricePanel.add(priceTexte);
@@ -161,6 +166,7 @@ public class VehiculeForm extends BoxPanel {
         vehicule.save();
     }
 
+
     /**
      * Récupération bouton annulation
      * @return bouton annulation
@@ -191,5 +197,21 @@ public class VehiculeForm extends BoxPanel {
      */
     public void setValidButton(JButton validButton) {
         this.validButton = validButton;
+    }
+
+    /**
+     * Recuperation bouton supprimer
+     * @return
+     */
+    public JButton getDeletButton() {
+        return deletButton;
+    }
+
+    /**
+     * Modification bouton supprimer
+     * @param deletButton
+     */
+    public void setDeletButton(JButton deletButton) {
+        this.deletButton = deletButton;
     }
 }

@@ -70,12 +70,13 @@ public class VehiculeFormDialog extends JDialog {
                 dialog.setVisible(false);
                 dialog.dispatchEvent(new WindowEvent(dialog, WindowEvent.WINDOW_CLOSING));
             }
-            else if(me.equals(vehiculeForm.getValidButton())){
+            else if(me.equals(vehiculeForm.getValidButton())) {
                 vehiculeForm.buildAndSaveVehicule();
                 // todo: update Exemplaires containers and redraw table
                 dialog.setVisible(false);
                 dialog.dispatchEvent(new WindowEvent(dialog, WindowEvent.WINDOW_CLOSING));
             }
+
         }
     }
 }
