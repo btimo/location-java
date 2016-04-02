@@ -10,9 +10,12 @@ import location.views.components.misc.Tableau;
 import location.views.components.misc.TableauRecherche;
 
 import javax.swing.*;
+import javax.swing.table.TableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ContainerAdapter;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CorrespondingVehiculesPanel extends BoxPanel {
 
@@ -184,7 +187,18 @@ public class CorrespondingVehiculesPanel extends BoxPanel {
         }*/
         //table.setData(donnees);
 
-        table.search(getModeleCylindree(vehiculeChoisi));
+        RowFilter<TableModel, Object> firstFiler;
+        RowFilter<TableModel, Object> secondFilter;
+        List<RowFilter<TableModel,Object>> filters = new ArrayList<>();
+        RowFilter<TableModel, Object> compoundRowFilter;
+
+        firstFiler = RowFilter.regexFilter("(?i)" + vehiculeChoisi.getMarque(), 1);
+        secondFilter = RowFilter.regexFilter("(?i)" + getModeleCylindree(vehiculeChoisi), 2);
+        filters.add(firstFiler);
+        filters.add(secondFilter);
+        compoundRowFilter = RowFilter.andFilter(filters);
+
+        table.search(compoundRowFilter);
     }
 
     /**
