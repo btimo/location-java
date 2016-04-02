@@ -12,10 +12,11 @@ import location.views.components.misc.TableauRecherche;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ContainerAdapter;
 
 public class CorrespondingVehiculesPanel extends BoxPanel {
 
-    private TableauRecherche table;
+    private Tableau table;
     private Tableau table2;
     private String modeleCylindree;
     private Location locationChoisie;
@@ -73,7 +74,14 @@ public class CorrespondingVehiculesPanel extends BoxPanel {
             count++;
         }
 
-        table = new TableauRecherche(donnees, entetes, numData, new AbstractAction()
+        JPanel firstTable = new JPanel();
+        firstTable.setBackground(Color.ORANGE);
+        firstTable.setLayout(new BoxLayout(firstTable, BoxLayout.Y_AXIS));
+        JLabel info = new JLabel("Véhicules disponibles");
+        info.setAlignmentX(CENTER_ALIGNMENT);
+        firstTable.add(info);
+
+        table = new Tableau(donnees, entetes, numData, new AbstractAction()
         {
             public void actionPerformed(ActionEvent e)
             {
@@ -95,10 +103,19 @@ public class CorrespondingVehiculesPanel extends BoxPanel {
 
         table.setPreferredSize(new Dimension(200,150));
 
-        add(table);
+        firstTable.add(table);
+        add(firstTable);
     }
 
     private void addChosenTable() {
+        JPanel chosenTable = new JPanel();
+        chosenTable.setBackground(Color.ORANGE);
+        chosenTable.setLayout(new BoxLayout(chosenTable, BoxLayout.Y_AXIS));
+        JLabel info = new JLabel("Véhicules loués");
+        info.setBackground(Color.ORANGE);
+        info.setAlignmentX(CENTER_ALIGNMENT);
+        chosenTable.add(info);
+
         // Données tableau
         String[] entetes = {"Numéro", "Marque", "Modèle/Cylindrée", "Kilométrage", "Réservoir", "Etat", "Actions"};
 
@@ -132,7 +149,9 @@ public class CorrespondingVehiculesPanel extends BoxPanel {
 
         table2.setPreferredSize(new Dimension(200,150));
 
-        add(table2);
+        chosenTable.add(table2);
+
+        add(chosenTable);
     }
 
     public void setSearchParam(Vehicule vehiculeChoisi/*, Date debut, Date fin*/){
